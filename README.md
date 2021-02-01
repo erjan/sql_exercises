@@ -1,4 +1,4 @@
-# sqlzoo_solutions
-my sql zoo solutions
+Here i upload various solutions from sql practice websites:
 
-this is my own attempt at sqlsoo.net - website with SQL exercises
+- sqlzoo.net - done
+- windowfunctions.com - done
