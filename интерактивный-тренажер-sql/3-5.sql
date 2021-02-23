@@ -156,3 +156,45 @@ sec_to_time(-ifnull(   lag(submission_time) over (order by submission_time) - su
 
 from student join step_student using (student_id) join step using(step_id)
 where student_name = 'student_61';
+          
+          
+     /*     
+        Посчитать среднее время, за которое пользователи проходят урок по следующему алгоритму:
+
+для каждого пользователя вычислить время прохождения шага как сумму времени, потраченного на каждую попытку (время попытки - это разница между временем отправки задания и временем начала попытки), при этом попытки, которые длились больше 4 часов не учитывать, так как пользователь мог просто оставить задание открытым в браузере, а вернуться к нему на следующий день;
+для каждого студента посчитать общее время, которое он затратил на каждый урок;
+вычислить среднее время выполнения урока в часах, результат округлить до 2-х знаков после запятой;
+вывести информацию по возрастанию времени, пронумеровав строки, для каждого урока указать номер модуля и его позицию в нем.  
+          
+      */
+
+          
+          
+with 
+ diff_step_time as (
+ select student_id, step_student.step_id as step_id,  (submission_time - attempt_time) as step_time 
+ from step_student
+ where (submission_time - attempt_time) < 4 * 3600
+ order by student_id),
+ 
+ 
+ one_step_time as (
+ select student_id, step.step_id, lesson_id, sum(step_time) as total_step_time 
+ from diff_step_time inner join step on step.step_id = diff_step_time.step_id
+ group by student_id, step.step_id
+ order by student_id),
+  
+  s3 as (
+  select lesson.lesson_id, student_id, lesson_name, module_id ,sum(total_step_time)/3600 as lesson_time from one_step_time inner join lesson on lesson.lesson_id = one_step_time.lesson_id
+  group by lesson.lesson_id, student_id, lesson_name, module_id),
+ 
+ s4 as (
+ select s3.lesson_id, round(avg(lesson_time),2) as Среднее_время ,s3.module_id , lesson.lesson_position, lesson.lesson_name
+ from s3 inner join lesson on lesson.lesson_id = s3.lesson_id
+ group by s3.lesson_id, module_id )
+ 
+ 
+ select 
+ row_number() over ( order by Среднее_время) as Номер,
+ concat(module_id,'.',lesson_position, ' ', lesson_name) as Урок, Среднее_время from s4
+ order by Среднее_время asc
