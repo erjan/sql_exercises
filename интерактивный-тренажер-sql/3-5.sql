@@ -198,3 +198,28 @@ with
  row_number() over ( order by Среднее_время) as Номер,
  concat(module_id,'.',lesson_position, ' ', lesson_name) as Урок, Среднее_время from s4
  order by Среднее_время asc
+
+          
+          
+-- Вычислить рейтинг каждого студента относительно студента, прошедшего наибольшее количество шагов в 
+-- модуле (вычисляется как отношение количества пройденных студентом шагов к максимальному количеству пройденных шагов, умноженное на 100). 
+-- Вывести номер модуля, имя студента, количество пройденных им шагов и 
+-- относительный рейтинг. Относительный рейтинг округлить до одного знака после запятой          
+          
+          
+with helper(mod_id, stud_id, correct) as (
+SELECT module_id, student_id,  count(DISTINCT step_id) as correct
+   FROM step_student INNER JOIN step USING (step_id)
+                     INNER JOIN lesson USING (lesson_id)
+   WHERE result = "correct" 
+   GROUP BY student_id, module_id)
+   
+
+SELECT 
+mod_id AS Модуль, 
+student_name as Студент, 
+correct as Пройдено_шагов,
+ round(100* (correct/ MAX(correct) OVER (PARTITION BY mod_id)),1) AS Относительный_рейтинг 
+
+FROM helper  inner join student on helper.stud_id = student.student_id
+order by mod_id asc ,Относительный_рейтинг desc, student_name          
