@@ -222,4 +222,53 @@ correct as Пройдено_шагов,
  round(100* (correct/ MAX(correct) OVER (PARTITION BY mod_id)),1) AS Относительный_рейтинг 
 
 FROM helper  inner join student on helper.stud_id = student.student_id
-order by mod_id asc ,Относительный_рейтинг desc, student_name          
+order by mod_id asc ,Относительный_рейтинг desc, student_name   
+             
+             
+             
+-- Проанализировать, в каком порядке и с каким интервалом пользователь отправлял последнее верно выполненное задание каждого урока. 
+-- Учитывать только студентов, прошедших хотя бы один шаг из всех трех уроков. 
+-- В базе занесены попытки студентов  для трех уроков курса, поэтому анализ проводить только для этих уроков  
+             
+
+
+with s1 as (
+select 
+step_student.student_id,step.step_id, lesson_id, submission_time
+
+from step_student inner join step on step.step_id = step_student.step_id
+where result = 'correct'
+group by step_student.student_id,step.step_id, lesson_id, submission_time
+),
+
+
+s2 as (
+select 
+student_id, 
+lesson.lesson_id,     
+submission_time,
+max(submission_time) over(partition by student_id, lesson.lesson_id) as max_time
+from s1 inner join lesson on s1.lesson_id = lesson.lesson_id
+group by student_id, lesson.lesson_id, submission_time
+order by student_id, lesson.lesson_id),
+
+s3 as (
+select 
+student_id 
+from s2 group by student_id
+having count(distinct lesson_id) = 3)
+
+
+select  
+
+student_name as Студент,
+concat(lesson.module_id, '.', lesson_position) as Урок, 
+from_unixtime(s2.max_time) as Макс_время_отправки,
+
+IFNULL(CEIL((s2.max_time-LEAD(s2.max_time) OVER (PARTITION BY student_name ORDER BY s2.max_time DESC))/86400),'-') as Интервал      
+
+from s3 inner join s2 using(student_id) inner join student on student.student_id = s3.student_id  inner join lesson on lesson.lesson_id = s2.lesson_id
+group by student_name, lesson.module_id, lesson_position, s2.max_time
+order by Студент, Макс_время_отправки
+
+             
