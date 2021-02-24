@@ -61,7 +61,9 @@ ON         attempt.subject_id = subject.subject_id
 GROUP BY   name_subject
 ORDER BY   'Количество' DESC,
            name_subject
--- Случайным образом отберите 3 вопроса по дисциплине «Основы баз данных».SELECT   question_id ,
+-- Случайным образом отберите 3 вопроса по дисциплине «Основы баз данных».
+
+SELECT   question_id ,
          name_question
 FROM     question
 JOIN     subject
