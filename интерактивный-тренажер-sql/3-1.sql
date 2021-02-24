@@ -28,12 +28,12 @@ WHERE result = (
 select 
 name_student,
 name_subject,
-datediff(max(date_attempt),min(date_attempt) )  as Интервал
+datediff(max(date_attempt),min(date_attempt) )  as 'Интервал'
 from subject inner join attempt on subject.subject_id = attempt.subject_id inner join
 student on student.student_id = attempt.student_id
 group by name_subject, name_student
 having count(attempt.subject_id) > 1
-order by Интервал asc
+order by 'Интервал' asc
 
 
 -- Студенты могут тестироваться по одной или нескольким дисциплинам (не обязательно по всем). 
@@ -41,11 +41,11 @@ order by Интервал asc
 -- Информацию отсортировать сначала по убыванию количества, а потом по названию дисциплины. 
 -- В результат включить и дисциплины, тестирование по которым студенты не проходили, в этом случае указать количество студентов 0.
 
-select name_subject, count(distinct student_id) as Количество
+select name_subject, count(distinct student_id) as 'Количество'
 
 from attempt right join  subject on attempt.subject_id = subject.subject_id
 group by  name_subject
-order by Количество desc, name_subject
+order by 'Количество' desc, name_subject
 
 -- Случайным образом отберите 3 вопроса по дисциплине «Основы баз данных».
 
@@ -57,7 +57,7 @@ name_subject = 'Основы баз данных' order by rand() limit 3;
 -- Вывести вопросы, которые были включены в тест для Семенова Ивана по дисциплине «Основы SQL» 2020-05-17  (значение attempt_id для этой попытки равно 7). 
 -- Указать, какой ответ дал студент и правильный он или нет. 
 
-select name_question, name_answer, if (is_correct, 'Верно', 'Неверно') as  Результат
+select name_question, name_answer, if (is_correct, 'Верно', 'Неверно') as  'Результат'
 
 from answer inner join testing on answer.answer_id = testing.answer_id
 inner join question on question.question_id = testing.question_id
@@ -69,7 +69,7 @@ where attempt_id = 7
 -- Вывести фамилию студента, название предмета, дату и результат. 
 -- Информацию отсортировать сначала по фамилии студента, потом по убыванию даты попытки.
 
-select name_student, name_subject,date_attempt, round(sum(is_correct)/3 * 100,2) as Результат
+select name_student, name_subject,date_attempt, round(sum(is_correct)/3 * 100,2) as 'Результат'
 
 from student
 
@@ -88,12 +88,12 @@ order by name_student, date_attempt desc
 
 select 
 name_subject,
-CONCAT(LEFT(name_question,30),'...') as Вопрос,
-count(testing.answer_id) as Всего_ответов,
+CONCAT(LEFT(name_question,30),'...') as 'Вопрос',
+count(testing.answer_id) as 'Всего_ответов',
 
-ROUND(100*( sum(answer.is_correct) / count(testing.answer_id)),2) as Успешность
+ROUND(100*( sum(answer.is_correct) / count(testing.answer_id)),2) as 'Успешность'
 
 from answer right join question on answer.question_id = question.question_id
 inner join subject on subject.subject_id = question.subject_id join testing on testing.question_id = question.question_id and answer.answer_id = testing.answer_id
 group by question.question_id  
-order by name_subject, Успешность desc, Вопрос asc
+order by name_subject, 'Успешность' desc, 'Вопрос' asc
