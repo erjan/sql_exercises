@@ -77,7 +77,7 @@ FROM   department d
 GROUP  BY name_department,
           name_program,
           plan
-ORDER  BY ������� DESC
+ORDER  BY Конкурс DESC
 
 -- Вывести образовательные программы, на которые для поступления необходимы предмет «Информатика» и «Математика» в отсортированном по названию программ виде.
 SELECT name_program
