@@ -2,9 +2,16 @@
 -- или более раз, и количество таких совместных рейсов.
 -- В passengerName1 разместите имя пассажира с наименьшим идентификатором.
 
+select 
 
-select pas1_name as passengerName1, pas2_name as passengerName2, count from (
-select p1pas, pas1_id, count(distinct p1trip) as count, pas1_name, p2pas, pas2_id , pas2_name from (
+case when pas1_id < pas2_id then pas1_name
+else pas2_name end as passengerName1, 
+
+case when pas1_id > pas2_id then pas1_name 
+else pas2_name end as passengerName2, 
+count 
+
+from (select p1pas, pas1_id, count(distinct p1trip) as count, pas1_name, p2pas, pas2_id , pas2_name from (
 
 select 
 p1.passenger as p1pas, 
@@ -25,4 +32,4 @@ inner join passenger pas2 on p2.passenger = pas2.id
 
 where p1.passenger < p2.passenger )k
 group by p1pas, pas1_id, pas1_name, p2pas, pas2_id , pas2_name
-having count(distinct p1trip) >=2)o
+having count(distinct p1trip) >=2)o 
