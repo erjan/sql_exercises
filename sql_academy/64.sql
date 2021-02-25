@@ -25,4 +25,4 @@ inner join passenger pas2 on p2.passenger = pas2.id
 
 where p1.passenger < p2.passenger )k
 group by p1pas, pas1_id, pas1_name, p2pas, pas2_id , pas2_name
-having count(distinct p1trip) >=2)
+having count(distinct p1trip) >=2)o
