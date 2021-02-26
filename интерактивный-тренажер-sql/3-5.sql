@@ -208,3 +208,45 @@ group by student_name, lesson.module_id, lesson_position, s2.max_time
 order by Студент, Макс_время_отправки
 
              
+
+-- Для студента с именем student_59 вывести следующую информацию по всем его попыткам:
+-- информация о шаге: номер модуля, символ '.', позиция урока в модуле, символ '.', позиция шага в модуле;
+-- порядковый номер попытки для каждого шага - определяется по возрастанию времени отправки попытки;
+-- результат попытки;
+-- время попытки (преобразованное к формату времени) - определяется как разность между временем отправки попытки и времени ее начала, в случае если попытка длилась более 1 часа, то время попытки заменить на среднее время всех попыток пользователя по всем шагам без учета тех, которые длились больше 1 часа;
+-- относительное время попытки  - определяется как отношение времени попытки (с учетом замены времени попытки) к суммарному времени всех попыток  шага, округленное до двух знаков после запятой.
+             
+             
+             with s1 as ( 
+   
+select  round(avg(submission_time - attempt_time)) as time 
+from step_student 
+where student_id = 59 and (submission_time - attempt_time) < 3600 ),
+
+s2 (s_name, shag,st_id, num_attempt, r, time_attempt) as (
+select 
+student_name as s_name,
+concat(lesson.module_id, '.', lesson_position, '.',step_position) as shag, 
+    
+step_student.step_id as st_id,
+row_number() over(partition by step.step_id order by submission_time ) as num_attempt ,
+result as r,
+case when (submission_time - attempt_time) > 3600 then (select * from s1)
+else (submission_time - attempt_time) end   as time_attempt      
+from step_student 
+inner join student on student.student_id = step_student.student_id 
+inner join step on step.step_id = step_student.step_id 
+inner join lesson on lesson.lesson_id = step.lesson_id 
+     where step_student.student_id = 59)
+
+select 
+  s_name as Студент,
+  shag as  Шаг,
+  num_attempt as Номер_попытки, 
+  r as Результат,
+  sec_to_time(time_attempt) as Время_попытки,
+
+  round(time_attempt/sum(time_attempt) OVER (partition by  s2.st_id   )*100,2)  as Относительное_время
+  
+ from s2 
+  order by s2.st_id asc , Номер_попытки asc
