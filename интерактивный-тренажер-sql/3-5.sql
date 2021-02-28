@@ -250,3 +250,61 @@ select
   
  from s2 
   order by s2.st_id asc , Номер_попытки asc
+              
+              
+              
+/*              
+Выделить группы обучающихся по способу прохождения шагов:
+
+I группа - это те пользователи, которые после верной попытки решения шага делают неверную (скорее всего для того, чтобы поэкспериментировать или проверить, как работают примеры);
+II группа - это те пользователи, которые делают больше одной верной попытки для одного шага (возможно, улучшают свое решение или пробуют другой вариант);
+III группа - это те пользователи, которые не смогли решить задание какого-то шага (у них все попытки по этому шагу - неверные), оставили этот шаг и перешли к следующим.              
+*/
+              
+
+
+with t1(student_id,step_id, result, prev_result) as (
+select
+student_id,
+step_id,
+result,
+lag(result) over (partition by student_id, step_id order by submission_time) as prev_result
+
+ from step_student),
+ 
+  group1 as ( 
+select 'I' as Группа ,student_name as Студент, count(step_id) as Количество_шагов from 
+(select student_name, step_id, result, prev_result 
+ from t1 inner join student on student.student_id = t1.student_id where t1.result = 'wrong' and t1.prev_result = 'correct' ) k 
+group by student_name)  ,
+
+
+group2 as (
+ select 'II' as Группа, student_name as Студент, c as Количество_шагов from (
+ select student_name, count(step_id) as c  from (
+  select student_name, step_id 
+ 
+  from step_student inner join student on student.student_id = step_student.student_id
+  group by student_name, step_id
+  having sum(result = 'correct') > 1) k
+  group by student_name)u),
+  
+ 
+ group3 as (
+select 'III' as Группа, student_name as Студент, c as Количество_шагов  from ( 
+ select student_name, count(step_id)as c  from (
+select student_name, step_id from step_student inner join student on student.student_id = step_student.student_id
+group by student_name, step_id
+having sum(result = 'correct') = 0)k
+group by student_name)e)
+
+
+
+select  Группа,  Студент,  Количество_шагов  from ( 
+select * from group1
+union all
+select * from group2
+union all
+select * from group3)yt
+
+order by Группа asc, Количество_шагов desc, Студент              
