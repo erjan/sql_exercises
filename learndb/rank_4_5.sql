@@ -24,7 +24,6 @@ SELECT *
                store s
          WHERE s.store_id = e.store_id 
          GROUP BY s.store_id
-       --  HAVING min (pi.price) > 22000
        ) p
  WHERE p.position <= 3
  ORDER BY p.position, name
