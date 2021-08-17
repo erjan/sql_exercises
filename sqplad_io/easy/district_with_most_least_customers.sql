@@ -43,7 +43,7 @@ SELECT
 		A.district,
 		COUNT(DISTINCT C.customer_id) cust_cnt  
 	FROM address A
-	LEFT JOIN customer C
+	LEFT JOIN customer C --inner join will not work, cuz some addreses can belong to nobody, gives 'Aceh' as result
 	ON A.address_id = C.address_id
 	GROUP BY A.district 
 	ORDER by cust_cnt  limit 1),
