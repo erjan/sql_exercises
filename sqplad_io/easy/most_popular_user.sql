@@ -14,3 +14,13 @@ select  recipient_id, count(distinct sender_id) as x from h1 group by recipient_
 order by x  desc limit 1)
 
 select recipient_id from h2
+
+-- official solution
+
+SELECT recipient_id
+FROM friend_request
+WHERE request_dt >= '2021-01-01'
+AND request_dt < '2021-02-01'
+GROUP BY recipient_id
+ORDER BY COUNT(DISTINCT sender_id) DESC
+LIMIT 1;
