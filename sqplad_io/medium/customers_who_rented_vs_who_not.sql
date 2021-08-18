@@ -4,9 +4,28 @@ Use customer table as the base table for all customers (assuming all customers h
 Rented: if a customer rented at least one movie.
 Bonus: Develop a LEFT JOIN as well as a RIGHT JOIN solution
 
+-- my own solution
 
-select * from rental where date(rental_ts) >= '2020-05-01' and date(rental_ts) <= '2020-05-31'
+with helper as (
 
+select count_rented, count(*) from ( 
+
+
+select customer.customer_id ,
+case when i.customer_id is not null then 1 else 0 end as count_rented
+
+
+from customer left join( select distinct customer_id from rental 
+where date(rental_ts) >= '2020-05-01' and date(rental_ts) <= '2020-05-31')i
+on customer.customer_id = i.customer_id)u
+
+group by u.count_rented)
+
+
+
+select case when count_rented = 0 then 'never-rented' else 'rented' end as have_rented, count from helper
+
+    
 --official
 
 SELECT have_rented, COUNT(*)
