@@ -25,3 +25,24 @@ and date(r.rental_ts) <= '2020-05-31')t on t.inventory_id = i.inventory_id
 )o
 
 group by demand_category
+
+--official
+
+SELECT demand_category, COUNT(*)
+FROM (
+	SELECT 
+		F.film_id, 
+		CASE WHEN COUNT(R.rental_id) >1 THEN 'in demand' ELSE 'not in demand' END AS demand_category
+	FROM film F
+	LEFT JOIN INVENTORY I
+	ON F.film_id =I.film_id
+	LEFT JOIN (
+	    SELECT inventory_id, rental_id
+		FROM rental 
+		WHERE DATE(rental_ts) >= '2020-05-01'
+		AND DATE(rental_ts) <= '2020-05-31'
+	) R
+	ON R.inventory_id = I.inventory_id
+	GROUP BY F.film_id
+)X
+GROUP BY demand_category;
