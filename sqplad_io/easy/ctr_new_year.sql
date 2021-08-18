@@ -17,3 +17,22 @@ and extract(month from date) = 1)
 SELECT 
 COUNT(DISTINCT CASE WHEN action = 'click' THEN search_id ELSE NULL END) * 100.0/COUNT(DISTINCT search_id)
 from h1
+
+
+-- my own solution
+
+with h1 as (
+
+select * from search_result
+
+where extract(year from date) = 2021 and extract(day from date) = 1
+and extract(month from date) = 1)
+
+
+SELECT 
+COUNT(DISTINCT CASE WHEN action = 'click' THEN search_id ELSE NULL END) * 100.0/COUNT(DISTINCT search_id)
+from search_result
+
+where date = '2021-01-01'
+
+    
