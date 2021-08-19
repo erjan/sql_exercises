@@ -6,6 +6,18 @@ The order of your results doesn't matter.
 Return the following columns: category, film_id, revenue, percentile
 
 сделал ошибку - джойнил по customer id а там вобще не надо это!
+
+with total_revenue_per_movie as (
+select  f.film_id, max(c.name) as category,
+  sum(p.amount) as revenue
+from film f inner join inventory i on i.film_id = f.film_id
+inner join rental r on r.inventory_id = i.inventory_id
+inner join payment p on p.customer_id = r.customer_id -- HERE!!!!!!!!!!!!!!!
+inner join film_category fc on fc.film_id = f.film_id
+inner join category c on c.category_id = fc.category_id
+group by f.film_id
+)
+
 */
 
 
