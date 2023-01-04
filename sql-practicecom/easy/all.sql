@@ -1,7 +1,8 @@
 Show first name, last name, and gender of patients who's gender is 'M'
 
 SELECT first_name,last_name,gender FROM patients where gender = 'M'
-----------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
+
 
 Show first name and last name of patients who does not have allergies. (null)
 
@@ -80,7 +81,8 @@ Show the total number of admissions for patient_id 579.
 select patient_id, count(*) from admissions a 
 where a.patient_id = 579
 
-------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
+
 
 Based on the cities that our patients live in, show unique cities that are in province_id 'NS'?
 
@@ -114,4 +116,4 @@ or city like 'i%'
 or city like 'o%'
 or city like 'u%'
 order by city
-----------------------------------------------------
+
