@@ -1,1 +1,11 @@
 Write a function named grades_colors to select only the rows where the student’s favorite color is green or red and their grade is above 90.
+
+
+import pandas as pd
+
+def grades_colors(students_df: pd.DataFrame):
+    res = students_df[
+         ( (students_df['favorite_color'].isin(['green','red' ])) & 
+         (students_df['grade']>90) )     ]
+    return res
+
