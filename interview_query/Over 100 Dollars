@@ -1,0 +1,9 @@
+import pandas as pd
+
+def transactions_over_100(df_transactions: pd.DataFrame, df_products: pd.DataFrame):
+
+    res = df_transactions.merge(df_products, how = 'inner', right_on='product_id', left_on='product_id')
+    res['total_value'] = res['amount']*res['price']
+    over100 = res[res['total_value']>100]
+    over100 = over100[over100.columns.drop('price')]
+    return over100
