@@ -1,0 +1,1 @@
+Write a function named grades_colors to select only the rows where the student’s favorite color is green or red and their grade is above 90.
