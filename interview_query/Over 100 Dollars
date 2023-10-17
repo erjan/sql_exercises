@@ -1,3 +1,17 @@
+'''
+You’re given two dataframes: transactions and products.
+
+The transactions dataframe contains transaction ids, product ids, and the total amount of each product sold.
+
+The products dataframe contains product ids and prices.
+
+Write a function to return a dataframe containing every transaction with a total value of over 
+$
+100
+$100. Include the total value of the transaction as a new column in the dataframe.
+'''
+
+
 import pandas as pd
 
 def transactions_over_100(df_transactions: pd.DataFrame, df_products: pd.DataFrame):
