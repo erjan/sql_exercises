@@ -1,8 +1,3 @@
-with pair as(
-
-
-
-
 
 '''
   Let’s say we have two tables, transactions and products. Hypothetically the transactions table consists of over a billion rows of purchases bought by users.
@@ -13,6 +8,9 @@ Write a query to find the top five paired products and their names.
 
 Notes: For the purposes of satisfying the test case, p2 should be the item that comes first in the alphabet. The qty column represents paired products count
   '''
+
+
+with pair as(
   
 select  
 t1.product_id as prod1_id, 
