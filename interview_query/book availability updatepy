@@ -1,0 +1,33 @@
+'''
+As a Python-proficient librarian, you’re building a system to check the availability of book copies more efficiently.
+
+Write a function update_availability to update the copies_available value for a specific book_id in your dataframe and return the updated dataframe.
+
+Note: If you can’t find the book_id, return the original dataframe without any changes.
+'''
+
+
+import pandas as pd
+
+def update_availability(book_id: int, copies: int, df_books: pd.DataFrame) -> pd.DataFrame:
+
+    if book_id not in df_books['book_id']:
+        return df_books
+    else:
+        df_books.loc[df_books['book_id']==book_id, ['copies_available']] = copies
+        return df_books 
+
+
+----------------------------------------------------------------------------------------------------------
+
+def update_availability(book_id: int, copies: int, df_books: pd.DataFrame) -> pd.DataFrame:
+    
+
+    if book_id not in df_books['book_id']:
+        return df_book
+
+    df.at[df.index[book_id], 'copies_available'] = copies
+    return df
+
+
+
