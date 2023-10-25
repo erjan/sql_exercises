@@ -1,0 +1,52 @@
+
+'''
+Given a table of transactions 
+and products, write a function to get the month_over_month change 
+in revenue for the year 2019. Make sure to round month_over_month to 2 decimal places.
+'''
+
+
+with monthly_revenue as(
+select 
+
+month(created_at) as month,
+
+round(sum(quantity*price),2) as total_monthly_rev
+
+from products p join transactions t on t.product_id = p.id
+where year(created_at) = 2019
+
+group by month(created_at))
+
+select month, 
+round(coalesce(total_monthly_rev-lag(total_monthly_rev,1)over(order by month ) )/lag(total_monthly_rev,1)over(order by month ),2) 
+as month_over_month
+from monthly_revenue
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+WITH monthly_transactions AS (
+    SELECT 
+        MONTH(created_at) AS month,
+        YEAR(created_at) AS year,
+        SUM(price * quantity) AS revenue
+    FROM transactions AS t
+    INNER JOIN products AS p
+            ON t.product_id = p.id
+    WHERE YEAR(created_at) = 2019
+    GROUP BY 1,2
+    ORDER BY 1
+)
+
+SELECT
+    month
+    , ROUND((revenue - previous_revenue)/previous_revenue, 2) AS month_over_month
+FROM (
+SELECT 
+    month,
+    revenue,
+    LAG(revenue,1) OVER (
+        ORDER BY month
+    ) previous_revenue
+    FROM monthly_transactions
+) AS t
