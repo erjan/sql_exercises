@@ -1,0 +1,69 @@
+
+
+'''
+
+this snippet shows  the date time postgresql arithmetic for postgresql 12.4 
+'''
+
+CREATE TABLE if not exists trips (
+  id serial PRIMARY KEY,
+  completed_date TIMESTAMP NOT NULL,
+  brand varchar(10)
+
+);
+
+
+insert into  trips(id, completed_date, brand)
+values
+(1, '2022-01-12', 'kia'),
+(2, '2022-02-13', 'honda'),
+(3, '2022-02-14', 'k'),
+(4, '2022-02-15', 'lzz'),
+(5, '2022-02-16', 'lzz'),
+(6, '2022-02-17', 'lzz'),
+(7, '2022-02-18', 'lzz'),
+(8, '2022-02-19', 'lzz'),
+(9, '2022-02-20', 'lzz'),
+(10, '2022-02-21', 'lzz'),
+(11, '2022-02-22', 'lzz'),
+(12, '2022-02-23', 'lzz'),
+(13, '2022-02-24', 'lzz'),
+(14, '2022-02-25', 'lzz'),
+(15, '2022-02-25', 'lzz'),
+(16, '2022-02-26', 'lzz'),
+(17, '2022-02-27', 'lzz'),
+(18, '2022-02-28', 'lzz'),
+(22, '2022-03-01', 'lzz'),
+(23, '2022-03-02', 'lzz'),
+(24, '2022-03-03', 'lzz'),
+(25, '2022-03-04', 'lzz'),
+(26, '2022-03-05', 'lzz'),
+(27, '2022-03-06', 'lzz'),
+(28, '2022-03-07', 'lzz'),
+(29, '2022-03-08', 'lzz'),
+(30, '2022-03-09', 'lzz');
+
+специально выбрал посередине дату - 28 фев 2022
+select * from trips where completed_date > '2022-02-28'::date - INTERVAL '3 DAY'; #will show dates after 28 feb-3 days - after 26 feb:
+
+id 1 completed_date 1 brand 
+16 2022-02-26 00:00:00 I lzz 
+17 2022-02-27 00:00:00 I lzz 
+18 2022-02-28 00:00:00 I lzz 
+22 2022-03-01 00:00:00 I lzz
+23 2022-03-02 00:00:00 I lzz 
+24 2022-03-03 00:00:00 I lzz 
+25 2022-03-04 00:00:00 I lzz 
+26 2022-03-05 00:00:00 I lzz 
+27 2022-03-06 00:00:00 I lzz 
+28 2022-03-07 00:00:00 I lzz 
+29 2022-03-08 00:00:00 I lzz 
+30 2022-03-09 00:00:00 I lzz 
+
+
+delete from trips;
+----------------------------------------------------------------------------------------------------------------------------
+select * from trips where completed_date = '2022-02-28'::date - INTERVAL '3 DAY'; #this will give exactly 2 dates:
+
+14 2022-02-25 00:00:00 I lzz 
+15 2022-02-25 00:00:00 I lzz
