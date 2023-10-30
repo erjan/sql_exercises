@@ -1,0 +1,16 @@
+'''
+Write a function to simulate drawing balls from
+a jar. The colors of the balls are stored in a list named jar, with 
+corresponding counts of the balls stored in the same index in a list called n_balls.
+'''
+
+
+import random
+
+def sample_multinomial(jar, n_balls):
+    new_jar = []
+    for n, c in enumerate(n_balls):
+        for _ in range(c):
+            new_jar.append(jar[n])
+
+    return random.choice(new_jar)
