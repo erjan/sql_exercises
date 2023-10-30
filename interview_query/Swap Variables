@@ -1,0 +1,17 @@
+'''
+You are given a dictionary with two keys a and b that hold integers as their values.
+
+Without declaring any other variable, swap the value of a with the value of b and vice versa.
+
+Note: Return the dictionary after editing it.
+'''
+
+def swap_values(numbers):
+  d = numbers
+
+
+  d['a'] = d['a'] + d['b']
+  d['b'] = d['a'] - d['b']
+  d['a'] = d['a'] - d['b']
+  return d
+
