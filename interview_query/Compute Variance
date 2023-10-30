@@ -1,0 +1,12 @@
+def get_variance(test_list):
+    
+
+    m = sum(test_list)/len(test_list)
+    
+
+    s = 0
+    for num in test_list:
+
+        s += (num - m)**2
+    
+    return round(s/len(test_list),2)
