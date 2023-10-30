@@ -1,0 +1,9 @@
+Given a list of strings, write a Python program to check whether each string has all the same characters or not. What is the complexity of this program?
+
+
+def same_characters(input_list):
+    
+    for word in input_list:
+        if len(set(word)) != 1:
+            return False
+    return True
