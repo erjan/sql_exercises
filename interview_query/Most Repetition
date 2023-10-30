@@ -1,0 +1,52 @@
+'''
+Given a string str of any length, write an algorithm max_repeating to return which character has the longest string of continuous repetition.
+
+If two characters are tied for most continuous repetition, return the character whose longest continuous repetition occurs earliest in str.
+'''
+
+def max_repeating(str):
+    d = dict()
+
+    i = 0
+    while i < len(str):
+        cur = str[i]
+
+        j = i
+
+        while j < len(str) and str[j] == str[i]:
+            j += 1
+
+        d[cur] = max(j - i, d.get(cur, 0))
+        i = j
+
+    m = max(d.values())
+
+    for k,v in d.items():
+        if v == m:
+            return k
+------------------------------------------------------------------------------------------------
+def max_repeating(str): 
+  
+    # set pointers
+    n = len(str) 
+    count = 0
+    res = str[0] 
+    cur_count = 1
+  
+    # Traverse string except last character 
+    for i in range(n): 
+          
+        # If current character  
+        # matches with next 
+        if (i < n - 1 and str[i] == str[i + 1]): 
+            cur_count += 1
+  
+        # If doesn't match update result if the 
+        # count is larger and reset count 
+        else:
+            if cur_count > count: 
+                count = cur_count 
+                res = str[i] 
+            cur_count = 1
+    return res
+
