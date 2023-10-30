@@ -1,0 +1,48 @@
+'''
+Given two lists of release dates, return the list with more dates past a certain input variable date D.
+
+Note: Both lists could be of unequal length and in any order.
+'''
+
+import datetime
+
+def greater_release_dates(L1, L2, D):
+    
+    c1 = 0
+    c2 = 0
+    for d in L1:
+
+        if d>D:
+            c1+=1
+    
+    for d in L2:
+        if d > D:
+            c2+=1
+    
+    if c1 > c2:
+        return L1
+    return L2    
+
+----------------------------------------------------
+#official 
+
+from datetime import datetime
+
+
+def greater_release_dates(L1, L2, D):
+    D_datetime = datetime.strptime(D, '%Y-%m-%d')
+    countl1 = 0
+    countl2 = 0
+
+    for date_l1 in L1:
+        L1_datetime = datetime.strptime(date_l1, '%Y-%m-%d')
+        if L1_datetime > D_datetime:
+            countl1 += 1
+    for date_l2 in L2:
+        L2_datetime = datetime.strptime(date_l2, '%Y-%m-%d')
+        if L2_datetime > D_datetime:
+            countl2 += 1
+    if countl1 > countl2:
+        return L1
+    else:
+        return L2
