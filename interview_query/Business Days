@@ -1,0 +1,16 @@
+'''
+Given two dates, write a program to find the number of business days that exist between the date range.
+'''
+
+
+import pandas as pd
+
+def delta_buss_days(date1, date2):
+    dates = pd.date_range(date1,date2)
+
+    daynumbers = [i.isoweekday() for i in dates]
+    c = 0
+    for i in daynumbers:
+        if i<=5:
+            c+=1
+    return c
