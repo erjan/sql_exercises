@@ -1,0 +1,66 @@
+'''
+Let
+
+�
+(
+�
+,
+�
+)
+=
+5
+�
+⋅
+3
+�
+f(x,y)=5 
+x
+ ⋅3 
+y
+ 
+
+Given an interval 
+[
+�
+,
+�
+]
+[L,R] and some integer 
+�
+N. Write a function, get_possible_values, that returns all positive integer pairs 
+(
+�
+,
+�
+)
+(x,y) such that 
+�
+(
+�
+,
+�
+)
+∈
+[
+�
+,
+�
+]
+f(x,y)∈[L,R] and 
+�
+,
+�
+<
+�
+x,y<N.
+'''
+
+
+def get_possible_values(L, R, N):
+  result = []
+  for x in range(N):
+    for y in range(N):
+      fxy = pow(5, x) * pow(3, y)
+      if L <= fxy <= R:
+        result.append([x, y])
+  return result
