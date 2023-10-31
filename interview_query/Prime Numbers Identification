@@ -1,0 +1,22 @@
+Find and return all the prime numbers in an array of integers. If there are no prime numbers, return an empty array.
+
+import math
+
+
+def check_prime(n):
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+
+def get_prime_numbers(nums):
+    res = []
+    for i in range(len(nums)):
+        if nums[i] < 2:
+            continue
+
+        if check_prime(nums[i]):
+            res.append(nums[i])
+
+    return res
