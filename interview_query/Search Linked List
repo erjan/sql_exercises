@@ -1,0 +1,35 @@
+'''
+Write a function, search_list, that returns a boolean indicating if the target value is in the linked_list or not.
+
+You receive the head of the linked list, which is a dictionary with the following keys: - value: contains the value of the node. - next: contains the next node in the list, or None.
+
+If the linked list is empty, you’ll receive None since there is no head node for an empty list.
+'''
+
+
+def search_list(target, linked_list):
+    
+    if not linked_list :
+        return False
+    
+    
+    h = linked_list
+    cur = linked_list
+
+    while cur:
+
+        val = cur['value']
+        if val == target:
+            return True
+        
+        cur = cur['next']
+    return False
+
+------------------------------------------------------------------
+def search_list(target, linked_list):
+    node = linked_list
+    while node is not None:
+        if node['value'] == target:
+            return True
+        node = node['next']
+    return False
