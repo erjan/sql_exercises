@@ -1,0 +1,21 @@
+Write a function get_ngrams to take in a word (string) and return a dictionary of n-grams and their frequency in the given string.
+
+
+def get_ngrams(n,string):
+    
+    d = dict()
+    for i in range(len(string) - n+1):
+        cur = string[i : i + n]
+
+        d[cur] = d.get(cur, 0) + 1
+    print(d)
+    return d
+------------------------------------------------------------------------------------------------------------------------
+def get_ngrams(n,string):
+    if len(string) < n:
+         return {}
+    d = {}
+    ngrams = set([string[0+i:n+i] for i in range(len(string) - n)])
+    for ngram in ngrams:
+         d[ngram] = string.count(ngram)
+    return d
