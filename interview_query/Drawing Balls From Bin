@@ -14,3 +14,22 @@ def sample_multinomial(jar, n_balls):
             new_jar.append(jar[n])
 
     return random.choice(new_jar)
+
+
+-------------------------------------------------------------------------------------------------
+#this is my own solution:
+
+import random
+
+def sample_multinomial(jar, n_balls):
+    res = []
+    d = dict(zip(jar, n_balls))
+
+    for k, v in d.items():
+        temp = []
+        for _ in range(v):
+            temp.append(k)
+        res.extend(temp)
+
+    q = random.choice(res)
+    return q
