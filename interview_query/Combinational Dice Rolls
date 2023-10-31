@@ -1,0 +1,34 @@
+Given n dice each with m faces, 
+write a function combinational_dice_rolls to dump all possible combinations of dice rolls. 
+
+Bonus: Can you do it recursively?
+
+
+def combinational_dice_rolls(n, m):
+    def generate_combinations(n, current_combination):
+        if n == 0:
+            # Base case: When no more dice are left to roll, add the combination to the result list
+            result.append(tuple(current_combination))
+        else:
+            # Recursive case: Roll each die from 1 to m
+            for face in range(1, m + 1):
+                generate_combinations(n - 1, current_combination + [face])
+
+    if n <= 0 or m <= 0:
+        return []
+
+    result = []
+    generate_combinations(n, [])
+    return result
+
+---------------------------------------------------------------------------------------------------------
+def combinational_dice_rolls(n, m):
+    if n == 0:
+        return []
+    # Will start with n == 1
+    result = [(j+1,) for j in range(m)]  # will produce [(1,),(2,)...(m,)]
+    for _ in range(2, n+1):
+        # gradually add one dice combination untill we reach n
+        result = [((j+1,)+comb) for comb in result for j in range(m)]
+
+    return result  # Return Result
