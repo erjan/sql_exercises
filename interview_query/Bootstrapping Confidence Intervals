@@ -1,0 +1,21 @@
+'''
+You are given an array of numerical values, bootstrap samples, and size for a confidence interval.
+
+Write a function that performs bootstrap sampling on the given array and calculates the confidence interval based on the given size.
+
+Note: The function should return a tuple containing the minimum and maximum values of the confidence interval rounded to the tenths place.
+'''
+
+
+import random
+import numpy as np
+def bootstrap_conf_interval(data, num_samples, conf_interval):
+    
+
+    bsamples = [random.choices(data, k = len(data)) for _ in range(num_samples)]
+    sample_means = sorted(np.mean(sample) for sample in bsamples)
+
+    lbound = np.percentile(sample_means, ((1-conf_interval)/2)*100)
+    ubound = np.percentile(sample_means, (1-(1-conf_interval)/2)*100)
+
+    return round(lbound,1), round(ubound,1)
