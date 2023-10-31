@@ -1,0 +1,18 @@
+Given two strings A and B, write a function can_shift to return whether or not A can be shifted some number of places to get B.
+
+
+
+def can_shift(A, B):
+    return ( A and B and 
+        len(A) == len(B) and 
+        A in B * 2 )
+
+--------------------------------------------
+def can_shift(A, B):
+  
+  if len(A) != len(B):
+    return False
+
+  if B in A+A:
+    return True
+  return False
