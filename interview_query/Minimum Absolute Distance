@@ -1,0 +1,31 @@
+'''
+Given an array of integers, write a function min_distance to calculate the minimum absolute distance between two elements then return all pairs having that absolute difference.
+
+Note: Make sure to return the pairs in ascending order.
+'''
+
+
+def min_distance(test_input):
+
+    if len(test_input)<2:
+        return []
+
+    test_input.sort()
+
+
+    mindiff = max(test_input) - min(test_input)
+
+    for i in range(1, len(test_input)):
+        if test_input[i] - test_input[i-1]< mindiff:
+            mindiff = test_input[i] - test_input[i-1]          
+
+    res = []
+    index = 1
+    while index < len(test_input):
+        if test_input[index] - test_input[index-1] == mindiff:
+            res.append((test_input[index-1] , test_input[index]))
+        
+        index+=1
+    return res
+
+   
