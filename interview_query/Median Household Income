@@ -1,0 +1,23 @@
+'''
+A marketing company is conducting a survey on household incomes in various cities. Now they’re asking for your help with analytics. Write a SQL query to compute the median household income for each city.
+
+Note: Assume that the median is the middle value in an odd set of numbers, and the average of the two middle numbers in an even set.
+'''
+
+with ordered_income as(
+SELECT 
+city,
+row_number()over(partition by city order by household_income) as asc_,
+row_number()over(partition by city order by household_income desc) as desc_,
+household_income
+FROM survey_responses)
+
+
+select 
+city, 
+avg(household_income) as median_income
+from ordered_income
+where asc_ = desc_ or asc_+1 = desc_ or asc_ = desc_+1
+
+group by 1
+
