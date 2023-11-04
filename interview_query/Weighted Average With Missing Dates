@@ -1,0 +1,34 @@
+'''
+The analytics team at a social media platform wants to analyze the short-term trends in 
+daily user growth. For this task, they want you to calculate the 3-day rolling weighted average for new daily users, where the current day has a weight of 3, the previous day has a weight of 2, and the day before has a weight of 1.
+
+The platform logs new records into the acquisitions table for the days on which new users arrive. Otherwise, it skips the date.
+
+Write a SQL query to calculate the 3-day rolling weighted average for new daily users from the acquisitions table.
+
+Round the average to two decimal places.
+'''
+
+WITH day3 AS (
+    SELECT
+        c.date,
+        c.new_users AS cur,
+        p.new_users AS prior_day,
+        p2.new_users AS prior2_day,
+        ROW_NUMBER()
+            OVER(ORDER BY date) AS rn
+    FROM acquisitions c
+    LEFT JOIN acquisitions p
+    ON c.date = p.date + INTERVAL 1 DAY
+    LEFT JOIN acquisitions p2
+    ON c.date = p2.date + INTERVAL 2 DAY
+)
+
+select 
+date, 
+round( 
+    (cur*3 + coalesce(prior_day,0)*2 + coalesce(prior2_day,0)  )/6,
+    
+    2) as weighted_average
+
+ from day3 where rn >2
