@@ -1,0 +1,13 @@
+Given the transactions table below, write a query that finds the third purchase of every user.
+
+Note: Sort the results by the user_id in ascending order. If a user 
+purchases two products at the same time, the lower id field is used to determine which is the first purchase.
+
+
+
+with h as(
+select 
+
+user_id, created_at,product_id, quantity,
+rank()over(partition by user_id order by created_at, id ) as rnk from transactions)
+select user_id,created_at,product_id,quantity from h where rnk = 3
