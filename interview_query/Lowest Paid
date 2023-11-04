@@ -1,0 +1,37 @@
+Given tables employees, employee_projects, and projects, find the 3 lowest-paid employees that have completed at least 2 projects.
+
+Note: incomplete projects will have an end date of NULL in the projects table.
+
+
+
+select 
+count(distinct p.id) as completed_projects,
+e.id as employee_id , salary 
+ from employee_projects ep inner join employees e on ep.employee_id=e.id
+
+ inner join projects p on p.id = ep.project_id
+
+ where end_date is not null
+
+ group by e.id
+
+ having count(distinct p.id)>=2
+ order by salary asc limit 3
+-----------------------------------------------------------------------------------------------------------------------------------------------
+SELECT  ep.employee_id
+, e.salary
+, COUNT(p.id) AS completed_projects
+
+FROM employee_projects AS ep
+
+JOIN employees AS e
+ON e.id = ep.employee_id
+
+JOIN projects AS p 
+ON  ep.project_id = p.id
+
+WHERE p.end_date IS NOT NULL
+GROUP BY 1
+HAVING completed_projects > 1
+ORDER BY 2
+LIMIT 3
