@@ -1,0 +1,53 @@
+There was a robbery from the ATM at the bank where you work. Some unauthorized withdrawals were made, and you need to help your bank find out more about those withdrawals.
+
+However, the only information you have is that there was more than 1 withdrawal, they were all performed in 10-second gaps, and no legitimate transactions were performed in between two fraudulent withdrawals.
+
+We’re given a table of bank transactions with three columns, user_id, a deposit or withdrawal value transaction_value, and created_at time for each transaction.
+
+Write a query to retrieve all user IDs in ascending order whose transactions have exactly a 10-second gap from one another.
+
+Note: Assume that there are only withdrawals from the ATM, which are denoted with a positive transaction_value
+
+----------------------------------------------------------------------------------
+with h as(
+select 
+
+user_id,
+created_at as today ,
+lag(created_at,1)over(order by created_at) as prev,
+lead(created_at,1)over(order by created_at) as nxt
+
+from bank_transactions
+where transaction_value > 0)
+
+
+
+select user_id from h where 
+TIMESTAMPDIFF(SECOND, prev, today) = 10
+or TIMESTAMPDIFF(SECOND, today,nxt) = 10
+
+---------------------------------------------------------------------------------------------------
+with lead_lag as (
+SELECT 
+user_id
+, created_at AS timestamp
+, LAG(created_at) OVER(
+                            ORDER BY created_at
+                     ) AS timestamp_previous
+	, LEAD(created_at) OVER(
+                            ORDER BY created_at
+                     ) AS timestamp_next
+FROM bank_transactions
+)
+, time_diff as (
+SELECT 
+	user_id
+	, ABS(TIMESTAMPDIFF(SECOND, timestamp, timestamp_previous)) timestamp_previous_diff
+	, ABS(TIMESTAMPDIFF(SECOND, timestamp, timestamp_next)) timestamp_next_diff
+FROM lead_lag
+)
+SELECT user_id
+FROM time_diff
+WHERE timestamp_previous_diff = 10
+OR timestamp_next_diff = 10
+ORDER BY 1
