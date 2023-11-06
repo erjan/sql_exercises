@@ -1,0 +1,32 @@
+Let’s say you’re working in HR at a major tech company, and they ask you to find employees with a high probability of leaving the company. They tell you these employees perform well but have the lowest pay.
+
+Given two tables, employees and projects, find the five lowest-paid employees who have completed at least three projects.
+
+Note: We consider projects to be completed when they have an end date, which is the same as saying their End_dt is not NULL.
+
+-----------------------------------------------------------------------------
+SELECT e.id as employee_id  FROM employees 
+e inner join projects p on p.employee_id = e.id
+
+where end_dt is not null
+
+group by e.id
+
+having count(distinct p.project_id) >=3
+
+order by salary asc limit 5
+
+-------------------------------------------------------------------------------------------
+SELECT
+    p.employee_id
+FROM employees e
+INNER JOIN projects p
+ON
+    e.id = p.employee_id
+GROUP BY
+    e.id
+HAVING
+    COUNT(p.End_dt) >= 3
+ORDER BY
+    e.salary ASC
+LIMIT 5
