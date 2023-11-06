@@ -1,0 +1,20 @@
+'''
+Let’s say that you’re a data scientist working on a distribution team at Amazon.
+
+Create a report displaying which shipments were delivered to customers during their membership period.
+
+If the transaction is shipped during the membership period, column is_member should have the value Y. If not, the column should have the value N.
+
+Hint: You may assume that customer_id is unique and that shipments are made only to registered customers.
+'''
+
+
+select 
+
+shipment_id,	ship_date,	c.customer_id	,
+
+case when ship_date >= membership_start_date and ship_date <= membership_end_date then 'Y' else 'N' end as is_member,
+quantity
+
+
+from customers c join shipments s on c.customer_id = s.customer_id
