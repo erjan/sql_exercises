@@ -1,0 +1,23 @@
+Given a users table, write a query to return only its duplicate rows.
+
+
+select created_at	,id	,name from users 
+
+group by id
+having count(id) >=2
+
+------------------------------------------------------------------------------
+SELECT
+	id,
+	name,
+	created_at
+FROM (
+	SELECT
+		*,
+		row_number() OVER 
+			(PARTITION BY id ORDER BY created_at ASC) 
+			AS ranking
+	FROM
+		users) AS u
+WHERE
+	ranking > 1
