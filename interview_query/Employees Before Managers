@@ -1,0 +1,23 @@
+You’re given two tables: employees and managers. Find the names of all employees who joined before their manager.
+
+
+select 
+
+concat(first_name , ' ' , last_name)
+as employee_name
+
+ from employees e join managers m on 
+
+e.manager_id = m.id where e.join_date < m.join_date
+
+
+-------------------------------------------------------------
+#official
+
+SELECT
+	concat(e.first_name, " ", e.last_name) AS employee_name
+FROM
+	employees AS e
+	LEFT JOIN managers AS m ON e.manager_id = m.id
+WHERE
+	e.join_date < m.join_date = 1
