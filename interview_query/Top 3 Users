@@ -1,0 +1,18 @@
+Let’s say you work at a file-hosting website. You have information on user’s daily downloads in the download_facts table
+
+Use the window function RANK to display the top three users by downloads each day. Order your data by date, and then by daily_rank
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+select * from (
+
+select 
+
+rank()over(partition by date order by downloads desc ) as daily_rank,
+date, downloads,
+user_id
+ from download_facts)k where daily_rank <=3
+
+ 
