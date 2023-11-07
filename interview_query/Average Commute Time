@@ -1,0 +1,15 @@
+Let’s say you work at Uber. The rides table contains information about the trips of Uber users across America
+
+Write a query to get the average commute time (in minutes) for each commuter 
+in New York (NY) and the average commute time (in minutes) across all commuters in New York.
+
+
+
+--------------------------------------------------------------------------------------------------------------------
+SELECT 
+
+distinct commuter_id,
+floor(avg(TIMESTAMPDIFF(minute,start_dt, end_dt))over(partition by city, commuter_id)) as avg_commuter_time,
+floor(avg(TIMESTAMPDIFF(minute,start_dt, end_dt))over(partition by city)) as avg_time
+FROM rides 
+ where city = "NY"
