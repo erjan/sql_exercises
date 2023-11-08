@@ -1,0 +1,59 @@
+'''
+Given a table containing data 
+for monthly sales, write a query to find the total amount of each
+product sold for each month with each product as its own column in the output table.
+'''
+
+select 
+
+date(month) as month,
+sum(if(product_id = 1,amount_sold,0)) as '1',
+sum(if(product_id = 2,amount_sold,0)) as '2',
+sum(if(product_id = 3,amount_sold,0)) as '3',
+sum(if(product_id = 4,amount_sold,0)) as '4'
+from monthly_sales
+group by  date(month) 
+
+
+------------------------------------------------------------------------------------------------------
+SELECT
+	concat(date, '-01') month,
+	sum(
+		CASE WHEN product_id = 1 THEN
+			counts
+		ELSE
+			0
+		END) AS '1',
+	sum(
+		CASE WHEN product_id = 2 THEN
+			counts
+		ELSE
+			0
+		END) AS '2',
+	sum(
+		CASE WHEN product_id = 3 THEN
+			counts
+		ELSE
+			0
+		END) AS '3',
+	sum(
+		CASE WHEN product_id = 4 THEN
+			counts
+		ELSE
+			0
+		END) AS '4'
+FROM (
+	SELECT
+		date_format(month, '%Y-%m')
+		date,
+		product_id,
+		sum(amount_sold) counts
+	FROM
+		monthly_sales
+	GROUP BY
+		date_format(month, '%Y-%m'),
+		product_id) temp
+GROUP BY
+	date
+
+
