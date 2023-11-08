@@ -1,0 +1,11 @@
+
+Given a transactions table with date timestamps, sample every 4th row ordered by the date.
+
+select 
+created_at,product_id
+
+from (select
+ created_at, 
+product_id, row_number()over(order by created_at)as row_num
+from transactions) as t
+where row_num %4 = 0
