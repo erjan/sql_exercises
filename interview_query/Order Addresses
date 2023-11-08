@@ -1,0 +1,24 @@
+Given a table of transactions and a table of users, write a query to determine if users tend to order more to their primary address versus other addresses.
+
+Note: Return the percentage of transactions ordered to their home address as home_address_percent.
+
+----------------------------------------------------------------------------------------------------------
+SELECT 
+sum(case when shipping_address = address then 1 else 0 end)/count(t.id)
+as home_address_percent
+
+ FROM transactions t inner join users u on
+
+u.id = t.user_id
+
+----------------------------------------------------------------------------------------------------------
+SELECT
+ROUND( 
+SUM(CASE WHEN u.address = t.shipping_address THEN 1 END)
+/ COUNT(t.id)
+,2)  as home_address_percent
+FROM transactions as t
+JOIN users as u
+ON t.user_id = u.id
+
+
