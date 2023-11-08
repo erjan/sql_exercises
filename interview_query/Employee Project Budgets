@@ -1,0 +1,35 @@
+We’re given two tables. One is named projects and the other maps employees to the projects they’re working on.
+
+Write a query to get the top five most expensive projects by budget to employee count ratio.
+
+Note: Exclude projects with 0 employees. Assume each employee works on only one project.
+
+
+----------------------------------------------------------------------------------------------------------------------
+with h as(
+select 
+p.title, p.id,
+budget/count(distinct employee_id) as ratio,
+rank()over(order by budget/count(distinct employee_id) desc) as rnk
+from employee_projects
+
+ep join projects p on p.id = ep.project_id
+group by p.id having count(distinct employee_id)>0)
+
+
+select ratio as  budget_per_employee, title from h 
+where rnk<=5
+
+--------------------------------------------------------------------------------------------------------------------------------
+SELECT 
+    p.title, 
+    budget/num_employees AS budget_per_employee
+FROM projects AS p
+INNER JOIN (
+    SELECT project_id, COUNT(*) AS num_employees
+    FROM employee_projects
+    GROUP BY 1
+) AS ep
+    ON p.id = ep.project_id
+ORDER BY 2 DESC
+LIMIT 5;
