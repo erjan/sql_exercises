@@ -1,0 +1,25 @@
+Let’s say you work for a small airline. You’re given three tables: flights, planes, and flight_purchases.
+
+Write a query to find the number of unpurchased seats for each flight.
+
+For the purposes of this question, assume that there will be no entries in the flight_purchases table for flights or seats that do not exist.
+
+
+select 
+f.id as flight_id,
+(number_of_seats) - count(seat_id) as free_seats
+from flights f inner join flight_purchases fp 
+on f.id = fp.flight_id inner join planes p on p.id = f.plane_id
+
+group by f.id
+-----------------------------------------------------------------------------------------------------------------------------
+
+SELECT f.id as flight_id 
+ , (p.number_of_seats - COUNT(fp.seat_id)) AS free_seats
+FROM flights f
+JOIN planes p 
+ON p.id = f.plane_id
+
+JOIN flight_purchases fp
+ON fp.flight_id = f.id
+GROUP BY 1
