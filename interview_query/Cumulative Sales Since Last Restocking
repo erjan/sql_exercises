@@ -1,0 +1,26 @@
+As an accountant for a local grocery store, you have been tasked with calculating the daily sales of each product since their last restocking.
+
+You have been provided with three tables: products, sales, and restocking. The products table contains information about each product, the sales table records the sales transactions, and the restocking table tracks the restocking events.
+
+Write a query to retrieve the running total of sales for each product since its last restocking event.
+
+Notes: The sales_since_last_restock column represents the cumulative sales of the product for each day since its last restocking event. Order the result set by product_id.
+
+
+
+with last_restock as(
+
+    select product_id, max(restock_date) as restock_date
+
+    from restocking group by product_id
+)
+
+SELECT 
+
+product_name,s.date,
+sum(sold_count) over(partition by p.product_id, lr.restock_date order by date )as sales_since_last_restock
+
+ FROM products p join sales s on s.product_id = p.product_id
+join last_restock lr on p.product_id = lr.product_id
+where s.date >=lr.restock_date
+order by p.product_id
