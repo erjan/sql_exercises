@@ -1,0 +1,18 @@
+Given a table of account statuses, write a query to get the percentage of accounts that were active on December 31st, 2019, and closed on January 1st, 2020, over the total number of accounts that were active on December 31st. Each account has only one daily record indicating its status at the end of the day.
+
+Note: Round the result to 2 decimal places.
+
+
+with open_and_was_closed as (
+select count(account_id) from account_status
+
+where date = '2019-12-31' and status='open'
+and account_id in (select account_id from account_status where date = '2020-01-01' and status = 'closed') ),
+
+total_active_dec31_2019 as(
+
+select count(account_id) from account_status
+where date = '2019-12-31' and status='open')
+
+select (
+(select * from open_and_was_closed)/(select * from total_active_dec31_2019)) as percentage_closed
