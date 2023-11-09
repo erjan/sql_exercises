@@ -1,0 +1,17 @@
+'''
+Let’s say you work at a bank.
+
+Using the bank_transactions table, find how many users made at least one transaction each day in the first five days of January 2020.
+'''
+
+
+with h as(
+select 
+*
+from bank_transactions
+where date(created_at) between '2020-01-01' and  '2020-01-05'
+group by user_id
+having count(distinct date(created_at)) = 5)
+
+
+select count(distinct user_id) as number_of_users from h
