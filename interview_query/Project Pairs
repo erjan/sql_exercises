@@ -1,0 +1,16 @@
+Write a query to return pairs of projects where the end date of one project matches the start date of another project. 
+
+
+select 
+
+p1.start_date as date,	p2.title as project_title_end, p1.title as	project_title_start
+ from projects p1 inner join projects p2 
+where p1.start_date = p2.end_date
+
+----------------------------------------------------------------------------------------------------------------------------------
+SELECT pe.title AS project_title_end, 
+ps.title AS project_title_start, 
+pe.end_date AS date
+FROM projects AS pe
+JOIN projects as ps
+ON DATE(ps.start_date) = DATE(pe.end_date)
