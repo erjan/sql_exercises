@@ -1,0 +1,9 @@
+Let’s say you work for Meta. You are given the table messenger_sends. Find the total number of unique conversation threads.
+
+Note: In some entries, the receiver_id and sender_id are switched from 
+the initial message. These entries should be treated as part of the same thread.
+
+
+SELECT count(distinct least(sender_id, receiver_id), 
+greatest(sender_id, receiver_id)) as total_conv_threads FROM 
+messenger_sends 
