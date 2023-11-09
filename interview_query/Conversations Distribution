@@ -1,0 +1,28 @@
+'''
+We have a table that represents the total number of messages sent between two users by date on messenger.
+
+What are some insights that could be derived from this table?
+
+What do you think the distribution of the number of conversations created by each user per day looks like?
+
+Write a query to get the distribution of the number of conversations created by each user by day in the year 2020.
+'''
+
+
+with h as(
+SELECT 
+
+user1,DATE(date) as day, count(distinct user2) as num_conversations
+ FROM messages 
+where year(date)= 2020
+
+group by 1,2 )
+
+select 
+
+num_conversations,
+count(*)  as frequency
+
+ from h
+
+ group by num_conversations
