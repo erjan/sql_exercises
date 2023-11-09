@@ -1,0 +1,30 @@
+'''
+We’re given a table of product purchases. Each row in the table represents an individual user product purchase.
+
+Write a query to get the number of customers that were upsold, or in other words, the number of users who bought additional products after their first purchase.
+
+Note: If the customer purchased two things on the same day, that does not count as an upsell, as they were purchased within a similar timeframe.
+'''
+
+
+select 
+
+count(distinct t1.user_id) as num_of_upsold_customers
+from transactions t1 inner join transactions t2 on t1.user_id = t2.user_id
+
+where t1.created_at != t2.created_at
+
+------------------------------------------------------------------------------------------
+
+select count(distinct user_id) as num_of_upsold_customers from (
+select user_id, dense_rank() over (partition by user_id order by created_at) as rnk from transactions) as t1
+where t1.rnk > 1
+
+-----------------------------------------------------------------------------------------------
+SELECT COUNT(*) AS num_of_upsold_customers
+FROM (
+	SELECT user_id
+	FROM transactions
+	GROUP BY user_id
+	HAVING COUNT(DISTINCT DATE(created_at)) > 1
+) as t
