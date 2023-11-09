@@ -1,0 +1,28 @@
+'''
+You’re given three tables.
+
+An ads table holds an ID and the advertisement name like “Labor day shirts sale”. The feed_comments table holds the comments on ads by different users that occur in the regular feed. The moments_comments table holds the comments on ads by different users in the moments section.
+
+Write a query to get the percentage of comments, by ad, that occurs in the feed versus mentions sections of the app.
+'''
+
+
+with feed as(
+
+select a1.id, a1.name, count(*)as fc from ads a1 inner join feed_comments f
+on f.ad_id = a1.id
+group by a1.id),
+
+moms as(
+select a2.id, a2.name, count(*)as mc 
+from ads a2 inner join moments_comments m
+on m.ad_id = a2.id
+group by a2.id)
+
+
+select f1.name, 
+
+round((fc)/ (fc+ mc),2) as percentage_feed,
+round((mc)/ (fc+ mc),2) as percentage_moments
+
+from feed f1 inner join moms m on m.id = f1.id
