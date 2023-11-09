@@ -1,0 +1,23 @@
+Let’s say you are managing products for an eCommerce store. You think products from category 9 have a lower average price than those in all other categories.
+
+Calculate the t-value and degrees of freedom for such a test. You do not need to calculate the p-value of the test.
+
+
+
+WITH control_test AS (
+    SELECT
+        COUNT(IF(category_id != 9, id, NULL)) AS c_size,
+        COUNT(IF(category_id = 9, id, NULL)) AS t_size,
+        AVG(IF(category_id != 9, price, NULL)) AS c_mean,
+        AVG(IF(category_id = 9, price, NULL)) AS t_mean,
+        VAR_SAMP(IF(category_id != 9, price, NULL)) AS c_var,
+        VAR_SAMP(IF(category_id = 9, price, NULL)) AS t_var
+    FROM products
+)
+SELECT
+    ROUND((t_mean-c_mean) / SQRT((c_var/c_size) + (t_var/t_size)),5)
+    AS t_value,
+    ROUND(POWER((c_var/c_size) + (t_var/t_size), 2) / 
+    ((POWER(c_var/c_size, 2) / (c_size-1)) + 
+     (POWER(t_var/t_size, 2) / (t_size-1)))) AS d_o_f
+FROM control_test
