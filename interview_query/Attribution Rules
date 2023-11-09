@@ -1,0 +1,31 @@
+Write a query that creates an attribution rule for each user. If the user visited Facebook or Google at least once 
+then the attribution is labeled as “paid.” Otherwise, the attribution is labeled as “organic.”
+
+
+with h as(
+select 
+user_id, 'paid' as attribute
+from attribution a inner join user_sessions u
+ on u.session_id = a.session_id
+where channel in ('facebook', 'google') ) ,
+
+h2 as (select user_id, 'organic' as attribute  from attribution a inner join user_sessions u on u.session_id = a.session_id where user_id not in (select user_id from h) )
+
+select * from  h
+union 
+ select * from h2
+
+-------------------------------------------------------------------------------------------------------------------------
+WITH cte AS (
+    SELECT
+        user_id,
+        SUM(CASE WHEN (channel = 'Facebook' OR channel = 'Google') THEN 1 ELSE 0 END) AS paid_count
+    FROM user_sessions
+        JOIN attribution ON 
+            user_sessions.session_id = attribution.session_id
+    GROUP BY user_id)
+
+SELECT
+    user_id,
+    CASE WHEN paid_count >=1 THEN 'paid' ELSE 'organic' END AS attribute
+FROM cte
