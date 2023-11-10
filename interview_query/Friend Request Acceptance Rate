@@ -1,0 +1,17 @@
+'''
+A social media company re-designed its UI to include notifications to users when they receive friend requests.
+
+Evaluate if this change increased the friend request acceptance rate. Find the acceptance rate for friend requests sent in the four weeks prior to (and including) July 2nd, 2022.
+
+Note: The acceptance rate is the percentage of sent requests that were accepted.*
+
+Assume that nobody sends or accepts the same request twice. We will consider two friend requests to be duplicates when their sender and receiver are the same
+'''
+
+
+select ifnull( count(accepted_at)/count(*),1 ) as acceptance_rate
+
+from friend_requests fr left join requests_accepted ra
+on fr.requester_id = ra.requester_id 
+and ra.accepter_id = fr.receiver_id
+WHERE DATE(sent_at) BETWEEN SUBDATE("2022-07-02", INTERVAL 4 WEEK) AND "2022-07-02"
