@@ -1,0 +1,16 @@
+You are generating a yearly report for your company’s revenue sources.
+
+Calculate the percentage of all total revenue made to date that was made during 
+the first and last years recorded in the table. Round the percentages to two decimal places
+
+
+
+select 
+round(sum(case when year(created_at) = 
+ (select min(year(created_at)) from annual_payments )
+ then  amount - amount_refunded end)/ sum(amount-amount_refunded)*100,2) as percent_first,
+round(sum(case when year(created_at) =
+ 
+ (select max(year(created_at)) from annual_payments )
+ then  amount - amount_refunded end)/ sum(amount-amount_refunded)*100,2) as percent_last
+from annual_payments
