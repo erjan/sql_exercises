@@ -1,0 +1,33 @@
+Over budget on a project is defined when the salaries, prorated to the day, exceed the budget of the project.
+
+For example, if Alice and Bob both combined income make 200K and work on a project of a budget of 50K that takes half a year, then the project is over budget given 0.5 * 200K = 100K > 50K.
+
+Write a query to forecast the budget for all projects and return a label of "overbudget" if it is over budget and "within budget" otherwise.
+
+Note: Assume that employees only work on one project at a time.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+with h as(
+select 
+
+ p.title,
+ datediff(end_date, start_date) as project_days,
+ budget,
+sum(coalesce(salary,0)) as total_salary
+
+from projects p left join 
+ employee_projects ep on
+
+ep.project_id = p.id 
+left join employees e on e.id = ep.employee_id
+
+group by 1,2,3)
+
+
+select title, 
+case when 
+cast(project_days as decimal)/365*total_salary > budget
+then 'overbudget' else 'within budget' end as project_forecast
+
+from h
