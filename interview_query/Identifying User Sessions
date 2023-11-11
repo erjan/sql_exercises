@@ -1,0 +1,36 @@
+
+'''
+Suppose you have an events table that tracks user activities on a website. Write a query to identify and label each event with a session number. All events in the same session should be labeled with the same session number.
+
+Note: A session is defined as a series of consecutive events for a user that are within 60 minutes of each other.
+
+i.e. If a user has a series of events at 00:01:00, 00:30:00, 01:01:00, this would be considered 1 session but a series of events at 00:01:00, 00:30:00, 01:31:00 would be 2 sessions.
+'''
+
+
+with h as(
+SELECT 
+id, user_id,event,
+replace(created_at,'T',' ') as created_at , 
+
+case when 
+timestampdiff(minute,
+lead(created_at)over(partition by 
+user_id order by created_at desc) , created_at) > 60 or 
+
+timestampdiff(minute,
+lead(created_at)over(partition by 
+user_id order by created_at desc) , created_at) is null then 1 else 0 end as x 
+ FROM events 
+ order by user_id,created_at desc)
+
+
+
+ select 
+
+created_at,
+user_id,
+event,
+sum(x)over(partition by user_id order by created_at asc) as session_id
+  from h 
+
