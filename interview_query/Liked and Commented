@@ -1,0 +1,21 @@
+'''
+You’re given two tables, users and events. The events table holds values of all of the user events in the action column (‘like’, ‘comment’, or ‘post’).
+
+Write a query to get the percentage of users that have never liked or commented. Round to two decimal places.
+'''
+
+
+with users_like_comment as(
+select 
+
+e.user_id
+
+from users u join events e on u.id = e.user_id
+
+where action  in ('like', 'comment') group by 1 )
+
+select 
+
+round(sum(case when ulk.user_id is null then 1 else 0 end)/count(u.id) ,2)as percent_never
+
+from users u left join  users_like_comment ulk  on u.id = ulk.user_id
