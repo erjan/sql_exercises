@@ -1,0 +1,36 @@
+Given a table of students and their SAT test scores, write a query to return the two students with the closest test scores with the score difference.
+
+If there are multiple students with the same minimum score difference, select the student name combination that is higher in the alphabet. 
+
+with h as(
+select 
+
+id, student,score, 
+lead(score)over(order by score desc)as nxtscore,
+lead(student)over(order by score desc)as nxtstudent
+from scores
+order by score desc),
+
+h2 as(
+select 
+student, nxtstudent,
+score - nxtscore as score_diff
+from h
+where score - nxtscore is not null
+
+order by score_diff asc) 
+select nxtstudent as one_student , 
+student as other_student, score_diff from h2
+ limit 1
+
+-----------------------------------------------------------------------------------------------------
+SELECT 
+    s1.student AS one_student
+    , s2.student AS other_student
+    , ABS(s1.score - s2.score) AS score_diff
+FROM scores AS s1
+INNER JOIN scores AS s2
+    ON s1.id != s2.id
+        AND s1.id < s2.id
+ORDER BY 3 ASC, 1 ASC
+LIMIT 1
