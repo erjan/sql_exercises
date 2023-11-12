@@ -1,0 +1,50 @@
+'''
+You have a table containing information about the projects employees have worked on
+and the time period in which they worked on the project. Each project can be assigned to more than one employee, and an employee can be working on more than one project at a time.
+
+Write a query to find how many unique days each employee worked. Order your query by the employee_id.
+'''
+
+
+select 
+
+p.employee_id,
+timestampdiff(day, min(p.start_date), max(p.end_date)) as days_worked
+from projects p 
+
+group by p.employee_id
+order by p.employee_id
+
+--------------------------------------------------------------------------------------------------------------------
+-- find overlapping projects by comparing end_date to next start_date
+WITH overlaps as (
+    SELECT
+        *,
+        LAG(end_date, 1) OVER (
+            PARTITION BY employee_id ORDER BY start_date)
+            as previous_end_date,
+        IF(start_date < LAG(end_date, 1) OVER (
+            PARTITION BY employee_id ORDER BY start_date), 1 ,0)
+            as overlap
+    FROM projects
+    ORDER BY start_date
+),
+-- count working days of each project with appropriate start_dates 
+date_counts as (
+    SELECT
+        *,
+        CASE
+            WHEN overlap = 1 THEN TIMESTAMPDIFF(day, previous_end_date, end_date)
+            WHEN overlap = 0 THEN TIMESTAMPDIFF(day, start_date, end_date)
+        END AS working_days
+    FROM overlaps
+)
+
+SELECT
+    employee_id,
+    SUM(working_days) as days_worked
+FROM date_counts
+WHERE working_days >= 0
+GROUP BY employee_id
+ORDER BY employee_id
+ 
