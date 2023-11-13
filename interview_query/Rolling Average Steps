@@ -1,0 +1,44 @@
+'''
+As a data analyst in a fitness app company, you are tasked with analyzing the user’s daily step count.
+
+Write a SQL query to calculate the 3-day rolling average of steps for each user, rounded to the nearest whole number.
+
+Notes: The rolling average should only be calculated for days where 
+there are 3 previous days of step counts, including the current day. The first 2 days for any user should be excluded.
+'''
+
+
+SELECT
+
+d1.user_id, 
+d1.date,
+round((d1.steps + d2.steps+d3.steps)/3,0) as avg_steps
+
+ FROM daily_steps d1 left join daily_steps d2 on
+
+ d1.user_id = d2.user_id and d1.date = date_add(d2.date, interval 1 day)
+
+left join daily_steps d3 on d1.user_id = d3.user_id 
+and d1.date = date_add(d3.date, interval 2 day)
+
+where d2.steps is not null
+ and d3.steps is not null
+
+---------------------------------------------------------------------------------------------------------------------------
+WITH tmp AS(
+SELECT *,
+AVG(steps) OVER 
+(PARTITION BY(user_id) ORDER BY date ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS avg_steps,
+LAG(steps) OVER (PARTITION BY (user_id) ORDER BY date) AS day2_steps,
+LAG(steps,2) OVER (PARTITION BY (user_id) ORDER BY date) AS day1_steps,
+LAG(date) OVER (PARTITION BY (user_id) ORDER BY date) AS day2_date,
+LAG(date,2) OVER (PARTITION BY (user_id) ORDER BY date) AS day1_date
+FROM daily_steps)
+
+SELECT user_id, date, ROUND(avg_steps) AS avg_steps
+-- , day1_date, day2_date,
+-- DATEDIFF(day1_date ,day2_date)
+FROM tmp
+WHERE day2_steps is NOT NULL AND day1_steps IS NOT NULL
+AND 1 = DATEDIFF(date ,day2_date) AND 1 = DATEDIFF(day2_date ,day1_date)
+
