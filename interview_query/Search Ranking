@@ -1,0 +1,25 @@
+
+'''
+You’re given a table that represents search results from searches on Facebook. The query column is the search term, position column represents each position the search result came in, and the rating column represents the human rating of the result from 1 to 5 where 5 is high relevance and 1 is low relevance.
+
+Write a query to get the percentage of search queries where all of the ratings for the query results are less than a rating of 3. Please round your answer to two decimal points.
+'''
+
+select round(count(*)
+/(select count(query) from search_results),2) as percentage_less_than_3
+
+from search_results
+
+group by query
+having max(rating)<3
+------------------------------------------------------------------------------------------------------------
+WITH low_rating AS (
+    SELECT query
+    FROM search_results
+    GROUP BY 1
+    HAVING SUM(CASE WHEN rating < 3 THEN 1 ELSE 0 END) = COUNT(*)
+) 
+SELECT ROUND(COUNT(DISTINCT lr.query)/COUNT(DISTINCT sr.query),2) AS percentage_less_than_3
+FROM search_results AS sr 
+LEFT JOIN low_rating AS lr 
+    ON sr.query = lr.query
