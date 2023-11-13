@@ -1,0 +1,32 @@
+Consider the events table which contains information about the phases of writing a new social media post.
+
+The action column can have values post_enter, post_submit, or post_canceled for when a user starts
+to write (post_enter), ends up canceling their post (post_cancel), or posts it (post_submit).
+
+Write a query to get the post success rate for each day in the month of January 2020.
+
+You can assume that a single user may only make one post per day.
+
+
+SELECT 
+ date(created_at) as dt,
+sum(case when action = 'post_submit' then 1 else 0 end)/
+sum(case when action = 'post_enter' then 1 else 0 end) as post_success_rate
+from events
+where year(created_at) = 2020 and month(created_at) =1
+
+group by date(created_at)
+
+-----------------------------------------------------------------------------------------
+SELECT 
+    DATE(c1.created_at) AS dt
+    , COUNT(c2.user_id) / COUNT(c1.user_id) AS post_success_rate
+FROM events AS c1
+LEFT JOIN events AS c2
+    ON c1.user_id = c2.user_id
+        AND c2.action = 'post_submit'
+        AND DATE(c1.created_at) = DATE(c2.created_at)
+WHERE c1.action = 'post_enter'
+    AND MONTH(c1.created_at) = 1
+    AND YEAR(c1.created_at) = 2020
+GROUP BY 1
