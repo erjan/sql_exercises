@@ -1,0 +1,37 @@
+We’re given three tables representing a forum of users and their comments on posts.
+
+Write a query to get the top three users that got the most upvotes on their comments written in 2020. 
+
+Note: Do not count deleted comments and upvotes by users on their own comments
+
+
+------------------------------------------------------------------------------------------------------------
+
+
+
+SELECT 
+u.id,  sum(is_upvote) as upvotes,username
+ FROM comments c join users u on u.id = c.user_id 
+join comment_votes cv on cv.comment_id = c.id
+where year(c.created_at) = 2020 
+and c.user_id <> cv.user_id and is_deleted = 0
+
+group by u.id, username
+order by upvotes desc limit 3
+
+-------------------------------------------------------------------------------------------------------
+SELECT 
+  u.id,
+  u.username,
+  SUM(is_upvote) AS upvotes
+FROM comments AS c
+JOIN comment_votes AS cv
+  ON c.id = cv.comment_id
+JOIN users AS u
+  ON c.user_id = u.id
+WHERE YEAR(c.created_at) = 2020
+  AND is_deleted = 0
+  AND c.user_id != cv.user_id
+GROUP BY 1
+ORDER BY 3 DESC
+LIMIT 3
