@@ -1,0 +1,48 @@
+'''
+The sms_sends table contains all the messages sent to the users and may contain various message types.
+Confirmation messages (type = "confirmation") are sent when a user registers an account and requires a response. The system may send multiple confirmation messages to a single phone number, but the user may confirm only the latest one sent to them.
+The ds column represents the date when SMSs are sent.
+The confirmers table contains phone numbers that responded to confirmation messages and dates when users responded.
+Write a query to calculate the number of responses grouped by carrier and country to the SMSs sent by the system on February 28th, 2020.
+'''
+
+with h as(
+select 
+date(ds) as ds,
+carrier, country,c.phone_number,
+lead(ds)over(partition by c.phone_number order by s.ds )as nxtdate
+
+from confirmers c inner join sms_sends s
+on c.phone_number = s.phone_number
+where type = 'confirmation')
+
+
+select 
+carrier, country, count(distinct h.phone_number) as unique_numbers
+from h  join confirmers c on c.phone_number = h.phone_number
+where h.ds = '2020-02-28'
+and nxtdate is null
+group by carrier, country
+----------------------------------------------------------------------------------------------------------------
+with conf as (
+    select
+    *,
+        row_number() over(partition by phone_number order by ds desc) as n_order
+    from  sms_sends
+    where type = 'confirmation'
+)
+
+select
+    carrier,
+    country,
+    count(distinct phone_number) as unique_numbers
+from conf
+join confirmers  
+using(phone_number)
+where
+    conf.n_order = 1
+    and date(conf.ds) = '2020-02-28'
+group by
+    1, 2
+
+
