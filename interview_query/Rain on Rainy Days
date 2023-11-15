@@ -1,0 +1,16 @@
+'''
+You’re given a dataframe df_rain containing rainfall data. The dataframe has two columns: day of the week and rainfall in inches.
+
+Write a function median_rainfall to find the median amount of rainfall for the days on which it rained.
+
+Note: You may assume it rained on at least one of the days.
+'''
+
+
+import pandas as pd
+
+def median_rainfall(df_rain):
+    
+
+    x = int(df_rain[ df_rain['Inches']>0].median())
+    return x
