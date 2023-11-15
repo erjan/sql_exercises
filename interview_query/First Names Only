@@ -1,0 +1,11 @@
+'''
+You’re given a dataframe containing a list of user IDs and their full names (e.g. ‘James Emerson’).
+
+Transform this dataframe into a dataframe that contains the user ids and only the first name of each user.
+'''
+
+import pandas as pd
+
+def first_name_only(users_df):
+    users_df['name'] = users_df['name'].apply(lambda x: x.split(' ')[0])
+    return users_df
