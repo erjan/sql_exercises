@@ -1,0 +1,20 @@
+'''
+Given a dataframe with three columns:
+
+client_id
+ranking
+value
+Write a function to fill the NaN values in the value column with the previous non-NaN value from the same client_id ranked in ascending order.
+
+If there doesn’t exist a previous client_id then return the previous value.
+'''
+
+
+import pandas as pd
+
+def previous_nan_values(clients_df):
+    
+
+    X = clients_df.sort_values(['client_id', 'ranking']).fillna(method = 'ffill')
+    X = X.sort_values('ranking')
+    return X
