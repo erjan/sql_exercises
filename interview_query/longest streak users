@@ -1,0 +1,53 @@
+'''
+Given a table with event logs, find the top five users with the longest continuous streak of visiting the platform in 2020.
+
+Note: A continuous streak counts if the user visits the platform at least once per day on consecutive days.
+'''
+
+
+with ordered_table as 
+(select user_id, date(created_at) as dt
+from events
+group by user_id, date(created_at)
+order by user_id, date(created_at)),
+
+user_rankings as 
+(select user_id, 
+dt,
+rank() over (partition by user_id order by dt) as ranking,
+DATE_SUB(dt, INTERVAL rank() over (partition by user_id order by dt) DAY) as date_group
+from ordered_table),
+
+user_streaks as 
+(select user_id, date_group,
+count(*) as streak_length
+from user_rankings
+group by user_id, date_group)
+
+select user_id, max(streak_length) as streak_length
+from user_streaks
+group by user_id
+order by streak_length desc
+limit 5
+
+---------------------------------------------------------------------------------------------------------------------
+WITH grouped AS (
+    SELECT 
+        DATE(DATE_ADD(created_at, INTERVAL -ROW_NUMBER() 
+            OVER (PARTITION BY user_id ORDER BY created_at) DAY)) AS grp,
+        user_id, 
+        created_at 
+    FROM (
+        SELECT * 
+        FROM events 
+        GROUP BY created_at, user_id) dates
+)
+SELECT 
+    user_id, streak_length 
+FROM (
+    SELECT user_id, COUNT(*) as streak_length
+    FROM grouped
+    GROUP BY user_id, grp
+    ORDER BY COUNT(*) desc) c
+GROUP BY user_id
+LIMIT 5
