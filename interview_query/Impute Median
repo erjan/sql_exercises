@@ -1,0 +1,19 @@
+'''
+You’re given a dataframe df_cheeses containing a list of 
+the price of various cheeses from California. The dataframe has missing values in the price column.
+
+Write a function cheese_median to impute
+the median price of the selected California cheeses in place
+of the missing values. You may assume at least one cheese is not missing its price.
+'''
+
+
+import pandas as pd
+
+def cheese_median(df):
+    mean_imputation = df.Price.median()
+
+
+    df['Price'] = df['Price'].fillna(mean_imputation)
+
+    return df
