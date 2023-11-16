@@ -1,0 +1,15 @@
+You are given a dataframe with a single column, 'var'.
+
+Calculated the t-value for the mean of ‘var’ against a null hypothesis that 
+
+Note: You do not have to calculate the p-value of the test or run the test
+
+
+import pandas as pd
+
+def t_score(mu0, df: pd.DataFrame):
+    
+    x = (df.mean() - mu0)/(df.std()/pow(df.count(),1/2))
+    return x
+
+    
