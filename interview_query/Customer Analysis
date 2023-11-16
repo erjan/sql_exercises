@@ -1,0 +1,25 @@
+'''
+You’re given a dataframe containing sales data from a grocery store chain with columns for customer ID, gender, and date of sale.
+
+Create a new dataset with summary level information on their purchases including the columns:
+
+customer_id
+gender
+most_recent_sale
+order_count
+most_recent_sale should display the date of the customer’s most recent purchase. order_count should display the total number of purchases that the customer has made.
+'''
+
+
+import pandas as pd
+
+def customer_analysis(df):
+    
+
+    res =df.groupby(['customer_id','gender']).agg(
+        most_recent_sale = ('date of sale', 'max'), 
+        order_count = ('customer_id','size'))
+    
+    res.reset_index(inplace=True)
+
+    return res
