@@ -1,0 +1,13 @@
+'''
+You’re given two dataframes. One contains information about addresses and the other contains relationships between various cities and states:
+'''
+
+
+import pandas as pd
+def complete_address(df_addresses, df_cities):
+    df_addresses[['street', 'city', 'zipcode']] = df_addresses['address'].str.split(', ', expand=True)
+    df_addresses = df_addresses.drop(['address'], axis=1)
+    df_addresses = df_addresses.merge(df_cities, on="city")
+    df_addresses['address'] = df_addresses[['street', 'city', 'state', 'zipcode']].agg(', '.join, axis=1)
+    df_addresses = df_addresses.drop(['street', 'city', 'state', 'zipcode'], axis=1)
+    return df_addresses
