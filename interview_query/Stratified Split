@@ -1,0 +1,27 @@
+'''
+Let’s say you work as a medical researcher.
+
+You are given a dataframe of patient data containing the age of the patient and two columns, smoking and cancer, indicating if the patient is a smoker or has cancer, respectively.
+
+Write a function, stratified_split, that splits the dataframe into train and test sets while preserving the approximate ratios for the values in a specified column (given by a col variable). Do not return the training set. Instead, return the number of columns in the training set that are in the "no" class of col
+
+Note: Do not use scikit-learn.
+'''
+
+
+
+import pandas as pd
+
+train_ratio = 0.7
+col = "cancer"
+
+def stratified_split(train_ratio,col,patients: pd.DataFrame):
+    
+    cancer = patients[patients[col]=='yes']
+    nocancer = patients[patients[col]=='no']
+
+    yesc = cancer.sample(frac= train_ratio)
+    noc = nocancer.sample(frac=train_ratio)
+
+    main = pd.concat([yesc,noc])
+    return len(main[main[col]=='no'])
