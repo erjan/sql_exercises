@@ -12,4 +12,11 @@ def t_score(mu0, df: pd.DataFrame):
     x = (df.mean() - mu0)/(df.std()/pow(df.count(),1/2))
     return x
 
+-------------------------------------------------------------------------------------------
+import pandas as pd
+
+def t_score(mu0, df: pd.DataFrame):
     
+    n = len(df)
+    x = (df.mean() - mu0)/(df.std()/n**0.5)
+    return x
