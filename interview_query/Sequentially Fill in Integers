@@ -1,0 +1,19 @@
+'''
+You have been given a table tbl_numbers with only one column: int_numbers. It can have one integer number value per row in a sequential manner.
+
+Write a query to return the number repeated by one times its own value.
+
+For example, the integer number 5 would appear five times in the output (1 times 5).
+'''
+
+
+with recursive cte as(
+
+    select int_numbers , 1 as counter from tbl_numbers
+    union all
+    select int_numbers, counter+1
+    from cte
+    where counter < int_numbers
+)
+select int_numbers as seq_numbers from cte order by seq_numbers
+
