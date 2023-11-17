@@ -18,3 +18,13 @@ select l.liker_id , count(h.user_id) from has_one h join likes l  on h.user_id =
 group by l.liker_id)k)
 
 group by user_id
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+#official
+
+select l1.liker_id  as user, count(distinct l2.liker_id) as count
+
+from likes l1 inner join likes l2 on l1.liker_id = l2.user_id
+
+group by l1.liker_id
