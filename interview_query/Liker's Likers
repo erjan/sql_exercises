@@ -1,0 +1,20 @@
+A dating website’s schema is represented by a table of people that like other people. The 
+table has three columns. One column is the user_id, another column is the liker_id 
+which is the user_id of the user doing the liking, and the last column is the date time that the like occurred.
+
+Write a query to count the number of liker’s likers (the users that like the likers) if the liker has one.
+
+------------------------------------------------------------------------------------------------------------------------------
+with has_one as(
+select distinct user_id, count(liker_id)  from likes
+group by user_id
+having count(liker_id)!=0)
+
+
+select  count(*)  as count, user_id as user from likes where user_id in (
+    select liker_id from (
+select l.liker_id , count(h.user_id) from has_one h join likes l  on h.user_id = l.user_id
+
+group by l.liker_id)k)
+
+group by user_id
