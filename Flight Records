@@ -1,0 +1,18 @@
+'''
+Write a query to create a new table, named flight routes, that displays unique pairs of two locations.
+'''
+
+with grouped_pairs as(
+select 
+
+
+case when f1.source_location< f1.destination_location then f1.source_location else f1.destination_location end as destination_one,
+case when f1.source_location > f1.destination_location then f1.source_location else f1.destination_location end as destination_two
+
+from flights f1)
+
+
+
+select  destination_one, destination_two from grouped_pairs
+
+group by 1,2
