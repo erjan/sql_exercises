@@ -1,0 +1,43 @@
+'''
+Let’s say you work in air traffic control. You are given the table below containing information on flights between two cities.
+
+Write a query to find out how much time, in minutes (rounded down), each plane spent in the air each day.
+
+Note: Both cities are in the same time zone, so you do not need to worry about converting time zones.
+'''
+
+with cte1 as(
+
+select id, destination_location, source_location, plane_id,
+cast(date(flight_start) as datetime) day_begin, flight_start,
+cast(date(flight_end) as datetime) day_change, flight_end
+
+from flights),
+
+cte2 as(
+
+select plane_id, date(day_begin) as day_begin,
+if (day_begin = day_change, time_to_sec(timediff(flight_end, flight_start)) div 60,
+time_to_sec(timediff(day_change, flight_start)) div 60 )  as delta_cur_min,
+date(day_change) as day_change,
+
+if (day_begin = day_change, time_to_sec(timediff(flight_start, flight_start)) div 60,
+time_to_sec(timediff(flight_end, day_change)) div 60 )  as delta_nxt
+
+from cte1),
+
+cte3 as(
+
+select plane_id, day_begin as calendar_day, delta_cur_min as time_in_min from cte2
+union all
+select plane_id, day_change as calendar_day, delta_nxt as time_in_min from cte2
+)
+
+
+select plane_id, calendar_day, sum(time_in_min) as time_in_min 
+from cte3
+
+group by plane_id, calendar_day
+
+having time_in_min>0
+order by plane_id, calendar_day
