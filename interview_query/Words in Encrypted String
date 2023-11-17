@@ -1,0 +1,71 @@
+'''
+You are required to extract a specific word target_word from an encrypted document. Fortunately, you have the basic information needed to decrypt that document.
+
+The equation used to encrypt the document is as follows:
+
+�
+�
+(
+�
+)
+=
+(
+�
+(
+�
+)
++
+�
+)
+m
+o
+d
+ 
+ 
+26
+E 
+n
+​
+ (x)=(I(s)+n)mod26
+
+Where:
+
+�
+s is a letter
+�
+(
+�
+)
+I(x) is the number representing the position of the letter in the alphabet (1 for A, 2 for B, etc.)
+�
+n is an arbitrary integer.
+�
+�
+(
+�
+)
+E 
+n
+​
+ (x) is the encrypted letter.
+Return the number of occurrences of target_word in the document after decryption.
+
+Note: The document only has upper case letters and spaces.
+'''
+
+def extract_word(encrypted_document, n, target_word):
+    
+
+    dec = ''
+
+    for l in encrypted_document:
+        if l.isalpha():
+            dec += chr((ord(l)-ord('A')-n)%26 + ord('A'))
+        else:
+            dec+=l
+    
+    ans = 0
+    for w in  dec.split():
+        if w == target_word:
+            ans+=1
+    return ans
