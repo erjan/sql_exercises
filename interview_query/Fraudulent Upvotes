@@ -1,0 +1,32 @@
+'''
+We’re given three tables representing a forum of users and their comments on posts.
+
+We want to figure out if users are creating multiple accounts to upvote their own comments.
+
+What kind of metrics could we use to figure this out?
+
+Write a query that could display the percentage of users on our forum that would be acting fraudulently in this manner. 
+'''
+
+
+SELECT 
+a.voter_id
+
+ from(
+select cv.user_id as voter_id, 
+c.user_id as commenter_id,
+c.id as comment_id
+from comment_votes cv inner join comments c on 
+cv.comment_id=c.id
+where is_upvote='True')a
+
+where a.voter_id in (
+
+    select comment_votes.user_id
+    from comment_votes left join comments on 
+    comment_votes.user_id = comments.user_id
+    where comments.id is null and is_upvote='True'
+)
+group by a.voter_id
+
+having count(distinct commenter_id) = 1 and count(distinct comment_id)>3
