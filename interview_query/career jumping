@@ -1,0 +1,74 @@
+'''
+We’re given a table of user experiences representing each person’s past work experiences and timelines. 
+
+Specifically let’s say we’re interested in analyzing the career paths of data scientists. Let’s say that the titles we care about are bucketed into data scientist, senior data scientist, and data science manager. 
+
+We’re interested in determining if a data scientist who switches jobs more often ends up getting promoted to a manager role faster than a data scientist that stays at one job for longer. 
+
+Write a query to prove or disprove this hypothesis.
+'''
+
+
+
+This question requires a bit of creative problem solving to understand how we can prove or disprove the hypothesis. The hypothesis is that data scientists that end up switching jobs more often get promoted faster.
+
+Therefore, in analyzing this dataset, we can prove this hypothesis by separating the data scientists into specific segments on how often they jump in their careers.
+
+For example, if we looked the number of job switches for data scientists that have been in their field for 5 years, we could prove the hypothesis if the number of data science managers increased as the number of career jumps.
+
+Never switched jobs: 10% are managers
+Switched jobs once: 20% are managers
+Switched jobs twice: 30% are managers
+Switched jobs three times: 40% are managers
+We could look at this over different buckets of time as well to see if the correlation stays consistent after 10 years and 15 years in a data science career.
+
+This analysis proves to be correct except for the fact that it doesn’t count the intention of the data scientist. What happens if the data scientist didn’t ever want to become a manager?
+
+One way to solve this is to then do the analysis backwards.
+
+We can subset at all of the existing data science managers and see how often they ended up switching jobs before they got to their first manager position. Then divide the number of job switches by the amount of time it took for them to achieve the manager position themselves. This way, we can end up with a result that -looks like:
+
+Job switches: 1 - Average months to promotion: 50
+Job switches: 2 - Average months to promotion: 46
+Job switches: 3 - Average months to promotion: 44
+But there is a fault with this analysis as well. What about all those data scientists that have switched jobs / not switched jobs but haven’t become managers yet. They could be one month away from being a manager and be subsetted out of our analysis!
+
+We have to then make some assumptions about the distribution of existing data science managers. Are the years of experience before they became managers normally distributed? If not, then our results might be a bit biased from our hindsight analysis.
+
+SQL translation
+We first make a CTE called manager_promo with all the user_ids that have been promoted to data science managers.
+
+Next, we count the number of job switches before getting promoted as num_jobs_switched.
+
+Then, we calculate the number of months before promotion to the data science manager position as month_to_promo.
+
+Finally, we order by the number of job switched.
+
+
+
+
+WITH manager_promo as (
+    SELECT user_id
+        , MIN(start_date) as promotion_date
+    FROM playground.user_experiences
+    WHERE title='data science manager'
+    GROUP BY user_id
+)
+
+SELECT num_jobs_switched
+    , AVG(
+        TIMESTAMPDIFF(MONTH, career_started_date, promotion_date)
+    ) as month_to_promo
+FROM (
+    SELECT u.user_id
+        , mp.promotion_date
+        , COUNT(DISTINCT u.id) as num_jobs_switched
+        , MIN(start_date) as career_started_date
+    FROM playground.user_experiences u
+    INNER JOIN manager_promo mp 
+        on u.user_id=mp.user_id
+    WHERE u.start_date = mp.promotion_date
+    GROUP BY u.user_id, mp.promotion_date
+) tt
+GROUP BY num_jobs_switched
+ORDER BY 2 DESC
