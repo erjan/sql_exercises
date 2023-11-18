@@ -1,0 +1,41 @@
+'''
+Find the three best-performing days ever recorded for each advertiser who achieved the highest weekly revenue.
+
+Note: You may assume that all the transactions happened within the same year. You may assume that every record within the amount column is different.
+'''
+
+
+with weekly_revenue as(
+SELECT 
+
+a.advertiser_id, 
+week(transaction_date) as week_start,
+sum(amount)  as total_revenue
+
+FROM advertisers a inner join revenue r on 
+a.advertiser_id = r.advertiser_id
+
+group by a.advertiser_id, week(transaction_date)
+),
+
+top_advertisers as(
+
+select advertiser_id, total_revenue,rank()over(order by total_revenue desc) as rnk
+ from weekly_revenue 
+
+),
+
+h2 as(
+select * from top_advertisers where rnk = 1),
+
+top_days as(
+select r.advertiser_id, r.transaction_date,r.amount,
+row_number()over(partition by r.advertiser_id order by r.amount desc) as day_rnk
+from revenue r  join h2 on h2.advertiser_id = r.advertiser_id)
+
+select a.advertiser_name,
+td.transaction_date,
+td.amount
+from top_days td join advertisers a on a.advertiser_id = td.advertiser_id
+where td.day_rnk<=3
+order by a.advertiser_name, td.transaction_date
