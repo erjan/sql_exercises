@@ -1,0 +1,18 @@
+Given a users table, write a query to 
+get the cumulative number of new users added by the day, with the total reset every month. 
+
+
+
+with h as(
+select 
+date(created_at) as date, 
+count(*) as total_users
+from users 
+group by 1)
+
+
+select t.date , sum(u.total_users) as monthly_cumulative
+from h t left join h u on t.date >= u.date 
+
+and month(t.date) = month(u.date) and year(t.date) = year(u.date)
+group by 1
