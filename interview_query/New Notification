@@ -1,0 +1,42 @@
+Twitter wants to roll out more push notifications to users because they think users are missing out on good content. Twitter decides to do this in an A/B test. 
+
+Let’s say that after we release more notifications, we suddenly see the total number of unsubscribes increase.
+
+We’re given two tables, events where actions are login, nologin, and unsubscribe and another table called variants where user’s are bucketed into a control and a variant a/b test.
+
+Given these tables, write a query to display a graph to understand how unsubscribes are affecting login rates over time.
+
+Note: Let’s say that all users are automatically put into the A/B test.
+
+---------------------------------------------------------------------------------------------------------------------------
+Intuitively, we are tasked with comparing multiple different variables at play here. There is the new notification system along with it’s effect of creating more unsubscribes. We’re not sure how unsubscribes are affecting login rates but we can plot a graph that would help us visualize how the login rates change before and after an unsubscribe from a user.
+
+We can also see how the login rates compare for unsubscribes for each bucket of the ab test. Given that we want to measure two different changes, we know we have to eventually in SQL do a GROUP BY of two different variables: date and bucket variant. 
+
+For us to visualize this, we’ll need to plot two lines on a 2D graph. The x-axis will represent days until unsubscribing with a range of -30 to 0 to 30, in which -30 is thirty days before unsubscribing and 30 is 30 days after unsubscribing. The y-axis will represent the average login rate for each day. And we’ll be plotting two lines for each of the A/B test variants, control, and test.
+
+Cool, now that we have what we’re going to graph, how do we write a query to get the dataset for the graph? We can make sure our dataset looks something like this:
+
+variant	days_since_unsub	login_rate
+control	-30	90%
+test	-30	91%
+We have each column representing a different axis or line for our graph.
+
+Now for our SQL query. We know that we have to get every user that has unsubscribed so we will first INNER JOIN the abtest table to the events table where there exists an unsubscribe event. Now we’ve isolated all users that have ever unsubscribed.
+
+Additionally, we have to then get every event in which the user has logged in and divide it by the total number of users that are eligible within the timeframe.
+
+SELECT 
+    variant
+    , DATEDIFF(e1.created_at, e2.created_at) AS days_since_unsub
+    , ROUND(COUNT(DISTINCT CASE WHEN e2.action = 'login' THEN 1 ELSE 0 END)/COUNT(DISTINCT abtest.user_id) * 100, 2)AS login_rate
+FROM variants as abtest
+INNER JOIN events AS e1
+    ON abtest.user_id = e1.user_id
+        AND e1.action = 'unsubscribe'
+INNER JOIN events AS e2
+    ON abtest.user_id = e2.user_id
+        AND e2.action IN ('login', 'nologin')
+        AND DATEDIFF(e1.created_at, e2.created_at) 
+            BETWEEN -30 AND 30
+GROUP BY 1,2
