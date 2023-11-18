@@ -1,0 +1,13 @@
+'''
+Write a query that, for each page, it gets the percentage of the users who recommended it that are in the same postal code as the page.
+
+Note: A page can sponsor multiple postal codes.
+'''
+
+SELECT 
+ps.page_id as page ,ps.postal_code,
+sum(case when ps.postal_code = u.postal_code then 1 else 0 end)/count(distinct u.id) as percentage
+FROM 
+page_sponsorships ps inner join recommendations r on r.page_id = ps.page_id
+inner join users u on u.id = r.user_id
+group by ps.page_id,ps.postal_code
