@@ -1,0 +1,13 @@
+Given a dictionary with weights, write a function random_key that returns a key at random with a probability proportional to the weights.
+
+
+import random
+def random_key(weights):
+    
+    mylist = []
+
+    for k in weights:
+
+        mylist += k* weights[k]
+    
+    return random.choice(mylist)
