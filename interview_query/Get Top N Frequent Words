@@ -1,0 +1,32 @@
+Given an example paragraph string and an integer N, write a
+function n_frequent_words that returns the top N frequent words in the posting and the frequencies for each word.
+
+What’s the function run-time?
+
+
+import string
+def n_frequent_words(posting,N):
+
+  x = ''
+  for ch in posting:
+    if ch in string.punctuation:
+      x += ' '
+    else:
+      x+= ch
+  
+  words = x.split()
+  
+  for i in range(len(words)):
+    words[i] = words[i].lower()
+    
+  freq = dict()
+  for w in words:
+    if w not in freq:
+      freq[w] = 1
+    else:
+      freq[w] +=1
+    
+
+  freq = sorted(freq.items(), key = lambda x: (-x[1], x[0]))[:(N)]
+  return freq
+
