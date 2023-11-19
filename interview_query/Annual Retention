@@ -1,0 +1,141 @@
+You’re given a table called annual_payments for an annually billed B2B SAAS subscription product.
+
+annual_payments table
+
+Column	Type
+id	INTEGER
+status	VARCHAR
+user_id	INTEGER
+created_at	DATETIME
+amount	FLOAT
+amount_refunded	FLOAT
+product	VARCHAR
+last_updated	DATETIME
+Users pay for the three different products: 'PDF Editor', 'Cloud Storage', and 'Mobile CRM'.
+
+How would you formulate a query to calculate the average annual retention, for each subsequent year, at the end of the year?
+
+Retention rate is calculated as a percentage of active subscriptions at the end of the year 
+�
+T in the active subscriptions at the end of the previous year 
+(
+�
+−
+1
+)
+(T−1)
+
+----------------------------------------------------------------------------------------------------------------------------------------
+WITH cte_1 AS (
+	SELECT
+		*,
+		YEAR(created_at) as yea
+	FROM
+		annual_payments as a
+	ORDER BY
+		user_id,
+		product,
+		created_at
+),
+cte_2 AS (
+	SELECT
+		*,
+		LAG(YEAR(created_at)) OVER (PARTITION BY user_id,
+			product ORDER BY created_at) prev_year,
+		LAG(status) OVER (PARTITION BY user_id,
+			product ORDER BY created_at) prev_status
+	FROM
+		cte_1
+),
+cte_3 AS (
+SELECT
+	*,
+	IF(STATUS = 'paid' OR(STATUS = 'refunded' AND YEAR(last_updated) > yea),
+1,
+0) AS E_o_Y_active
+	FROM
+		cte_2
+),
+cte_4 AS (
+SELECT
+	*,
+	LAG(E_o_Y_active) OVER (PARTITION BY user_id,
+		product ORDER BY created_at) AS Prev_E_o_Y_active
+FROM
+	cte_3
+),
+cte_5 AS (
+SELECT
+	*,
+	if(E_o_Y_active = 1 AND IFNULL(Prev_E_o_Y_active,
+		0) = 0,
+	1,
+	0) AS New_user
+	FROM
+		cte_4
+),
+cte_6 AS (
+SELECT
+	yea,
+	SUM(E_o_Y_active) AS E_o_Y_active_S,
+	SUM(Prev_E_o_Y_active) AS Prev_E_o_Y_active_S,
+	SUM(new_user) AS new_user_S
+FROM
+	cte_5
+GROUP BY
+	Yea
+)
+SELECT
+	yea AS year,
+	CAST(IFNULL(((E_o_Y_active_S - new_user_S) / Prev_E_o_Y_active_S), 0) AS DECIMAL (3, 2)) AS percentage_renewed
+FROM
+	cte_6
+
+-------------------------------------------------------------------------------------------------------------------------------------
+WITH payments AS (
+	SELECT *, 
+        YEAR(created_at) as year_created
+	FROM annual_payments as a
+),
+previous_payments AS (
+	SELECT
+		*,
+		LAG(YEAR(created_at)) OVER (PARTITION BY user_id, product ORDER BY created_at) prev_year,
+		LAG(status) OVER (PARTITION BY user_id, product ORDER BY created_at) prev_status
+	FROM payments
+),
+year_activity AS (
+    SELECT
+        *,
+        status = 'paid' 
+            or (status = 'refunded' and year(last_updated) > year_created) 
+            as active_at_year
+        FROM previous_payments
+),
+previous_year_activity AS (
+    SELECT
+        *,
+        LAG(active_at_year) OVER (PARTITION BY user_id, product ORDER BY created_at) AS active_at_previous_year
+    FROM year_activity
+),
+new_users AS (
+    SELECT
+        *,
+        active_at_year = true AND (active_at_previous_year is null or active_at_previous_year is false) as new_user
+	FROM previous_year_activity
+),
+year_metrics AS (
+    SELECT
+        year_created,
+        count(case when active_at_year = true then user_id end) AS active_users,
+        count(case when active_at_previous_year = true then user_id end) AS previous_active_users,
+        count(case when new_user = true then user_id end) AS new_users
+    FROM new_users
+    GROUP BY year_created
+)
+SELECT
+	year_created AS year,
+    round(case when previous_active_users > 0 
+        then 1.0*(active_users - new_users) / previous_active_users 
+        else 0 end, 2) AS percentage_renewed
+FROM year_metrics
