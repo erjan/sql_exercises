@@ -1,0 +1,37 @@
+'''
+We’re given two tables, a table of notification deliveries and a table of users with created and purchase conversion dates. If the user hasn’t purchased then the conversion_date column is NULL.
+
+Write a query to get the conversion rate for each notification.
+
+A user may convert only once.
+'''
+
+
+with h as(
+SELECT 
+
+notification, nd.user_id, nd.created_at,u.conversion_date,
+
+max(nd.created_at)over(partition by nd.user_id, u.conversion_date)as last_notification_date
+
+
+ FROM notification_deliveries nd 
+ left join users u on u.id = nd.user_id
+and nd.created_at <u.conversion_date),
+
+
+h2 as(
+
+select notification,user_id, created_at,conversion_date,
+
+(case when conversion_date  is not null and created_at = 
+last_notification_date then 1 else 0 end) as converted
+from h
+)
+
+
+
+select 
+notification,
+sum(converted)/count(*)as conversion_rate from h2 group by notification
+
