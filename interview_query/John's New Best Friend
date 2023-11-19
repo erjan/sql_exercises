@@ -1,0 +1,37 @@
+'''
+Using the provided database tables, determine a potential friend for John based on a point-based system. The recommendation system is compliant of the following weights:
+
+Mutual Friends: +3 points for each mutual friend.
+Page Likes: +2 points for every shared page like.
+Blocked Users: Disqualified if John has blocked them before.
+Already Friends: Disqualified if they are already John’s friends.
+'''
+
+
+
+with john_friends as (select friend_id
+from friends
+where user_id=3),
+
+john_pages as (select page_id
+from likes
+where user_id=3
+),
+
+john_blocked as (select blocked_id
+from blocks
+where user_id=3),
+
+candidates as (select * from users
+where (user_id != 3 and user_id not in (select * from john_friends)
+    and user_id not in (select * from john_blocked)))
+
+select c.name as potential_friend_name,
+    3*count(f.friend_id) + 2*count(l.page_id) as friendship_points
+from candidates c left join friends f
+on (c.user_id=f.user_id and f.friend_id in (select * from john_friends))
+left join likes l
+on (c.user_id=l.user_id and l.page_id in (select * from john_pages))
+group by c.name
+order by friendship_points desc
+limit 1
