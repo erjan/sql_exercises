@@ -1,0 +1,45 @@
+'''
+We’re given three tables representing a forum of users and their comments on posts.
+
+Write a query to get the percentage of comments by each user where that user also upvoted their own comment.
+
+Round the percentage_self_voted column values to 0 decimals. For example, 33.3333% should be displayed as 33.
+
+Note: A user that doesn’t make a comment should have a 0 percent self-upvoted.
+'''
+
+
+with h as(
+SELECT 
+
+c.id as comment_id, 
+c.user_id as user_who_commented,
+cv.user_id as user_who_voted,
+ is_upvote
+
+from comments c left join comment_votes cv on c.id = cv.comment_id),
+
+h2 as(
+
+
+select user_who_commented , count(1) as total_comments_by_user , 
+sum(is_upvote) as total_self_voted from (
+select *, ifnull(is_upvote, 0) as is_upvote_real from h 
+where user_who_commented = user_who_voted or user_who_voted is null)k group by user_who_commented),
+
+h3 as(
+select 
+user_who_commented,total_comments_by_user,
+round(100.0*(total_self_voted/total_comments_by_user),0) as percentage_self_voted
+
+ from h2)
+
+
+ select 
+ u.username,
+
+ ifnull(total_comments_by_user,0) as total_comments_by_user,
+
+ ifnull(percentage_self_voted, 0) as percentage_self_voted
+  from users u left join h3  on h3.user_who_commented = u.id
+
