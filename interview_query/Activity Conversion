@@ -1,0 +1,35 @@
+You’re given three tables, users, transactions and events. We’re interested in how user activity affects user purchasing behavior. 
+
+The events table holds data for user events on the website where the action field would equal values such as like and comment.
+
+Write a query to prove if users that interact on the website (likes, comments) convert towards purchasing at a higher volume than users that do not interact.
+
+
+----------------------------------------------------------------------------
+SELECT 
+  AVG(t.num_transactions) AS avg_transactions_with_interactions,
+  AVG(t2.num_transactions) AS avg_transactions_without_interactions
+FROM (
+  SELECT 
+    e.user_id,
+    COUNT(DISTINCT t.id) AS num_transactions
+  FROM events e
+  INNER JOIN transactions t
+      ON e.user_id = t.user_id
+  WHERE e.action IN ('like', 'comment')
+  GROUP BY e.user_id
+) t
+INNER JOIN (
+  SELECT 
+    u.id,
+    COUNT(DISTINCT t.id) AS num_transactions
+  FROM users u
+  LEFT JOIN events e
+      ON u.id = e.user_id
+          AND e.action IN ('like', 'comment')
+  INNER JOIN transactions t
+      ON u.id = t.user_id
+  WHERE e.user_id IS NULL
+  GROUP BY u.id
+) t2
+ON t.user_id = t2.id
