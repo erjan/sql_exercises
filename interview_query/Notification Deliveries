@@ -1,0 +1,22 @@
+We’re given two tables, a table of notification_deliveries and a table of users with 
+created and purchase conversion dates. If the user hasn’t purchased then the conversion_date column is NULL.
+
+Write a query to get the distribution of total push notifications before a user converts.
+
+
+with converted_user_notifications as(
+select 
+distinct u.id as user_id,
+count(notification) as total_pushes
+from notification_deliveries n inner join users u on u.id = n.user_id
+where n.created_at < u.conversion_date 
+group by u.id)
+
+
+select 
+coalesce(total_pushes,0) as total_pushes,
+count(*) as frequency
+ from  users u left join converted_user_notifications cu on u.id = cu.user_id
+
+where u.conversion_date is not null
+group by 1
