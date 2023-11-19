@@ -1,0 +1,31 @@
+You are given two lists: a full list and a missing list. The full list contains a list of integers, while the missing list contains all the 
+integers from the full list except for one. Your task 
+is to create a function that finds the missing element.
+
+
+def one_element_removed(full, missing):
+    full.sort()
+    missing.sort()
+
+
+    j = 0
+
+    for i in range(len(full)):
+        if full[i] == missing[j]:
+            j+=1
+        else:
+            return full[i]
+---------------------------------------------
+To solve this problem, we can use the concept of bitwise XOR operation. The XOR operation returns 0 if there are an even number of 1s in the binary representation of a number, and it returns 1 if there are an odd number of 1s.
+
+We can XOR all the numbers in both the lists. All the numbers that are present in both the lists will be XOR’d to 0 and the number which is missing will be the result of the XOR operation.
+
+Here is the python code:
+
+def one_element_removed(full, missing):
+    m = 0
+    for i in full:
+        m ^= i
+    for i in missing:
+        m ^= i
+    return m
