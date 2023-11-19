@@ -1,0 +1,52 @@
+You are given a list of lists where each group represents a friendship.
+
+For example, given the list:
+
+list = [[2,3],[3,4],[5]]
+Person 2 is friends with person 3, person 3 is friends with person 4, etc. 
+
+Write a function to find how many friends each person has. 
+
+
+def how_many_friends(test_input):
+
+
+    res = dict()
+    for f in test_input:
+        for x in f:
+            res[x] = res.get(x, set())
+            res[x] = res[x].union(f)
+    
+    return [(f, len(r)-1) for f,r in sorted(res.items())]
+----------------------------------------------------------------------------------------------
+def how_many_friends(test_input):
+    # [n] is a case representing a user id with no friends
+    # there does not appear to be any repeats in the input
+    # ergo we can use [n, m] to increment the number of friends for n and m by 1
+    # noting that, we construct a dict to map user_ids: num_friends
+    # then we can construct the list of answer tuples to return
+
+    # test_input = [[2,3],[3,1],[1,5],[4,2]]
+    # test_input = [[1,2,3], [3,1,4]]
+
+    # create a dict that's {'user_id': set([list_of_friends])}
+    # the len of the list is the number of friends
+
+
+
+    friend_count_dict = {}
+    for friendship in test_input:
+        for i in range(0, len(friendship)):
+            user = friendship[i]
+            if user not in friend_count_dict:
+                friend_count_dict[user] = set()
+            # for other friends in friends
+            for j in range(0, len(friendship)):
+                if j != i:
+                    friend_count_dict[user].add(friendship[j])
+        
+    answer_arr = []
+    for user_id, num_friends in friend_count_dict.items():
+        answer_arr.append((user_id, len(num_friends)))
+
+    return answer_arr
