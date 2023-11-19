@@ -1,0 +1,33 @@
+'''
+Given a table of subscriptions, write a query to get the retention rate of each monthly cohort for each plan_id for the three months after sign-up.
+
+Order your output by start_month, plan_id, then num_month.
+
+If an end_date is in the same month as start_date we say the subscription was not retained in the first month.
+
+If the end_date occurs in the month after the month of start_date, the subscription was not retained in the second month. And so on for the third.
+
+The end_date field is NULL if the user has not canceled.
+'''
+
+WITH duration AS (
+    SELECT user_id, 
+           DATE_FORMAT(start_date, '%Y-%m-01') AS start_month, 
+           plan_id, 
+           case when end_date is not null 
+                then MONTH(end_date)-MONTH(start_date)
+                else 3 
+            end
+           AS length
+    FROM subscriptions
+)
+
+SELECT 
+ num_month, 
+ plan_id,        
+round(SUM(CASE WHEN length >= num_month THEN 1 ELSE 0 END) / COUNT(DISTINCT user_id), 2) AS retained,    
+ start_month
+FROM duration
+CROSS JOIN (SELECT 1 AS num_month UNION SELECT 2 UNION SELECT 3) AS num_months
+GROUP BY plan_id, start_month, num_month
+ORDER BY start_month, plan_id, num_month;
