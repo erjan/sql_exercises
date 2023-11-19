@@ -1,0 +1,56 @@
+'''
+Let’s say you work at a job board website. It is 
+currently January 1st, 2022. You have the following table containing information about employers who have posted a job to the website.
+'''
+
+
+with more180 as(
+SELECT 
+*,
+sum(datediff( '2022-01-01 00:00:00', date_posted )) 
+over(partition by job_id  ) as prev_days
+
+FROM job_postings),
+
+
+
+h2 as (
+select * 
+FROM more180
+where 
+datediff( '2022-01-01 00:00:00', date_posted ) > 180 or prev_days > 180)
+
+select 1.0*count(distinct h2.user_id)/(select count(distinct user_id )
+ from job_postings) as percentage
+from h2
+
+---------------------------------------------------------------------------------------------------------------------------------
+WITH date_difference AS 
+(
+  SELECT job_id,user_id, DATEDIFF('2022-01-01 00:00:00',date_posted) day_diff 
+  FROM job_postings
+),
+check_over_180 AS 
+(
+  SELECT a.*, b.user_id u_over, c.job_id AS j_over 
+  FROM date_difference a
+  LEFT JOIN 
+  (
+    SELECT  user_id  FROM date_difference
+    WHERE day_diff > 180
+    GROUP BY user_id
+  ) b
+  ON a.user_id = b.user_id
+  LEFT JOIN 
+  (
+    SELECT  job_id  FROM date_difference
+    GROUP BY job_id
+    HAVING SUM(day_diff) > 180
+  ) c
+  ON a.job_id = c.job_id
+)
+SELECT
+  (SELECT COUNT(DISTINCT(user_id)) FROM check_over_180 WHERE u_over IS NOT NULL OR j_over IS NOT NULL)  
+  / 
+  (SELECT COUNT(DISTINCT(user_id)) FROM check_over_180)
+AS percentage;
