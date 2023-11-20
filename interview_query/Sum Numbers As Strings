@@ -1,0 +1,24 @@
+Given two string representations of very large integers, create a 
+Python function, string_sum, that returns the sum of these two integers as a string. Each string integer may start with a '+' or '-' sign.
+
+Treat these strings as if they were extremely large (gigabytes in size), so usual 
+conversion methods to integers don’t work due to memory constraints.
+
+
+def string_sum(num1, num2):
+    
+    final = 0
+
+    if num1[0] == '+':
+        final += int(num1[1:])
+    else:
+        final -= int(num1[1:])
+    
+
+    if num2[0] == '+':
+        final += int(num2[1:])
+    else:
+        final -= int(num2[1:])
+    
+    return str(final)
+            
