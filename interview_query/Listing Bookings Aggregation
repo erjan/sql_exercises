@@ -1,0 +1,23 @@
+Let’s say we have a table representing vacation bookings. Write a query that 
+returns columns representing the total number of bookings in the last 90 days, last 365 days, and overall.
+
+Note: You may assume that today is the 1st of January 2022.
+
+SELECT 
+sum(case when timestampdiff(day, check_in_date, '2022-01-01') <90 then
+ 1 else 0 end ) as num_bookings_last90d,
+  sum(case when timestampdiff(day, check_in_date, '2022-01-01') <=365 then
+ 1 else 0 end ) as num_bookings_last365d,
+count(reservation_id) as num_bookings_total
+
+from bookings 
+where check_in_date is not null 
+and check_out_date is not null
+
+--------------------------------------------------------------------------------
+
+SELECT 
+SUM(CASE WHEN DATE_ADD(check_in_date, INTERVAL 3 MONTH) >= '2022-01-01' THEN 1 ELSE 0 END) AS num_bookings_last90d, 
+SUM(CASE WHEN DATE_ADD(check_in_date, INTERVAL 1 YEAR) >= '2022-01-01' THEN 1 ELSE 0 END) AS num_bookings_last365d,
+COUNT(reservation_id) AS num_bookings_total
+FROM bookings;
