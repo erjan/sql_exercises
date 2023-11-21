@@ -1,0 +1,52 @@
+'''
+Given a string, find the length of the 
+largest palindrome that can be made from the characters
+in the string. A palindrome is a word, phrase, number, or other sequence of 
+characters that reads the same forward and backward, ignoring spaces, punctuation, and capitalization.
+'''
+
+
+from collections import Counter
+def longest_palindrome(s):
+
+    d = dict(Counter(s))
+
+
+    res = 0
+
+    only1 = False
+    for k,v in d.items():
+
+        if v%2 == 0:
+            res +=v
+        
+        elif v%2 == 1 and only1:
+            continue
+        elif v%2 == 1:
+            only1 = True
+            res +=1
+    
+
+    return res
+
+-------------------------------------------------------
+
+def longest_palindrome(s):
+    # Count number of characters in string
+    cts = {}
+    for c in s:
+        if c not in cts:
+            cts[c] = 1
+        else:
+            cts[c] += 1
+    
+    # Determine longest palindrome
+    while sum([v % 2 for v in cts.values()]) > 1:
+        for k,v in cts.items():
+            if v % 2:
+                cts[k] -= 1
+                break
+        
+        cts = {k:v for k,v in cts.items() if v > 0}
+    
+    return sum(cts.values())
