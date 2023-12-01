@@ -1,0 +1,161 @@
+A ride-sharing app has probability 
+�
+p of dispensing a 
+$
+5
+$5 coupon to a rider. The app services 
+�
+N riders. How much should we budget for the coupon initiative in total?
+A driver using the app picks up two passengers.
+What is the probability of both riders getting the coupon?
+What is the probability that only one of them will get the coupon?
+
+---------------------
+1. We can model the number of coupons dispersed, which we will call 
+�
+C, as a binomial distribution with success probability 
+�
+p and number of trials 
+�
+n. Our expenses are then 
+$
+5
+⋅
+�
+$5⋅C in total. Since 
+�
+∼
+�
+(
+�
+,
+�
+)
+C∼B(n,p),
+�
+[
+5
+�
+]
+=
+5
+�
+�
+,
+and
+Std
+[
+5
+�
+]
+=
+5
+�
+�
+(
+1
+−
+�
+)
+E[5C]=5np,andStd[5C]=5 
+np(1−p)
+​
+ 
+To be safe, we should budget our expect expenses, plus one standard diviation for some wiggle room. Our budget, 
+�
+B, will then be:
+�
+=
+5
+(
+�
+�
++
+�
+�
+(
+1
+−
+�
+)
+)
+B=5(np+ 
+np(1−p)
+​
+ )
+. 2. Let 
+�
+1
+C 
+1
+​
+  and 
+�
+2
+C 
+2
+​
+  be the events that the first and second rider get the coupon, and assume the event are independent. For them both getting the ride:
+�
+(
+�
+1
+∩
+�
+2
+)
+=
+�
+2
+P(C 
+1
+​
+ ∩C 
+2
+​
+ )=p 
+2
+ 
+For only one of them getting the ride:
+�
+(
+�
+1
+∩
+�
+2
+�
+)
++
+�
+(
+�
+1
+�
+∩
+�
+2
+)
+=
+2
+�
+(
+1
+−
+�
+)
+P(C 
+1
+​
+ ∩C 
+2
+c
+​
+ )+P(C 
+1
+c
+​
+ ∩C 
+2
+​
+ )=2p(1−p)
