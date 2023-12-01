@@ -1,0 +1,21 @@
+You’re playing casino dice game. You roll a die once. If you reroll, you earn the amount equal to the 
+number on your second roll otherwise, you earn the amount equal to the number on your first roll.
+
+Assuming you adopt a profit-maximizing strategy, what would be the expected amount of money you would win?
+
+----------------------------------
+When you roll the first die with a value of 1, 2, 3, then you should always roll the second die since the expected value for rolling a single die is 3.5. This is done by taking the total sum of the values divided by the number of options: 1 + 2 + 3 + 4 + 5 + 6)/6 = 3.5
+
+So when you roll a 1, 2, 3 then the actual expected value is 3.5 If you roll a 4, 5, 6 on the first die, then the expected value is 5 and you should not roll the second die.
+
+The overall expected monetary value then comes to (3.5+5)/2 = 4.25
+
+Here is the code to simulate it:
+
+
+import numpy as np
+for threshold in range(1, 6):
+    rolls   = np.random.randint(1, 7, size=10**7)
+    rerolls = np.random.randint(1, 7, size=10**7)
+    avg_roll = np.mean(np.where(rolls <= threshold, rerolls, rolls))
+    print(f'Rerolling all {threshold}s and below yields and average roll of {avg_roll}.')
