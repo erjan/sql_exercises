@@ -1,0 +1,120 @@
+Amazon has a warehouse system where items on the website are located at different distribution centers across a city. Let’s say in one example city, the probability that a specific item X is available at warehouse A or warehouse B are 0.6 and 0.8 respectively.
+
+Given that you’re a customer in this example city and the items are only found on the website if they exist in the distribution centers, what is the probability that the item X would be found on Amazon’s website?
+
+
+-------------------------------------------------------------------------------
+Let 
+�
+A and 
+�
+B be the events that item 
+�
+X is at location 
+�
+A and 
+�
+B respective
+
+Let’s define our probabilities:
+
+�
+(
+�
+)
+=
+0.6
+P(A)=0.6
+
+�
+(
+�
+)
+=
+0.8
+P(B)=0.8
+
+We want the probability that the item 
+�
+X is on the website in this city. That can be defined from the question as to the probability that item 
+�
+X is at location 
+�
+A or location 
+�
+B. Given our events are not mutually exclusive, we can represent this probability in equation form: 
+�
+(
+�
+ or 
+�
+)
+=
+�
+(
+�
+∪
+�
+)
+P(A or B)=P(A∪B)
+
+The formula for the union probability is:
+
+�
+(
+�
+∪
+�
+)
+=
+�
+(
+�
+)
++
+�
+(
+�
+)
+−
+�
+(
+�
+∩
+�
+)
+P(A∪B)=P(A)+P(B)−P(A∩B)
+
+Now let’s compute using the information we have:
+
+�
+(
+�
+∩
+�
+)
+=
+0.6
+⋅
+0.8
+=
+0.48
+P(A∩B)=0.6⋅0.8=0.48
+
+�
+(
+�
+∪
+�
+)
+=
+0.6
++
+0.8
+−
+0.48
+=
+0.92
+P(A∪B)=0.6+0.8−0.48=0.92
+
+There is a 92% probability the item is listed on the website.
