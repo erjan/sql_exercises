@@ -1,0 +1,94 @@
+Consider a stick of length 1. It is broken into three pieces at two randomly 
+selected points. What is the probability that the three pieces can form a triangle?
+
+
+To form a triangle, the length of any one side must be less than the sum of the lengths of the other two sides. This condition must hold for all three sides.
+
+Let’s denote the break points as 
+�
+X and 
+�
+Y, and without loss of generality, assume that 
+�
+<
+�
+X<Y. The lengths of the three pieces are then 
+�
+X, 
+�
+−
+�
+Y−X, and 
+1
+−
+�
+1−Y.
+
+The triangle condition is therefore:
+
+�
++
+(
+�
+−
+�
+)
+>
+1
+−
+�
+X+(Y−X)>1−Y which simplifies to 
+�
+<
+0.5
+Y<0.5
+�
++
+(
+1
+−
+�
+)
+>
+�
+−
+�
+X+(1−Y)>Y−X which simplifies to 
+�
+>
+0.5
+X>0.5
+(
+�
+−
+�
+)
++
+(
+1
+−
+�
+)
+>
+�
+(Y−X)+(1−Y)>X which always holds true
+So, both 
+�
+X and 
+�
+Y must be less than 
+0.5
+0.5, which is a quarter of the unit square. Therefore, the probability is 
+0.25
+0.25.
+
+This can be simulated in Python:
+
+import numpy as np
+
+N = 1000000
+X = np.random.uniform(0, 1, N)
+Y = np.random.uniform(0, 1, N)
+count = np.sum((X < 0.5) & (Y < 0.5))
+
+probability = count / N
