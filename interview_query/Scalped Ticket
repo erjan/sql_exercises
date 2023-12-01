@@ -1,0 +1,97 @@
+One of your favorite sports teams is playing at a local stadium, but you waited until the last minute to buy a ticket.
+
+You can buy a scalped (second-hand) ticket for 
+$
+50
+$50, which has a 20% chance of not working. If the scalped ticket doesn’t work, you’ll have to buy a box office ticket for 
+$
+70
+$70 at the stadium.
+
+How much do you expect to pay to go to the sports game?
+How much money should you set aside for the game?
+--------------------------------------------------------------------
+Let 
+�
+W be the event that the scalped ticket does work and 
+�
+C be the cost you pay to attend the game. The question tells us that if the scalped ticket works 
+�
+=
+$
+50
+C=$50, the price of the scalped ticket. Since you will only buy a box office ticket if the scalped ticket doesn’t work, the total cost you pay is 
+$
+50
++
+$
+70
+=
+$
+120
+$50+$70=$120, since you already bought the ticket, so the expected cost is:
+�
+[
+�
+]
+=
+�
+(
+�
+∣
+�
+)
+�
+(
+�
+)
++
+�
+(
+�
+∣
+�
+�
+)
+�
+(
+�
+�
+)
+E[C]=P(C∣W)P(W)+P(C∣W 
+c
+ )P(W 
+c
+ )
+=
+0.8
+⋅
+$
+50
++
+0.2
+⋅
+$
+120
+=
+$
+64
+=0.8⋅$50+0.2⋅$120=$64
+
+Question 2
+
+Theoretically, you might think that you should set aside 
+$
+64
+$64, since that’s the expected cost. That might get you some points with interviewers who haven’t had their coffee yet. However, a closer look shows that this answer makes no sense.
+
+This is because if the scalped ticket doesn’t work, you are left with 
+$
+14
+$14 dollars, which isn’t enough to buy the box office ticket. Assuming you absolutely want to try to buy the scalped ticket, any amount you set aside between 
+$
+50
+$50 and 
+$
+119.99
+$119.99 will have the same probability of successfully getting into the game (80%). Because of this, the choice is really up to the individual’s risk tolerance and how much they want to go to the game, which should be the nature of your answer.
