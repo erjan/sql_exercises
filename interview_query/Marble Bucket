@@ -1,0 +1,44 @@
+We have two buckets full of marbles. There are 30 red marbles and 10 black marbles in Bucket #1 and 20 red and 20 Black marbles in Bucket #2. Your friend secretly pulls a marble from one of the two buckets and shows you that the marble is red.
+
+What is the probability that it was pulled from Bucket #1?
+
+Let’s say your friend puts the marble back in and now picks two marbles. She draws one marble, puts it back in the same bucket, then draws a second. They both happen to be red. What is the probability that they both came from Bucket #1?
+
+-------------
+We can use Bayes but we can also use common logic too. Let’s try Bayes first.
+Bucket #1 = 10 Black + 30 Red
+Bucket #2 = 20 Red + 20 Black
+
+Bayes theorem:
+P(Bucket1 | Marble = Red) = P(Marble = Red | Bucket = 1) * P(Bucket = 1) / P(Marble = Red)
+
+P(Bucket = 1) = 1⁄2
+P(Marble = Red) = 5⁄8
+P(Marble = Red | Bucket = 1) = 3⁄4
+
+P(Bucket=1 | Marble = Red) = (3⁄4*1⁄2)/(5⁄8) = 3⁄5
+
+Logically, we can think about it like this as well. We already know the marble is red. One bucket has 30 red and the other has 20, therefore we can take the probability as the fraction of the sum: 30⁄50 = 3⁄5
+
+We solved for the probability in question 1. Now we how do we calculate the joint probability of both marbles coming from Bucket #1?
+We know that the probability of pulling a marble from Bucket #2 is going to be 1 - P(Bucket=1 | Marble=Red) = 2⁄5.
+
+Now we can calculate the total probabilities of the sample space by multiplying the probabilities. In which we have:
+
+1st Red Marble = Bucket#1
+2nd Red Marble = Bucket#2
+= 3⁄5 * 2⁄5 = 6⁄25
+
+1st Red Marble = Bucket#2
+2nd Red Marble = Bucket#1
+= 2⁄5 * 3⁄5 = 6⁄25
+
+1st Red Marble = Bucket#2
+2nd Red Marble = Bucket#2
+= 2⁄5 * 2⁄5 = 4⁄25
+
+1st Red Marble = Bucket#1
+2nd Red Marble = Bucket#1
+= 3⁄5 * 3⁄5 = 9⁄25
+
+Therefore our answer is 9⁄25.
