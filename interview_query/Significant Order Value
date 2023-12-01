@@ -1,0 +1,29 @@
+Let’s say that we have the average order value data separated by men and women.
+
+Gender	AOV (USD)	Total purchases
+Men	46.3	2500
+Women	50.2	3500
+Would the difference in AOV (average order value) be significant?
+
+--------------------------------------------------------------------------------------
+ To determine if the difference in AOV between men and women is significant, we can perform a hypothesis test. Here's how:
+
+1. State the null hypothesis (H0): There is no significant difference in AOV between men and women.
+2. State the alternative hypothesis (H1): There is a significant difference in AOV between men and women.
+3. Choose a significance level (α): Typically, α is set to 0.05.
+4. Calculate the test statistic: Since we have the means and standard deviations for both groups, we can use the t-test statistic formula:
+
+   t = (M1 - M2) / √[(s1²/n1) + (s2²/n2)]
+
+   where M1 and M2 are the means of the two groups, s1² and s2² are the variances of the two groups, and n1 and n2 are the sample sizes of the two groups.
+
+5. Determine the degrees of freedom (df): For the t-test, df = n1 + n2 - 2.
+6. Find the critical value(s): Using a t-table or online calculator, find the critical value(s) for the chosen significance level and degrees of freedom.
+7. Compare the test statistic to the critical value(s): If the absolute value of the test statistic is greater than the critical value(s), reject the null hypothesis and conclude that there is a significant difference in AOV between men and women. Otherwise, fail to reject the null hypothesis.
+
+Using the given data, we get:
+
+t = (46.3 - 50.2) / √[(10.8/2500) + (14.9/3500)] = -1.77
+df = 3000 - 2 = 2998
+
+For α = 0.05 and df = 2998, the critical value is approximately ±1.96. Since the absolute value of the test statistic (-1.77) is less than the critical value (1.96), we fail to reject the null hypothesis and conclude that there is no significant difference in AOV between men and women.
