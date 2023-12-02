@@ -1,0 +1,38 @@
+Let’s say we want to build a new delivery time estimate model for consumers ordering food delivery.
+
+How would you determine if the new model predicts delivery times better than the old model?
+
+----------------------------------------------------------------------------------------------------------
+Let’s tackle this question in a couple of steps.
+
+First, we can assume that any sort of cross-validation on the data has been done and we have optimized the basis of our model to the best that we can offline.
+
+Second is that there are two probable models that are running for delivery time estimates. One is the delivery time estimate when customers are browsing through restaurants to order from. The second is the delivery time estimate that gets updated once a customer has ordered food. This second model then continually updates as the estimated delivery time (EDT) gets closer and closer.
+
+Given these two scenarios, let’s assume that we’re building a model for the latter, in that once the consumer orders food, we want to give the best EDT as possible.
+
+There are two main ways we can compare the models.
+
+One is by measuring how well the predictions from the new model compare against the actual delivery time.
+
+The second is to compare the models’ predictions against each other.
+
+The first is a better measure of actual accuracy while the second influences and tracks the change between the models which gives insight to the data scientists that are building these models.
+
+For example, if we assumed we built a more robust new model, we could use the prediction comparisons against the old model to garner insight into the black box of what the new model performs better at versus the old model. Suppose that the new model does a better job at predicting Chinese Food EDT versus the old model doing a better job at predicting American Food EDT. This insight is then crucial to understanding in the future how to tweak the models for continual improvements.
+
+Evaluation Metrics
+
+If we are measuring the new model against the actual delivery time, we want at a high level, to measure metrics such as the mean squared error of the residuals (MSE), evaluate the distributions of the residuals (are the orders being overestimated or underestimated?), and also look at the root mean squared error (RMSE) and mean absolute error (MAE). MAE helps us specifically in its robustness to outliers and does not penalize the errors as extremely as MSE.
+
+But continuing on the last example, we have to remember to evaluate our new model against the EDT on a variety of different segments, in that we would have to look at these metrics such as MSE, RMSE, MAE, etc… on Chinese Food versus American Food, New York versus San Francisco, large cities versus small cities, etc…
+
+It is important to remember the scope of food delivery service, in which the model scope greatly impacts our performance in different segments.
+
+Lastly one thing we would have to take into account is the model performance once given new information. If our model is constantly updating after a delivery driver picks up the order, or when the restaurant is finished with our meal, we have to understand the accuracy as it shifts with real time. This is under the assumption that the delivery model in general is an ensemble, in which the EDT model is a conglomeration of multiple different models all factored into one.
+
+Rolling Out
+
+All the analysis above can be done offline or backtested. But the first real way to compare the models against the baseline would be to run the new model in production in an AB test. We can give the new model to a small % of the users first so that the new model doesn’t have a huge influence, and then gradually increase it as we see better usage over time.
+
+A consideration we must make is that the new model’s variant test group should consist of a distribution of users that will be consistent as it rolls out to the larger population. And so we shouldn’t necessarily be testing the model in only one geography, unless it was meant to only exist in that geography for the long term.
