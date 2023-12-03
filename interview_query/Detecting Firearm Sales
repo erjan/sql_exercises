@@ -1,0 +1,253 @@
+Let’s say you are designing a marketplace for your website.
+
+Selling firearms is prohibited by your website’s Terms of Service Agreement (not to mention the laws of your country). To this end, you want to create a system that can automatically detect if a listing on the marketplace is selling a gun.
+
+How would you go about doing this?
+---------------------------------------------------------------------------------
+What is the interviewer looking for?
+
+The interviewer is looking for a few points here:
+
+Can you properly scope the size of this project?
+
+Can you apply machine learning to a business goal?
+
+Can you design a machine learning system from the ground up to production?
+
+We’re going to start with a four-step framework here:
+
+Clarification of the Machine Learning Question
+
+Making and Setting Assumptions of the Problem Scope
+
+Clarification of the Machine Learning Question
+
+Let’s start out with
+
+Clarifying Question 1
+
+I’m curious about a few things here. One thing I’m wondering about is, how is this working in production. The task is to automatically identify the listings. What happens with those identifications? Do they go to a human who checks it or it immediately changes the website?
+
+Interviewer Answer
+
+Let’s say that the current setup is that it’s all crowdsourced. We have a flag and a user can flag the listing if they see it’s a gun and then it’ll go to someone in customer support, who can then remove the listing. If they determine it is a gun and that’s the only thing that happens right now.
+
+Clarifying Question 2
+
+How would this fit in? Is the end of the line always gonna be customer service?
+
+Interviewer Answer
+
+I can reframe the question back to you.
+
+Let’s say that this is the current system, and given the kind of context, would you think that the goal is to first disable it(the marketplace post) when they’re posting, or do you think we should be detecting it afterwards, and then sending it to the customer support?
+
+Interviewee
+
+The reason I was asking that question is if customer service is going to look at it afterwards, which would probably be the better way to start, then that means that I need to do a very good job of detecting all the possible firearm listings.
+
+It’s bad if I miss something that is a firearm because the customer service isn’t going to look at it. It might cost some money, but it’s probably gonna be okay if I give false positives, that is listings that aren’t guns and then let the customer service deal with it. But this pipeline would be very costly in the sense that maybe you are breaking the laws of your country or your terms of service if you miss the listing.
+
+We want the customer service to get everything that’s pertinent and they can decide. But if costs are a concern, then, we would be concerned with the false positives.
+
+Making and Setting Assumptions in the Machine Learning Model
+
+Interviewer
+
+Let’s think about an assumption of what is okay. If someone posts a gun, it gets put onto the marketplace, and it gets removed within one hour, that’s probably good. Probably not a lot of time for someone to go out and try to get that gun from the seller in that scenario.
+
+A bad case scenario is that we get overloaded with a bunch of other items that are trying to be sold that are not guns and then they get the typical message “your posting was flagged until it’s reviewed by customer service.” All of a sudden sellers think this marketplace sucks. I can’t even list my plants on here or else they get flagged. When we’re thinking about the different scenarios here, what is optimal? If you’re Facebook, what would you think Facebook would want to do in this
+
+Interviewee
+
+Depends on what happens with the model at the end. There are different scenarios we’ve laid out. One scenario is that you don’t want to miss anything, in that case, false negatives are important. In other cases which is if it ends up being a sticker, that’s posted because the model identifies it, but it’s not there and then it can lead to a lot of issues. If we’re concerned with both those scenarios, then we want to minimize both false positives and false negatives. We can use metrics like the F1 score to minimize that. The F1 score is a combination of precision 
+(
+T
+P
+T
+P
++
+F
+P
+)
+( 
+TP+FP
+TP
+​
+ ) and recall 
+(
+T
+P
+T
+P
++
+F
+N
+)
+( 
+TP+FN
+TP
+​
+ ), and precision is where you’re concerned.
+�
+1
+=
+2
+r
+e
+c
+a
+l
+l
+−
+1
++
+p
+r
+e
+c
+i
+s
+i
+o
+n
+−
+1
+=
+2
+p
+r
+e
+c
+i
+s
+i
+o
+n
+⋅
+r
+e
+c
+a
+l
+l
+p
+r
+e
+c
+i
+s
+i
+o
+n
++
+r
+e
+c
+a
+l
+l
+=
+T
+P
+T
+P
++
+0.5
+(
+F
+P
++
+F
+N
+)
+F 
+1
+​
+ = 
+recall 
+−1
+ +precision 
+−1
+ 
+2
+​
+ =2 
+precision+recall
+precision⋅recall
+​
+ = 
+TP+0.5(FP+FN)
+TP
+​
+ 
+
+You make a bunch of predictions and how many of them are right? The recall is the case where you make a bunch of predictions. How many of the real case scenarios do you get? How much stuff do you miss? And that seems pertinent here because the number of guns is probably going to be very small, I’m assuming the actual number of gun posts is maybe even less than 1% in a Facebook marketplace.
+
+Interviewee
+
+Measures like precision and recall will ignore the thing that’s very obvious and predominant and focuses on just getting the positive case of getting the listing with guns. The imbalance case will also come into consideration for the models we choose. The other thing is what sort of scale and scope and data we might have.
+
+The model doesn’t need to be that fast at least when it gets deployed. Then in terms of the prior data, we would have access to other postings where customer service has flagged stuff. We have a large data set where we know that there was a posting, and we know whether it was of guns or not.
+
+Interviewer
+
+Yes. I think we can identify if there were guns, there’s probably something where the actual value itself is flagged and then probably also a categorization of why it was flagged for, and for this scenario, probably customer service is labelling them as guns or firearms in that category.
+
+Interviewee
+
+It’s important to have an accurate model for identifying these small cases of gun postings and we don’t have many concerns about model training time. We’re concerned with accuracy with that in mind and the fact that we already have this fairly large data set. There is something we might want to do with augmenting the data, about data collection, features and the model.
+
+I have flags that might have been given by users. I have the particular user who posted it, their demographic, location, parts of the country have more guns being sold or not.
+
+The big part here seems the text in that data and being able to leverage that information to get the keywords or to get patterns of words. We have those features, user data flags, context, information, and text. Let’s focus on the text itself and what we can do with it to use for our model. You want to start with a simpler model and the simpler model might be something like a bag of words.
+
+Interviewer
+
+Let’s assume that we have all the data that Facebook itself has.
+
+Interviewee
+
+We have some baseline data on how their current process is working and we can have this other baseline where we use the simplest approach for text analysis. Technically, we could use more complicated models like attention-based transformers that take contextual information into account. But for now, I’ll just focus on the simpler model and talk through that. If we have the text data, then we can extract the bag of words, which means that we get each body of text. We get the unique words in the text and the counts of those words.
+
+The other thing we can do is an approach called the TFIDF, where we scale the value of each word based on its frequency in different postings. The reason this is valuable is that you might expect postings about guns. For instance, we tend to use specific words, not found in other postings before even running the model, I might be helping my model by selecting words that are unique to particular listings and this will up weigh, those words that tend to be very specific to specific listings because the bag of words can be millions and millions of words. So it’s a huge sparse matrix. Sometimes you might want to make additional reductions. You might do something like a PCA to reduce that to 500 dimensions.
+
+The point of all this process is that you’re taking the text and you’re putting it into some embedding space. The idea is that you want to plot points in space that mean similar things. We can always substitute it with other methods that are more sophisticated. Now, the model that we want to build is the imbalance sample. For our prototype, we could start with a tree-based model particularly a gradient boosted tree because what’s nice about these models is that you have each tree that makes a prediction.
+
+In this case, it’s taking all our features and predicting whether it’s a gun posting or not a gun posting. Then it takes the data points that have the most error and it scales them. So it up weights, those data points that were in error for the next tree. What it will do is it’ll up weight, the sort of minority sample points, those listings that are for guns are very few and if they keep causing an error in the model, their weight will keep going up and they’ll be more and more important in making the prediction. That’s why a gradient boosted tree would be good to start with. The only issue could be if you want online training, the gradient boosted trees may not be optimal for it and we could try other models if we wanted.
+
+Interviewer
+
+The difference between online and offline training is that online training happens while the model is deployed and does continual improvement, is that right?
+
+Interviewee
+
+Exactly, but in this case, what we probably would want to do is to update the model often. In this case, the gradient boosted trees are pretty quick to train and they’re fast at delivering the predictions. We could just re-train the whole model, but say if for whatever reason, every time customer service asks you to update the model, then this tree-based approach, depending on what package you use it’s not gonna be very optimal. You might want to use other approaches like a neural network that could allow for this online training.
+
+There are very few gun posts. The one thing I could have mentioned earlier is one way to deal with that is to balance the sample. If we have a lot of data, we also could have evened out the two samples. We could have taken how many gun postings we have and just gotten a matched sample of the equivalent other samples, but say, they’re not enough gun postings to have that match. Then accuracy won’t be that great. So as I said, we can use precision and recall and we can combine them in this F1 score that just ranges between zero and one.
+
+That can tell us how well the model is performing at predicting those gun sales. When we’re building the model, we probably would be training, on our historic data. We’d be taking some samples of data in time. That’s our training sample and then the test set is something later in time, which would probably mimic how it’s occurring in production, where our model is trained with a given set of data in time and it’s predicting new data in the future. One thing we might wanna consider is how long this prediction is good for, how often we want to keep rebuilding this model, because I guess as everything on the internet they get more and more creative, at doing these things. So, we might wanna update the model, to deal with these creative people.
+
+Interviewer
+
+Yeah. that’s a good question because I think as people realize that their posts are being flagged and were dealing with very malicious actors that are active in their campaign to sell guns on the internet, maybe one of the aspects is that they start creatively disguising their posts and the traditional NLP task of detecting bullets or guns for sale turns into code names, then we still have to reuse that for identifying and manual tagging another additional question I have is how do we know the performance addition of doing more advanced approaches? So let’s say that we want to dive into computer vision. How would you assess the necessity of maybe using images in your analysis versus just only using text and that images probably are harder to train? There’s probably a lot more difficulty with having expertise and images versus just text, which has great packages on Python to use. How would you approach that situation? How would you know it’s worth doing the image analysis into the features versus just going with the basic model?
+
+Interviewee
+
+Yeah. So I guess the question is what’s the added value of the images and is it worth bringing all that?
+
+Yes. I think it’s a very simple approach that you could use, you have all the features in there and then you get its prediction. What is the full model’s prediction accuracy? So say, for instance, the full model is at 90%. Then you drop the images from the model and you see when you remove the images, the accuracy is 85% and then you do it again, but you removed the text data and now it’s at 60% accuracy. So yeah, there, you can know. The text is very valuable, but the images do drop it. So you’re like, okay, well you told me now when you drop the images, the accuracy does drop, but is that a meaningful drop?
+
+So one thing I think you could do is just simulate it, like randomly sampling the data, especially because we have enough data. So what you could do is randomly sample from the data and retrain the model each time and get this drop in accuracy when you remove the images. So I could say that 95% of the time the drop in accuracy is more than zero. It’s a negative drop so then I might say, yeah, images are important because almost all the time that I’ve tried it out, in simulating across multiple samples, there is that drop in accuracy.
+
+Interviewer
+
+Yeah. That makes sense. The final question and this is kind of just more about the question itself. What do you think about this question? Like how well do you think it assesses a candidate’s performance just overall, how do you feel your answer would fit into a broader Facebook interview?
+
+Interviewee
+
+I’m not sure about the broader Facebook interview, but I guess this question seems very standard, it’s very machine learning, you test your knowledge of minorities. When you have very few things you’re predicting, you have to sort of build the model, but you go from end to end. To me, seems like a fairly common problem you might face, something like this where you need to identify something from a particular listing, or a particular post.
+
+Interviewer
+
+Yeah, I liked your answer and how you structured everything. I feel that’s a great approach for most machine learning type questions as well because I feel most of them have a very defined beginning, middle and end in terms of where the data is, how you build the model and then how would you deploy and evaluate it? I think focusing on those approaches is key. So I think you did a great job there.
