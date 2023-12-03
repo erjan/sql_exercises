@@ -1,0 +1,27 @@
+Let’s say you’re working on keyword bidding optimization. You’re given a dataset with two columns. One column contains the keywords that are being bid against, and the other column contains the price that’s being paid for those keywords.
+
+Given this dataset, how would you build a model to bid on a new unseen keyword?
+------------------------------------------------------------------------------------
+The classifier can be built using a supervised learning algorithm in which the inputs are in the form of text, and outputs in the form of amount that users are willing to pay for the keyword. 
+
+The main problem here is figuring out how we can featurize our dataset given we only have two features, the keywords to bid on and the price. 
+
+Given the dataset is large to the millions of data points, the best method to do so would be to take our keyword text and generate word embeddings. 
+
+Word embeddings are a learned representation for text where words that have the same meaning have a similar representation in the form of vectors. This method would be beneficial for us given that word embeddings can perform very well by utilizing neural networks. 
+
+Explainability is low, but something we might not care about given the breadth and complexity of the keyword bidding problem, in which there will be thousands and even millions of keywords that advertisers will be bidding against. 
+
+Let’s explain how we would generate embeddings. We would first construct a type of neural network such as a feed forward, LSTM, RNN, etc. We’d train this neural network using a supervised learning task. Once the neural network has been trained, we can extract the weights within the neural network. These weights are then the embeddings. 
+
+GloVe embeddings are also another type of word embeddings that we could use. Rather than use contextual words, we would calculate a co-occurrence matrix of all of the keywords. GloVe will also take local context into account, per a fixed window size, then calculate the covariance matrix. Then we can predict the co-occurrence ratio between the words in the neural network. 
+
+Word2Vec only uses locally contextual information. Word2Vec will predict the context of the word. Glove will incorporate globally contextual information on top of using local contexts by calculating a co-occurrence matrix.
+
+Lastly we’ll have to figure out how to encode embeddings into our classification model.
+
+One way is to implement cosine similarity between the embedding and the keyword we are attempting to get predictions for. In this type of problem, we would recommend prices of similar words with high cosine similarity to our target keyword. 
+
+Another method would be to encode the mean of the embedding as the feature in the classification model. This would mean we would have to then likely enrich our dataset with more features. 
+
+One example of where we would need enrichment is if we’ve found that our training data has gone stale. For example if the keyword “data science” is relatively unpopular in 2010 but suddenly much more popular in 2020, we would need to understand that growth in price.
