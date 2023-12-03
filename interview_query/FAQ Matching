@@ -1,0 +1,26 @@
+Let’s say that we want to build a chatbot system for frequently asked questions. Whenever a user writes a question, we want to return the closest answer from a list of FAQs.
+
+What are some machine learning methods for building this system?
+
+-------------------------------------------------------------------------
+Let’s go through the multiple approaches for FAQ based question answering. We can imagine a workflow of:
+
+A user asks a question in a chat system
+Question goes through a classification system
+Most relevant option gets returned back
+If there isn’t a relevant enough option, it defaults to a customer support representative.
+Given this workflow, there are two main methods of doing what is essentially at it’s core a classification problem: unsupervised and supervised.
+
+Supervised
+
+If we want to build supervised system, we could build our training data set off of inquiries previously asked by users and manually label which corresponding question was used in response. Then we would build a classifier to predict which FAQ the user question should be returned. Each prediction would be an array of probabilities corresponding to each question, to which we would sort for or set a threshold for the most likely answer.
+
+Another supervised system would be an intent based retrieval system. If we understand the intent of the question and attributes of the intent, we could classify the user question into one of the appropriate intents. We would also manually tag questions with appropriate intents and attributes to retrieve the appropriate answer.
+
+Unsupervised
+
+If we don’t have manual data to train off of then we must go through an unsupervised approach. One way is to use keyword based search which would be an information retrieval approach. We could tag each question with keywords and then extract keywords from the customer’s query and retrieve all relevant questions answers. This method is also easier to scale with appropriate indexes in many frameworks like elasticsearch yet generally loses in precision to classified based methods.
+
+Another method is the lexical matching approach. Lexical matching of word level overlap between the user’s query and the frequently asked question. Lexical matching generally is harder to scale to real time matching based on the size of the frequently asked questions due to the fact that every question has to compute it’s lexical distance against the query in real time.
+
+Word embeddings are also a way that we can compute an unsupervised distance. If we embed user query and each FAQ question, we can run each user query against each FAQ embedding and measure the cosine distance between the two. We would then pick the FAQ that has the highest score between the multi-dimensional word vectors of each.
