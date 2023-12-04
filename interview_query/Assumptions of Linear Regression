@@ -1,0 +1,16 @@
+What are the assumptions of linear regression?
+
+--------------------------------------------------------------------------
+There are several assumptions of linear regression. These assumptions are baked into the dataset and how the model is built. Otherwise if these assumptions are violated, we become privy to the phrase “garbage in, garbage out”. 
+
+The first assumption is that there is a linear relationship between the features and the response variable, otherwise known as the value you’re trying to predict. This is essentially baked into the definition of linear regression.
+
+A simple example is that a value of home, is predicated by variables such as the size and location of the home. If the size goes down, the home value will also go down. It is therefore a linear relationship. It is not one if the size goes from 1000 to 1500 sq ft and the price of all homes increases by 200K, and from 1500 to 2000, the price on all homes goes up by 2 million. Which leads to the second assumption….
+
+The assumption of additivity means that the effect of changes in one of the features on the response variable does not depend on values of other features. For example, let’s take our home price model again. If the size of a home goes up, the home value goes up. If the location of the home gets closer to downtown, the price also goes up. However if the price of the home value only goes up in downtown because the homes get bigger downtown, this violates the assumption of additivity. 
+
+The third assumption is related in that features are not correlated such as collinearity or multi-collinearity since it can be difficult to separate out the individual effects of features on the response variable. 
+
+And lastly the errors from the regression must be independently, identically and normally distributed. Or else this will show that correlation between errors will mean that some features will have more influence on the response value than others.
+
+The most important part of this assumption is that the data points are independent. This is because the other parts of the IID assumption (like constant variance, 0 mean, etc.) can be overcome by adding more data points, the independence assumption cannot.
