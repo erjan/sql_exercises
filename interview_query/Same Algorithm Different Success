@@ -1,0 +1,60 @@
+Why would the same machine learning algorithm generate different success rates using the same dataset?
+
+Note: When they ask us an ambiguous question, we need to gather context and restate it in a way that’s clear for us to answer.
+-------------------------------------------------
+Clarifying questions and assumptions:
+We should start by interpreting the question clearly: “Why would the same machine learning algorithm generate different success rates using the same dataset?”
+
+The question holds at least two points of ambiguity:
+
+The meaning of “same dataset”.
+The meaning of “same ML algorithm”.
+When it says “same dataset”, this could mean the same training dataset or the same testing dataset, or both.
+
+In any of these cases, it could also be asking about the dataset available for the model to use or about the dataset the model actually uses. These two datasets could be different. For example, different sampling methods over the same available training data could have our model actually use different data points.
+
+We will assume that the question asks about cases in which both the training and testing data actually used by the algorithm are the same. Otherwise, the simplest solution to the question would be overfitting, which would result in very different success rates for different data points being used in either the training dataset or the testing dataset.
+
+When the question asks about the “same algorithm” generating different success rates, this could be asking about the algorithm generating different models or about equal models generating different predictions.
+
+In other words, we can interpret the question in two different ways:
+
+Why would the same machine-learning model throw different predictions from the same input?
+Why would the same machine-learning algorithm generate different models using the same training data?
+We will assume that the second interpretation is the correct one. As we can see in Hint #2, the first interpretation doesn’t provide plausible solutions in the context of the original question.
+
+To answer the second version of our reformulated question, there are five points of non-determinism that may result in the same machine-learning algorithm generating different models:
+
+1 - Initialization of parameters & hyperparameters.
+The same algorithm could generate different models depending on how we initialize its input variables.
+
+For example, neural networks initialize their starting weights randomly. As a result, their optimization algorithm may converge to different local minima for the algorithm’s loss function, therefore generating different models.
+
+On the other hand, a different choice for hyperparameters (such as the learning rate of our model or the number of hidden layers) would result in different models being generated.
+
+2- Stochastic events to enhance the training process
+Sometimes, stochastic events are added to machine learning algorithms to improve the models they generate.
+
+For example, decision trees are sensitive to the order in which their training data appears. Therefore, when training this kind of model, we sometimes use a technique called ***********data shuffling*********** that randomly changes the order of the training data in each iteration. This technique reduces resulting model’s dependency on any specific order in which the training data is presented.
+
+Another stochastic event that improves generated model is simulated annealing. Simulated annealing is a technique that helps models escape local optima in the training process. It works by including random disturbances to the model’s parameters. This way, if the model gets trapped in a local optimum, it can escape and eventually converge at the global optimum.
+
+These stochastic events introduce more points of non-determinism in the training process, increasing the likelihood of the same algorithm generating different models.
+
+3 - Stochastic optimizations within the training algorithm
+Sometimes, stochastic events are added to speed up machine learning algorithms.
+
+For example, deep learning models tend to use a technique called stochastic gradient descent (SGD). SGD randomly chooses subsets of training data to compute the gradient of the loss function with respect to model parameters in order to speed up the optimization process.
+
+Another example would be sampling techniques used to select subsets of data for training iterations to reduce the time each iteration takes.
+
+The randomness introduced by these optimizations may increase the likelihood of the same algorithm generating different models.
+
+4 - Hardware or implementation issues
+As we have stated in the hints, implementation issues may generate differences in the algorithms’ return values.
+
+We mentioned the example of floating-point arithmetic earlier. Another example could come from parallelization issues. Sometimes algorithms are parallelized to increase their execution speed. But parallel instructions may be executed in different orders, and this could result in different models being created by the same algorithm.
+
+We considered why the same algorithm could generate different models with the same input dataset. As a general principle, differences in training tend to generate significant differences in our models’ success rates when there’s more overfitting in them.
+
+This tends to happen when our models are more complex than the trends we’re trying to grasp from our data. In those cases, our models may over-adapt to the specific dataset and conditions we used to train them, so they would perform worse in real-world situations.
