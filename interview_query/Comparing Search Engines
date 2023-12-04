@@ -1,0 +1,33 @@
+Let’s say you’re working on a building a better search engine for Google. You build it and want to see 
+if it serves better results than the existing one in production.
+
+How would you determine which search engine performed better? Which metrics would you track?
+
+------------------------------------------------------------------------------------------------------------
+Let’s formulate this problem by thinking about it in three steps. Execution of the experiment, then metrics to track in product, and lastly the manual rated relevancy.
+
+First off to understand which search engine performed better we need to run an AB test in order to judge the preliminary results. Assuming sample size is not an issue, we can run an AB test where a small percentage of the total searches get sent to the new search engine. That way we can directly compare the results of the user experiences and activity between the two variants.
+
+The next thing we have to do is set metrics. How can we actually measure which search engine is performing better once we launch our AB test? What does good performance actually look like for search?
+
+We can look at some initial immediate user activity metrics that can tell us if we’re making an impact. Online metrics like click through rate and clicks per search would give us values that directly impact revenue that cannot go down by a certain X percentage compared to the control.
+
+Additional online metrics we need to keep in mind are:
+
+Session abandonment rate: The calculation of the number of search sessions that do not end in any search result clicked.
+Session success rate: The calculation of the number of search sessions that lead to success divided by the total search sessions. Success can be defined in a variety of ways but we can assume it is when the user has received the answer to their initial search query. This can be calculated by proxy metrics such as dwell time on a search result url or copy pasting urls that they have found useful.
+Zero result rate: The calculation of the number of results returned with zero search results.
+Now another set of metrics we have to note are the offline evaluation metrics. Offline metrics are generally created from relevance judgment sessions of scoring the quality of the search results. Since quality is generally subjective and cannot be measured well with online metrics, we need the offline metrics to understand longer term performance.
+
+Precision and recall are some of the most standardized ways to evaluate search. We can define precision as the fraction of the documents retrieved that are relevant to the user’s information need and recall as the fraction of the documents that are relevant to the query that are successfully retrieved.
+
+Within precision there is also:
+
+Precision at N: This is taking the precision value at a cutoff of N documents retrieved. For example if we look at the number of relevant documents within the first 10, first 20, and first 30 documents, we can compare the ranking of our search engine in terms of relevancy within the first 10, 20, and 30 documents returned.
+Average Precision: If we can compute an average precision at every position in the ranked sequence of documents returned, we can plot a precision recall curve. Given our search engine will return a ranked sequence of documents, this will help is further compare our precision recall metrics.
+Manual metrics
+
+How can we create a system then to evaluate quality? All of the offline metrics that we propose will not work unless we have an accurate way to measure search quality with human judgement. An example of how we can design a system.
+
+We can test the algorithm offline, benchmarking how the results rank with the new algorithms and if the URLs are higher quality than the previous algorithms in place. The quality is based on how the search quality raters rate the URLs in previous cases. If the URLs were unrated, we can request these raters to rate the new URLs or compare the old search results to this new test set.
+Live tests where we sample a subset of real live searchers and give them the new results with the new set of test algorithms. If we see a higher click through rate on the new search results, it may imply that the new results are better than the older ones.
