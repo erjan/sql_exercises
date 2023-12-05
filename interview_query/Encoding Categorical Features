@@ -1,0 +1,15 @@
+Let’s say you have a categorical variable with thousands of distinct values, how would you encode it?
+--------------------------------------------------------------------------------------
+This depends on whether the problem is a regression or a classification model.
+
+If it’s a regression model, one way would be to cluster them based on the response by working backwards. You could sort them by the response variable, and then split the categorical variables into buckets based on the grouping of the response variable. This could be done by using a shallow decision tree to reduce the number of categories.
+
+Another way given a regression model would be to target encode them. Replace each category in a variable with the mean response given that category. Now you have one continuous feature instead of a bunch of categories.
+
+For a binary classification, you can target encode the column by finding the conditional probability of the response variable being a one, given that the categorical column takes a particular value. Then replace the categorical column with this numerical value. For example if you have a categorical column of city in predicting loan defaults, and the probability of a person who lives in San Francisco defaults is 0.4, you would then replace “San Francisco” with 0.4. 
+
+Additionally if working with classification model, you could try grouping them by the category’s frequency. The most frequent categories may dominate in the total make-up and the least frequent may make up a long tail with a few samples each. By looking at the frequency distribution of the categories, you could find the drop-off point where you could leave the top X categories alone and then categorize the rest into an “other bucket” giving you X+1 categories.
+
+If you want to be more precise, total the categories that give you the 90 percentile in the cumulative and dump the rest into the “other bucket”.
+
+Lastly we could also try using a Louvain community detection algorithm. Louvain is a method to extract communities from large networks without setting a pre-determined number of clusters like K-means.
