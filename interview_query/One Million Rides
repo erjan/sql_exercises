@@ -1,0 +1,22 @@
+Let’s say we have 1 million app rider journey trips in the city of Seattle. We want to build a model to predict ETA after a rider makes a ride request.
+
+How would we know if we have enough data to create an accurate enough model?
+
+--------------------------------------------------------------------------------------------
+Collecting data can be costly. This question assesses the candidate’s skill in being able to practically figure out how a candidate might approach a problem with evaluating a model.
+
+Specifically, what other kinds of information should we look into when we’re given a dataset and build a model with a “pretty good” accuracy rate.
+
+If this is the first version of a model, how would we ever know if we should put any effort into iteration of the model? And exactly how can we evaluate the cost of extra effort into the model?
+
+There are a couple of factors to look into.
+
+1. Look at the feature set size to training data size ratio. If we have an extremely high number of features compared to data points, then the model will be prone to overfitting and inaccuracy.
+
+2. Create an existing model off a portion of the data, the training set, and measure performance of the model on the validation sets, otherwise known as using a holdout set. We hold back some subset of the data from the training of the model, and then use this holdout set to check the model performance to get a baseline level.
+
+This way we can compare some of the existing model evaluation metrics against a baseline of other ETA models in other cities. Or other models that have been deployed at the company. 
+
+3. Learning curves. Learning curves help us calculate our accuracy rate by testing data on subsequently larger subsets of data. If we fit our model on 20%, 40%, 60%, 80% of our data size and then cross-validate to determine model accuracy, we can then determine how much more data we need to achieve a certain accuracy level.
+
+For example. If we reach 75% accuracy with 500K datapoints but then only 77% accuracy with 1 million datapoints, then we’ll realize that our model is not predicting well enough with it’s existing features since doubling the training data size did not significantly increase the accuracy rate. This would inform us that we need to re-evaluate our features rather than collect more data.
