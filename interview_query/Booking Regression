@@ -1,0 +1,55 @@
+Let’s say we want to build a model to predict booking prices on Airbnb.
+
+Between linear regression and random forest regression, which model would perform better and why?
+
+------------------------------------------------------------------------------------------------------
+Let’s first quickly explain the differences between linear and random forest regression before diving into which one is a better use case for bookings.
+
+Random forest regression is based on the ensemble machine learning technique of bagging. The two key concepts of random forests are:
+
+Random sampling of training observations when building trees.
+Random subsets of features for splitting nodes.
+Random forest regressions also discretize continuous variables since they are based on decision trees, which function through recursive binary partitioning at the nodes. This effectively means that we can split not only categorical variables, but also split continuous variables. Additionally, with enough data and sufficient splits, a step function with many small steps can approximate a smooth function for predicting an output.
+
+Linear regression on the other hand is the standard regression technique in which relationships are modeled using a linear predictor function, the most common example of y = Ax + B. Linear regression models are often fitted using the least-squares approach.
+
+There are also four main assumptions in linear regression:
+
+A normal distribution of error terms
+Independence in the predictors 
+The mean residuals must equal zero with constant variance 
+No correlation between the features
+So how do we differentiate between random forest regression and linear regression independent of the problem statement?
+
+The difference between random forest regression versus standard regression techniques for many applications are:
+
+Random forest regression can approximate complex nonlinear shapes without a prior specification. Linear regression performs better when the underlying function is linear and has many continuous predictors.
+Random forest regression allows the use of arbitrarily many predictors (more predictors than data points is possible)
+Random forest regression can also capture complex interactions between predictions without a prior specification
+Both will give some semblance of a “feature importance.” However, linear regression feature importance is much more interpretable than random forest given the linear regression coefficient values attached to each predictor.
+Now let’s see how each model is applicable to Airbnb’s bookings. One thing we need to do in the interview is to understand more context around the problem of predicting bookings. 
+
+To do so we need to understand what features exist in our dataset.
+
+We can assume the dataset will have features like:
+
+location features
+Seasonality
+number of bedrooms and bathrooms
+private room, shared, entire home, etc..
+External demand (conferences, festivals, etc…)
+Can we extrapolate those features into a linear model that makes sense? 
+
+Probably. If we were to measure the price of bookings in just one city, we could probably fit a decent linear regression. 
+
+Take Seattle for an example, the coefficient for each bedroom, bathroom, time of month, etc… could be standardized across the city if we had a good variable that could take into account location in the city. 
+
+Given the nuances of different events that influence pricing, we could create custom interaction effects between the features if, for example, a huge festival suddenly increases the demand of three or four-bedroom houses. 
+
+However, let’s say we have thousands of features in our dataset to try and predict prices for different types of homes across the world. If we run a random forest regression model, the advantages are now forming complex non-linear combinations into a model from a dataset that could hold one-bedrooms in Seattle and mansions in Croatia.
+
+But if our problem set is back to a simple example of one zipcode of Seattle, then our feature set is dramatically reduced by variation in geography and type of rental, and a regular linear regression has benefits in being able to understand the interpretability of the model to quantify the pricing factors.
+
+A one-bedroom plus two bathroom could probably double in price compared to a one-bedroom one-bathroom given the number of guests it could fit, yet this interaction may not be true in other parts of the world with different demand pricing.
+
+Thanks to jeffmli for his contribution to this solution
