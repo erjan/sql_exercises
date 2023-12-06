@@ -1,0 +1,23 @@
+
+'''
+The HR department in your organization wants to calculate employees’ earnings.
+
+Write a query to report the sum of regular salaries, overtime pay, and total compensations for each role.
+'''
+
+with h as(
+select 
+job_title,
+
+sum(salary) as total_salaries,
+sum(overtime_hours*overtime_rate) as total_overtime_payments
+ from employees 
+
+group by job_title)
+
+
+select job_title, total_salaries,
+
+ total_overtime_payments ,
+ total_salaries + total_overtime_payments as total_compensation
+ from h
