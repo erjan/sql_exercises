@@ -1,0 +1,28 @@
+Deep learning models are popular but have some drawbacks in that they’re expensive to train and maintain.
+
+In some contexts, using other simpler models may make more sense. One possible alternative for classification problems is a support vector machine (SVM).
+
+When are SVMs preferable to deep learning models?
+
+What are the pros and cons of using an SVM compared to deep or non-deep learning classification models (such as logistic regression)?
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Using SVMs Versus Deep Learning Models
+
+Deep learning models require a lot of data for training. While there’s no strict threshold, classical ML models may be a better fit if there isn’t enough data to train an accurate deep-learning model.
+
+Training a deep learning model takes a lot of data and computational power (often with specialized GPUs), which requires a significant budget. Not to mention, maintaining a deep learning model also requires a lot of resources. If you need a large number of different models, it may make more sense to use SVMs, which are easier to train and require less skill/resources to deploy and maintain.
+
+Pros of Using SVMs
+
+The main benefits of SVMs are that they’re easy to understand and interpret while performing well with high-dimensional data that have many columns or inputs. They’re relatively inexpensive and computationally easy to train, especially if there are only two outcome classes (e.g., “default” and “not default”). Especially for situations where “good enough” performance is sufficient, SVMs are particularly useful to save time and money.
+
+Unlike deep learning models, SVMs can work with sparse data, as well as data that isn’t linearly separable using the “kernel trick”. They’re also resistant to outliers, as the multidimensional hyperplanes used to cut between two categories of output are not affected by data far away from the dividing line.
+
+Once an SVM is fit, the fit model is defined by a low number of support vectors–the observations that define the linear boundary between two output classes. In contrast to deep learning models that may have thousands of parameters, SVMs are memory-efficient with relatively few parameters. This makes them cheaper and easier to deploy into production.
+
+Cons of Using SVMs
+
+SVMs have a few disadvantages. They only return a class prediction– for instance, an outcome of “fraud” or “not fraud”, without reporting the probability of an observation being fraud. Although it’s possible to compute a pseudo probability prediction using an SVM, this would require cross-validation and fitting many models, which is computationally expensive.
+
+SVMs also struggle with highly imbalanced classes (e.g., when fraud is only 1% of all observations). Because this model uses a linear decision boundary, they don’t perform well when there’s a high degree of overlap in outcomes. Finally, because they were built for binary outcomes, SVMs are less reliable when there are more than two possible output cases.
