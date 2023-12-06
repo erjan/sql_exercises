@@ -1,0 +1,130 @@
+A man and a dog stand at opposite ends of a football field that is 100 feet long. Both start running towards each other.
+
+Let’s say that the man runs at 
+�
+x ft/s and the dog runs at twice the speed of the man. Each time the dog reaches the man, the dog runs back to the end of the field where it started and then back to the man and repeat.
+
+What is the total distance the dog covers once the man finally reaches the end of the field?
+-------------
+This problem initially can be thought of a mathematical problem.
+
+Mathematically we can think of this problem as a harmonic series. Each time the dog reaches the man, it will bounce back to the end of the field and back to the man. How much ground is covered is dependent upon the man and the dog.
+
+Let’s model it out:
+
+First run: Man runs 33 ft, dog runs 66 ft to man
+Second run: Man runs 33 ft, dog runs 66 ft back
+Third Run: Man runs 11 ft, dog runs 22 ft to man etc….
+We can eventually create a harmonic series representation of this and add up the total amount the dog will run. But do we really need to?
+
+Let’s switch to thinking about it logically now. If the dog runs at twice the speed of the man and the question states what is the total distance the dog covers?, we actually have everything we need to solve the problem.
+
+We can instead think of the formula as a representation of the actual question. Let 
+�
+D denote the distance the man/dog run and 
+�
+S the speed the dog/man run
+
+�
+�
+=
+100
+ ft
+D 
+m
+​
+ =100 ft
+�
+�
+=
+2
+�
+ ft/s
+S 
+d
+​
+ =2x ft/s
+�
+�
+=
+�
+ ft/s
+S 
+m
+​
+ =X ft/s
+�
+�
+=
+?
+D 
+d
+​
+ =?
+
+→
+100
+ ft
+�
+ ft/s
+=
+�
+�
+ ft
+2
+�
+ ft/s
+→ 
+x ft/s
+100 ft
+​
+ = 
+2x ft/s
+D 
+d
+​
+  ft
+​
+ 
+→
+100
+ ft
+⋅
+(
+2
+�
+ ft/s
+)
+�
+ ft/s
+=
+�
+�
+ ft
+→ 
+x ft/s
+100 ft⋅(2x ft/s)
+​
+ =D 
+d
+​
+  ft
+
+→
+100
+ ft
+⋅
+2
+=
+�
+�
+ ft
+=
+200
+ ft
+→100 ft⋅2=D 
+d
+​
+  ft=200 ft
+
+This question is interesting because it can be solved using both methods.
