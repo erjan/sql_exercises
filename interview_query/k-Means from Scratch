@@ -1,0 +1,24 @@
+'''
+Implement the k-means clustering algorithm in python from scratch, given the following:
+
+A two-dimensional NumPy array data_points that is an arbitrary number of data points (rows) n and an arbitrary number of columns m.
+Number of k clusters k.
+The initial centroids value of the data points at each cluster initial_centroids.
+Return a list of the cluster of each point in the original list data_points with the same order (as a integer).
+'''
+
+
+import numpy as np
+
+def k_means_clustering(data_points, k, initial_centroids):
+    # define distance function
+    def euclid_dist(p1, p2):
+        return sum([(x1 - x2)**2 for x1,x2 in zip(p1, p2)])**0.5
+    
+    # Iterate through each data point
+    assignments = []
+    for p in data_points:
+        dists = [euclid_dist(p, centroid) for centroid in initial_centroids]
+        assignments.append(dists.index(min(dists)))
+
+    return assignments
