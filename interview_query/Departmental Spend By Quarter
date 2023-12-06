@@ -1,0 +1,25 @@
+'''
+Suppose we have a table of transactions happened during 2023, with each transaction belonging to different departments within a company. We want to calculate the total spend for IT, HR, and Marketing, and also have a total for Other departments, grouped by fiscal quarters.
+
+Write a query to display this result.
+
+Note: Display only quarters where at least one transaction occurred. Quarter names should be Q1,Q2,Q3 and Q4. Q1 is from January to March
+'''
+
+SELECT
+
+CASE 
+WHEN EXTRACT(MONTH FROM transaction_date) BETWEEN 1 AND 3 THEN 'Q1'
+WHEN EXTRACT(MONTH FROM transaction_date) BETWEEN 4 AND 6 THEN 'Q2'
+WHEN EXTRACT(MONTH FROM transaction_date) BETWEEN 7 AND 9 THEN 'Q3'
+WHEN EXTRACT(MONTH FROM transaction_date) BETWEEN 10 AND 12 THEN 'Q4' end as quarter,
+
+SUM(CASE WHEN department ='IT' THEN amount ELSE 0 END) AS it_spending,
+SUM(CASE WHEN department ='HR' THEN amount ELSE 0 END) AS hr_spending,
+SUM(CASE WHEN department ='Marketing' THEN amount ELSE 0 END) AS marketing_spending,
+SUM(CASE WHEN department not in ('IT', 'HR', 'Marketing') THEN amount ELSE 0 END) AS other_spending
+
+FROM
+  transactions
+GROUP BY
+  quarter
