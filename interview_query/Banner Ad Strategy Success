@@ -1,0 +1,82 @@
+Let’s say that you work for an online media company. The media company is starting to monetize its web traffic and wants to experiment with adding web banners into the middle of its reading content to see if it can monetize effectively.
+
+How would you measure the success of the banner ad strategy?
+
+-----------------------------------------------------------------------------
+Clarifying Questions & assumptions:
+
+In order to define our metrics of interest, we need to gather context around banner ad options and monetization.
+
+Internal stakeholders and advertising experts will likely flag three types of digital media monetization methods:
+
+Cost per impression: Our revenue depends on how many times the ads are shown to readers.
+Cost per click: Our revenue depends on how many clicks the ads get.
+Affiliate-based system: Our revenue depends on how many people buy the objects/services that the banners are advertising.
+We would also need to know what kind of audience our business attracts. Is the audience:
+
+Stable (loyal) readers with regular engagement?
+Click-bait article chasers with low rates of future engagement?
+We need this information to define each strategy’s success - and which strategies to test in the future.
+
+If we do have a regular audience, we need to understand the lifetime customer value for each strategy.
+If we don’t have a regular audience, we can observe how each monetization method performs over the short term and compare the results.
+Keep in mind: If one strategy generates more revenue in the short term but contributes to the loss of readers in the long term, we may not want to pursue that route.
+
+Assessing Requirements:
+
+Once we have gathered context and clarified assumptions, we need to define the solution requirements precisely.
+
+In this case, we still need to specify what we mean by a successful monetization strategy as part of our banner advertisement rollout. Pulling from our clarifying questions, let’s say our review reveals that our company operates on a per-click basis (revenue depends on how many clicks the ads get) and that our webpage has a stable user base (read the webpage regularly).
+
+Ideally, we would like to know the exact number of clicks we will receive in the future under each banner strategy. However, this is not something we can anticipate without a fortune-teller.
+
+We can, however, measure the average lifetime customer value (LCV) for each banner strategy by multiplying the average number of clicks per session by the average number of times each user views our pages for each banner strategy.
+
+Formula
+
+To put it more simply, how many times will the average user click on a banner during their webpage sessions?
+
+The resulting metric help us choose between a strategy that generates more clicks in the short term versus a strategy that reduces user churn.
+
+In this step, we would also need to consider which banner strategies we will perform evaluations on. Will we only test the number of banners we show? Or will we also test the type and content of the banners shown? For simplicity, let’s say that in this example, we will only test the number of banners we show to each user.
+
+Solution:
+
+Once we have gathered context and defined the requirements, we have moved from a qualitative or vaguely defined problem to a clearly-defined numeric problem and can work towards a solution.
+
+Solutions can come in the form of running an experiment to validate a hypothesis, deciding between features to include on our product, or even finding an explanation for why a certain metric changed.
+
+Here, we want to design a test that will identify the best banner ad strategies using the assessment requirements from our previous step. For example, we can choose two of our banner strategies and perform an A/B test between them; the results will reveal which strategy to scale up.
+
+Based on our requirements, the A/B test should be user-based instead of session-based. This means that at the beginning of the experiment, we should divide our users into two groups and show each of them a different number of ads every time they visit any of our articles. Over time, we will be able to capture how the number of ads shown impacts engagement.
+
+In this example, let’s say we have decided to show one group (Bucket A) one banner ad per webpage versus showing another group (Bucket B) two banners per webpage.
+
+We then need to reduce any causal effects that could intervene with our results. Since we are only testing the number of banners we show, we should ensure that we don’t have a significant difference between the content of the banners in each group. Different content could influence any differences in the experiment’s results in ways that are hard to detect or measure.
+
+We should also ensure that the banners shown to each group aren’t just the same content-type-wise, but in fact, identical. If we show the same two banners to all of our users in Bucket B, we should show one of those banners to half of Bucket A and the other banner to the second half.
+
+We should also ensure that we show the two banners in sequence, with half of Bucket B receiving a specific banner first and inversing the order of banners for the other half of Bucket B. This way, we would avoid any interference from the order of banners being shown in our results.
+
+Finally, we need to decide how long to run our experiment. Given that we would like to account for the long-term effects of this banner strategy, we would likely decide to run the experiments for a minimum of three months.
+
+Validation:
+
+Every conclusion needs a validation step, which depends on the specific problem and solution we offer.
+
+In general, an obvious but useful first step is to re-check the numbers and see if they pass a gut instinct check. We can use our business intuition and domain knowledge to understand if any results seem weird or off - in which case, we should suspect there was a problem, interrogate what went wrong, and revise our approach.
+
+In this example, we tested a hypothesis about banner strategies. The validation step will consist of evaluating differences between the test and control groups (users who did not receive the treatment at all over those three months), and seeking any confounding factors that could have altered the results. The validation step also evaluates if the differences and observations are statistically significant or if they could have been spurious results.
+
+Final concerns:
+
+Finally, it’s always a good practice to end our analysis by documenting any potential limitations of our analysis and possible sources of mistakes. This includes reviewing the initial assumptions we made.
+
+For an example of a limitation, the experiment we designed doesn’t take into account how to examine new users who arrived to the webpage after we began our experiment. What should we do with them?
+
+We could add them randomly to one of the buckets, in which case we won’t track them for the full three months (because they began later).
+We could ignore them, in which case we would also lose information about how much each banner strategy affects customer acquisition.
+We could keep the new users in a separate category and analyze their behaviors. They may in fact serve as a useful proxy for how customer retention would be affected in the future by the implementation of banner advertisements.
+It’s important to make assumptions in the beginning, to keep the interview and analysis moving forward. In fact, it would be a mistake to try and capture every eventuality at the starting line; you would be paralyzed. But as the experiment progresses and wraps up, keep a running list of lessons learned and concerns identified so that you can iterate on the next go around.
+
+Ending your analysis with a list of lessons and concerns, especially in an interview, shows you were able to design a solid solution on this go-around and understand the project deeply enough to design a better solution next time. That proactiveness and awareness will impress your interviewer.
