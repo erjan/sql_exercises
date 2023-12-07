@@ -1,0 +1,39 @@
+Let’s say that you’re looking at the metrics of a job board. You see that the number of job postings per day has more or less remained the same the last few months but the number of applicants that have applied to jobs has steadily been decreasing.
+
+Why would this be happening?
+--------------------------------------------------------------------------------------------------------
+
+With this type of question, it’s always a good idea to start by taking a high-level approach and asking a few clarifying questions. Some questions you might ask here are:
+
+The question mentions a “decrease” in the number of applicants applying for jobs. By how much has the number of applicants decreased?
+This will give you a better sense of the scope of the problem. If the number of applicants has decreased by 10%, there could be any number of causes. If it has decreased by 50%, there’s probably something much more significant at play.
+How do job applicants typically access the job board? What’s the user journey like?
+Perhaps some users are accessing the board through the web, while others are accessing it through an app on their phone. Maybe the job board is the company’s only product, or maybe it’s one among many in a suite of products.
+Since this question was asked by LinkedIn, we can have a reasonable expectation that they’re using their own business as a model for what the job board looks like. By clarifying what the user journey looks like, you’re giving yourself more resources down the line when it comes to actually “conducting” your analysis.
+When, specifically, did we observe the decrease in users?
+While the question specifies an approximate time-scale for the decrease (a few months), a few could mean three months or it could mean six. It also matters which three months we’re talking about, since seasonality may affect the rate at which people are applying to jobs. For instance, fewer people may apply for jobs during the winter holidays, since they’re spending more time with family and friends.
+Has there been a major change in the job board or the product in the last few months?
+While the interviewer is unlikely to respond “yes” to this line of questioning, it’s still useful to bring it up in terms of accounting for all possible causes of the decline in applicants. For instance, if the job board is one of many products in a suite of products, but has recently lost its spot on the landing page to one or more newer products, it may be that the decline in applicants is related to that fact.
+Now that we’ve asked a few clarifying questions, we can proceed with our analysis of the problem.
+
+One important feature to recognize about this question is that a job board is a two-sided marketplace. On the one hand, you have aspiring job applicants who are looking for jobs to apply to. On the other hand, you have the companies who are posting the jobs to the board in order to acquire applicants. Therefore, when we’re conducting our analysis, we want to make sure to take into account both of the major variables in the system rather than zooming in on one or the other.
+
+Another important distinction to make is to separate our potential hypotheses about why we’re seeing a decline in job applicants into two categories: internal and external factors. An internal factor is something that is within our control, like a recent change in the application process for jobs. An external factor is something outside of our control, like political or economic distress that is causing fewer people to apply for jobs.
+
+Let’s start with potential external factors affecting the decline in applications. One way to narrow down the scope of our external factors is to determine whether the problem with the job board is a global problem, experienced equally in all countries and regions, or whether it’s localized, specific to one country or region. If we observe, for instance, that the decrease in applicants is occurring mainly in the United States, we have more evidence for the assertion that some political or economic distress might be at play. We can consult macroeconomic indicators such as unemployment rate to get a better sense of the economic and political landscape in our affected region. If there is such an effect, we would reasonably expect it to affect both us and our competitors.
+
+This brings us to another potential external factor: our competitors. It could be that in the job board marketplace, one or more of our competitors have made changes to the way that their job boards function that make those boards more attractive to applicants (or companies) than ours. One thing we may want to consider here is that job applicants may be quicker than companies to switch job boards, given that market pressures demand that people be employed in order to survive. Whereas companies are likely to post the same job to multiple job boards in order to maximize the exposure of the job posting across the population of all possible candidates. To evaluate whether our competitors are responsible for our decline in applicants, we may want to look at indicators such as market share for our industry.
+
+Another external factor could be the companies themselves. It’s possible that there has been a sea-change in the types of jobs that companies are hiring for, or in the skills or educational backgrounds required of applicants by companies. One strategy for assessing this external factor would be to use a clustering algorithm to group different companies using the job board by industry and then assess whether we see a significant decrease or increase in job postings in particular industries. We could further bucket by position to determine whether there are jobs that used to be common on the job board that are, for whatever reason, appearing less frequently in recent months.
+
+When it comes time to assess internal factors that might be affecting the number of applicants, it will become important to get a functioning understanding of what the user journey for a job applicant looks like for someone using our job board. Let’s say that the steps for the user are:
+
+User comes to the main website
+User comes to the job board
+User starts an application
+User submits an application
+Once we have the steps of our job applicant’s user journey, we can perform a funnel analysis to see whether there’s any one step in the application process where we are losing users at a higher rate. This place in the funnel, if it exists, would be a great place to look when it comes to assessing how internal factors could be affecting the number of applicants applying for jobs.
+
+We could perform a similar user journey analysis for the companies posting jobs to assess the impact of internal factors on companies, but given that the question specifies that job postings are remaining steady, we can reasonably assume that there is no problem with the company job posting funnel.
+
+We’ve now given you a handful of diagnostic tools to consider when facing a question like this one. How you prioritize among the internal and the external, the companies posting jobs and the applicants applying to them, is ultimately a matter of judgment and creativity. The important thing is to walk the interviewer through your thought process when you’re considering the dimensions of the problem and to structure your response to showcase that thought process as clearly as possible.
