@@ -1,0 +1,20 @@
+How would you investigate a 10% drop in usage on Google Docs?
+
+---------------------
+First, I would seek to size the issue:
+
+Which usage metric decreased? Down 10% compared to what? I’d compare its recent performance to benchmarks (vs. prior year, targets, run rate, etc).
+
+Based on the answers to those questions, I’d identify the percentage/absolute difference, and time period to investigate.
+
+Before running a full-scale investigative analysis, I’d also check for missing data, outages, holidays, prior year performance anomalies, etc. Sometimes a “drop” is purely a reporting issue.
+
+Then, assuming further investigation is needed:
+
+Break out performance by category (ideally, MECE groups in % and absolute YoY). referral channel, landing page, country/region, user type (new vs. existing, engaged vs. lapsed, business vs. personal, etc.) etc.
+
+Domain experts can help to inform which categories are the most likely to yield interesting results.
+
+Identify top drivers, if any, and quantify the impact of each area (for example, a -9k YoY decrease in enterprise accounts docs_created was the greatest single driver of last week’s -15k YoY (-10% YoY) docs_created decrease, although other account types were down YoY as well).
+
+Ask PMs/subject matter experts in those areas what changed in the given time period, and inform them of the change if they’re unaware.
