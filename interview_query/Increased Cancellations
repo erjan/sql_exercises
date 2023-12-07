@@ -1,0 +1,12 @@
+You work as a data scientist at Lyft. Last week you see a 5% increase in rider cancellations.
+
+What would you investigate to figure out what happened?
+-----------------------------------------------------------------------------------------------
+Defining metric/Formula:
+#cancellations/ #bookings by rider
+Check for seasonality, if it’s W/W or Y/Y trend.
+Check external factors like, competitor offerings , holiday season , weekday vs weekend etc
+Check each segment, geography, app device type, OS(ios vs android), new vs repeat user, age of account etc.
+Check for product internal issues like app response time, driver wait times increased, price surge, promo codes applied failed . cta issues with driver tracking, drivers ETA stable or increasing?
+Did wait times > ETA for other riders?
+Check as per user journey where they might have faced issue? Within how much time of booking did they cancel? How long did it take to assign a driver?
