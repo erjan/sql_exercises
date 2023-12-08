@@ -1,0 +1,351 @@
+Let’s say you work for a food delivery company. We have a payment structure for delivery drivers where they make 5% of every order. A product manager wants to launch a new payment structure for delivery drivers where delivery drivers make 2.5% of each order and 
+$
+50
+$50 after each fifth order.  
+
+How would you determine the success of this new structure?
+
+-----------------------------------------------------------------------------------
+The solution starts with a simple base scenario calculation and continues adding complexities that reflect real-world scenarios.
+
+Deterministic scenario
+
+Let’s see what the calculation looks like in the simplest scenario. Suppose there are 
+�
+N delivery drivers in total and 
+�
+�
+x 
+i
+​
+  denotes the number of orders delivered by 
+�
+ith driver in a month (a reference of time horizon is necessary). Let’s also assume each delivery costs 
+�
+p dollars (we could take 
+�
+p to be the average cost of deliveries in real-world scenarios).
+
+Scenario 1: 5% commission for every order
+
+�
+�
+1
+=
+∑
+�
+=
+1
+�
+0.05
+�
+�
+�
+TC 
+1
+​
+ = 
+i=1
+∑
+N
+​
+ 0.05px 
+i
+​
+ 
+
+Scenario 2: 2.5% commission for every order and 
+$
+$50 after each fifth order
+�
+�
+2
+=
+∑
+�
+=
+1
+�
+0.025
+�
+�
+�
++
+50
+⌊
+�
+�
+5
+⌋
+TC 
+2
+​
+ = 
+i=1
+∑
+N
+​
+ 0.025px 
+i
+​
+ +50⌊ 
+5
+x 
+i
+​
+ 
+​
+ ⌋
+Simplifying the above expressions we arrive at the following relation
+�
+�
+2
+=
+1
+2
+�
+�
+1
++
+50
+∑
+�
+=
+1
+�
+⌊
+�
+�
+5
+⌋
+TC 
+2
+​
+ = 
+2
+1
+​
+ TC 
+1
+​
+ +50 
+i=1
+∑
+N
+​
+ ⌊ 
+5
+x 
+i
+​
+ 
+​
+ ⌋
+Now we can solve for when 
+�
+�
+2
+<
+�
+�
+1
+TC 
+2
+​
+ <TC 
+1
+​
+ . Note that
+50
+∑
+�
+=
+1
+�
+⌊
+�
+�
+5
+⌋
+<
+50
+∑
+�
+�
+5
+=
+10
+∑
+�
+=
+1
+�
+�
+�
+50 
+i=1
+∑
+N
+​
+ ⌊ 
+5
+x 
+i
+​
+ 
+​
+ ⌋<50∑ 
+5
+x 
+i
+​
+ 
+​
+ =10 
+i=1
+∑
+N
+​
+ x 
+i
+​
+ 
+So we can use this simplier expression that excludes the floor function to solve for 
+�
+p. Let's also call the summation 
+∣
+�
+∣
+∣x∣ for brevity.
+�
+�
+2
+<
+�
+�
+1
+⇒
+�
+�
+1
+2
++
+10
+∣
+�
+∣
+<
+�
+�
+1
+TC 
+2
+​
+ <TC 
+1
+​
+ ⇒ 
+2
+TC 
+1
+​
+ 
+​
+ +10∣x∣<TC 
+1
+​
+ 
+10
+∣
+�
+∣
+<
+�
+�
+1
+2
+⇒
+10
+∣
+�
+∣
+<
+1
+2
+∑
+�
+=
+1
+�
+0.05
+�
+�
+�
+10∣x∣< 
+2
+TC 
+1
+​
+ 
+​
+ ⇒10∣x∣< 
+2
+1
+​
+  
+i=1
+∑
+N
+​
+ 0.05px 
+i
+​
+ 
+10
+∣
+�
+∣
+<
+0.025
+�
+�
+∣
+�
+∣
+⇒
+400
+�
+<
+�
+10∣x∣<0.025Np∣x∣⇒ 
+N
+400
+​
+ <p
+Since 
+�
+p represents the average order's price (total revenue/
+�
+N), the 
+�
+Ns will cancel out if we express 
+�
+p in this form. Thus, we have that the that 
+�
+�
+2
+TC 
+2
+​
+ 's structure will be more profitable when total revenue is greater than 
+$
+400
+$400
+
+Company strategy can be then:
+
+Implement the new structure in the cities where food is costly or people consume in larger amounts. For example, in cities like New York, the average amount (
+$
+$) per order will be higher because people consume more here and the cost of food is much more than in any town area.
+
+Implement the new structure seasonally. For example, in the festive season, people tend to order a larger amount of food. Doordash can introduce this new structure in the summer
