@@ -1,0 +1,19 @@
+Let’s say that Facebook would like to change the user interface of the composer feature (the posting box) to be more like Instagram. Instead of a box, Facebook would add a “+” button at the bottom of the page.
+
+How would you test if this is a good idea?
+----------------------------------------------
+Let’s make some initial assumptions. We can guess that we want to try a new user interface to improve certain key metrics that Instagram does better than Facebook in. Noticeably, given that Instagram is a photo-sharing app, we can assume that Facebook wants to improve:
+
+Posts per active user
+Photo posts per active user
+Additionally, we have to measure the trade-offs between the existing UI of the Facebook composer versus the Instagram UI. While the current composer feature on Facebook may make it easier to share status updates and geo-location or sell items, the Instagram composer may make the user more inclined to share photo posts.
+
+Therefore, given this hypothesis, one way to initially understand if this test is a good idea is to measure the effects of an increase in the proportion of photo posts to non-photo posts on Facebook and how that affects general engagement metrics.
+
+For example, if we compare the population of users that have a percentage of photo posts from 10% of the total versus 20% of the total posts, does this increase our active user percentage at all? Would it increase monthly retention rates?
+
+Another thing we have to be aware of is the drop-off rate for the Facebook composer versus the Instagram composer. The drop-off rate would directly affect the general amount of posts that each user makes. We can look at the drop-off rate between the two composers by different segments as well such as geographic location, device type, and demographic markets.
+
+If we want to run an AB test to actually test the differences instead of just analyzing our existing segments, we would have to evaluate these same metrics but make sure not to compare by specific segments unless they are a large sample size of the population. Doing it by market/segment may leave it so that you get a Simpson’s paradox scenario where for most markets you get a certain result but in aggregate the result is different.
+
+In running the A/B test in addition, it’s important to add in the specific rigidity that the test must be run. For example, sample size and distribution are important to need to make sure we have a sufficiently large enough sample size in both control and test to get a statistically significant result. We should also randomly assign folks to either test/control as well as remember to reach significance and single variable change on the composer element.
