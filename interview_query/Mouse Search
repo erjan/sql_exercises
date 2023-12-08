@@ -1,0 +1,29 @@
+We have a 4x4 grid, and we know there’s a mouse trapped in one of the cells. We want to figure out which cell it’s in, but we can only ask queries of a specific form. Given a subset of the cells, we can “scan” our grid to know whether there’s a mouse within that subset or not, but not where it is exactly.
+
+How would we figure out where the mouse is using the fewest number of scans?
+
+--------------------------------------------------------------------------------
+At its core, what is this question actually asking? If I were to rephrase it, would it be fair to say that it’s asking for an optimal search algorithm? The difference is mainly in the context of searching in a 4x4 grid.
+
+Given any search question, let’s imagine the brute force method to solving this. We could query the grid by scanning just one cell at a time. Eventually, we would find the mouse but it could take as much as 16 queries given the mouse could be hiding in the last searched cell. This transforms to an algorithmic time of 
+�
+(
+�
+)
+O(N) where 
+�
+N is the number of cells. This is called a linear search.
+
+Let’s instead utilize the feature of allowing us to know if a mouse exists in the subset scan or not. This feature gives us an advantage in which if we check half of the 4x4 grid, we can figure out if the mouse exists in either half depending on where the mouse is detected. If it exists on one half, we can isolate that half. If the mouse doesn’t exist in that half, we know it’s in the other one.
+
+This utilization of optimal search is represented by the algorithm of binary search. Generally defined to be a search algorithm that finds the position of a target value within a sorted array, we can repurpose it for this question with the grid.
+
+Binary search works in this context by repeatedly dividing the search grid in half. Beginning with the whole grid we can look at the half, then if the mouse exists in either half, we divide that half into another half by cutting along the column or rows of the grid, repeatedly narrowing the interval of search. This algorithmic complexity is 
+�
+(
+�
+�
+�
+�
+)
+O(logN) in its worst performance.
