@@ -1,0 +1,50 @@
+Let’s say you’re playing a dice game. You have 2 dice.
+
+What’s the probability of rolling at least one 3?
+
+What’s the probability of rolling at least one 3 given 
+�
+N dice?
+----------------------------------------------------------------
+1.
+
+We’re given two die and at least one three has to come up.
+
+In this case we understand that in the AT LEAST probability question, it’s much easier to solve by figuring out the combo of never rolling a three.
+
+In this case we can further break it down by understanding the probability of rolling a three with one die is 1⁄6. To not roll a three we would do 1 - 1⁄6 = 5⁄6.
+
+Now what happens with two die? We can multiply the probabilities. So the probability of never getting a 3 with two die is 5⁄6 * 5⁄6 = 25⁄36
+
+Now we can run the formula again of 1 - 25⁄36 = 11⁄36
+
+2.
+
+How do we now encapsulate this for 
+�
+N die? We can follow the same methodology but create a formula.
+
+Given the probabilities are multiples, we know for:
+
+3 die -> (5⁄6) * (5⁄6) * (5⁄6)
+4 die -> (5⁄6) * (5⁄6) * (5⁄6) * (5⁄6)
+
+So then for 
+�
+N die it would be:
+
+�
+(
+At least one 3
+)
+=
+1
+−
+(
+5
+/
+6
+)
+�
+P(At least one 3)=1−(5/6) 
+N
