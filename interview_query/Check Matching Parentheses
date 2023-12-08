@@ -1,0 +1,30 @@
+'''
+One of the basic steps in parsing string inputs is to check whether the opening and closing characters or tags match, i.e., to check if each opened parenthesis is closed eventually.
+
+Given a list of strings, write a string parser that verifies the integrity of the parenthesis used in the string. The parser should return a list of booleans stating whether that string’s integrity was verified.
+'''
+
+def string_parser(list_of_strings):
+    
+    res = []
+    for s in list_of_strings:
+
+        stack = []
+        flag = True
+        for ch in s:
+            if ch == '(':
+                stack.append('(')
+            elif ch == ')':
+                if stack and stack[-1] == '(':
+                    stack.pop()
+                elif not stack:
+                    flag = False
+                    break
+        
+        if len(stack)!=0 or flag == False:
+            res.append(False)
+        else:
+            res.append(True)
+    return res
+                
+                
