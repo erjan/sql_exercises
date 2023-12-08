@@ -1,0 +1,23 @@
+Let’s say that you’re a data scientist working on the marketing team of a B2B SAAS business.
+
+We’re nearing the end of the quarter and are missing revenue expectations by 10%. An executive asks the email marketing person to send out a huge email blast to your entire customer list asking them to buy more products.
+
+Is this a good idea? Why or why not?
+--------------------------------------------
+As the name suggests, Software as a Service (SAAS) businesses provides the use of software to customers who pay an ongoing recurring subscription. In this question, the SAAS company serves business customers, as opposed to consumers.
+
+Revenue targets for SAAS companies are measured by the total amount of recurring revenue earned. This revenue can be broken down into various sources, for example new, existing and churned customers. The question specifies that the email blast would go out to existing customers, although there are other strategies to meet the revenue expectations by targeting new or churned customers.
+
+To increase revenue from existing customers, we need to sell each of them more products, or upgrade existing products to higher levels of service. This can come in the form of additional licenses, new product lines, or more expensive versions of already purchased products.
+
+Broadly speaking, running a mass email blast to a list of customers is generally not a good idea, especially when the objective of the email is to increase sales. There are very rare occasions where sending a single email blast to all customers is effective.
+
+Since this email is not specific to any customer, customers that do not find the email relevant could unsubscribe or ignore the email totally, thereby reducing the subscriber count or email open rate. When repeated, large email blasts could degrade the performance of emails in future campaigns.
+
+It would be ineffective to use the same email for all your customers, as there is no customization of the content based on the type of customer.
+
+However, with specific content catered to the right customers, an email campaign could be effective in driving additional sales. We can measure this effectiveness by analyzing click-through rates in links within the email.
+
+In essence, we would be trading off our long-term email relevance and open rate, for a potential short-term increase in revenue.
+
+A better solution is to identify specific customer groups and curate email campaigns targeted for them. For example, we can look for customers that are more inclined to purchase additional products or related products. Customers that are reaching their license limit could be sent a marketing email to sell them more licenses. We can analyze our existing customer base to see what products are commonly bought together, or in their customer lifecycle, to cross or upsell existing customers additional products.
