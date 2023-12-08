@@ -1,0 +1,168 @@
+Let’s say you are in charge of shipments at Amazon.
+
+There are two types of parcels you can ship packages in, say A and B. Packages delivered in parcel A are damaged during shipment with probability p, while packages delivered in parcel B are damaged with probability q.
+
+What statistical test could you use to determine which parcel is better to use? What would the statistical test conclude if p=0.4 and q=0.6?
+
+Note: Assume the values of p and q were obtained from data recorded from 200 shipments, half delivered with parcel A and half delivered with parcel B.
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Since we want to compare the difference in the success rate of the two parcels, it would make sense to use a statistical test that - tests for the proportion - compares to sample
+
+So clearly, the “two-sampled test of proportion” is a good choice here. We want to determine which of the parcels is “better” (so which arrives damaged less), so we will use the one-sided version
+
+�
+0
+:
+�
+≥
+�
+H 
+0
+​
+ :p≥q
+�
+�
+:
+�
+<
+�
+H 
+a
+​
+ :p<q
+Our test statistic is:
+�
+=
+�
+^
+1
+−
+�
+^
+2
+�
+(
+1
+−
+�
+)
+(
+1
+�
+1
++
+1
+�
+2
+)
+z= 
+v(1−v)( 
+n 
+1
+​
+ 
+1
+​
+ + 
+n 
+2
+​
+ 
+1
+​
+ )
+​
+ 
+p
+^
+​
+  
+1
+​
+ − 
+p
+^
+​
+  
+2
+​
+ 
+​
+ 
+where
+�
+=
+Total Number of Damaged Parcels
+�
+1
++
+�
+2
+=
+40
++
+60
+100
++
+100
+=
+0.5
+v= 
+n 
+1
+​
+ +n 
+2
+​
+ 
+Total Number of Damaged Parcels
+​
+ = 
+100+100
+40+60
+​
+ =0.5
+so
+
+�
+=
+0.4
+−
+0.6
+0.
+5
+2
+⋅
+0.02
+≈
+−
+2.828
+z= 
+0.5 
+2
+ ⋅0.02
+​
+ 
+0.4−0.6
+​
+ ≈−2.828
+Since 
+Φ
+(
+−
+2.828
+)
+≈
+0.002
+Φ(−2.828)≈0.002, we can safely reject 
+�
+0
+H 
+0
+​
+  and conclude that parcel 
+�
+A is far better than parcel 
+�
+B.
