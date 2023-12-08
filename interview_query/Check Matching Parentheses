@@ -27,4 +27,19 @@ def string_parser(list_of_strings):
             res.append(True)
     return res
                 
-                
+------------------------------------------------------------------
+def string_parser(list_of_strings):
+    result = []
+    for i in list_of_strings:
+        start = 0
+        end = 0
+        for j in i:
+            if j == '(':
+                start += 1
+            elif j == ")":   
+                end += 1
+        if start == end:
+            result.append(True)
+        else:
+            result.append(False)
+    return result
