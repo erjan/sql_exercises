@@ -1,0 +1,25 @@
+Assume that you have data on student test scores, and they’re in one of the following layouts (dataset 1 and dataset 2).
+
+What are the drawbacks of having the data organized in such a way? What formatting changes would you make so the data is more useful for analysis?
+
+Additionally, describe some of the common problems seen in “messy” datasets.
+----------------------------------------------------------------------------------
+The principles of tidy data are applicable in any analytics domain but were popularized by Hadley Wickham in the R collection of packages called the tidyverse.
+
+The principles of tidy data are:
+
+Each variable forms a column.
+Each observation forms a row.
+Each type of observational unit forms a table (dataset).
+No data in column names.
+The trickiest part is figuring out what an observational unit is. In this example, you might think the observational unit is a single student. However, looking at the two example datasets, consider what would happen if a new student were added. Assume that the new student doesn’t have to take the same exams as the other students but has scores for new exams not already part of the dataset.
+
+For dataset 1, this would require adding a new column that isn’t relevant to most of the students in the dataset. This column would then have a lot of null values, which wastes a lot of memory. For dataset 2, adding a new student with a new exam would require adding a new row with values that would be mostly nulls, again wasting a lot of memory.
+
+For this type of data, the observational unit isn’t a student or an exam. Rather, the observational unit would be a combination of a student and one exam. If a student has taken five exams, there would be five rows, one for each exam/student combination.
+
+A student/exam combination makes a better observational unit because it becomes easier to add students and exams without creating a sparse dataset with nulls for all the combinations where an exam isn’t relevant to that specific student. Plus, if we were to use a student as the observational unit (with each row as a student and each column as a different exam), a null value could be ambiguous. It could mean that the student didn’t take the exam (and so has nothing to record) or that the data is missing.
+
+Other issues with the datasets include the column names, which have the name of the exam and the student. This is considered to be data and shouldn’t be captured in the column names. More appropriate labels would be “student name” and “exam name,” which are abstract identifiers.
+
+A tidy version of this dataset should look like this:
