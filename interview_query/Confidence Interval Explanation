@@ -1,0 +1,109 @@
+What is a confidence interval for a statistic? Why is it useful to know the confidence interval for a statistic and how do you calculate it?
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Confidence intervals are a way of expressing the probability that a statistic is within a range of values. For example, if you have a 95% confidence interval, it means that there’s a 95% chance that your actual value of the statistic will fall within the range you’ve specified over the course of a long-run study.
+
+Confidence intervals are useful because they allow you to make probabilistic statements about your data, which can help you make better-informed decisions. They’re also less likely to result in errors than point estimates because they give you a range of possible values rather than just one value.
+
+As a practical example, if our 95% confidence interval for the mean sales of a product is (95.6,106.1), we know that a fall in average sales from 100.5 units to 99 units is not significant and not cause for worry. Essentially the confidence interval gives us a range of values we can respect a statistic to take on.
+
+The 
+100
+�
+%
+100γ% confidence interval for a statistic 
+�
+^
+θ
+^
+  for a confidence level of 
+�
+γ is calculated as:
+
+�
+�
+(
+�
+^
+∣
+�
+)
+=
+(
+�
+^
+−
+�
+⋅
+�
+�
+,
+�
+^
++
+�
+⋅
+�
+�
+)
+=
+�
+^
+±
+�
+⋅
+�
+�
+CI( 
+θ
+^
+ ∣γ)=( 
+θ
+^
+ − 
+n
+​
+ 
+c⋅s
+​
+ , 
+θ
+^
+ + 
+n
+​
+ 
+c⋅s
+​
+ )= 
+θ
+^
+ ± 
+n
+​
+ 
+c⋅s
+​
+ 
+
+where
+
+�
+c is the number such that the equation 
+�
+(
+−
+�
+<
+�
+<
+�
+)
+=
+�
+P(−c<θ<c)=γ (typically needed to be calculated using a programming language)
+�
+s is the variance of the sample
+�
+n is the sample size
