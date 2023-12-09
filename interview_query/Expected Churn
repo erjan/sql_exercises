@@ -1,0 +1,75 @@
+Let’s say you’re trying to calculate churn for a subscription product.
+
+You noticed that of all customers that bought subscriptions in January 2020, about 10% of them canceled their membership before their next cycle on February 1st.  
+
+If you assume that your new customer acquisition is uniform throughout each month and that customer churn goes down by 20% month over month, what’s the expected churn rate in March for all customers that bought the product since January 1st?
+-------------------------------------------------------------------
+Let’s say that 
+�
+x customers buy a subscription each month. 10% of customers churn in by the start of February, so we have 
+(
+1
+−
+0.1
+)
+�
+=
+0.9
+�
+(1−0.1)x=0.9x customers on February 1st. 
+�
+x more customers will subscribe throughout February, of which again 
+0.1
+�
+0.1x will churn. However, a number of customers that subscribed in January will also churn. Their churn rate will be 20% less than the initial churn rate of 10%, so the new churn rate will be 
+0.1
+⋅
+(
+1
+−
+0.2
+)
+=
+0.08
+0.1⋅(1−0.2)=0.08 or 8%.
+
+Thus our total customer base will be 
+0.9
+(
+1
+−
+0.08
+)
+�
++
+0.9
+�
+0.9(1−0.08)x+0.9x. Our churn rate, on March 1st, will be:
+
+0.9
+(
+1
+−
+0.08
+)
+�
++
+0.9
+�
+2
+�
+=
+1.728
+�
+2
+�
+=
+0.864
+2x
+0.9(1−0.08)x+0.9x
+​
+ = 
+2x
+1.728x
+​
+ =0.864
