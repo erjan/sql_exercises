@@ -1,0 +1,84 @@
+A car starts driving at 60 mph, one hour later a car leaves the same position going 80 mph.
+
+How much time will pass until the second car catches the first?
+---------------------------------------------------------------------------------------------------
+We can solve this by creating a linear algebra equation. Each side of the equation should represent each car traveling in speed.
+
+In this case we have the first car which is driving at 60 mph which can be described as 
+60
+�
+�
+�
+�
+�
+ℎ
+�
+�
+�
+⋅
+�
+60 
+hour
+miles
+​
+ ⋅x where 
+�
+X is time.
+
+The second car leaving from the same position can be represented as 
+80
+�
+�
+�
+�
+�
+ℎ
+�
+�
+�
+⋅
+�
+80 
+hour
+miles
+​
+ ⋅x with an addition of an hour which we will equate with the same denomination of 1. So the equation is 
+80
+(
+�
+−
+1
+)
+80(x−1).
+
+Now we solve the equation.
+
+60
+�
+=
+80
+(
+�
+−
+1
+)
+60X=80(X−1)
+60
+�
+=
+80
+�
+−
+80
+60X=80X−80
+80
+=
+20
+�
+80=20X
+
+�
+=
+4
+hours
+X=4hours
