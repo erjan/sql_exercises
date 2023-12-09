@@ -1,0 +1,26 @@
+Let’s say you’re working on Doordash demand side deliveries. Doordash is launching delivery services in New York City and Charlotte and needs a process for selecting dashers (delivery drivers).
+
+How would we go about deciding which Dashers do these deliveries? Would the criteria for selection be the same for both cities?
+---------------------------------------------------------------
+The criteria for both cities certainly shouldn’t be the same. Consider density, for example. In NYC, couriers might ride a bike, whereas in Charlotte they’d likely have a car. Traffic patterns and acceptable delivery range would also be very different.
+
+“How to decide” should be viewed algorithmically. How do we optimize the delivery times? Is there a maximum elasticity the system should support on both the delivery time and quality? For example should we allow 2+ hour deliveries during peak time?
+
+If we examine our inputs and outputs, we can create a model based on either historical data from comparable cities or create a heuristic that can be constantly tuned as the launch progresses.
+
+For example in choosing a Dasher for a particular order we have feature input such as:
+
+# of outstanding requests
+# distance to restaurant and customer
+# of available couriers on the road
+# of reviews of the dasher
+# of successful deliveries 
+We can measure these against our output variables which would be customer satisfaction and overall delivery time versus expected estimate, though it will also likely result in some sort of bias that has to be accounted for.
+
+Another way we could think about it would be the traveling salesman algorithm. For every single point in time, there will be a set of deliveries that need to be matched with a Dasher. A match would calculate time taken for dasher to arrive at the merchant, pick the food up, and go deliver at the customer’s address.
+
+Top X combinations should be selected and the distribution should be chosen on the basis of minimizing missed promises caused by late deliveries.
+
+For example, let’s say there are two dashers A and B, and two deliveries P and Q. Let’s say AP pair takes 40 minutes, BQ 35 minutes, AQ 10 minutes, and BP 65 minutes.
+
+In this case, total time is the same (75 minutes), but we see that one customer had to wait more than an hour to get the order, so we will choose the pairs AP and BQ.
