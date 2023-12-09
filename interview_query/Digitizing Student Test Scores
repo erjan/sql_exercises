@@ -4,6 +4,7 @@ What are the drawbacks of having the data organized in such a way? What formatti
 
 Additionally, describe some of the common problems seen in “messy” datasets.
 ----------------------------------------------------------------------------------
+
 The principles of tidy data are applicable in any analytics domain but were popularized by Hadley Wickham in the R collection of packages called the tidyverse.
 
 The principles of tidy data are:
@@ -23,3 +24,14 @@ A student/exam combination makes a better observational unit because it becomes 
 Other issues with the datasets include the column names, which have the name of the exam and the student. This is considered to be data and shouldn’t be captured in the column names. More appropriate labels would be “student name” and “exam name,” which are abstract identifiers.
 
 A tidy version of this dataset should look like this:
+
+Clean Dataset
+
+Common problem areas in messy datasets include:
+
+Column headers are values, not variable names.
+Multiple variables are stored in one column. For example, instead of using two columns for a rate, two numbers could be incorrectly stored in a single column using a “/” or some other symbol.
+Variables are stored in both rows and columns.
+Multiple types of observational units are stored in the same table.
+A single observational unit is stored in multiple tables.
+The datasets used in this example are from Hadley Wickham’s “Tidy data”.
