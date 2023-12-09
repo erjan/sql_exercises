@@ -1,0 +1,55 @@
+Let’s say that you’re the PM on Google Maps.
+
+How would you improve Google Maps?
+
+What metrics would you check to see if your feature improvements are successful?
+-----------------------------------------------------------------------------------
+We take a multi-step approach to solving this problem.
+
+Describe Google Maps
+Ask Clarifying Questions of the Interviewer
+Understand the users of Google Maps
+Pick a user group subset and understand pain points/prioritize a solution set.
+Define metrics to measure each feature.
+Step 1: Describe google maps
+Google Maps helps users navigate places efficiently and provides several transportation options such as driving, walking, public transport, etc. Google Maps is also used to search nearby places such as restaurants, gas stations, events, and things to do.
+
+Step 2: Ask Clarifying Questions of the Interviewer
+We ask clarifying questions to narrow the scope of the solution we must provide. This helps guide our answer in a sensible direction based on the constraints of the problem.
+
+Is the goal to improve the entire platform or just a specific feature?
+Is the improvement channel specific eg. Web or Mobile?
+What’s the goal? To increase engagement, revenue, user acquisition, etc.
+Once we’ve clarified the assumptions and constraints we can move on to defining the users of Google maps.
+
+Step 3: Understand the users of Google Maps
+We define the users of Google Maps as follows:
+
+drivers
+cyclists
+commuters (public transportation)
+pedestrians
+rideshare users (lyft, uber, lime, etc.)
+Step 4: Pick a user group subset and understand pain points/prioritize a solution set
+For the sake of brevity, we consider one group of users, in this case, commuters.
+
+Commuters need to be aware of the delays or disruptions and the amenities available (eg. handicap accessibility) in advance to plan their trip efficiently.
+
+Given what we know about commuting likely from our own experience with it, here are a few features that might be useful for commuters:
+
+Personalized, real-time notification to commuter when there is interruption or delay in the service (this is especially useful to people commuting daily say from home to office and back). Google has vital, real-time information about the commuter like what time they leave home, from which station or bus, and what time they return home. This information can be used to send real-time train/bus service alerts, so that they can prepare in advance, and if necessary, seek alternative means of transportation.
+
+Leverage rideshare platforms such as uber or lyft automatically as a substitute for when trains are delayed.
+
+Provide Train/bus station information catalog showing all amenities and contact information.
+
+Solution	Impact to User Goal	Complexity
+Personalized real-time notification	High: prompt and timely notification about delays or changes in service will allow commuter to look for backup plan. Also providing a targeted notification is more valuable to user	Medium: Google maps already captures commute information such as traffic congestion and delayed trains.
+Book Lyft/Uber for commuter	Low: Lyft/Uber can be an expensive option. Highly dependent on user price sensitivity and access to third party services such as ride-sharing platforms.	Low: Google Maps already shows ride sharing option to user when they search for route
+Information catalog	High: having up to date information about the station will help commuter plan their trip	Medium: easy to develop initially but require ongoing maintenance and likely crowdsourced data to make sure that information is up to date and accurate.
+Given the above, we can probably surmise that From the table, the two features that provide the highest impact for the lowest effort are (a)a personalized real-time commute notification and (b) Information catalog.
+
+Step 5: Define metrics to measure each feature
+for the two features we’ve chosen we can define metrics to see if they work and add value to the product. In the case of real-time notifications, we can track the deliverability of the notification, the open rate and if people adjusted their commutes based on the information.
+
+For the information catalog, we can determine if people viewed the information and if they interacted with a collection mechanism to keep it up-to-date.
