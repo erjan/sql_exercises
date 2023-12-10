@@ -1,0 +1,32 @@
+Let’s say your manager is running A/B tests on a website. You find out that your manager has run an A/B test with 20 different variants and come back to you that one of the variants is significant.
+
+Would you think there was anything fishy about the results?
+------------------------------------------------------------------------------------------------------
+
+When we’re testing more than one variant, and specifically even twenty variants in a single test, then the probability that we reached significance on a variant by chance is very high. This is actually a probability question now. 
+
+We can understand this through demonstration. We can calculate the probability of one significant result by taking the inverse of the p-value that we are measuring. Therefore, if we want to know the probability that we are getting a significant result by chance, we can take the inverse of that!
+
+For example:
+
+P(one significant result) = 1 - P(number of significant results) = 1 - (1-0.05) = 0.05
+
+We have a 5% probability of getting a significant result just by chance alone. This makes intuitive sense given how significance works.
+
+Now, what happens when we test 20 results and are getting one variant back that is significant? What’s the likelihood it occurred by chance?
+
+P(one significant result) = 1 − (1 − 0.05) ^ 20 = 0.64
+
+That is now a 64% chance that we got a significant result that is wrong. Otherwise known as a false positive for us. So yes, we should definitely be suspicious.
+
+There are a couple of different ways to adjust for interpreting results of multiple variants in a situation like this.
+
+One is the Bonferroni correction. This method allows us to divide the significance level by the total number of variants. In this case, if we’re measuring twenty variants, then our significance level would be 0.05/20 = 0.00025. This is pretty conservative of a correction. If we calculate out the probability of a test resulting out of chance now:
+
+P(one significant result) = 1 − (1 − 0.00025) ^ 20 = 0.05
+
+We see we get back to the 0.05 threshold that we want.
+
+Other methods we could use are to bootstrap our experiment again. But this isn’t very practical. It would also then make sense to just reduce the number of variants in each test and run them back to back. 
+
+The most practical solution could be to actually investigate the data and segment out multiple populations from the test itself. If there are underlying traits between the twenty variants that allow us to reduce the number of variables in the test, then we could potentially find significance in those results instead.
