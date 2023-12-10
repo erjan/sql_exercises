@@ -1,0 +1,18 @@
+Let’s say your team wants to invest 
+$
+1
+$1 million in a direct mail program and they’ve never done direct mail before.
+
+What do you recommend for the short and the long term? How will you measure the direct impact from the investment?
+-----------------------------------------------------------------------------------------------------------------------
+I know this is right because this is my expertise.
+
+You need to look at localized effects. This means, for areas that are targeted, you look at the difference in arrival rates AFTER the date the campaign started in that locale; but how?
+
+Well, econometrically, in the long-term, you perform a difference-in-difference analysis OR a nested-use generalized(/linear) mixed-effects model analysis.
+
+In the short term, you can look at moving averages and compare previous forecasts for that period to what the true values are, and see how significant the forecast (predicted sales/adoptions/installations) is off compared to the predicted 95% confidence interval.
+
+Suppose the null hypothesis is true, then the confidence level wouldn’t break the alpha=.05 level; however, under this marketing regime, it might be true that the forecast exceeds the 95% confidence interval.
+
+Controlling for all other predictors/factors in the model we can determine this is a reasonable short-term approach.
