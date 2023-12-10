@@ -1,0 +1,19 @@
+Let’s say you’re working on Facebook Groups.
+
+A product manager decides to add threading to comments on group posts. We see comments per user increase by 10% but posts go down 2%. Why would that be?
+
+Additionally, what metrics would prove your hypotheses?
+-----------------------------------------------------------
+When comments are added to threads, we can theorize that the following changes happen within Group postings:
+
+Ideas become bucketed and structured, so it becomes easier to search, navigate, and respond to different users with threads.
+Responders are forced to stay on the thread as opposed to posting a new comment or post. This can create new dynamics within user workflows and notifications with only users within the specific thread being notified as opposed to the entire comment group and original poster.
+Diving more into the activity that occurs within the notifications part of the change. We can theorize that threading pushes fewer notifications to the poster (and more to the top-level commenter). This would mean fewer push notifs that bring people back to their device and therefore less posting in general. More discussion would happen within the threads which could cause the notification system to increase comments.
+The order in which your comment appeared within the post becomes irrelevant so there’s no barrier to posting over shortened periods of time. This allows encourages deeper discussions as the time barrier disappears.
+Late readers may find their answers already if the same question has been previously asked, preventing duplicate posts.
+Responding to specific comments becomes possible as opposed to regular comments which are first in first out.
+You can see that all of these workflows drive an increase of comments within the same posts, but prevent the creation of new posts.
+
+We can measure this by looking at a before and after analysis or an island test (where one encapsulated community gets the threaded comments and another does not).
+
+If we look at metrics like the number of new posts per group member and the number of comments per post in both a before and after and island test, we can see if the effects were significant enough to induce the change.
