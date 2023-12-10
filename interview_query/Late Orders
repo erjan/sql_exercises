@@ -1,0 +1,11 @@
+Let’s say that you work at a food delivery company. You’re tasked with discovering how late the late orders actually are.
+
+Which is a better metric to look at? The average or the median?
+Let’s say that you model out the distribution and it’s right-skewed. Which metric should we use then?
+What does that tell us about the late orders?
+---------------------------------------------------------------------------------------------------------------------------------
+
+
+The average. since we want to reflect that a lot of the orders are actually only a tiny bit late.
+If it is right skewed, we can consider median, since it will not be affected by those extreme values on the right.
+Most of the orders are late with next to 0 minutes, while a tiny fraction of the orders are late for a long shot.
