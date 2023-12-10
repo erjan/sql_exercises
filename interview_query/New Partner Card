@@ -1,0 +1,25 @@
+We are looking into creating a new partner card (think Starbucks chase credit card or Whole Foods chase credit card). You have access to all of our customer spending data.
+
+How would you determine what our next partner card should be?
+----------------------------------------------------------------
+
+There are a couple of ways we can think about a solution for this. The best way to start answering this question is to think of a couple of methods in which we can likely provide a recommendation given a dataset of customer transactions. This can be anything from patterns in the data that we can surface as insights to implementing a recommendation through modeling out trends.
+
+We can first try to nail down why Chase creates partnerships with different merchants. We can assume it to be for multiple reasons:
+1. Increasing acquisition of new customers into the Chase ecosystem
+2. Retaining usage of existing customers
+
+Given these two high-level reasons, we can now look at the existing dataset of customer transactions and figure out how we can utilize the data to surface metrics to push these two objectives.
+
+A simple method first would be to just take the sum of all transactions grouped by merchants and look at the highest spending merchants that Chase does not have an existing partnership with. This would be the logical next partnership given that a high amount of spending in this category would help retain all of our existing users.
+
+Yet there might be an issue if the highest spending merchant was a company like Tesla. A new car costs 
+$
+50
+$50k but that doesn’t mean it’ll happen on a recurring basis, which is what we want to optimize for when retaining customers. So one way we can counteract this is by looking at the average price per transaction and the average number of transactions per year along with the sum in order for us to figure out a merchant that optimizes the interaction of all of these metrics.
+
+Another way we can determine a new partnership is by looking at trends over time. If we see year over year growth in a specific merchant, let’s say for example a new clothing brand, and can forecast that in five years time this clothing brand will be one of the highest customer spending merchants, then a partnership would make sense to increase retention and acquire new customers.
+
+Lastly, if we want to optimize the acquisition of new customers, we need data on customer spending that is not in our dataset to understand where we can find merchants that are not on our platform that many customers spend money on. This requires more customer research but we could compare the top merchants out of Chase versus the top merchants on Chase to then get a sense of which merchants we should start looking at partner cards with to acquire new customers.
+
+To read more about credit card economics, see this post about all the different ways credit cards make money.
