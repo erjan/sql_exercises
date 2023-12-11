@@ -1,0 +1,12 @@
+Let’s say you’re a data scientist at Facebook. 
+
+How you would evaluate the effect on engagement of teenage users when their parents join Facebook?
+------------------------------------------------------------------------------------------------------------------------
+
+Since you cannot run a randomized test (unless you figure out a way to make parents of teens to join by force), this will be need to be an observational study, with a quasi experiment design to answer the question - ‘How do parents cause teens to behave in different ways’.
+
+Look at 2 groups of teen users at two time periods. Time period t0, parents of teens in group 1 (test) join facebook while parents in group2 (control) do not. At time period t2, compare the pre to post change in user behavior of users in test to that of control.
+
+Since random assignment is not possible, you’ll need to control for selection bias through matching or regression. Variables to match on would depend on the outcome measure of interest (time spent, engagement on tagged posts, sharing, posting). Few selection controls could include age, affluence, education level of teens and parents, ethnic/cultural background, size and density of connections etc.
+
+Ultimately, compare the pre to post change in metrics for the 2 groups at time t1 (relative to time t0) and see if the differences are significant.
