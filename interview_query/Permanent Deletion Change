@@ -1,0 +1,66 @@
+Let’s say that Dropbox wants to change the logic of the trash folder from never permanently deleting items to automatically deleting items after 30 days. 
+
+How would you look into the data and validate if this is a good idea or not?
+---------------------------------------------------------------------------------------
+
+Jay’s Overall Notes:
+
+Dropbox mission -> Files are bound to be moved to the trash
+
+Why Dropbox would implement this change:
+
+Performance implications 
+Monetary savings
+Organization of files
+Hypothesis on why users use the trash folder?
+
+Why do users move things to the trash folder?
+Uploaded a new version of something
+Uploaded a duplicate
+Use the trash folder as an archive
+Don’t want to pay to upgrade
+Elle Feedback
+
+How often are items in the trash restored?
+
+If there are duplicates, users aren’t restoring frequently
+
+Average amount of items are in the trash
+
+Users are using it as an archive
+
+How many users are using the trash feature. What happens if it’s a low amount and what happens if it’s a high amount.
+
+Good product ideas, but they need to be backed in data
+
+Making the trash feature count against their storage. How do we now know this is a good idea?
+
+Data dive
+
+How much money would we save?
+
+Cost of storage of the items right now in trash past 30 days
+
+How much money would we lose from users that enjoy this feature?
+
+What % of users recover an item after 30 days?
+
+What % of users recover an item at all from the trash?
+
+How many users would upgrade to a new tier given they use the trash as a secondary storage method?
+
+Look at the average upgrade rate
+------------------------------------------------------------------------------------------------------------
+At the heart of this question to me is understanding whether or not the financial benefit in automatically deleting items after 30 days is greater than the risk and cost associated with the action. If the benefit is greater than the cost, then you can assume that the policy is a good idea. You can do this with historic data alone.
+
+The money gained through the policy can be calculated quite simply. Say on average, never permanently deleting items = $300 per user for the company. This against automatically deleting items after 30 days will cost $100 per user for the company. That’s a reduction in company spending by 2⁄3 and $200 saved per user for the company.
+
+This needs to be measured against the risk. You can measure risk by looking at the percentage of user who uses items stored after 30 days. To this, you can first check for every user if he/she has committed some action to an item stored after 30 days (action can be described as clicking/viewing the file stored). If so, that user can be a 1 in the data else 0 for users who never commit an action to items after storing for 30 days.
+
+So for instance let’s say you have three users. Two of them have interacted with item after 30 days more than once. One user has not touched any item after 30 days.
+
+With this, you can now calculate the proportion of users who interact with the item after 30 days. In the case of the data above, that is 2⁄3 or 2 users out of three.
+
+Now you can take the worst case scenario and say what the cost would be if 66% of the users left Dropbox due to this policy (frustration after losing their data they would use after 30 days of inactivity). This would basically be LTV per user * num of users who would be impacted. If the LTV is say $150 per user, then the overall risk associated with the change would be $150 * 2 =$300.
+
+Now in this dummy case, the worst case risk of the new policy can be -$300 total vs +$600 saved in total through the new policy ($200 saved per user * 3 total users). In this case, you can justify the change since the money saved is more than the potential money lost, where the company would have $300 extra in their pocket.
