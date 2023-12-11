@@ -1,0 +1,45 @@
+Let’s say you’re a data scientist at LinkedIn where you’re working on a product that sends qualified job candidates to companies. The team has launched a new feature that allows candidates to message hiring managers at companies directly during the interview process to get updates on their status.
+
+Due to engineering constraints, the company can’t AB test the feature before launching it.
+
+How would you analyze how the feature is performing?
+------------------------------------------------------------
+The first way we can approach this problem is by examining the dynamics of marketplaces. In this case, we have companies on the LinkedIn platform that are likely paying for an enterprise subscription product to post jobs and have access to candidates. Then there are job candidates on the other side that are looking for jobs at different companies.
+
+Let’s also start out by asking some clarifying questions. Given the constraint of not being able to AB test, we can still figure out if different conditions work in which we can analyze the data.
+
+Notably what if we could:
+
+Release a small portion of the feature first?
+Launch in certain demographics or geos?
+The first option is testing to see if we can add some constraints towards releasing a portion of the feature just to see if we can get an initial signal. An example is allowing the candidates one message a month to hiring managers or only allowing premium members to use this feature.
+
+Another option is if we can launch in a certain industry vertical like tech or research. We could also launch in a specific group of city geographies such as Seattle or San Francisco. This allows us to test how the messaging feature performs compared to other geos in which the product has not been launched yet. If we can find two geographic areas that are demographically similar, we can try launching in one city and not the other and use causal inference to determine if there exists a difference from the feature launch. The general cons are that there can be high variance that limits confidence in the actual effect of what we’re measuring.
+
+What are we actually measuring? We need to break down the overall question into two parts: What can we measure that would quantitatively inform us that the feature is performing well? And how would we go about measuring that?
+
+The main metrics we could use to determine success would be:
+
+Number of candidates hired at each company
+The lifetime value of each company paying LinkedIn
+Amount of time spent on LinkedIn Premium
+LinkedIn sells different enterprise recruiting subscription products at varying levels of premium so we know that revenue is measured on some sort of monthly or annual subscription. Let’s assume the subscription is monthly and given a large enough customer base, we can use reducing churn as a quantitative measurement for lifetime value.
+
+Now let’s figure out how we can measure the performance of the messaging feature compared to churn. A simple first idea would be to measure the churn rate after a month of the feature release between companies that have candidates that used the messaging feature vs companies that haven’t.
+
+But we can’t exactly do that given that it biases us to other inferences. What if candidates that use the messaging feature only do so with companies that are more desirable to work for?
+
+We can combat this the same way we were thinking about different geographies. If we select companies that are similar amongst a variety of traits and usage on the platform, we can then split them into buckets of messaging feature vs no messaging feature.
+
+For example, we can normalize variables across:
+
+company size
+number of candidates in the pipeline
+amount of time on LinkedIn premium
+company usage of LinkedIn
+etc…
+Then we can compare the first month, second month, third month churn rates across these two groups. If we’re limited on time and can’t wait a month, we could look at our initial proxy metrics such as if the candidates are getting farther along in the pipeline, if recruiters are responding to more candidates, etc…
+
+Assuming that more usage on the platform lowers churn as well, we can monitor how each of our proxy metrics affects churn rates on its own. If the more times candidates message hiring managers of companies creates lower churn rate by company’s, then we can assume that this is a strong metric for us to use to measure success.
+
+Lastly, we can do a before and after analysis. Although susceptible to lots of bias if done incorrectly, we can analyze a week before the release and a week after and monitor different metrics to understand how they have performed. If we take an average of the churn rate three months before and then take an average three months later after the feature launch, we can see if the feature made any significant dent in lifetime value.
