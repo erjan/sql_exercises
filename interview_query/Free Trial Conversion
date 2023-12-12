@@ -1,0 +1,42 @@
+Let’s say that you work for a SAAS company. A PM comes up to you and tells you that users that come from Country X convert from a free trial to paying at a much higher rate than users from Country Y.
+
+What would you investigate further to determine why this was happening?
+-------------------------------------------------------------------------------------------------------------------------------------
+Clarifying Questions
+
+Is the product identical in both countries
+Is the free trial identical in both countries
+Are the acquisition channels similar in both countries?
+Is the cost of the product relatively similar for both countries?
+Hypothesis The free trial and paid product are identical for users in both countries. The difference in conversion rates can be attributed to a difference in the users.
+
+Approach
+
+This problem can be addressed through a funnel analysis or a predictive model. I will start with a funnel analysis to provide structure for solving this problem and identifying features that could be used for building the model
+
+These are the steps for the funnel that I would calculate conversion rates for:
+
+Marketing acquisition channel
+Signing up for the free trial (including date)
+Performing a key action in the free trial
+Submitting credit card information
+Successful transaction
+This high level funnel will provide insight on whether or not the users for both products are similar and help to check for any bugs. The funnel analysis could explore hypotheses about:
+
+Users for the trials in each country are different because they are acquired from different channels or different time periods
+The product doesn’t have any bugs that are causing issues with payments going through
+I can quickly get back to the PM about these finding and let them know that I will now spend more time collecting data on how users from each product are using the product to see if this may explain the difference in conversion rates. I would brainstorm features with them but some of the core features would include
+
+country
+acquisition funnel
+acquisition date
+user demographics that are collected at signup
+total visits to product
+core actions completed in the product
+number of times that core actions are completed
+conversion status
+This model would be used to identify which features are important for predicting if a user converts.
+
+If country is the most important feature, then that would suggest that there is something fundamentally different about the users from each country that explains conversion rates.
+If the behavioral features are important, then that would suggest that we should try to elicit more engagement from users from Country X
+If the acquisition features are most important, then I would check how that feature interacts with country to understand how we can do a better job at acquiring users from Country X who are more likely to convert
