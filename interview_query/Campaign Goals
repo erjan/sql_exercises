@@ -1,0 +1,16 @@
+Let’s say we have a schema that represents advertiser campaigns and impressions. The campaigns table specifically has a goal, which is the number that the advertiser wants to reach in total impressions. 
+
+Given the table above, generate a daily report that tells us how each campaign delivered during the first 7 days. Round output to 4 decimals.
+
+Using this data, how do we evaluate how each campaign is delivering and by what heuristic do we surface promos that need attention?
+-------------------------------------------------------------------------------------------------------------------------------------------------
+SELECT ai.campaign_id
+, ROUND(COUNT(ai.impression_id)/7,4) AS first_seven_days_average
+, ROUND( c.goal/(DATEDIFF(c.end_dt,c.start_dt)), 4) AS expected_daily_average
+, ROUND((COUNT(ai.impression_id)/c.goal *100),4) AS percent_delivered
+, ROUND((7/(DATEDIFF(c.end_dt,c.start_dt))*100),4) AS percent_days_passed
+FROM ad_impressions ai, campaigns c 
+WHERE ai.campaign_id = c.id
+and ai.dt BETWEEN c.start_dt AND DATE_ADD(c.start_dt, INTERVAL 7 DAY)
+GROUP BY ai.campaign_id
+ORDER BY ai.campaign_id
