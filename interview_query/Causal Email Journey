@@ -1,0 +1,136 @@
+Let’s say that you work for an E-commerce store. A new marketing manager joins the company and redesigns the existing new-user email journey to try and boost customer conversion rates. A few weeks after launching the new email journey, the new-user to customer conversion rate goes up from 40% to 43%.
+
+Before you can celebrate, the company’s CMO points out a troubling fact. Just a few months prior to the new manager starting the conversion rate already stood at 45%, before slowly dropping down to the “starting” 40%.
+
+How would you investigate if the redesigned email campaign actually led to the increase in the conversion rate, and that the increase wasn’t instead the result of other factors?
+----------------------------------------------------------------------------------------------------------------
+What is the interviewer looking for?
+Can you clarify the problem and come up with ways for a solution?
+
+Can you structure your answer so that it applies to data-driven decision-making?
+
+Can you adapt to different situations and infrastructures and still find a way to systematically analyze the experiment?
+
+Clarifying questions
+Clarifying Question 1
+Interviewee:
+
+Before diving in, I want to clarify some portions of the problem, did the conversion rate rise from 40% to 43% in general or is this for that campaign specifically?
+
+Interviewer:
+
+It’s general, the store has 1000 users per week, and then 40% of them convert and when the new email journey was implemented, the next few weeks the conversion rate rose to 43%.
+
+Clarifying Question 2
+Interviewee:
+
+What was the content of that new email campaign? Was it an offer or a promotion? Or just another reminder email?
+
+Interviewer:
+
+It was a basic customer email journey; you get an email after 1,3,5 then 7 days. The email talks about the product and tries to entice you to buy it. The new marketing manager came in and did some segmentation. So they created three different flows to try and boost customer conversion.
+
+Interviewee:
+
+How often did this manager run campaigns? How many do you run in a year?
+
+Interviewer:
+
+So this email journey got sent to every user and after the changes, they just got segmented but still, every single user who signs up would get one.
+
+Clarifying Question 3
+Interviewee:
+
+Ok cool, did any of the other metrics change? The user signups or the number of people landing on the homepage? Did any of these metrics change up or down?
+
+Interviewer:
+
+I don’t know exactly. If you were in this situation, what would you investigate first?
+
+Interviewee:
+
+Ok, I’m going to give you a quick structure, and then we can dive in.
+
+Analysis of past email campaigns
+First, I’d analyze past email campaigns, so I’d look at the direction of the past emails in terms of content and their impact on conversion, then I’d check their performance.
+
+But before I dive in, how long did the current i.e., the old email journey run? When did you switch to that old email journey, and what was the impact at the time?
+
+Interviewer:
+
+Well, it was always running. We started to run it probably for a year before the new marketing manager came in, and the conversion rates it produced became our current standards like open rates, click-through rates, and other metrics.
+
+Interviewee:
+
+You mentioned it was around 40% when you checked before launching the new campaign, was there any variance? Like, does it range from 40% to 41%? Or more like 35% to 45%? ِAlso, is there any kind of seasonality with the conversion rate, or is it stable throughout the year?
+
+Interviewer:
+
+Well, historically, it’s been as low as 39%, maybe even 30% or 32%, and as high as 45%. It’s a week-by-week-based number, as you know.
+
+Yes. It can be seasonal for maybe one or two months a year in November and Christmas as people intent to buy is more, but potentially in summer people might have higher intent but without sales.
+
+The new campaign launched in the hot season- November and Christmas- and continued, and now it’s January; it’s not as hot anymore.
+
+Interviewee:
+
+It’s helpful to understand the context. I’d first try to understand the nature of the conversion rate and to make sure the total number of email signups, i.e. the denominator is large enough because if it is small, this can cause that percentage to be very unstable.
+
+This would also be a good segue into the next 2 things I’d like to investigate: Was there any increase in how many people signed up?
+
+Because, even if conversion went down, but you’re getting more signups, you’re still making more revenue overall by making up for it by the increase in signups.
+
+In that case, if you have a high enough count, I’d adjust conversion for those segments and look at these counts to make sure it’s not going to unduly influence the results. I’d normalize the total number of people coming in, as that would be helpful.
+
+Also, assuming that people at that time of the year probably have some Christmas money, so they have more intent and are more likely to purchase, which should be taken into consideration.
+
+AB Testing
+Interviewee:
+
+I think the first thing I’d do is run an AB test because that’s the gold standard. The target metric will be conversion rate, and theoretically, we’d want to have a mechanism to assign new people signing up for the treatment or the control groups.
+
+So we do random assignments, and the easiest way would be to alternate users between the 2 groups, then after that, we want to do a power analysis to understand how long we need to run this experiment.
+
+We could have the treatment group have the new email campaign and the control gets the old email drip campaign.
+
+Interviewer
+
+Makes sense; what if we can’t test? If we don’t have the infrastructure for an AB test, is there anything we can do to analyze this now?
+
+Interviewee
+
+If we can’t run an AB test, the first thing I’d do is something called a Directed Acyclic Graph (DAG). This graph is supposed to map out all the different compounding variables that can impact our experiment.
+
+So for example, intent to purchase, as you laid out, people later in the year won’t intend to purchase, and maybe that can influence the conversion rate and not the email campaign.
+
+Also, age, if somebody is 30 years old, he’ll probably have more disposable income than someone who’s 20; those are just examples of potential compounding variables that could affect our conversion rate metric.
+
+It’s more of an art than a science here, you won’t get it perfect, but I will help us do any kind of analysis afterward.
+
+Retroactive Analysis
+Interviewer
+
+Let’s assume we already launched the campaign, so how do we retroactively analyze this?
+
+Interviewee
+
+I’d use is a technique called Interrupted Time Series; when some event happens and “interrupts the time series” and turns it into pre and post.
+
+I’ll look at actual conversion rate data and do a pre/post check. And then I’d run OLS regression with this interruption as a feature, then I’d add all the compounding variables and with this, I will look at this interruption’s actual “p-value” and the effect to determine if there was some causal effect from this exact interruption.
+
+The second technique I will use is called causal impact, which was created by Google. The idea is that you have pre-intervention time series and you would create an underlying bayesian structural time series model.
+
+What it does is in your pre-period, it’s going to create a time series forecast of the original time series, then it’s going to measure that forecast against what actually happened. The idea is that you can take the forecast and compare it against the actuals, and that difference would be the effect of whatever you did there.
+
+The third technique we have is synthetic controls.
+
+So if we’re analyzing a natural experiment, we would need a subset of users who were never exposed to the treatment, so if there was a set, like a market that this email campaign wasn’t launched in, that would be a perfect candidate for a control group.
+
+What synthetic control does is it takes this control group and it’ll re-weight it, and then it will create this “synthetic control time series” very similar to causal impact but just in a different way.
+
+Analysis Results
+After analyzing it, typically, most of these techniques should give you some sense of a confidence interval.
+
+If the interval looks like this: [-0.39, 0.45], I probably don’t make that conclusion.
+
+However, if it looks something like this: [0.41,0.45], then I might feel confident in saying that this new email campaign actually made an improvement.
