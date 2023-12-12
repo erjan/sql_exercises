@@ -1,0 +1,28 @@
+'''
+Given a list of (name, item) pairs, pair_list, write a function common_items to create a list of (name1, name2, item_frequency) triples where item_frequency is the number of common items shared between the two names.
+
+Make sure all possible name pairs are included, there are no duplicate name pairs, there are no pairs of the same name, and the order of the names is alphabetical.
+'''
+
+def common_items(pair_list):
+    items_by_name = dict()
+
+    for name,item in pair_list:
+        if name in items_by_name:
+            items_by_name[name].add(item)
+        else:
+            items_by_name[name] = {item}
+        
+    
+    names = list(items_by_name.keys())
+    res = []
+    for i in range(len(names)):
+        for j in range(i+1, len(names)):
+
+            count = len(items_by_name[names[i]].intersection(items_by_name[names[j]]))
+            pair = tuple(sorted([names[i], names[j]]))
+            res.append(pair + (count,))
+    return res
+
+
+ 
