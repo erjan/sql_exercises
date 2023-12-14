@@ -1,0 +1,23 @@
+Let’s say that Facebook account managers are not able to reach business owners after repeated calls to try to onboard them onto a new Facebook business product.
+
+Let’s say that we have training data on all of the account manager’s outreach in terms of calls made, calls picked up, time of call, etc…
+
+What strategies could we try to implement to increase the outreach connection rate through analyzing this dataset?
+--------------------------------------------------------------------------------------------------------------------------------------------
+Clarification Questions
+
+In the training dataset - do we have data on whether someone onboard to the new FB business product successfully or not?
+
+How many times do the AM call before someone is categorized as not reachable?
+
+Do the AMs reach out to the business owners in any other way other than making calls?
+
+Approach
+
+Assuming we have data on whether someone was successfully onboarded to the program or not, I would try to look into all the variables we have available in the dataset, such as who made the call, time/day of the call, number of calls made, and perhaps characteristics of the business owners, then run a logistic regression to see if we can identify any specific outreach effort/characteristics of the business owners that correlate positively with them onboarding to the business product.
+
+Assuming we can identify owners with certain characteristics are more likely to onboard to the business product, we can rank the business owners by their likelihood of onboarding to the product and reach out to them in that order to maximize the outreach success.
+
+Or if we find that there is a particular day/time that is best for outreaching to these owners (such as better rates at picking up the phone, more willingness to listen - longer call duration times), we can adjust the outreach efforts to focus on those days/times only.
+
+Lastly, we can also analyze the dataset to see if there is a saturation point where additional calls do not make a difference. Then perhaps we can reduce the number of calls made to each business owners if that saturation point is found so the outreach efforts can be used to focus on other business owners who are more likely to onboard to the Facebook products.
