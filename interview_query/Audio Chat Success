@@ -1,0 +1,45 @@
+An online marketplace company has introduced a new feature that allows potential buyers and sellers to conduct audio chats with each other prior to transacting.
+
+Let’s say we have two tables that represent this data.
+
+Example:
+
+Input:
+
+chats table
+
+Column	Type
+id	INTEGER
+buyer_user_id	INTEGER
+seller_user_id	INTEGER
+call_length	INTEGER
+call_connected	INTEGER
+marketplace_purchases table
+
+Column	Type
+id	INTEGER
+buyer_user_id	INTEGER
+seller_user_id	INTEGER
+item_id	INTEGER
+purchase_amount	FLOAT
+How would you measure the success of this new feature?
+Write a query that can represent if the feature is successful or not.
+------------------------------------------------------------------------------
+WITH distinct_chats AS (
+    SELECT 
+        c.buyer_user_id 
+        , c.seller_user_id
+        , MAX(call_connected) AS at_least_one_call_connected
+        , COUNT(DISTINCT mp.id) AS completed_transaction
+    FROM chats AS c 
+    LEFT JOIN marketplace_purchases AS mp  
+        ON mp.buyer_user_id = c.buyer_user_id
+            AND mp.seller_user_id = c.seller_user_id 
+    GROUP BY 1,2
+)
+
+SELECT at_least_one_call_connected
+    , AVG(completed_transaction)
+    , SUM(completed_transaction)
+FROM distinct_chats 
+GROUP BY at_least_one_call_connected
