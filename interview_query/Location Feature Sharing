@@ -1,0 +1,37 @@
+Let’s say we add a feature for an app that allows you to share your location. This feature is optional, but let’s say we run a survey and results show that those who use this feature are “less happy” with the app as a whole.
+
+Is this feature actually causing people to be unhappy with the app?
+------------------------------------------------------------------------------------------------------------------------
+Causal relationships are hard to come by, and truly determining causality is tough as the world is full of confounding variables. Because of this, instead of causality, we can dissect the correlation between the location sharing feature and the user unhappiness level.
+
+At its core, this interview question is testing how you can dig into the science and statistics behind their assumption. The interviewer is asking essentially a small variation of a traditional experimental design with survey research and wants to know how you would either validate or disprove this claim. 
+
+There are a few things we can do:
+
+Look into confounding variables
+
+Confounding variables are factors that could affect the assumed relationship between feature use and happiness level. 
+
+For example, the optional feature could in some way naturally attract unhappy people that has nothing to do with the feature itself. Maybe the feature had some verbiage or illustrations associated with its advertisement that may have affected who clicks to opt in. Some thought into the common confounding variables is needed here.
+
+If a user also uses location sharing a lot, it could be more indicative of how someone might feel when using Facebook a lot, which could then potentially lead people to feel more depressed if more of their time is spent on social media.
+
+Evidently, if we can control different variables like time spent on Facebook, then we can see if that affects the survey results in any way. 
+
+Look at the survey’s data distribution
+
+Sure, the results could show that the users who use the features are “less happy”, but as a data practitioner, you should dig into this further.
+
+Investigate the mean, median, and mode. Look at the interquartile range and standard deviation. These metrics will give you a better idea of the distribution of users who are using the feature.
+
+It could be the case that there is skewed data that is pulling the mean happiness lower, but there is also a population of users that enjoy the feature. Also, does the survey suffer from selection bias? Are the users that are most likely to respond the ones that do not enjoy the feature?
+
+Run a randomized experiment 
+
+From the question, it sounds like a survey was conducted.
+
+However, to test whether or not the optional feature made people less happy, a randomized test or an A/B test is needed to figure this out.
+
+A random and independent sampling strategy with a large enough sample size should get you a better answer to this question when compared to a survey.
+
+With Facebook, users could suffer from a novelty effect, where interest fades as the new feature gets old.
