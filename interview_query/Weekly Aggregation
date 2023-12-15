@@ -1,0 +1,16 @@
+Given a list of timestamps in sequential order, return a list of lists grouped by week (7 days) using the first timestamp as the starting point.
+-------------------------------------------------------------------------------------------------------
+from collections import defaultdict
+
+from datetime import timedelta, datetime
+def weekly_aggregation(ts):
+    
+    res = defaultdict(list)
+
+    ts_date = [datetime.strptime(t, '%Y-%m-%d') for t in ts]
+
+    startdate = ts_date[0]
+    for date in ts_date:
+        grp = (date-startdate).days//7
+        res[grp].append(datetime.strftime(date, '%Y-%m-%d'))
+    return res.values()
