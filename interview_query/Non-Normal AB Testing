@@ -1,0 +1,24 @@
+Uber Rider deals with huge amounts of data but at Uber Fleet, the amount of data for experimentation is rather low. Let’s say 
+you run an AB test for Uber Fleet and find out that the distribution is not normal.
+
+What kind of analysis would you run and how would you measure which variant won?
+----------------------------------------------------------------------------------------------------
+
+Understanding whether your data abides by or violates a normal distribution is an important first step in your subsequent data analysis. 
+
+This understanding will change which statistical tests you want to use if you need to immediately look for statistical significance.
+
+For example, you cannot run a t-test if your distribution is non-normal since this test uses mean/average as a way to find differences between groups. 
+
+If you find out that the distribution of the data is not normal, there are several steps you can take to help fix this problem.
+
+Mann-Whitney U-Test 
+This statistical test is also known as the Wilcoxon rank-sum test, which is a widely used alternative to the t-test. Note that the t-test assumes a normal distribution, and the Mann-Whitney U-test is used to find group differences when your data is much different than a normal distribution.
+
+Bootstrapping
+This method can be described as a resampling method. In essence, you would take a random sample from each variant, say 75% of the data, compute an appropriate statistical test that would detect differences between the variants and repeat for 100, 1000 or more times.
+
+At the end, you can see, on average, which variant is the best and take that as your final answer. This is a random sampling procedure that, by the Law of Large Numbers, will tend to converge toward the true representation of the population.
+
+Gather more data
+If there is some more time or a little more budget to run a few more tests to get to a reasonable amount of tests for both variants, this may be a good option. Some statistical tests require sample sizes as small as 20, and if you can afford to grab more data within means, go for it. More data can give you more confidence that you are sampling randomly from the larger population.
