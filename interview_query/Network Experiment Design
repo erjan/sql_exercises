@@ -1,0 +1,59 @@
+Let’s say you want to test the close friends feature on Instagram Stories.
+
+How would you make a control group and test group to account for network effects?
+----------------------------------------------------------------------------------------------------------------------------
+The usual way of running an A/B test is to randomly divide users into two groups, give each group a different version of the product, then look for differences in behavior between the two groups by evaluating different metrics or one singular metric that would be the main goal of the AB test (i.e. landing page to sign up conversion).
+
+Usually the random assignment in typical A/B test is done on a per-user basis. Taking the last example, if we re-designed our signup page, half our incoming users would get the new landing page and the rest would get the old page and serve as a control group.
+
+Unfortunately this standardized method doesn’t work well in our case for setting up an experiment with Instagram Stories. Why is that the case?
+
+To start out with, lets say that we wanted to set up our experiment this way with a per-user assignment. Half of the users in this experiment would get the close friends feature and half would not. To further define what it means to get the close friends feature, we would say that the users would be able to create close friend stories and also see close friends stories on Instagram.
+
+However this in itself presents the problem of the per-user assignment: what happens when these situations arise?
+
+Test Group User creates Close Friends Story -> What does a control group friend see?
+
+Control User watches stories -> What happens to all of their friends stories in the close friends variant?
+
+Test Group User opts not to create a Close Friends Story -> How do we analyze this effect on their friends that were not in this variant?
+
+This is why per-user assignment fails many times in this scenario. Because we hit network effects where we cannot properly hold one variable constant and test for the effect. This is known as higher-order effects: in which the changes in the test group also leads an increase in the control group. The result of which forms the biases in the analysis.
+
+The close friends experiment then only works if both users have the feature. So we could ostensibly use two ways to run this experiment.
+
+We could allow people in the test group to use close friends stories with everybody (including people in the control group), or
+
+We could limit the test group to only use close friends stories with other people that also happened to be assigned to the test group.
+
+Both approaches however have major limitations. The latter would result in an uneven experience for the users in the test group because the close friend feature would only appear for a random set of users. This could change their behavior in a number of ways that bias the experimental results.
+
+One way we can solve this would be to implement a per-community assignment. In this case, a “community” is any group of users whose interactions are primarily directed to other users within the same group. The hard part is figuring out how to define a “community” for this specific product.
+
+Because we are dealing with graph effects from a social network, a common mathematical approach to defining user communities is to model the relationships between users with a _social graph_, and then apply graph partitioning algorithms to find isolated, non-interacting groups.
+
+For Instagram, we would likely start from a couple users and try to isolate all of their friends and their friend’s friends until we reached a threshold where the community size was isolated without affecting another group. This group we could deem the “control group”. We could then find another similar community group in which characteristics to that group are as close as possible, and label that group as the “test group”.
+
+The drawback of using per-community random assignment is that unfortunately, this design has considerably less statistical power. Due to interactions between users and higher-order effects, a standard off-the-shelf approach to testing can be misleading.
+
+Another way we can circumvent this whole thing is if a user is not in the ‘close friends’ variant, then when they see that story that their friend posted as a ‘close friends’ story, they see it as if it were a regular story. 
+
+So, having the feature enabled for you or not dictates both whether they are able to post _as well as_ see a ‘close friends’ story. That way, we’re back to a more traditional testing framework without that extra variable, and that could be a good first step to prove out the fact of story creation with this feature.
+
+Our goal here however is specific to increasing the number of stories, not just the future adoption part. The first thing that we’re trying to test is the efficacy of stimulating more story creation. So we could mask the fact that it’s ‘close friends’ for those who aren’t eligible to create this kind of story. 
+
+Other Spillover Effect Options
+
+In our example, we mostly dealt with the spillover effect from network effects. However there are different types of spillover effect and therefore treatment options which can also be mixed & matched based on different sides of the marketplace that are involved.
+
+The first one is instituted by Demand <> Demand: This is referred to as the network effect i.e. people part of the same network. Here our main solution is clustering using either social or geographical partitions. Another example being if we were implementing feature changes in Uber or Lyft, we could test different features within two similar cities that won’t involve any spillover effects.
+
+The second problem is around Supply <> Supply: A typical problem in here would be ramping up an effect after an initial testing period. For example if we were to AB test a feature on only 1% of the population and see an effect change, what we observed could be significantly different from when the treatment is launched to the whole population.
+
+The key solution here is to treat the treatment groups the same regardless of the experiment exposure rate, and we simulate the results in the AB test as if it were rolled out to 100% of the users.
+
+For example, in Facebook Marketplace, if we are testing a ranking system for items by different sellers, the items in the control are ranked where they would be if the status quo is applied to all sellers. You can read more about it in this paper here.
+
+The last problem is around Supply <> Demand: That’s when a change to the viewer side affects the author side and optimizing for one clashes with optimizing for the other. A good example of this can be changing feed ranking functions. A solution would be modeling the effect on each side and computing an aggregated effect value from the model.
+
+_Thanks to Rim for her help with explaining the different spillover effects and contributing to this solution._
