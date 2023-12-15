@@ -1,0 +1,11 @@
+Two cards are pulled at random from a deck of 100 cards labeled from 1 to 100.
+
+What is the probability that one of the pulled cards is double the value of the other?
+
+Note: you can assume that cards are drawn with replacement
+-------------------------------------------------------------------------------------------------------------------
+There are two ways to solve this -
+
+First way - There are 50 pairs where the second number is double the first number; as 100⁄2 = 50. Since, the order in which a card is pulled matters we have 2(50 pairs) = 100 ways in which two cards can be pulled where one card is double the other card. Now we know that there are 10099 = 9900 different ways 2 cards can be pulled (without any condition). Hence, probability = 100⁄9900 = 1⁄99
+
+Second way - If event A is selecting a card from a deck of 100 cards, and event B is either selecting a card that is double the card selected in event A or a card that is half of the card selected in event A. And the probability that is being asked is P(B|A). In either way, there can be only one number out of the remaining 99 cards that is either double or half the card selected in event A. Hence, the probability is again 1⁄99
