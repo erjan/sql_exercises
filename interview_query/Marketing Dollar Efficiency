@@ -1,0 +1,56 @@
+Let’s say that you’re the data scientist for the marketing/advertising division of your company. The marketing executive wants to test multiple new channels including:
+
+Youtube ads
+Google search ads
+Facebook ads
+Direct mail campaigns
+Given these new marketing channels, how would you design an a/b test to utilize the marketing budget in the most efficient way possible?
+---------------------------------------------------------------------------------------------------------------------------------------------
+Recap:
+
+setup multiple new channels and utilize budget 
+in most efficient way amongst channels. 
+To help give me some color on this scenario here are some questions:
+
+- How are we defining most efficient? 
+- What is our total budget? (is it enough to give each channel a portion?) 
+- What are the details of these channels:
+1. Have these channels been attempted thus far? Or is this completely new? 
+1. are there baseline conversions for each of these channels now? 
+2. Have we done market research to understand the reach potential for each channel? 
+3. Have we done market research to understand what growth looks like for each channel? 
+4. Who is the target demographic? Does one channel have an advantage or better reach for that target demographic? 
+5. Cost (acquisition cost - for example in YouTube ads we may need to hire people to create our video which may be more costly than creating an image ad) vs reach potential (conversion) for each channel (furthermore ROI). 
+6. What are the channels options? Does one give us better granularity on who we want to target?
+
+
+
+Assumptions:
+
+- Let us assume "most efficient" means Cost per conversion = Total cost of ads/number of conversions. CPC relative to which channel gave us the most conversions. 
+- Let us assume management asked to use each channel and spread dollars evenly across.
+- We have enough dollars to get a large enough sample for each channel 
+A/B test design (based on aforementioned assumptions):
+
+ 
+- Select Risk: .05 alpha, .2 beta (power = .8)
+- Determine sample size based on (MDE, baseline conversion, statistical power, and alpha) 
+- Determine length of running test based on number of impressions needed (sample size) / number of impressions received in a day 
+- Run ad campaigns, gather data
+- Analyze campaign data (check distribution of data, if not normal we could use the distribution of sample means) 
+- Assuming normality, we will use the anova test statistic.
+
+h0 = YouTube = google = Facebook = direct mail
+The null hypothesis is that there is no difference between channels. 
+
+h1 =  YouTube <> google <> Facebook <> direct mail
+The alternative hypothesis is that there will be a difference between the channels.
+
+- run post hoc test to see which of the channels had better conversion rates relative to acquisition costs. 
+
+
+Other things to consider and extend the research into:
+
+- Do video ads do better than image ads (Youtube vs Google Search) ? 
+- Will Google search ads be the more expensive (SEO optimization is no joke)? 
+- Do we think direct mail campaigns are ignored by younger generations? 
