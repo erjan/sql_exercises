@@ -1,0 +1,17 @@
+What does it mean for a function to be monotonic?
+
+Why is it important that a transformation applied to a metric is monotonic?
+-----------------------------------------------------------------------------------------
+Monotonic Function
+
+function is monotonic when it is strictly increasing or decreasing.
+
+When a function is increasing or decreasing in its entire domain we say the function is strictly monotonic and it is called a monotonic function.
+
+The monotonicity of a function is directly related to a functions derivative. A function is increasing when its derivative is positive and decreasing when its derivative is decreasing.
+
+Example of a monotonic increasing function is g(x)=x^3. The derivative will be 3x^2. So any value input as x, that is, either positive or negative, will result in a positive only value always.
+
+Example of a non-monotonic function is g(x)=x^2. The derivative here will be 2x. So if negative values are input as x the function will decrease and will increase for positive values. Since the function is decreasing and increasing on different intervals of its domain, it is a non-monotonic function.
+
+Why is it important that a transformation applied to a metric is monotonic? - It is important for a trsanformation to be monotonic for model training purpose. For example, linear models assumption is that the independent and dependent variables can either be directly related or inversely. But they cannot increase and then again dcrease at different intervals. - Enables to fulfill certain statistical assumptions like linearity, homogeneity, normality etc - Makes features with extremely different scales comparabale - A monotonic transformation will change a set of numbers into another set of numbers while preserving the order. - Exampple of monotonic transformation applied on a metric is log transformation. It preserves the order while transforming the data. It helps in transforming the data into an approximately normal distribution and also to compare the relation between two variables.
