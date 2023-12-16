@@ -1,0 +1,46 @@
+Given a percentile_threshold, mean m, and standard deviation sd of the normal distribution, write a function truncated_dist to simulate a normal distribution truncated at percentile_threshold.
+--------------------------------------------------------------------------------------------------------------------
+First, we need to calculate where to truncate our distribution. We want a sample where all values are below the percentile_threshold.
+
+Say we have a point 
+�
+z and want to calculate the percentage of our normal distribution that resides on or below 
+�
+z. In order to do this, we would simply plug 
+�
+z into the CDF of our distribution.
+
+However, in our situation, we are given this percentage in the form of the percentile_threshold argument. We want to truncate our distribution at point z below which percentile_threshold amount of data resides. To calculate 
+�
+z, we can simply plug percentile_threshold into the inverse of the CDF. The inverse of the CDF is called the PPF or percentage point function.
+
+Now renaming 
+�
+z to lim we set:
+
+import numpy as np
+import scipy.stats as st
+lim = st.norm(mean,sd).ppf(percentage threshold) 
+Next, we initialize an array 
+�
+v of size 
+�
+n and want to fill it with entries from the normal distribution that are less than or equal to our lim. To do this, we create while loop and pull a value 
+�
+r from our distribution. If r is less than or equal to our lim value, it gets added to the ith entry of the array. If it is not, we pull another value from the distribution.
+
+We are left with an array of sample size n where each entry is pulled from the normal distribution and falls within the lower percentile_threshold amount of data. This simulates a normal distribution where we truncate 1−percentage_threshold of the distribution off of the right tail.
+
+Our final code is as follows:
+
+import numpy as np
+import scipy.stats as st
+
+def truncated_dist(m,sd,percentile_threshold):
+
+    lim = st.norm(m,sd).ppf(percentile_threshold)
+    r = np.random.normal(m, sd, 1)[0]
+    if r <= lim:
+        return r
+    else:
+        return lim
