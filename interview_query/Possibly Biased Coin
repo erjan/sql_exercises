@@ -1,0 +1,85 @@
+You’re given a two-sided coin that could be fair or biased. How would you figure out whether or not the coin is biased?
+
+Design a test and describe which outcome would tell you that the coin is biased.
+-----------------------------------------------------------------------------------------------------------------------------
+One can design the following test. Flip the coin for 
+�
+=
+100
+N=100 times (making sure that every flip is independent of the others) and count the number of heads/tails.
+
+The Null hypothesis is that the coin is fair (Not biased), and the alternative hypothesis is that the coin is biased. Given the number of trials 
+(
+�
+)
+(N), a given level of confidence (typically 95%), we might be able to decide whether the coin is biased or not with 95% confidence.
+
+Here is how we can obtain the confidence interval; We can consider each coin toss as a Bernoulli distribution with probability of head as 
+�
+p. For a fair coin, one may assume 
+�
+(
+�
+)
+=
+�
+=
+0.5
+P(T)=H=0.5. Also, 
+�
+N trials of a Bernoulli distribution give us a Binomial distribution. The Binomial distribution has a mean of 
+�
+�
+np (=50 for 100 tosses of a fair coin) and standard deviation of 
+�
+�
+(
+1
+−
+�
+)
+np(1−p)
+​
+  which equals 5 for 
+�
+=
+100
+n=100 and 
+�
+=
+0.5
+p=0.5.
+
+Furthermore, based on the central limit theorem, a binomial distribution as described above can be well approximated as a normal distribution with 
+�
+=
+50
+μ=50 and 
+�
+=
+5
+σ=5. Therefore the 95% confidence interval around the mean would be the range of 
+(
+50
+−
+1.96
+∗
+5
+,
+50
++
+1.96
+∗
+5
+)
+(50−1.96∗5,50+1.96∗5) in which the multiplier of 1.96 can be extracted from the normal table.
+
+Finally, if the number of heads/tails of the 
+100
+100 coin tosses lies within the range above, which is approximately 
+(
+45
+,
+55
+)
+(45,55), we do not have significant evidence to reject the Null Hypothesis, and we have to assume that the coin is fair. Otherwise, we can reject the null hypothesis and accept the alternative.
