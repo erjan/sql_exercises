@@ -1,0 +1,37 @@
+Let 
+�
+X be a continuous random variable with its probability density function, mean, and median denoted as 
+�
+�
+(
+�
+)
+,
+�
+,
+f 
+X
+​
+ (x),μ, and 
+�
+m respectively.
+
+Show that if 
+�
+�
+f 
+X
+​
+  is a strictly decreasing function, 
+�
+≥
+�
+m≥μ.
+-----------------------------------------------------------------
+Strictly decreasing –> long right tail
+
+long right tail –> mean > median,
+
+as median is robust to outliers way out there, but the mean is not and will be pulled in that direction, making the mean larger than the median.
+
+This is more explaining it than ‘showing’ it as a proof, but I’m guessing likely sufficient.
