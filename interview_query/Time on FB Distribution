@@ -1,0 +1,20 @@
+What do you think the distribution of time spent per day on Facebook looks like? What metrics would you use to describe that distribution?
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Having the vocabulary to describe a distribution is an important skill as a data scientist when it comes to communicating ideas to your peers. There are 4 important concepts, with supporting vocabulary, that you can use to structure your answer to a question like this. These are:
+
+Center (mean, median, mode)
+Spread (standard deviation, inter quartile range, range)
+Shape (skewness, kurtosis, uni or bimodal)
+Outliers (Do they exist?)
+In terms of the distribution of time spent per day on Facebook (FB), one can imagine there may be two groups of people on Facebook:
+
+People who scroll quickly through their feed and don’t spend too much time on FB.
+People who spend a large amount of their social media time on FB.
+From this point of view, we can make the following claims about the distribution of time spent on FB, with the caveat that this needs to be validated with real world data.
+
+Center: Since we expect the distribution to be bimodal (see Shape), we could describe the distribution using mode and median instead of mean. These summary statistics are good for investigating distributions that deviate from the classical normal distribution.
+Spread: Since we expect the distribution to be bimodal (see Shape), the spread and range will be fairly large. This means there will be a large inter quartile range that will be needed to accurately describe this distribution. Further, refrain from using standard deviation to describe the spread of this distribution.
+Shape: From our description, the distribution would be bimodal. One large group of people would be clustered around the lower end of the distribution, and another large group would be centered around the higher end. There could also be some skewness to the right for those people who may spend a bit too much time on FB.
+Outliers: You can run outlier detection tests like Grubb’s test, z-score, or the IQR methods to quantitatively tell which users are not like the rest.
+If we were to ask further questions about the demographics of the users we were interested in, we could come up with another story using these same vocabulary to structure our answer!
