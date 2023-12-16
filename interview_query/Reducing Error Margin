@@ -1,0 +1,196 @@
+Let’s say we have a sample size of 
+�
+n. The margin of error for our sample size is 3.
+
+How many more samples would we need to decrease the margin of error to 0.3?
+--------------------------------------------------------------------------------------
+The equation for the margin of error is:
+Margin of error
+=
+�
+�
+2
+�
+Margin of error=Z 
+n
+σ 
+2
+ 
+​
+ 
+​
+ 
+For Z-score (based on a certain confidence level) 
+�
+Z, variance 
+�
+2
+σ 
+2
+ , and sample size 
+�
+n. Since the Z-score is defined beforehand by a pre-selected confidence interval (or “level of certainty”), thus, 
+�
+Z is independent of 
+�
+n.
+
+The sample is taken from a population with some underlying distribution (usually normal) that has variance 
+�
+2
+σ 
+2
+ . The variance is the square of the standard deviation of the population, 
+�
+σ.
+
+Note the difference between population and sample. The population is the collection of all things that you want to investigate. The sample is a portion of things from the population that you choose to observe.
+
+If you observe the weight of 30 middle schoolers in a school, the 30 middle schoolers you weigh make up your sample, but your population is made up of all of the middle schoolers in the school (including the ones you didn’t weigh). You can think of the standard deviation of a population as a measurement of how much observations from the sample deviate from the population mean (average).
+
+So, a variance of say, 25 pounds, and a mean of 90 pounds means that the weight of middle schoolers tend to weigh 90 pounds, give or take 5 pounds (since 
+25
+=
+5
+25
+​
+ =5). Because variance is a feature of the population, and not the sample, it is also independent of the sample size 
+�
+n.
+
+The question tells us that for some 
+�
+,
+�
+2
+Z,σ 
+2
+  and 
+�
+n, the margin of error is 
+3
+3. Mathematically:
+3
+=
+�
+�
+2
+�
+3=Z 
+n
+σ 
+2
+ 
+​
+ 
+​
+ 
+The question is asking us to find some number 
+�
+k such that:
+0.3
+=
+�
+�
+2
+�
++
+�
+0.3=Z 
+n+k
+σ 
+2
+ 
+​
+ 
+​
+ 
+Rearranging the first equation, we get
+�
+=
+�
+2
+�
+2
+9
+n= 
+9
+Z 
+2
+ σ 
+2
+ 
+​
+ 
+Rearranging the second, we get:
+�
++
+�
+=
+�
+2
+�
+2
+0.09
+n+k= 
+0.09
+Z 
+2
+ σ 
+2
+ 
+​
+ 
+Plugging in our expression for 
+�
+n we get:
+�
+=
+�
+2
+�
+2
+(
+1
+0.09
+−
+1
+9
+)
+=
+11
+⋅
+�
+2
+�
+2
+k=Z 
+2
+ σ 
+2
+ ( 
+0.09
+1
+​
+ − 
+9
+1
+​
+ )=11⋅Z 
+2
+ σ 
+2
+ 
+So, we must raise our sample size by 
+⌈
+11
+�
+2
+�
+2
+⌉
+⌈11Z 
+2
+ σ 
+2
+ ⌉, rounded up if needed since we can only increase the sample size by an integer amount.
