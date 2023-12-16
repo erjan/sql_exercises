@@ -1,0 +1,17 @@
+Suppose we have two variables, X and Y, where Y = X + some normal white noise.
+
+What will our coefficient be if we run a regression of Y on X?
+
+What happens if we run a regression of X on Y?
+-----------------------------------------------------------------------------
+Let’s start with the basic interpretation of simple linear regression parameters. The intercept is the expected value of Y when X is zero. The slope is the expected unit increase in Y for a one unit increase in X.
+
+(part 1) If Y = X + white noise, then when X is zero, Y should be approximately zero too.
+
+Assuming the variance of the white noise is not great enough to wash out or substantially alert the relation between X and Y, then one would expect that X and Y are positively related and that a one unit increase in X should correspond to roughly a one unit increase in Y. The slope ought to be about one.
+
+(part 2) If we instead regress X onto Y, then the intercept is the expected value of X when Y is zero, which again should be approximately zero as before.
+
+The relation between X and Y is still positive. A one unit increase in Y should correspond to approximately a one unit increase in X. So, the slope should be approximately one.
+
+(N.B.) One can confirm these intuitions with simulations.
