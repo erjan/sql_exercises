@@ -1,0 +1,73 @@
+Given two independent standard normal random variables 
+�
+X and 
+�
+Y, what’s the probability that 
+2
+�
+>
+�
+2X>Y?
+--------------------
+
+Let’s look at this question a little closer.
+
+We’re given two normal distributions. The values can either be positive or negative but each value is equally likely to occur. Since we know the mean is 0 and the standard deviation is 1, we understand that the distributions are also symmetrical across the y-axis.
+
+In this scenario, we are equally likely to randomly sample a value that is greater than 0 or less than 0 from the distribution. 
+
+Now, let’s take examples of random values that we could get from each scenario. There are about six different scenarios here.
+
+�
+>
+�
+X>Y: Both positive
+
+�
+>
+�
+X>Y: Both negative
+
+�
+<
+�
+X<Y: Both positive
+
+�
+<
+�
+X<Y: Both negative
+
+�
+>
+�
+X>Y: 
+�
+X is positive 
+�
+Y is negative
+
+�
+<
+�
+X<Y: 
+�
+X is negative Y is positive
+
+We can simulate a random sampling by equating that all six are equally likely to occur. If we play out each scenario and plug the variables into 
+2
+�
+>
+�
+2X>Y,  then we see about half of the time the statement is true, or 50%.
+
+Why is this the case? Generally, if we go back to the fact that both distributions are symmetrical across the y-axis, we can intuitively understand that if both 
+�
+X and 
+�
+Y are random variables across the same distribution, we will see 
+2
+�
+2X as being on average double positive or double negative the value that 
+�
+Y is.
