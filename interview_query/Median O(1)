@@ -1,0 +1,16 @@
+You’re given a list of sorted integers in which more than 50% of the list is comprised of the same repeating integer.
+
+Write a function to return the median value of the list in 
+�
+(
+1
+)
+O(1) computational time and space.
+
+Note: the lists are all non-empty
+------------------------------------------------------
+def median(li):
+   if len(li)%2==0:
+      return (li[len(li)//2] + li[(len(li)//2)-1])/2
+   else:
+      return li[len(li)//2]
