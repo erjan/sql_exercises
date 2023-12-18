@@ -1,0 +1,293 @@
+Amy and Brad take turns in rolling a fair six-sided die. Whoever rolls a “6” first wins the game. Amy starts by rolling first.
+
+What’s the probability that Amy wins?
+-------------------------------------------
+Via Linear Equations
+
+Let’s set some definitions. We’ll call the event that Amy wins 
+�
+A and the event that Brad wins 
+�
+B.
+
+Consider the probability that the play that goes first wins; call this event 
+�
+F. In our case, at the start of the game, 
+�
+(
+�
+)
+=
+�
+(
+�
+)
+P(F)=P(A) holds.
+
+Now note that when Amy loses the first role (does not get a 6), Brad is now the “first” player. So
+
+�
+(
+�
+)
+=
+�
+(
+�
+)
+�
+(
+�
+1
+≠
+6
+)
+=
+5
+6
+�
+(
+�
+)
+P(B)=P(F)P(a 
+1
+​
+ 
+
+=6)= 
+6
+5
+​
+ P(A)
+
+Also note that 
+�
+(
+�
+)
++
+�
+(
+�
+)
+=
+1
+P(A)+P(B)=1, since someone must win. This gives us a system of linear equations we can solve for since we have 2 equations and 2 unknowns.
+
+�
+(
+�
+)
+=
+1
+−
+5
+6
+�
+(
+�
+)
+⇒
+�
+(
+�
+)
+=
+6
+11
+P(A)=1− 
+6
+5
+​
+ P(A)⇒P(A)= 
+11
+6
+​
+ 
+
+Via Geometric Series
+
+Alternatively, one could view 
+�
+(
+�
+)
+P(A) as an infinite sum. Call results of the rolls of Amy and Brad 
+{
+�
+�
+}
+�
+=
+1
+∞
+{a 
+i
+​
+ } 
+i=1
+∞
+​
+  and 
+{
+�
+�
+}
+�
+=
+1
+∞
+{b 
+i
+​
+ } 
+i=1
+∞
+​
+  respectively. Then, 
+�
+(
+�
+)
+P(A) can be represented as:
+
+�
+(
+�
+)
+=
+∑
+�
+=
+1
+∞
+�
+(
+�
+�
+=
+6
+∣
+�
+<
+�
+≠
+6
+∩
+�
+<
+�
+≠
+6
+)
+P(A)= 
+i=1
+∑
+∞
+​
+ P(a 
+i
+​
+ =6∣a 
+<i
+​
+ 
+
+=6∩b 
+<i
+​
+ 
+
+=6)
+
+The probability that neither Amy nor Brad roll a 6 is 
+(
+5
+/
+6
+)
+2
+(5/6) 
+2
+ , so this sum can be rewritten as:
+
+�
+(
+�
+)
+=
+∑
+�
+=
+0
+∞
+(
+5
+/
+6
+)
+2
+�
+(
+1
+/
+6
+)
+P(A)= 
+i=0
+∑
+∞
+​
+ (5/6) 
+2i
+ (1/6)
+
+This is a geometric series, so its sum is
+
+∑
+�
+=
+0
+∞
+(
+5
+/
+6
+)
+�
+(
+1
+/
+6
+)
+=
+1
+/
+6
+1
+−
+(
+5
+/
+6
+)
+2
+=
+6
+11
+i=0
+∑
+∞
+​
+ (5/6) 
+i
+ (1/6)= 
+1−(5/6) 
+2
+ 
+1/6
+​
+ = 
+11
+6
+​
