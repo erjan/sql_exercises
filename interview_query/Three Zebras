@@ -1,0 +1,13 @@
+Three zebras are chilling in the desert. Suddenly a lion attacks.
+
+Each zebra is sitting on a corner of an equally length triangle. Each zebra randomly picks a direction and only runs along the outline of the triangle to either edge of the triangle.
+
+What is the probability that none of the zebras collide?
+-------------------------------------------------------------
+Let’s imagine all of the zebras on an equilateral triangle. They each have two options of directions to go in if they are running along the outline to either edge. Given the case is random, let’s compute the possibilities in which they fail to collide.
+
+There’s only really two possibilities. The zebras will either all choose to run in a clockwise direction or a counter-clockwise direction.
+
+Let’s calculate the probabilities of each. The probability that every zebra will choose to go clockwise will be the multiple of each zebra choosing the clockwise direction. Given there are two choices that would be 1⁄2 * 1⁄2 * 1⁄2 = 1⁄8
+
+The probability of every zebra going counter-clockwise is the same at 1⁄8. Therefore if we sum up the probabilities, we get the correct probability of 1⁄4 or 25%.
