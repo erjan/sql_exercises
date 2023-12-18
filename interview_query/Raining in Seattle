@@ -1,0 +1,508 @@
+You are about to get on a plane to Seattle. You want to know if you should bring an umbrella. You call 3 random friends 
+of yours who live there and ask each independently if it’s raining. Each of your friends has a 2⁄3 chance of telling you the 
+truth and a 1⁄3 chance of messing with you by lying. All 3 friends tell you that “Yes” it is raining.
+
+What is the probability that it’s actually raining in Seattle?
+--------------------------------------------------------------------------------------------------------------------------
+
+Let’s call the event that it is raining 
+�
+R, and the event that friend 
+�
+i is telling the truth 
+�
+�
+F 
+i
+​
+ .
+
+This question can be solved two different ways, both born from unique schools of thought: Frequentist or Bayesian. Let’s do a thought experiment and try them both.
+
+Frequentist
+
+The prompt states that each friend individually has a 2⁄3 chance of telling the truth. Through logical transference, given that all of the friends have told you that it is raining, the question of “what is the probability that it is not raining” is the same thing as “what is the probability that all of your friends are lying?”.
+
+�
+�
+=
+�
+1
+�
+∩
+�
+2
+�
+∩
+�
+3
+�
+R 
+c
+ =F 
+1
+c
+​
+ ∩F 
+2
+c
+​
+ ∩F 
+3
+c
+​
+ 
+
+Given this logical expression, we can simplify the problem to then calculate the inverse of the three AND functions. So the probability of it raining is then equated to:
+
+�
+(
+�
+�
+)
+=
+�
+(
+�
+1
+�
+)
+∩
+�
+(
+�
+2
+�
+)
+∩
+�
+(
+�
+3
+�
+)
+P(R 
+c
+ )=P(F 
+1
+c
+​
+ )∩P(F 
+2
+c
+​
+ )∩P(F 
+3
+c
+​
+ )
+
+Multiply all of the independent probabilities:
+
+�
+(
+�
+1
+�
+∩
+�
+2
+�
+∩
+�
+3
+�
+)
+=
+1
+/
+3
+⋅
+1
+/
+3
+⋅
+1
+/
+3
+=
+1
+/
+27
+P(F 
+1
+c
+​
+ ∩F 
+2
+c
+​
+ ∩F 
+3
+c
+​
+ )=1/3⋅1/3⋅1/3=1/27
+
+�
+(
+�
+)
+=
+1
+−
+1
+/
+27
+=
+26
+/
+27
+P(R)=1−1/27=26/27
+
+Bayesian
+
+For this approach, let’s redefine 
+�
+�
+F 
+i
+​
+  as the probability that friend 
+�
+i tells you it is raining.
+
+What if we want to take into account the probability of rain in Seattle? If the probability of rain in Seattle is already 100% for the day I land, then it is irrelevant if my friends are lying to me when I ask them of the chance of rain.
+
+What if it’s a bit of a mistake to think about the probability your friends are lying specifically? Suppose we imagine the probability of rain is 50% in general. This is a Bayesian question fundamentally, and the formula applies:
+
+�
+(
+�
+∣
+�
+1
+∩
+�
+2
+∩
+�
+3
+)
+=
+�
+(
+�
+1
+∩
+�
+2
+∩
+�
+3
+∣
+�
+)
+�
+(
+�
+1
+∩
+�
+2
+∩
+�
+3
+)
+P(R∣F 
+1
+​
+ ∩F 
+2
+​
+ ∩F 
+3
+​
+ )= 
+P(F 
+1
+​
+ ∩F 
+2
+​
+ ∩F 
+3
+​
+ )
+P(F 
+1
+​
+ ∩F 
+2
+​
+ ∩F 
+3
+​
+ ∣R)
+​
+ 
+
+We know 
+�
+(
+�
+)
+=
+0.5
+P(R)=0.5.
+
+�
+(
+�
+1
+∩
+�
+2
+∩
+�
+3
+∣
+�
+)
+P(F 
+1
+​
+ ∩F 
+2
+​
+ ∩F 
+3
+​
+ ∣R) is the probability of all my friends saying it is raining given that it is raining, which is the same as the probability of them all telling the truth: 
+(
+2
+/
+3
+)
+3
+=
+8
+/
+27
+(2/3) 
+3
+ =8/27, assuming they tell the truth/lie independently.
+
+�
+(
+�
+1
+∩
+�
+2
+∩
+�
+3
+)
+P(F 
+1
+​
+ ∩F 
+2
+​
+ ∩F 
+3
+​
+ ) is the probability of all my friends telling me it is raining, which is
+
+�
+(
+�
+1
+∩
+�
+2
+∩
+�
+3
+∣
+�
+)
+�
+(
+�
+)
++
+�
+(
+�
+1
+∩
+�
+2
+∩
+�
+3
+∣
+�
+�
+)
+�
+(
+�
+�
+)
+P(F 
+1
+​
+ ∩F 
+2
+​
+ ∩F 
+3
+​
+ ∣R)P(R)+P(F 
+1
+​
+ ∩F 
+2
+​
+ ∩F 
+3
+​
+ ∣R 
+c
+ )P(R 
+c
+ )
+
+because of the law of total probability. Basically, we have added the probability of all my friends telling the truth to the probability that they are all lying.
+
+So we get
+
+�
+(
+�
+1
+∩
+�
+2
+∩
+�
+3
+)
+=
+8
+/
+27
+⋅
+1
+/
+2
++
+1
+/
+27
+⋅
+1
+/
+2
+=
+8
+/
+54
++
+1
+/
+54
+=
+9
+/
+54
+=
+1
+/
+6
+P(F 
+1
+​
+ ∩F 
+2
+​
+ ∩F 
+3
+​
+ )=8/27⋅1/2+1/27⋅1/2=8/54+1/54=9/54=1/6
+
+So
+
+�
+(
+�
+∣
+�
+1
+∩
+�
+2
+∩
+�
+3
+)
+=
+8
+/
+27
+⋅
+1
+/
+2
+1
+/
+6
+=
+8
+/
+9
+P(A∣F 
+1
+​
+ ∩F 
+2
+​
+ ∩F 
+3
+​
+ )= 
+1/6
+8/27⋅1/2
+​
+ =8/9
+
+Note how the 
+�
+�
+F 
+i
+​
+ s (in this section) are defined in relation to whether your friends tell you it rains, not whether they are lying or not. This is because we can never actually know whether they were lying to us, we just know that the answer they gave was the event.
+
+Intuition
+
+Intuitively, you might wonder why the Bayesian answer of 8⁄9 is quite a bit lower than the Frequentist answer of 26⁄27. Imagine we repeated this task 27 times: we would expect that there was only one time when all three lied out of 27 trials.
+
+But in our situation, we don’t want to look at all 27 experiments, because we know that our friends gave the same answer, which only happens when they are all honest or when they all lie. They are all honest with 
+(
+2
+/
+3
+)
+3
+=
+8
+/
+27
+(2/3) 
+3
+ =8/27 probability, or in 8 of the experiments. That leaves us with 9 experiments when they all gave the same answer.
+
+So 8⁄9 times when they all give the same answer, they are honest.
