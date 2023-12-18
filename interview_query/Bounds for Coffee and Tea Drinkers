@@ -1,0 +1,240 @@
+A survey asked 100 respondents two questions:
+
+Do you like tea?
+Do you like coffee?
+70% of respondents said they liked coffee, and 80% of the respondents said they liked tea. Only 10% of respondents said they liked neither.
+
+Based on this survey, what are the upper and lower bounds for the proportion of the population that like tea and coffee?
+--------------------------------------------------------------------------------------------------------------------------------------------------
+Some standard notation: 
+�
+T is the event that a respondent likes tea, 
+�
+C is the event that a respondent likes coffee, and 
+�
+‾
+T
+  and 
+�
+‾
+C
+  are the events that a respond doesn’t like tea/coffee (the complement of 
+�
+T/
+�
+C)
+
+Let’s write down the information the question gives us:
+
+The sample size is 100
+�
+(
+�
+)
+=
+0.8
+P(T)=0.8
+�
+(
+�
+)
+=
+0.7
+P(C)=0.7
+�
+(
+�
+‾
+∩
+�
+‾
+)
+=
+0.1
+P( 
+T
+ ∩ 
+C
+ )=0.1
+We want to find 
+�
+(
+�
+∩
+�
+)
+P(T∩C) get a confidence interval for it, but we don’t have enough information to use the common formula for finding the union of two probabilities, which is
+
+�
+(
+�
+∪
+�
+)
+=
+�
+(
+�
+)
++
+�
+(
+�
+)
+−
+�
+(
+�
+∩
+�
+)
+P(T∪C)=P(T)+P(C)−P(T∩C)
+… or do we? De Morgan’s law tells us that the complement of the union of two events is the intersection of their complements.
+
+�
+∪
+�
+‾
+=
+�
+‾
+∩
+�
+‾
+T∪C
+ = 
+T
+ ∩ 
+C
+ 
+So we can use these two equations to find the percentage of people who like both tea and coffee as:
+
+�
+(
+�
+∩
+�
+)
+=
+�
+(
+�
+)
++
+�
+(
+�
+)
++
+[
+1
+−
+�
+(
+�
+‾
+∩
+�
+‾
+)
+]
+=
+0.8
++
+0.7
+−
+0.9
+=
+0.6
+P(T∩C)=P(T)+P(C)+[1−P( 
+T
+ ∩ 
+C
+ )]=0.8+0.7−0.9=0.6
+Now we can use the standard formula for a confidence interval for a proportion to get a reasonable lower and upper bound on the percentage
+
+�
+�
+(
+�
+^
+∣
+�
+)
+=
+�
+^
+±
+�
+�
+�
+^
+(
+1
+−
+�
+^
+)
+�
+CI( 
+p
+^
+​
+ ∣γ)= 
+p
+^
+​
+ ±Z 
+γ
+​
+  
+n
+​
+ 
+p
+^
+​
+ (1− 
+p
+^
+​
+ )
+​
+ 
+Since the question gives no specific specifications, we’ll take the standard confidence level of 
+�
+=
+0.95
+γ=0.95, in which case 
+�
+�
+Z 
+γ
+​
+  will be 1.96 (while usually you don’t have to calculate 
+�
+Z values by hand, the value of 1.96 for a 95% confidence interval is so standard that it wouldn’t hurt to memorize it).
+
+So finally, our bounds are:
+
+0.6
+±
+1.96
+⋅
+0.6
+⋅
+0.4
+100
+≈
+(
+0.553
+,
+0.647
+)
+0.6±1.96⋅ 
+100
+​
+ 
+0.6⋅0.4
+​
+ ≈(0.553,0.647)
