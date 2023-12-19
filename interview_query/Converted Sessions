@@ -1,0 +1,254 @@
+Let’s say there are two user sessions that both convert with probability 0.5.
+
+What is the probability that they both converted?
+
+Given that there are 
+�
+N sessions and they convert with probability 
+�
+q, what is the expected number of converted sessions?
+------------------------------------------------------------------------------------------------
+1.
+
+Logically, one can assume that the user sessions are independent since the question doesn’t provide any information on how the session of one user affects another and the two user sessions are separate experiments. Recall the probability of two independent events happened is:
+�
+(
+�
+∩
+�
+)
+=
+�
+(
+�
+)
+�
+(
+�
+)
+P(A∩B)=P(A)P(B)
+Let 
+�
+1
+C 
+1
+​
+  be the event that the first user session converts and 
+�
+2
+C 
+2
+​
+  be the event that the second user session converts
+�
+(
+�
+1
+∩
+�
+2
+)
+=
+�
+(
+�
+1
+)
+�
+(
+�
+2
+)
+=
+0.5
+⋅
+0.5
+=
+0.25
+P(C 
+1
+​
+ ∩C 
+2
+​
+ )=P(C 
+1
+​
+ )P(C 
+2
+​
+ )=0.5⋅0.5=0.25
+
+2.
+
+Every user session can be modeled as a Bernoulli random variable with success probability 
+�
+q. Call 
+�
+�
+C 
+i
+​
+  the random variable that the that the 
+�
+ith user session converts, thus 
+�
+(
+�
+�
+=
+1
+)
+=
+�
+P(C 
+i
+​
+ =1)=q. The expected value of 
+�
+�
+C 
+i
+​
+  is:
+�
+[
+�
+�
+]
+=
+0
+⋅
+(
+1
+−
+�
+)
++
+1
+⋅
+�
+=
+�
+E[C 
+i
+​
+ ]=0⋅(1−q)+1⋅q=q
+Recall that the operator 
+�
+E is linear, meaning for random variables 
+�
+A & 
+�
+B and 
+�
+∈
+�
+c∈R:
+�
+[
+�
+�
++
+�
+]
+=
+�
+�
+[
+�
+]
++
+�
+[
+�
+]
+E[cA+B]=cE[A]+E[B]
+So summing all of the 
+�
+�
+C 
+i
+​
+  up to 
+�
+�
+C 
+N
+​
+  gives us:
+�
+[
+∑
+�
+=
+1
+�
+�
+�
+]
+=
+∑
+�
+=
+1
+�
+�
+[
+�
+�
+]
+=
+∑
+�
+=
+1
+�
+�
+=
+�
+�
+E[ 
+i=1
+∑
+N
+​
+ C 
+i
+​
+ ]= 
+i=1
+∑
+N
+​
+ E[C 
+i
+​
+ ]= 
+i=1
+∑
+N
+​
+ q=Nq
+One could also see that the sum of 
+�
+n identical Bernoulli random variables all with success probability 
+�
+p follows a binomial distribution (Let’s say 
+�
+B) with parameter 
+�
+n and success probability 
+�
+p. The expected value of any binomial random variables is 
+�
+[
+�
+]
+=
+�
+�
+E[B]=np. Thus the expected number of total converted sessions would be 
+�
+�
+Nq.
