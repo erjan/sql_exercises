@@ -1,0 +1,123 @@
+Let’s say we’re given a biased coin that comes up heads 30% of the time when tossed.
+
+What is the probability of the coin landing as heads exactly 5 times out of 6 tosses?
+--------------------------------------------------------------------------------------------------------------------
+Let’s break down the prompt. We’re given two pieces of information in this scenario.
+
+Heads comes up 30% of the time in a biased coin.
+What’s the probability of exactly 5 heads out of 6 tosses.
+Given these parameters, we can immediately infer using the binomial distribution!
+
+We’re given two parameters in which in a binomial distribution there exists 
+�
+n independent experiments, each asking a yes–no question, and each with its own boolean-valued outcome: success/yes/true/one with probability 
+�
+p.
+
+�
+�
+�
+ℎ
+�
+�
+�
+(
+�
+=
+�
+)
+=
+(
+�
+�
+)
+�
+�
+(
+1
+−
+�
+)
+�
+−
+�
+mathbbP(X=k)=( 
+k
+n
+​
+ )p 
+k
+ (1−p) 
+n−k
+ 
+
+In this case, we can assume 
+�
+p, the probability, is 40% from the heads-tails/yes-no question, and 
+�
+n, is the six tosses that we’re making. The variable 
+�
+X is the number of heads that we want to predict the probability outcome of.
+
+Given these parameters we can now calculate the probability of by plugging in the variables. Notice that the first part of the equation represents n choose k which is equated to this:
+
+(
+�
+�
+)
+=
+�
+!
+�
+!
+(
+�
+−
+�
+)
+!
+( 
+k
+n
+​
+ )= 
+k!(n−k)!
+n!
+​
+ 
+
+Now calculating it out:
+
+�
+(
+�
+=
+5
+)
+=
+(
+6
+5
+)
+0.
+3
+5
+(
+1
+−
+0.3
+)
+6
+−
+5
+≈
+0.010206
+P(X=5)=( 
+5
+6
+​
+ )0.3 
+5
+ (1−0.3) 
+6−5
+ ≈0.010206
