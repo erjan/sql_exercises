@@ -1,0 +1,202 @@
+You’re drawing from a random variable that is normally distributed 
+�
+∼
+�
+(
+0
+,
+1
+)
+X∼N(0,1)  once per day.
+
+What is the expected number of days that it takes to draw a value that’s higher that 2?
+-------------------------------------------------------------------------------------------------------------------------------------
+Our random variable 
+�
+X has a normal distribution with mean 0 and variance 1. This is denoted 
+�
+(
+00
+,
+1
+)
+N(00,1) and is called the standard normal distribution.
+
+So the further a value is from our mean 0, the less likely it is to be drawn from our distribution. In our case, we want the probability that we draw a value greater than 2.
+
+We denote this probability 
+�
+(
+�
+>
+2
+)
+P(x>2) where x is a value drawn from our random variable 
+�
+X. In mathematics, it’s often easier to calculate the probability of an event occurring by first calculating the probability that it will not occur.
+
+The probability that we draw a number from our distribution is 100%. This is to say 
+�
+(
+draw 
+�
+)
+=
+1
+P(draw x)=1. Since it must be the case that 
+�
+≤
+2
+x≤2 or 
+�
+>
+2
+x>2, we can assert truthfully that:
+
+�
+(
+�
+>
+2
+)
+=
+1
+−
+�
+(
+�
+≤
+2
+)
+P(x>2)=1−P(x≤2)
+
+Why is this useful? As it turns out, there is a simple way to calculate 
+�
+(
+�
+≤
+2
+)
+P(x≤2). For any random variable 
+�
+V with values 
+�
+v, there exists a unique cumulative distribution function or CDF (denoted 
+�
+�
+(
+�
+)
+F 
+V
+​
+ (v) such that for any value 
+�
+t,
+�
+(
+�
+≤
+�
+)
+=
+�
+�
+(
+�
+)
+P(v≤t)=F 
+V
+​
+ (t)
+
+In our case, we can plug 2 into the CDF of the standard normal distribution to calculate 
+�
+(
+�
+≤
+2
+)
+P(x≤2).
+
+�
+(
+�
+≤
+2
+)
+=
+Φ
+(
+2
+)
+=
+0.97725
+P(x≤2)=Φ(2)=0.97725
+
+Then
+
+�
+(
+�
+>
+2
+)
+=
+1
+−
+0.97725
+=
+0.02275
+P(x>2)=1−0.97725=0.02275
+
+Now that we have the probability of drawing a value greater than 2, we want to find the expected number of days until we draw it.
+
+Think about a two sided coin. How many flips do we expect it to take until we flip heads? Intuitively, since there is a 1⁄2 chance of flipping heads, we expect it to take two flips.
+
+Similarly, if we pick a value of a six sided fair die, we might expect six rolls until we roll our chosen value. Each value has a 
+�
+=
+1
+/
+6
+p=1/6 chance of being rolled, and our expected number of rolls is 
+1
+/
+�
+=
+1
+/
+(
+1
+/
+6
+)
+=
+6
+1/p=1/(1/6)=6.
+
+Such is the case for any process with repeated selection and a constant probability of success. In our problem, we repeatedly select a value from 
+�
+X with constant probability of success 
+�
+=
+0.02275
+p=0.02275.
+
+So our expected number of draws until success is calculated as:
+
+1
+/
+�
+=
+1
+/
+(
+0.02275
+)
+=
+43.9
+1/p=1/(0.02275)=43.9
+
+Since we make one selection per day, and since we still don’t expect to have drawn (x > 2) by the 43rd day, we expect our process to take 44 days.
