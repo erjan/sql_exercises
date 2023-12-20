@@ -1,0 +1,305 @@
+Let’s say you have a function that outputs a random integer between a minimum value, 
+�
+N, and maximum value, 
+�
+M. 
+
+Now let’s say we take the output from the random integer function and place it into another random function as the max value with the same min value 
+�
+N. 
+
+What would the distribution of the samples look like?
+
+What would be the expected value?
+-----------------------------------------------------------------------------------------------------------------
+Let 
+�
+X be the result of the first run and 
+�
+Y be the result of the second run. Since the integer outputted is “random” and no additional information is given, we can assume all integers between and including 
+�
+N and 
+�
+M have an equal shot at being selected. Thus, 
+�
+X and 
+�
+Y are discrete uniform random variables with bounds 
+�
+N & 
+�
+M and 
+�
+N & 
+�
+X respectively. From the definition of the conditional probability mass function (pmf) of two discrete random variables, we know:
+�
+�
+∣
+�
+(
+�
+)
+=
+�
+�
+,
+�
+(
+�
+,
+�
+)
+�
+�
+(
+�
+)
+p 
+Y∣X
+​
+ (y)= 
+p 
+X
+​
+ (x)
+p 
+X,Y
+​
+ (x,y)
+​
+ 
+Rearranging we get:
+�
+�
+∣
+�
+(
+�
+)
+⋅
+�
+�
+(
+�
+)
+=
+�
+�
+,
+�
+(
+�
+,
+�
+)
+p 
+Y∣X
+​
+ (y)⋅p 
+X
+​
+ (x)=p 
+X,Y
+​
+ (x,y)
+The pmf of a discrete uniform random variable 
+�
+D with min value 
+�
+a and max value 
+�
+b is:
+�
+�
+(
+�
+)
+=
+1
+�
+−
+�
++
+1
+p 
+D
+​
+ (d)= 
+b−a+1
+1
+​
+ 
+The joint pmf of 
+�
+X and 
+�
+Y would be:
+�
+�
+,
+�
+(
+�
+,
+�
+)
+=
+1
+(
+�
+−
+�
++
+1
+)
+(
+�
+−
+�
++
+1
+)
+p 
+X,Y
+​
+ (x,y)= 
+(x−N+1)(M−N+1)
+1
+​
+ 
+
+2.
+
+Since we don’t know what 
+�
+N and 
+�
+M are explicitly, we can’t calculate the expected value join the joint pmf. However, we can use the *law of iterated expectation_, which states that for two random variables 
+�
+X and 
+�
+Y:
+�
+[
+�
+]
+=
+�
+[
+�
+[
+�
+∣
+�
+]
+]
+E[Y]=E[E[Y∣X]]
+The mean of a discrete uniform random variable 
+�
+D with bounds 
+�
+a and 
+�
+b is
+�
+[
+�
+]
+=
+�
++
+�
+2
+E[D]= 
+2
+a+b
+​
+ 
+Thus,
+�
+[
+�
+∣
+�
+]
+=
+�
++
+�
+2
+E[Y∣X]= 
+2
+X+N
+​
+ 
+So
+�
+[
+�
+]
+=
+�
+[
+�
+[
+�
+∣
+�
+]
+]
+=
+�
+[
+�
++
+�
+2
+]
+=
+�
+2
++
+�
+[
+�
+]
+2
+=
+�
+2
++
+�
++
+�
+4
+=
+3
+�
++
+�
+4
+E[Y]=E[E[Y∣X]]=E[ 
+2
+X+N
+​
+ ]= 
+2
+N
+​
+ + 
+2
+E[X]
+​
+ = 
+2
+N
+​
+ + 
+4
+N+M
+​
+ = 
+4
+3N+M
+​
