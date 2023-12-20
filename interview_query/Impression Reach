@@ -1,0 +1,249 @@
+Let’s say we have a very naive advertising platform. There is an audience of size A and a limited amount of impressions B.
+
+Each of the impressions goes to just one user, defined at random. Every user in the audience has the same random chance of receiving each impression. 
+
+Compute the probability that a user has exactly 0 impressions. 
+
+What’s the probability that every person has at least 1 impression?
+--------------------------------------------------------------------------------------------------------------
+Question 1: Compute the probability that a user has exactly 0 impressions
+
+We can solve this question using the binomial distribution.
+
+The binomial distribution with parameters 
+�
+n and 
+�
+p is the probability distribution of the number of successes in a sequence of n independent experiments with probability of success 
+�
+p:
+
+�
+(
+�
+=
+�
+)
+=
+(
+�
+�
+)
+�
+�
+(
+1
+−
+�
+)
+�
+−
+�
+P(X=k)=( 
+k
+n
+​
+ )p 
+k
+ (1−p) 
+n−k
+ 
+
+Is there a way to reformulate our problem using that distribution?
+
+Let’s say we want to know the probability that some user named John has exactly 0 impressions.
+
+We can think of each experiment as the definition of which user will be shown a specific impression, with success meaning that the impression is shown to John in particular.
+
+By doing this, the binomial distribution will tell us the probability distribution for the number of impressions John has.
+
+We know that each impression has an equally likely chance of being shown to each user. Therefore, the probability that each impression is received by John is one divided by the size of the audience, defining our probability of success:
+
+�
+=
+1
+/
+�
+p=1/A
+
+The number of experiments 
+�
+n is equal to 
+�
+B because each of the independent experiments corresponds to selecting which user will have each one of the impressions. Therefore, the number of experiments will be equal to the number of impressions.
+
+Now we can compute our formula. Since we’re measuring 0 successes, we can plug and play 0 for our 
+�
+k value.
+
+Then we can simplify our expression because
+
+(
+�
+0
+)
+=
+�
+!
+0
+!
+(
+�
+−
+0
+)
+!
+=
+�
+!
+�
+!
+=
+1
+( 
+0
+n
+​
+ )= 
+0!(n−0)!
+n!
+​
+ = 
+n!
+n!
+​
+ =1
+
+and
+
+�
+0
+=
+(
+1
+/
+�
+)
+0
+=
+1
+p 
+0
+ =(1/A) 
+0
+ =1
+
+So the probability that John receives no impressions is:
+
+1
+⋅
+1
+⋅
+(
+1
+−
+1
+�
+)
+�
+=
+(
+1
+−
+1
+�
+)
+�
+1⋅1⋅(1− 
+A
+1
+​
+ ) 
+B
+ =(1− 
+A
+1
+​
+ ) 
+B
+ 
+
+Question 2: What’s the probability that every person has at least 1 impression?
+
+Let 
+�
+I be the number of impressions each user receives.
+
+The probability of each user receiving at least one impression can be solved with our first answer.
+
+In fact, all problems that focus on the phrase “at least one” are solvable by knowing that the total probability is always 1.
+
+�
+(
+�
+>
+0
+)
++
+�
+(
+�
+=
+0
+)
+=
+1
+P(I>0)+P(I=0)=1
+
+so
+
+�
+(
+�
+>
+0
+)
+=
+1
+−
+�
+(
+�
+=
+0
+)
+P(I>0)=1−P(I=0)
+
+To find our answer, we just need to plug in our result for question 1:
+
+�
+(
+�
+>
+0
+)
+=
+1
+−
+�
+(
+�
+=
+0
+)
+=
+1
+−
+(
+1
+−
+1
+�
+)
+�
+P(I>0)=1−P(I=0)=1−(1− 
+A
+1
+​
+ ) 
+B
