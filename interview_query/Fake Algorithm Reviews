@@ -1,0 +1,268 @@
+Let’s say we’re trying to determine fake reviews on our products. 
+
+Based on past data, 98% reviews are legitimate and 2% are fake. If a review is fake, there is 95% chance that the machine learning algorithm identifies it as fake. If a review is legitimate, there is a 90% chance that the machine learning algorithm identifies it as legitimate.
+
+What is the percentage chance the review is actually fake when the algorithm detects it as fake?
+------------------------------------------------------------------------------------------------------------------------------------
+
+Let 
+�
+L be the event that a review is actually legitimate and 
+�
+I be the event that the review is identified as legitimate. We are told that
+�
+(
+�
+)
+=
+0.98
+,
+�
+(
+�
+�
+∣
+�
+�
+)
+=
+0.95
+,
+�
+(
+�
+∣
+�
+)
+=
+0.9
+P(L)=0.98,P(I 
+c
+ ∣L 
+c
+ )=0.95,P(I∣L)=0.9
+Recall Bayes’ Rule:
+�
+(
+�
+∣
+�
+)
+=
+�
+(
+�
+∣
+�
+)
+�
+(
+�
+)
+�
+(
+�
+)
+=
+�
+(
+�
+∣
+�
+)
+�
+(
+�
+)
+�
+(
+�
+∣
+�
+)
+�
+(
+�
+)
++
+�
+(
+�
+∣
+�
+�
+)
+�
+(
+�
+�
+)
+P(A∣B)= 
+P(B)
+P(B∣A)P(A)
+​
+ = 
+P(B∣A)P(A)+P(B∣A 
+c
+ )P(A 
+c
+ )
+P(B∣A)P(A)
+​
+ 
+Thus:
+�
+(
+�
+�
+∣
+�
+�
+)
+=
+�
+(
+�
+�
+∣
+�
+�
+)
+�
+(
+�
+�
+)
+�
+(
+�
+�
+∣
+�
+�
+)
+�
+(
+�
+�
+)
++
+�
+(
+�
+�
+∣
+�
+)
+�
+(
+�
+)
+P(L 
+c
+ ∣I 
+c
+ )= 
+P(I 
+c
+ ∣L 
+c
+ )P(L 
+c
+ )+P(I 
+c
+ ∣L)P(L)
+P(I 
+c
+ ∣L 
+c
+ )P(L 
+c
+ )
+​
+ 
+
+=
+�
+(
+�
+�
+∣
+�
+�
+)
+�
+(
+�
+�
+)
+�
+(
+�
+�
+∣
+�
+�
+)
+�
+(
+�
+�
+)
++
+[
+1
+−
+�
+(
+�
+∣
+�
+)
+]
+�
+(
+�
+)
+= 
+P(I 
+c
+ ∣L 
+c
+ )P(L 
+c
+ )+[1−P(I∣L)]P(L)
+P(I 
+c
+ ∣L 
+c
+ )P(L 
+c
+ )
+​
+ 
+
+=
+0.95
+⋅
+0.02
+0.95
+⋅
+0.02
++
+(
+1
+−
+0.9
+)
+⋅
+0.98
+= 
+0.95⋅0.02+(1−0.9)⋅0.98
+0.95⋅0.02
+​
+ 
+
+=
+0.162...
+=0.162...
