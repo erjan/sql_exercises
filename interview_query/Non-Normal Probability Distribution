@@ -1,0 +1,16 @@
+Explain how a probability distribution could not be normal and give an example scenario.
+------------------------------------------------------------------------------------------------------------
+
+Normal distributions are often use to model data collected from samples, such as the heights of students, rainfall over time in a town, or blood pressure in a group of patients. Normal distributions are used for these purposes because of their bell-shaped curve, which allows most observation to be centered around the mean of the distribution at the top of the curve. Note that the mean of a distribution need not be at the “peak” (technically, mode) of the distribution, but all of the distributions in this solution do have this feature.
+
+However, to model data that isn’t collected from a sample, or collected from a very small or irregular sample, the normal distribution doesn’t serve as the best possible model. One example where the normal distribution can fail is in modeling “time to failure” events, such as the lifespan of machinery.
+
+Unlike the normal distribution, the failure time of machinery tends to cluster to the mean failure time more rapidly and then slowly decays from then on out. Thus, the distribution to the “right” has more area under the curve, meaning it is more likely that failure time will be above the mean than below the mean. This is unlike the normal distribution, where areas to the left and right of the mean are equally “heavy” and thus equally likely. A better distribution to model time to failure would be the gamma distribution. You can see the two distributions plotted side by side belo
+
+gamma distribution vs normal distribution
+
+An additional consideration that might lead someone to not use a normal distribution is if data is non-continuous. “Continuous” means that there is no “smallest” unit that a variable can differ by. For example, think of rainfall. What is the next step after rainfall of 1 foot? 2 feet? But what about 1.1 feet? Or 1.01 feet? Or 1.0000000001 feet? We can always make the “step” after 1 foot smaller and smaller, so rainfall is a continuous variable.
+
+However, when we talk about the number of car crashes on a given day, it doesn’t make sense to say there were 1.1 car crashes, either there are 1 or 2 plane crashes, nothing in-between. We can then define a smallest “step” in the number of plane crashes, namely, 1. Thus, car crashes are a non-continuous (or “discrete”) variable.
+
+So if we wanted to model the number of car crashes on a given day, we wouldn’t want to use a continuous distribution like the normal or exponential distribution. Instead, we would want to use a discrete distribution, like the Poisson distribution for example.
