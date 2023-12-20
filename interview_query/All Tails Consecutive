@@ -1,0 +1,429 @@
+Let’s say you flip a fair coin 10 times.
+
+What is the probability that you only get three tails, but, all the tails happen consecutively?
+
+An example of this happening would be if the flips were HHHHTTTHHH.
+
+Bonus: What would the probability of getting only t tails in n coin flips (t ≤ n), requiring that the tails all happen consecutively?
+
+------------------------------------------------------------
+Let’s think about the results of our flips as a 10-character long string. This would be something like 
+�
+�
+�
+�
+�
+�
+�
+�
+�
+�
+HHHTHTHTHH. Because every character in the string has 2 possible options (
+�
+T or 
+�
+H), we have 
+2
+10
+2 
+10
+  possible results from our flips.
+
+For our result to have only three tails that all appear consecutively, we need only consider when the first 
+�
+T appears in the string representation of the flips. There are 8 possible positions for the first 
+�
+T (since it can’t be placed at the last or second-to-last position, as there wouldn’t be three 
+�
+Ts then):
+
+�
+�
+�
+�
+�
+�
+�
+�
+�
+�
+TTTHHHHHHH
+�
+�
+�
+�
+�
+�
+�
+�
+�
+�
+HTTTHHHHHH
+�
+�
+�
+�
+�
+�
+�
+�
+�
+�
+HHTTTHHHHH
+�
+�
+�
+�
+�
+�
+�
+�
+�
+�
+HHHTTTHHHH
+�
+�
+�
+�
+�
+�
+�
+�
+�
+�
+HHHHTTTHHH
+�
+�
+�
+�
+�
+�
+�
+�
+�
+�
+HHHHHTTTHH
+�
+�
+�
+�
+�
+�
+�
+�
+�
+�
+HHHHHHTTTH
+�
+�
+�
+�
+�
+�
+�
+�
+�
+�
+HHHHHHHTTT
+
+Thus, the desired probability is 
+8
+2
+10
+2 
+10
+ 
+8
+​
+ .
+
+Bonus:
+
+By the same logic as the regular answer, we have 
+2
+�
+2 
+n
+  possible results. Let’s consider the result where all 
+�
+t of the tails come at the end.
+
+What would be the index of the first 
+�
+T in the string representation? Well, you might think that it appears in the 
+(
+�
+−
+�
+)
+(n−t)th spot, but that would mean that the character in the 
+(
+�
+−
+�
+−
+1
+)
+(n−t−1)th spot is 
+�
+H. So with 
+(
+�
+−
+�
+−
+1
+)
+(n−t−1) heads and 
+�
+t tails, we would only have 
+(
+�
+−
+1
+)
+(n−1) flips! Thus the position of the first 
+�
+T would actually need to be 
+(
+�
+−
+�
++
+1
+)
+(n−t+1) when all tails are at the end.
+
+Now, as before, we can switch the index of the first 
+�
+T to any of the positions before 
+(
+�
+−
+�
++
+1
+)
+(n−t+1), so the desired probability is
+�
+−
+�
++
+1
+2
+�
+2 
+n
+ 
+n−t+1
+​
+Let’s think about the results of our flips as a 10-character long string. This would be something like 
+�
+�
+�
+�
+�
+�
+�
+�
+�
+�
+HHHTHTHTHH. Because every character in the string has 2 possible options (
+�
+T or 
+�
+H), we have 
+2
+10
+2 
+10
+  possible results from our flips.
+
+For our result to have only three tails that all appear consecutively, we need only consider when the first 
+�
+T appears in the string representation of the flips. There are 8 possible positions for the first 
+�
+T (since it can’t be placed at the last or second-to-last position, as there wouldn’t be three 
+�
+Ts then):
+
+�
+�
+�
+�
+�
+�
+�
+�
+�
+�
+TTTHHHHHHH
+�
+�
+�
+�
+�
+�
+�
+�
+�
+�
+HTTTHHHHHH
+�
+�
+�
+�
+�
+�
+�
+�
+�
+�
+HHTTTHHHHH
+�
+�
+�
+�
+�
+�
+�
+�
+�
+�
+HHHTTTHHHH
+�
+�
+�
+�
+�
+�
+�
+�
+�
+�
+HHHHTTTHHH
+�
+�
+�
+�
+�
+�
+�
+�
+�
+�
+HHHHHTTTHH
+�
+�
+�
+�
+�
+�
+�
+�
+�
+�
+HHHHHHTTTH
+�
+�
+�
+�
+�
+�
+�
+�
+�
+�
+HHHHHHHTTT
+
+Thus, the desired probability is 
+8
+2
+10
+2 
+10
+ 
+8
+​
+ .
+
+Bonus:
+
+By the same logic as the regular answer, we have 
+2
+�
+2 
+n
+  possible results. Let’s consider the result where all 
+�
+t of the tails come at the end.
+
+What would be the index of the first 
+�
+T in the string representation? Well, you might think that it appears in the 
+(
+�
+−
+�
+)
+(n−t)th spot, but that would mean that the character in the 
+(
+�
+−
+�
+−
+1
+)
+(n−t−1)th spot is 
+�
+H. So with 
+(
+�
+−
+�
+−
+1
+)
+(n−t−1) heads and 
+�
+t tails, we would only have 
+(
+�
+−
+1
+)
+(n−1) flips! Thus the position of the first 
+�
+T would actually need to be 
+(
+�
+−
+�
++
+1
+)
+(n−t+1) when all tails are at the end.
+
+Now, as before, we can switch the index of the first 
+�
+T to any of the positions before 
+(
+�
+−
+�
++
+1
+)
+(n−t+1), so the desired probability is
+�
+−
+�
++
+1
+2
+�
+2 
+n
+ 
+n−t+1
+​
