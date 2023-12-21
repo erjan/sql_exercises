@@ -1,0 +1,748 @@
+An animal appears normal if it has two normal genes or one normal and one mutated gene. If it has two mutated genes, it appears mutated. Any given animal has a 50% chance to contribute either of its genes to its offspring.
+
+Animals 
+�
+A and 
+�
+B are parents of 
+�
+C and 
+�
+D. 
+�
+C and 
+�
+D are parents of 
+�
+E. 
+�
+A and 
+�
+B both have one normal and one mutated gene. We know 
+�
+C and 
+�
+D both appear normal.
+
+What is the probability that 
+�
+D has one normal and one mutated gene given that 
+�
+E appears normal?
+-------------------------------------------------------------
+We will denote the genes of an animal 
+�
+Y by the pairings of 
+�
+μ, indicating a mutated gene, and 
+�
+ν, indicating a normal gene. For example, 
+�
+�
+�
+Y 
+νμ
+​
+  indicates that 
+�
+Y has one normal gene and one mutated gene, while 
+�
+�
+�
+Y 
+μμ
+​
+  indicates that both genes are mutated. Finally, 
+�
+�
+∗
+Y 
+ν∗
+​
+  will denote the event that 
+�
+Y looks normal, since 
+�
+Y would only need one normal gene to look normal.
+
+Do not be confused by the fact that the question says to condition on 
+�
+�
+∗
+E 
+ν∗
+​
+  specifically, we are actually given three pieces of information: 
+�
+�
+∗
+,
+�
+�
+∗
+,
+C 
+ν∗
+​
+ ,D 
+ν∗
+​
+ , and 
+�
+�
+∗
+E 
+ν∗
+​
+ . An interviewer would want use to use all of your prior knowledge whe considering the question, so we would like to find 
+�
+(
+�
+�
+�
+∣
+�
+�
+∗
+∩
+�
+�
+∗
+∩
+�
+�
+∗
+)
+P(D 
+νμ
+​
+ ∣C 
+ν∗
+​
+ ∩D 
+ν∗
+​
+ ∩E 
+ν∗
+​
+ ).
+
+For brevity we will call 
+(
+�
+�
+∗
+∩
+�
+�
+∗
+∩
+�
+�
+∗
+)
+=
+�
+(C 
+ν∗
+​
+ ∩D 
+ν∗
+​
+ ∩E 
+ν∗
+​
+ )=N.
+
+From the definition of conditional probability, we know:
+
+�
+(
+�
+�
+�
+∣
+�
+)
+=
+�
+(
+�
+∩
+�
+�
+�
+)
+�
+(
+�
+)
+P(D 
+νμ
+​
+ ∣N)= 
+P(N)
+P(N∩D 
+νμ
+​
+ )
+​
+ 
+
+But the definition of conditional probability also gives us a useful way of writing 
+�
+(
+�
+)
+P(N)
+
+�
+(
+�
+)
+=
+�
+(
+�
+�
+∗
+∣
+�
+�
+∗
+∩
+�
+�
+∗
+)
+�
+(
+�
+�
+∗
+)
+�
+(
+�
+�
+∗
+)
+P(N)=P(E 
+ν∗
+​
+ ∣C 
+ν∗
+​
+ ∩D 
+ν∗
+​
+ )P(C 
+ν∗
+​
+ )P(D 
+ν∗
+​
+ )
+
+�
+(
+�
+�
+∗
+∩
+�
+�
+∗
+)
+=
+�
+(
+�
+�
+∗
+)
+�
+(
+�
+�
+∗
+)
+P(C 
+ν∗
+​
+ ∩D 
+ν∗
+​
+ )=P(C 
+ν∗
+​
+ )P(D 
+ν∗
+​
+ ) since 
+�
+�
+∗
+C 
+ν∗
+​
+  and 
+�
+�
+∗
+D 
+ν∗
+​
+  are independent events.
+
+We have then, that:
+
+�
+(
+�
+�
+�
+∣
+�
+)
+=
+�
+(
+�
+�
+∗
+∣
+�
+�
+∗
+∩
+�
+�
+�
+)
+�
+(
+�
+�
+∗
+)
+�
+(
+�
+�
+�
+)
+�
+(
+�
+�
+∗
+∣
+�
+�
+∗
+∩
+�
+�
+∗
+)
+�
+(
+�
+�
+∗
+)
+�
+(
+�
+�
+∗
+)
+P(D 
+νμ
+​
+ ∣N)= 
+P(E 
+ν∗
+​
+ ∣C 
+ν∗
+​
+ ∩D 
+ν∗
+​
+ )P(C 
+ν∗
+​
+ )P(D 
+ν∗
+​
+ )
+P(E 
+ν∗
+​
+ ∣C 
+ν∗
+​
+ ∩D 
+νμ
+​
+ )P(C 
+ν∗
+​
+ )P(D 
+νμ
+​
+ )
+​
+ 
+
+We can express 
+�
+�
+∗
+C 
+ν∗
+​
+  as a weighted average of all of its possibilities
+
+�
+(
+�
+�
+∗
+∣
+�
+�
+∗
+∩
+�
+�
+�
+)
+=
+�
+(
+�
+�
+∗
+∣
+�
+�
+�
+∩
+�
+�
+�
+)
+�
+(
+�
+�
+�
+∣
+�
+�
+∗
+)
++
+�
+(
+�
+�
+∗
+∣
+�
+�
+�
+∩
+�
+�
+�
+)
+�
+(
+�
+�
+�
+∣
+�
+�
+∗
+)
+=
+1
+⋅
+1
+1
+⋅
+3
++
+3
+⋅
+2
+4
+⋅
+3
+=
+5
+6
+P(E 
+ν∗
+​
+ ∣C 
+ν∗
+​
+ ∩D 
+νμ
+​
+ )
+=P(E 
+ν∗
+​
+ ∣C 
+νν
+​
+ ∩D 
+νμ
+​
+ )P(C 
+νν
+​
+ ∣C 
+ν∗
+​
+ )+P(E 
+ν∗
+​
+ ∣C 
+μν
+​
+ ∩D 
+νμ
+​
+ )P(C 
+νμ
+​
+ ∣C 
+ν∗
+​
+ )
+= 
+1⋅3
+1⋅1
+​
+ + 
+4⋅3
+3⋅2
+​
+ = 
+6
+5
+​
+ 
+
+And do the same for 
+�
+�
+∗
+D 
+ν∗
+​
+ 
+
+�
+(
+�
+�
+∗
+∣
+�
+�
+∗
+∩
+�
+�
+∗
+)
+=
+∑
+�
+∈
+{
+�
+,
+�
+}
+�
+∈
+{
+�
+,
+�
+}
+�
+(
+�
+�
+∗
+∣
+�
+�
+�
+∩
+�
+�
+�
+)
+�
+(
+�
+�
+�
+∣
+�
+�
+∗
+)
+�
+(
+�
+�
+�
+∣
+�
+�
+∗
+)
+=
+1
+3
+⋅
+1
+3
+⋅
+1
++
+2
+3
+⋅
+2
+3
+⋅
+0.75
++
+2
+⋅
+1
+3
+⋅
+2
+3
+⋅
+1
+=
+8
+9
+P(E 
+ν∗
+​
+ ∣C 
+ν∗
+​
+ ∩D 
+ν∗
+​
+ )= 
+x∈{ν,μ}y∈{ν,μ}
+∑
+​
+ P(E 
+ν∗
+​
+ ∣C 
+νx
+​
+ ∩D 
+νy
+​
+ )P(C 
+νx
+​
+ ∣C 
+ν∗
+​
+ )P(D 
+νy
+​
+ ∣D 
+ν∗
+​
+ )
+= 
+3
+1
+​
+ ⋅ 
+3
+1
+​
+ ⋅1+ 
+3
+2
+​
+ ⋅ 
+3
+2
+​
+ ⋅0.75+2⋅ 
+3
+1
+​
+ ⋅ 
+3
+2
+​
+ ⋅1= 
+9
+8
+​
+ 
+
+Putting that all in we get:
+
+�
+(
+�
+�
+�
+∣
+�
+)
+=
+0.5
+⋅
+5
+6
+0.75
+⋅
+8
+9
+=
+0.625
+P(D 
+νμ
+​
+ ∣N)= 
+0.75⋅ 
+9
+8
+​
+ 
+0.5⋅ 
+6
+5
+​
+ 
+​
+ =0.625
