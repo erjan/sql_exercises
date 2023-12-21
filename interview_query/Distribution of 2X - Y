@@ -1,0 +1,159 @@
+Given that 
+�
+X and 
+�
+Y are independent random variables with normal distributions, what is the mean and variance of the distribution of 
+2
+�
+−
+�
+2X−Y when the corresponding distributions are 
+�
+∼
+�
+(
+3
+,
+4
+)
+X∼N(3,4) and 
+�
+∼
+�
+(
+1
+,
+4
+)
+Y∼N(1,4)?
+-----------------------------------------------------------------------------------------------------------
+Because the linear combination of the two independent normal random variables is a normal random variable, we can solve the first problem of the mean by just substituting the given values into the formula for the existing two means in the problem statement.
+
+For the two variables 
+�
+X and 
+�
+Y, the mean is calculated simply by:
+
+�
+[
+2
+�
+−
+�
+]
+=
+2
+�
+[
+�
+]
+−
+�
+[
+�
+]
+=
+5
+E[2X−Y]=2E[X]−E[Y]=5
+
+The variance however is calculated differently. The variance of 
+�
+�
++
+�
+�
+aX+bY is:
+
+Var
+[
+�
+�
++
+�
+�
+]
+=
+�
+2
+Var
+[
+�
+]
++
+�
+2
+Var
+[
+�
+]
++
+�
+�
+Cov
+(
+�
+,
+�
+)
+Var[aX+bY]=a 
+2
+ Var[X]+b 
+2
+ Var[Y]+abCov(X,Y)
+
+where 
+Cov
+(
+�
+,
+�
+)
+Cov(X,Y) is the covariance between 
+�
+X and 
+�
+Y. The covariance between 
+�
+X and 
+�
+Y is zero since they are independent from each other. That way we can calculate this out:
+
+Var
+[
+2
+�
+−
+�
+]
+=
+2
+2
+Var
+[
+�
+]
++
+(
+−
+1
+)
+2
+Var
+[
+�
+]
++
+(
+−
+2
+)
+⋅
+0
+=
+20
+Var[2X−Y]=2 
+2
+ Var[X]+(−1) 
+2
+ Var[Y]+(−2)⋅0=20
