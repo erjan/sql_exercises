@@ -1,0 +1,106 @@
+Given 
+�
+N samples from a uniform distribution 
+[
+0
+,
+�
+]
+[0,d], how would you estimate 
+�
+d?
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+What does a uniform distribution look like? Just a straight line over the range of values from 0 to d, where any value between 0 to 
+�
+d is equally likely to be randomly sampled. 
+
+So, let’s make this easy to understand practically. If we’re given 
+�
+N samples and we have to estimate what 
+�
+d is with zero context of statistics and based on intuition, what value would we choose?
+
+For example, if our 
+�
+N sample is 5 and our values are: (1,4,6,2,3), what value would we guess as d? Probably the max value of 6 right?
+
+But, let’s look at another example. Let’s say our 
+�
+N sample is 5 again and our values are instead: (20,30,28,26,16). Would our estimate still be the max value of 30?
+
+Intuitively, it doesn’t seem correct right? And that’s because if we assume 
+�
+d as 30, then that means these values are spanned from 0 to 30 but somehow all of the values sampled are above our projected median of 15.
+
+In the first example, all of our values were equally distributed from 0 to 6, while in this example, all of our values are skewed above the 50% percentile. Now, we can come up with a new estimator for 
+�
+d.
+
+One way to compute it would be that the average of a uniform distribution is in its middle. The two parameters of interest in a uniform distribution are its minimum and maximum values, as the entirety of its values are uniformly distributed between them. If d is the maximum and 0 is the minimum, half of d is its average.
+
+�
+(
+�
+)
+E(X) is the average, so
+
+�
+/
+2
+=
+�
+(
+�
+)
+⇒
+�
+=
+2
+∗
+�
+(
+�
+)
+d/2=E(X)⇒d=2∗E(X)
+
+How do we know how to choose between the two estimators? We have to ask the interviewer about the distribution of our 
+�
+N samples. For example, if we were to continue to sample from the uniform distribution and calculate the mean of the samples each time, seeing huge variations of the mean would tell us that the samples from our distribution are biased.
+
+However, if the mean eventually levels off at some 
+�
+N value of samples, then we can be increasingly confident in the estimator of 
+2
+�
+(
+�
+)
+2E(X).
+
+Simulated Data
+
+One way we can determine the validity of each one of these measurements is by plotting the actual estimators using simulated data. Try the code below and see which estimator is better as we increase the value of K from 0 -> 1000, 100000, or even 1 million.
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+def sample_random_normal(n = 100):
+    return np.array([np.array([max(j), 2*np.mean(j)]) for j in [np.random.uniform(0, n, size=i).astype(int) for i in range(1, 100)]])
+
+def repeat_experiment():
+    experiments = np.array([sample_random_normal() for _ in range(100)])
+    return experiments.mean(axis = 0)
+
+result = repeat_experiment()
+df = pd.DataFrame(result)
+df.columns = ['max_value', '2*mean']
+df['k'] = range(1, 100)
+df['actual_value'] = 100
+df['max_value-actual-value'] = df['max_value'] - df['actual_value']
+df['2*mean-actual-value'] = df['2*mean'] - df['actual_value']
+plt.plot(df['k'], df['max_value'], linestyle='solid', label='max_value_estimate')
+plt.plot(df['k'], df['2*mean'], linestyle='dashed', label ='2*mean estimate')
+plt.legend()
+plt.show()
