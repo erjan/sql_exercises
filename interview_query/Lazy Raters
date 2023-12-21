@@ -1,0 +1,110 @@
+Netflix has hired people to rate movies.
+
+Out of all of the raters, 80% of the raters carefully rate movies and rate 60% of the movies as good and 40% as bad. The other 20% are lazy raters and rate 100% of the movies as good.
+
+Assuming all raters rate the same amount of movies, what is the probability that a movie is rated good?
+-------------------------------------------------------------------------------------------------------------------
+Let the value 
+�
+G be the event a movie is rated as ‘Good’. Then, let’s set 
+�
+(
+�
+)
+P(G) as the probability of that event.
+
+We’re given both prior probabilities and event probabilities. When given prior probabilities always think about conditional probabilities. Let’s split up the prior from the event to then formulate an equation.
+
+The prior probabilities are:
+
+Given the rater is careful: 60% are rated good
+Given the rater is lazy: 100% are good
+Let’s formulate those probabilities as:
+
+�
+(
+�
+∣
+Careful
+)
+=
+0.6
+P(G∣Careful)=0.6
+
+�
+(
+�
+∣
+Lazy
+)
+=
+1
+P(G∣Lazy)=1
+
+Now the event probabilities:
+
+�
+(
+Careful
+)
+=
+0.8
+P(Careful)=0.8
+�
+(
+Lazy
+)
+=
+0.2
+P(Lazy)=0.2
+
+Cool, now we know there are two events in which together the probability will be good. We can then calculate 
+�
+(
+�
+)
+P(G) by multiplying the prior times the event probabilities and adding them together.
+
+�
+(
+�
+)
+=
+�
+(
+�
+∣
+Careful
+)
+�
+(
+Careful
+)
++
+�
+(
+�
+∣
+Lazy
+)
+�
+(
+Lazy
+)
+P(G)=P(G∣Careful)P(Careful)+P(G∣Lazy)P(Lazy)
+
+�
+(
+�
+)
+=
+0.6
+⋅
+0.8
++
+1
+⋅
+0.2
+=
+0.68
+P(G)=0.6⋅0.8+1⋅0.2=0.68
