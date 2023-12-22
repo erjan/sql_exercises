@@ -1,0 +1,18 @@
+Let’s say you’re working with survey data sent in the form of multiple choice questions.
+
+How would you test if survey responses were filled at random by certain individuals, as opposed to truthful selections?
+-----------------------------------------------------------------------------------------------------------------------------
+Let’s think about what models randomness. In abstraction this wouldn’t make sense out of context. What does randomness look visualized? Makes no sense.
+
+But within the context of survey completion times, one thing we can think about is what makes a survey completed truthfully and what’s the exact opposite of that?
+
+Let’s think about solving this problem by visualizing distributions. We are tasked with trying to determine the difference between what we’re assuming as two differing populations: truthful and random. This means we should be able to visualize some sort of visible kind of differentiation like we would be building a classifier looking for features of differentiation.
+
+One strategy is to look at the feature of survey response completion times. How long did it take the survey responders to finish the survey? If you plot the distribution of survey response completion times are there outliers that finished it in impossibly fast time? Is the distribution itself uniform or bimodal?
+
+1. If the distribution is bimodal that indicates that there exists two cohorts of users where one population may be filling the values at random as opposed to truthful.
+2. If the distribution is uniform, that indicates more truthful selections given a close mean or median of response values. If the uniform distribution has a long tail on the left, that would display outliers in the form of individuals quickly filling out the data in random.
+
+Another feature could be plotting the distribution of the selection inputs for each question. Since the survey selections are multiple choice and the value selected for all question is the first selection, then we can deduce that the questions aren’t filled at a regular normal distribution.
+
+We could plot this by looking at the selection as a percentage of the total. We would plot five distributions, each one being the percentage of the total for each multiple choice ranking. The outliers skewed on the right would indicate the favorability of that selection input.
