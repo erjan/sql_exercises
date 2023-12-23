@@ -1,0 +1,19 @@
+What is an unbiased estimator and can you provide an example for a layman to understand?
+--------------------------------------------------------------------------------------------------
+For these types of statistics questions, they are not as simple as just reading the definition and repeating it back to the interviewer. Companies and interviewers are looking to see if you understand the concepts. Many times the best way to examine this is by finding out if you can demonstrate and explain the concepts to someone that doesn’t understand statistics or is not technical.
+
+Let’s first define what exactly is an unbiased estimator and then work on providing the example. An unbiased estimator is an accurate statistic that is used to approximate a population parameter. A statistic in this case would be a piece of data that defines a population in some way. For example, the mean and median of a population.
+
+Simplifying it more, the approximation of a population parameter means we use this estimator, or statistic, to effectively measure the same statistic on the entire population. If we use the mean as an example, then the unbiased estimator is the sample mean being equivalent to the population mean. If we overestimate or underestimate the mean value, then the mean of the difference between the sample mean and the population mean is the bias.
+
+Now let’s go into our layman example. Let’s paint a picture to the interviewer that we want to figure out how many people will vote for the democratic or republican presidential candidate. We can’t survey the entire voting eligible population of over 100 million, so we take a sample of around 10000 people over the phone. We find out that 50% are going to vote for the democratic presidential candidate. Is this an unbiased estimator? It depends. How are we taking our sample?
+
+Are our questions unbiased? Are we prefacing the candidates policies before we ask how the person is going to vote?
+
+Did we sample correctly? Is everyone on our phone list a good representative list of the total voting population of the United States of America?
+
+Does asking them over the phone bias the sample to only people that own phoes? Is there a large percentage of the US that does not own a phone and still votes? Is there bias in people that will take time out of their day to return a phone call?
+
+By listing out the factors that can lead to bias, we can theorize with the interviewer ways to counteract these biases to make our estimator more unbiased. For example, we could say that instead of reaching out over the phone, we could sample people physically as they are walking to the polls.
+
+While there is no such thing as a perfect unbiased estimator, by listing out these examples and discussing the trade-offs, we’re demonstrating our knowledge of understanding what an unbiased estimator actully is! Try listing out different examples when preparing for a question like this and discussing the trade-offs.
