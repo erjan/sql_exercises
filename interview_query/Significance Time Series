@@ -1,0 +1,22 @@
+Let’s say you have a time series dataset grouped monthly for the past five years.
+
+How would you find out if the difference between this month and the previous month was significant or not?
+----------------------------------------------------------------------------------------------------------------------
+
+As stated, the dataset is grouped monthly, and for the purposes of this answer, let’s say that the data is the number of unique visitors to said website. This means that at the end of each month, the number of unique visitors from every day that month is summed up and reported.
+
+We are interested in whether the difference between this month and the previous month is significant. To test this, we can take all the differences in unique visitors between every month and the month after it (e.g. January and February of Year 1, February and March of Year 2, etc.). 
+
+This will result in a population of differences in unique visitors. We can then take the month we are interested in and run a t-test against the sample that we have. This sample size is large enough to extract useful information from it. Once you get the output t-statistic, you can then calculate your p-value. If the p-value is less than your desired threshold, then the difference you are interested in is in fact statistically significant.
+
+However, one aspect we should watch out for are confounders that may affect the overall trendline in the full dataset. One major variable that affects most time series datasets is seasonality, and you can adjust each month by normalizing (or dividing) the month’s value by a factor proportional to the effect of seasonality. We can also quantify seasonality by looking at year over year change to see if the seasonal effect is strong or non-existent. 
+
+For example, if more users tend to go on the website in the summertime, you need to adjust May to August months accordingly. Furthermore, what if there are campaigns that have increased traffic to the website over the past few years? Or what if our business has generally done better year over year? 
+
+This would be the effect of trend on time series. One way we can account for trend is to normalize it like seasonality. But this wouldn’t work out perfectly if growth had an interaction effect with seasonality. 
+
+One method that we can run to adjust for seasonality and trend is to run forecasts each month on what our next month’s expected numbers are. This way, we can compare our forecasts against our actual numbers. Our forecasts will have to be tuned to see if there is a linear relationship in the historical data. If there isn’t, we would use something more like a three month moving average method vs a traditional linear ARIMA. 
+
+Lastly, we should set up a marginal variance on our expectation between our forecast and our actual. This threshold of variance should be based on the business. As if it were revenue, we wouldn’t want more than, let’s say, a 5% change in our forecasts vs expected, given that it could influence bigger problems with cash-flow and expenses. 
+
+However, if it’s less directly related to the business, such as an engagement metric or a smaller product offering revenue, then we can be fine with a larger change in the variance and set the threshold higher.
