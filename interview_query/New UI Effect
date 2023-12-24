@@ -1,0 +1,23 @@
+Let’s say we’re testing a new UI with the goal to increase conversion rates. We test it by giving the new UI to a random subset of users.
+
+The test variant wins by 5% on the target metric. What would you expect to happen after the new UI is applied to all users? Will the metric actually go up by ~5%, more, or less?
+
+Note: Assume there is no novelty effect.
+---------------------------------------------------------------------------------------------------------------
+
+Let’s tackle this question by looking at some clarifications on the AB test. We generally always start at a major information disadvantage for most interview questions. This one is no different. 
+
+We can first debug the AB test by checking for experiment validity.
+
+How long did the test run for? Can we be sure that the test would generalize to the population outside of the time when we ran the test? If the test ran on weekends only, we would need to check if the traffic at that time differs from traffic at other times of the week.
+What are the confidence intervals for the test? If they are narrow, we can make some good assumptions about what to expect versus if they are wider. We also need to understand the significance. 5% is a pretty significant margin but not so much when there are only 100 users in each test bucket.
+Is there an impact analysis or assumptions of heterogeneity on our users? What if the test lowers conversion for a subset of users while it overall increases conversion? Digging into the data and understanding the sample size of each population of users will help understand if the test made overall significant changes as a whole or only within certain populations. 
+Is the AB test sample population a representative sample of the whole? Let’s say we decide to only AB test new users coming through to the UI to keep the experience the same for old users. If we launch the new UI due to the increase in effect, are we then only going to launch the new UI to new users from then on? We won’t be able to determine what the effect would be like to the old users given we didn’t test it, so the sample population has to be similar to the whole.
+Are there any interactions with other experiments? Is the effect being manipulated by other AB tests and variations that may have occurred during the change? 
+Given we have laid out our questions to the interviewer, depending on how the questions above go, we would be able to state a conclusion on whether the metric will actually go up or down.
+
+We can add a final caveat with the idea that external factors can also push the overall metric down, even if the experiment can be successful in pushing it up.
+
+Lastly we can also not only focus on the actual result, but also think about the effect size set at the beginning of the test. For example, if we set our minimum detectable effect size to be 2%, based on our experiment, we can conclude that the actual effect size will be within the confidence interval 95% of the time. In this case the actual result of the test is less relevant.
+
+Thanks go out to mango_fruit and jim for their contributions to this solution.
