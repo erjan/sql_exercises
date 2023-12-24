@@ -1,0 +1,26 @@
+Suppose that Facebook (Meta) wishes to implement an autocomplete feature for its search bar that will help users to direct to a page where they will get the result they were looking for.
+
+For example: Instead of writing the whole word, by typing just “ap” a person should get in the autocomplete menu the desired word and then when he/she selects that word it will direct them to any desired page/group/person.
+
+How do you design the auto-complete and how you measure the effectiveness
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Clarifying Questions
+What is the main goal of autocomplete ? give users a seamless experience and convenience to use FB?
+
+FB Goal > increase engagement
+
+User Journey
+comes to a certain page, goes to the search bar and start typing > chose the one he wanted and proceed
+
+Method formulate a method to see where a user is, and get the context and based on the letter he starts typing, based on historical data, suggest most searched words with that as they type
+if they are on FB timeline, show friends, if they are on groups, show posts, if they are on their own profile, show relevant posts and so on build an algorithm to see the context of the page and then match and show the highest probable one take feedback based on their clicks, or the rank, and then use it to get a better-trained model
+
+Measure
+% of users using autocomplete
+rank of the algorithm based on what they click
+% of users used once using again the second time in a week/biweekly
+new users vs old users
+what sort of users are using
+mobile/desktop and android/ios
+search aborted in between due to wrong suggestions
