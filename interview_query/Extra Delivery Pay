@@ -1,0 +1,18 @@
+Let’s say you work at a food delivery company.
+
+How would you measure the effectiveness of giving extra pay to delivery drivers during peak hours to meet the demand from consumers?
+-------------------------------------------------------------------
+
+Clarifying question: location City, service type, current pay structure, root cause of this offering, is this extra pay 100% to dasher, what’s the goal peak hour: traffice peak hour or ordering peak hour Assumptions: restaurant to customer, currently is a flat fee structure, current problem is there’s a shortage of dashers during peak hours, especially orders with long distance. the extra charge will be 100% payable to dasher peak hour - ordering peak hour Analyze userflow: restaurant: might be affected if not centrally located and dasher don’t like to delivery from. customer: painpoint: long wait during peak hours, especially from restaurants that are far away, many would give up ordering during peak hours dasher: prefer short distance deliveries,especially during peak hours where they could earn more from multiple orders rather than delivery on a few long distance orders.
+
+There are two problems here: distance of order and volume of order. While there are some interactions (if an order is long distance, dasher will be MORE unlikely to delivery from during peak hour). I won’t focus my analysis on addressing the distance issue but rather the high volume during peak hour issue.
+
+Hypothesis: by charging an extra pay (2.99) during peak hours which is 100% payable to dashers, this will incrase customer ordering during peak hours
+
+Structure of A/B test： sample size, duration 2 weeks, peak hour defined as 11-1pm and 5-7pm, daily, as many people order for lunch. This time period should avoid holidays. method: instead of randomizing on every single order, this should randomizing by dashers: the dasher that’s assigned to treatment will be in treatment for the following two weeks. metric: average daily order volume additional metric: average order value, average delivery time, average tip guardrail measure: average order volume & value OUTSIDE peak hours(so dashers don’t JUST delivery during peak hours) customer churn rate
+
+significance level 0.05
+
+Other things to consider: spillover effect, practical significance
+
+Validity: check for randomness, hold-back AB test(won’t recommend)
