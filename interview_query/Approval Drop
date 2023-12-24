@@ -1,0 +1,126 @@
+Capital approval rates have gone down for our overall approval rate. Let’s say last week it was 85% and the approval rate went down to 82% this week which is a statistically significant reduction.
+
+The first analysis shows that all approval rates stayed flat or increased over time when looking at the individual products:
+
+Product 1: 84% to 85% week over week
+Product 2: 77% to 77% week over week
+Product 3: 81% to 82% week over week
+Product 4: 88% to 88% week over week
+What could be the cause of the decrease?
+--------------------------------------------------------------------------------------------------------------------------------
+
+
+This would be an example of Simpson’s Paradox which is a phenomenon in statistics and probability. Simpson’s Paradox occurs when a trend shows in several groups but either disappears or is reversed when combining the data.
+
+In this specific example, each product’s approval rates are Binomially distributed with count 
+�
+�
+n 
+i
+​
+  and probability 
+�
+�
+p 
+i
+​
+ . Then the mean for each distribution would be 
+�
+�
+⋅
+�
+�
+n 
+i
+​
+ ⋅p 
+i
+​
+ . Below is the formula for calculating the weighted average for approval rates. 
+
+We can define our variables as:
+
+�
+=
+1
+,
+2
+,
+3
+,
+4
+i=1,2,3,4
+
+�
+=
+overall approval rate
+p=overall approval rate
+
+�
+�
+=
+approval rate for product 
+�
+p 
+i
+​
+ =approval rate for product i
+
+�
+0
+=
+0
+p 
+0
+​
+ =0
+
+�
+=
+overall number of applications
+n=overall number of applications
+
+�
+�
+=
+number of applications for product 
+�
+n 
+i
+​
+ =number of applications for product i
+
+∑
+�
+=
+1
+4
+�
+�
++
+�
+�
+−
+1
+�
+=
+�
+i=1
+∑
+4
+​
+  
+n
+n 
+i
+​
+ +p 
+i−1
+​
+ 
+​
+ =p
+
+What most likely occurred is that Product 2 had more applications compared to the rest of the products in week 2.
+
+This resulted in a heavier weighting of Product 2’s approval rate in the weighted average. Since Product 2 has a much lower approval rate compared to the others the heavier weighting resulted in an overall decrease in approval rates although each approval rate stayed consistent or rose.
