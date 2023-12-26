@@ -1,0 +1,14 @@
+In an A/B test, how can you check if assignment to the various buckets was truly random?
+
+--------------------------------------------------------------------------------------------------------------------------------------
+Let’s list out multiple methods for determining randomization. Our goal is to be able to run a t-test on two populations and determine no difference between the groups in the bucketing that is not related to the A/B test. But analyzing randomization also depends on what kind of A/B test is being run.
+
+For example, if we were A/B testing a landing page, we could look at the distribution of traffic from different marketing channels. Does the traffic from variant A look the same as the traffic coming in for variant B? If variant A traffic is primarily from Facebook and variant B from Google search, then we know that there’s a bias or a bug in the traffic allocation.
+
+In other examples of AB testing features, this would not apply. For example, let’s pretend we’re looking at releasing an A/B test to test a new messaging feature on a chat app. Here, we can’t look at traffic unless it’s from determining the pathways that the user got to the chat app.
+
+Instead, we can analyze the user group populations. If we know attributes about the users, then we can analyze the attributes to understand if each variant has randomly distributed values of the attributes.
+
+For example, if we look at variant A and see 50⁄50 men and women in our user group, but variant B has 80⁄20 men and women, then we can assume there is some bias in the bucketing. This can be applied to other attributes as well such as geography and demographics, device type, and more.
+
+The last thing we could do is compare distributions of metrics that are not related to experiment intended effects. If we go back to the chat app example, let’s say that the A/B test is intended to measure the conversion rate of users messaging one another. We could look at different metrics amongst the variants that have nothing to do with messaging such as time spent on the landing page, number of purchases that each user made, etc. That way, if we see these distributions as being normal or the same across the variants, we know that there isn’t anything affecting proper randomization.
