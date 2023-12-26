@@ -1,0 +1,85 @@
+You are testing hundreds of hypotheses with many t-tests. What considerations should be made?
+--------------------------------------------------------------------------------------------------------------
+
+The most concerning consideration would be that running multiple 
+�
+t-tests exponentially increases the probability of getting false positives (also called “type I errors”). “Exponentially” here is not a place-holder for “a lot.” If each test has false-positive probability 
+�
+ψ, the probability of never getting a false positive in 
+�
+n many tests is 
+(
+1
+−
+�
+)
+�
+(1−ψ) 
+n
+ , which clearly tends to zero as 
+�
+→
+∞
+n→∞.
+
+There are two main approaches that one can consider in this situation:
+
+Use a correction method, such as the Bonferroni correction
+
+Use an 
+�
+F-test instead
+
+Let’s go over the description, use case, and disadvantages of each method.
+
+Correction methods are modifications to the significance level that attempt to “correct” for the fact that multiple tests are being run. Traditionally, the most common type of correction is the Bonferroni correction, which scales with the reciprocal of the number of tests being conducted. So, if we want to run 
+�
+n many tests with at a significance level of 
+�
+α, the Bonferroni correction tells us that we should run our tests with a modified significance level of 
+(
+�
+/
+�
+)
+(α/n). The good thing about this correction is that at it’s worse, when all the hypotheses are in fact false positives, the effective correction is still at most 
+�
+α, so the correction is always guaranteed to be at worst just as bad as using 
+�
+α itself.
+
+The 
+�
+F-test is an alternative to the 
+�
+t-test when making multiple comparisons. In contrast to the 
+�
+t-test, the 
+�
+F-test makes comparisons “in one go”, eliminating the need to worry about a correction.
+
+The main disadvantage of comparison methods is that while they decrease the false positive rate, they also increase the false negative (or “type II error”) rate. This can be problematic for situations where giving a false positive is much preferable to giving a false negative. For example, in healthcare, false-positive detection of disease may cause concern until more tests are run, but a false negative could be potentially fatal. The 
+�
+F-test does not have this flaw, since it considers all comparisons at once.
+
+In contrast, the main disadvantage of the 
+�
+F-test is that it can only detect a situation where the null hypotheses would be rejected in multiple 
+�
+t-tests. For example, if we are comparing the means between 
+�
+n many groups, an 
+�
+F-test on the same data would tell us if there is a difference in mean between at least two groups. But, the 
+�
+F-test can not tell us how much they differ, if the difference is positive or negative, or even which two groups out of the 
+�
+n-many groups do, in fact, differ. In fact, the 
+�
+F-test can not even tell us how many groups differ from each other in a one-on-one comparison, only if there is one such case of this happening. Clearly, this is very problematic if we want to know about the specifics of the relationship between two groups. In contrast, comparison methods do not have any restrictions on how the 
+�
+t-tests can be defined and provide a meaningful way to check which specifics tests were statistically significant.
+
+It should be noted, however, that this doesn’t make the 
+�
+F-test useless. There are times when one is only interested if the hypotheses under study are significant as a whole, such as computing the validity of a regression model.
