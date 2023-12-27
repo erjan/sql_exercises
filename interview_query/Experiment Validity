@@ -1,0 +1,36 @@
+Let’s say that your company is running a standard control and variant AB test on a feature to increase conversion rates on the landing page. The PM checks the results and finds a .04 p-value.
+
+How would you assess the validity of the result?
+-------------------------------------------------------------------------------------------------------------------------------------------------
+It is always important to clarify assumptions about the question upfront. In this particular question, clarifying the context of how the AB test was set up and measured will specifically draw out the solutions that the interviewer wants to hear.
+
+If we have an AB test to analyze, there are two main ways in which we can look for invalidity. We could likely re-phrase the question to: How do you set up and measure an AB test correctly?
+
+Let’s start out by answering the first part of figuring out the validity of the setup of the AB test.
+
+1. How were the user groups separated?
+
+Can we determine that the control and variant groups were sampled accordingly to the test conditions? If we’re testing changes to a landing page to increase conversion, can we compare the two different users in the groups to see different metrics in which the distributions should look the same?
+
+For example, if the groups were randomly bucketed, does the distribution of traffic from different attribution channels still look similar or is the variant A traffic channel coming primarily from Facebook ads and the variant B from email? If testing group B has more traffic coming from email, then that could be a biased test.
+
+2. Were the variants equal in all other aspects?
+
+The outside world often has a much larger effect on metrics than product changes do. Users can behave very differently depending on the day of the week, the time of year, the weather (especially in the case of a travel company like Airbnb), or whether they learned about the website through an online ad or found the site organically.
+
+If the variants A’s landing page has a picture of the Eiffel Tower and the submit button on the top of the page, and variant B’s landing page has a large picture of an ugly man and the submit button on the bottom of the page, then we could get conflicting results based on the change to multiple features.
+
+Measurement
+
+Looking at the actual measurement of the p-value, we understand that industry standard is .05, which means that 19 out of 20 times that we perform that test, we’re going to be correct that there is a difference between the populations. However, we have to note a couple of things about the test in the measurement process.
+
+What was the sample size of the test?
+Additionally, how long did it take before the product manager measured the p-value?
+Lastly, how did the product manager measure the p-value and did they do so by continually monitoring the test?
+If the product manager ran a T-test with a small sample size, they could very well easily get a p-value under 0.05. Many times, the source of confusion in AB testing is how much time you need to make a conclusion about the results of an experiment.
+
+The problem with using the p-value as a stopping criterion is that the statistical test that gives you a p-value assumes that you designed the experiment with a sample and effect size in mind. If we continuously monitor the development of a test and the resulting p-value, we are very likely to see an effect, even if there is none. The opposite error is also common when you stop an experiment too early before an effect becomes visible.
+
+The number one most important reason is that we are performing a statistical test every time you compute a p-value and the more you do it, the more likely you are to find an effect.
+
+How long should we recommend an experiment to run for then? To prevent a false negative (a Type II error), the best practice is to determine the minimum effect size that we care about and compute, based on the sample size (the number of new samples that come every day) and the certainty you want, how long to run the experiment for, before starting the experiment.
