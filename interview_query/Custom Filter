@@ -1,0 +1,30 @@
+Let’s say that you work as a data scientist for Snapchat.
+
+Last year, the company partnered with a well-known fast-food franchise to generate a custom filter on Snapchat intended to drive business to the fast-food franchise. The filter was available to users for a week.
+
+How would you use data to convince the same fast-food franchise that they should purchase another custom filter this year?
+---------------------------------------------------------------------------------------------------------------------------------------------
+It would be great to conduct a funnel analysis, specifically looking at insights from these key observations-
+
+Number of users putting up a story with the restaurant filter
+
+% users putting up a story with the restaurant filter near an actual restaurant
+
+Global # of impressions of the filter-
+
+a. % CTR on stories having that filter via map b. # of Recruits on the filter
+
+Definition of recruits-
+a. % users who use the filter themselves after viewing a story with the same filter or when one user shares a story having that filter, with another user
+
+b. % users who use the filter after someone shares a story having that filter, with them
+
+Comparing before and after making that filter available for a week-
+a. % increase in Snap stories tagging restaurant locations before and after
+
+b. % increase in impressions with those restaurants in snapchat
+
+If the filter also has an associated Ad then-
+a. % increase in CTR on restaurant ads which feature in filter stories vs ads which featured before the filter b. % new users acquired by the restaurant for their online delivery systems c. Monetisation- Average $ value per Click Through
+
+These metrics holistically can provide good insights on how well the filter performed, from both an engagement & revenue perspective of the restaurant chain. If these metrics show good signs then they can be used to convince the restaurant chain to purchase another custom filter for this year, as these metrics are good enough to convince a business executive what they might be missing out on if they do not get the filter.
