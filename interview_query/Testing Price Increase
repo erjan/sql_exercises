@@ -1,0 +1,33 @@
+Let’s say that you work at a B2B SAAS company that’s interested in testing the pricing of different levels of subscriptions.
+
+Your project manager comes to you and asks you to run a two-week-long A/B test to test an increase in pricing.
+
+How would you approach designing this test? How would you determine whether the increase in pricing is a good business decision?
+-------------------------------------------------------------------------------------------------------------------------------------
+Let’s tackle one overarching question first - should we run an A/B test when testing pricing?
+
+A/B testing pricing generally has more downsides than upsides. One major downside is that if two users go to a pricing page and one of them sees a product for 
+$
+50
+$50/month and the other sees one for 
+$
+25
+$25/month, you’re risking an incentive for your users to opt-out of your A/B test into another bucket, creating real statistical anomalies.
+
+But an even larger issue on A/B testing pricing is on understanding success? If you’re testing a discount rate on a subscription product - you want to know two things:
+
+Does the customer convert at a higher rate for the discount?
+
+Is the total lifetime value of the customer higher as well?
+
+Running a recurring revenue A/B test means a pricing test must run for at least 2+ months. One month for all of the users to opt-in, the second month to examine the churn rate for all of those initial users.
+
+Instead, generally, the most optimal way to test pricing is to do before and after tests. Measuring two periods of time that are similar in many ways, to understand the life expectancy and behavior of your customers. Of course, if you continue to launch features during this time, it’ll introduce bias. But there aren’t many ways around this.
+
+The biggest pitfall of testing pricing is almost always the overhead in doing so. Test pricing can be a precarious thing, where customer support, product managers, marketing, and everyone has to be bought into the launch and change.
+
+Therefore the future of testing pricing will many times be dependent on how a company figures out to lower the overhead in the testing process. Continuously switching your prices every month may confuse your customers in addition to your team, which results in not a straightforward approach towards each launch.
+
+In the future, if you can reduce the overhead required to iterate on multiple tests by creating a coordinated process to test pricing, you may be able to bring the highest value of revenue return in the least amount of work.
+
+Hubspot has a much more in-depth discussion of different scenarios that can occur here.
