@@ -1,0 +1,33 @@
+Let’s say that you’re working on the Uber app. 
+
+How would you design an incentive scheme for drivers such that they would more likely go into city areas where demand is high?
+------------------------------------------------------------------------------------------------------------------------------------------------
+Goal: Drivers should go to areas with high demand
+
+First analyse what are the factors preventing the drivers from not picking rides from those areas:
+
+Too much time lapsed in high traffic area, high waiting time on driver side.
+
+Ride not value for money
+
+Unavailability of riders
+
+For the driver, target for count of rides might hamper.
+
+Higher chances of cancellation due to high waiting time on rider side.
+
+Mitigation:
+
+Show driver what he would be earning at the end of the trip.
+
+Show driver the alternate route to reach quicker in high demand region.
+
+Redirecting drivers to high demand areas/best fare areas.
+
+Setting targets, hourly/weekly/daily wage guarantees and bonuses for completing a given number of rides.
+
+Metric :
+
+Density of ride requests = #rider_requests/minute for an area
+
+Proportion Metric : Number of drivers per rider for an area
