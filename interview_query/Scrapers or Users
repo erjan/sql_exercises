@@ -1,0 +1,20 @@
+Let’s say we’re given a dataset of page views where each row represents one page view.
+
+How would you differentiate between scrapers and real people?
+---------------------------------------------------------------------------------------------------------
+
+Note that questions like these there is no exact right answer for problems like this. Modeling based theoretically questions are more meant to assess whether you can make realistic assumptions and come up with a solution under these assumptions. Likely it will go down the path the interviewer explores as you make assumptions and draw conclusions.
+
+We’re given a dataset of page views with likely scrapers and real users visiting the site. Because the intent of a scraper is to extract data out of the LinkedIn network, a scraper will almost surely have a lot of page views, and the duration of these views will likely be rather short since a robotic scraper can process information much faster than a human (it just needs to download the fetched page and do some simple processing, say extract URLs that lead to other pages on LinkedIn.)
+
+A real user, on the other hand, tends to visit the page fewer times and spend more time in each visit. The link traversal between users would also be more nuanced. We’d expect users to traverse the pages more through links on the site rather than a scraper making requests to different urls.
+
+Under these assumptions, we can come up with a solution as follows.
+
+First assume that we can track a visitor through his/her/its IP or some other device signature. If the visitor is logged in we can track the user_id. Then we can find the total number of page views by each visitor, as well as the total and average page view time. We can do this using SQL or some querying language by grouping by each visitor value. 
+
+Additionally we could then try to naively cluster the visitors using one prevailing metric to confirm a behavior heuristic. For example, we hypothesize that the total number of page views for each visitor within five minutes will be a good metric to distinguish between scrapers and users, we can plot the distribution of total page views to see if there is a general bimodal distribution.
+
+In the bimodal distribution, one distribution would be a normal distribution of actual human activity with a long tail or second bump of a distribution with higher page views. These outliers would likely be scrapers. 
+
+If we find enough metrics that are significant, we can use a clustering algorithm on metrics such as aggregated number of page views, total page view duration, and average page view duration to cluster scrapers and real users into two clusters.
