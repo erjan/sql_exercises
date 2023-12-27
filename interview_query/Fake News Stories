@@ -1,0 +1,26 @@
+Mark Zuckerburg calls you at 7pm and says he needs to know exactly what percentage of Facebook stories are fake news by tomorrow at 7pm.
+
+How would you measure this given the time constraint?
+---------------------------------------------------------------------------------------------------------------------------------------------
+First off, what exactly constitutes fake news?
+
+If we jump into this problem without actually defining what fake news is, we’ll be starting out already with a disadvantage. We need to define what we can assume fake news is in the context of the problem, to then create solutions for it. If the interviewer has a different definition in their mind of fake news from the interviewee, then we’re already starting down on a path that we can’t get back from.
+
+Let’s define fake news first as the effect of three different types of bad actors:
+
+Spammers that are trying to make money off of fake content
+Russian bots that are trying to influence a state entity
+Media outlets that are incorrect in their reporting
+Now we have to measure the percentage of FB posts that are fake news within a time constraint of 24 hours. This problem inquiry is asked under the assumption that we won’t have any labeled training data to reference to build a model or algorithm. Rather it’s testing our inference with how we can discover fake news on the platform unsupervised.
+
+We’ve defined the three types of bad actors in which fake news is to originate from, the task at hand is how we would identify the postings or the accounts that would proliferate fake news.
+
+For spammers, we can identify them as bad actors if they post articles that make people significantly less likely to share it. This kind of indication can be found by looking at the distribution of article shares of users that have read the articles versus not reading the articles. This distribution is likely to boil down a metric for determining click-bait. If an article has a catchy title that many users will share without reading to later be determined to be spam by readers that actually do end up clicking in to read it, we can assume that these articles are generally misleading.
+
+For Russian bots, this technique could be more difficult given they do not have a monetary incentive. Users could still not be willing to share the articles once they have clicked into the article website if they can determine if it’s fake, but we would have a better signal into determining if the account of the Russian bots would be fake rather than the articles and posts they make.
+
+To determine a fake account, we could define metrics such as the number of friends the account has, the average number of mutual friends the account has with all of their “friends”, the number of reports of the user, and the number of likes and replies on their posts if they’re fake.
+
+For media outlets that are incorrect in their reporting, we would have to start analyzing the text around the outlet’s articles and posts. Given they do not have a direct spammers monetary incentive and have real accounts, we could build an unsupervised classifier to detect if the comments in the postings have language around “fake news” or “fake video”.
+
+Additionally we could look at the validity of the media outlets. If a page is on the newer side and has been reported more frequently, it’s a side effect of a media outlet without a strong reputation. Comparing the news titles across multiple different media outlet pages, if no other news sources are reporting the same thing, then it would likely be fake news as well.
