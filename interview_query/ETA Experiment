@@ -1,0 +1,23 @@
+Let’s say you work at Uber. A PM comes to you considering a new feature where instead of a direct ETA estimate like 5 minutes, would instead display a range of something like 3-7 minutes.
+
+How would you conduct this experiment and how would you know if your results were significant?
+--------------------------------------------------------------------------
+Clarify
+What ETA we are looking for? Is this from the driver’s app or rider’s app? Is this the ETA of estimated waiting time after requesting the ride, or is this the ETA of estimated arrival time at destination after driver picks up rider?
+
+Let’s say it’s the ETA on the rider’s app, which is the time between request submission and driver arrived at the pick up location.
+Prerequisites
+Key metrics: revenue increase? or cancellation rate decrease?
+Variant: fixed ETA vs Range ETA, is the change easy to make?
+Randomized Unit: Riders who is going to requested a ride, do we have enough randomization units?
+Experiment Design
+Sample size is determined based on statistical power, statistical significance level, practical significance boundary, population standard deviation
+Length of experiment is determined by sample size and actual number of riders requested daily. For example, the sample size for each group is 1000, and number of riders requested daily is 100, then we need at least 20 days to run this experiment. Also we need to consider ramp-up when launching the experiment, so that the system can handle the change and make sure the change roll out correctly. Another thing we need to consider when deciding the length of experiment is seasonality. Generally we need to run at least 1 week to eliminate weekday difference, and if the experiment period covers holiday seasons or any other special time, we might also need to discard those days or extend the experiment length.
+Run the Experiment and collect data
+Results to Decision
+Sanity checks on randomization, any other factors that might break the identical situation between control and treatment group (e.g. app down time)
+tradeoffs between different metrics
+Cost to implement and other opportunity costs, so we often set up a practical significance boundary
+Compare p-value with significance level to check if the change is statistically significant
+Compare the change with practical significance boundary to check if the change is practically
+If the change is both statistically significant and practically significant, we will make the decision to launch the change to all riders
