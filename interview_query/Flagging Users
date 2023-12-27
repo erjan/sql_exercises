@@ -1,0 +1,18 @@
+You are tasked with flagging users who post fake comments on Amazon to then give to the modeling team for further analysis.  
+
+How would you initially go about filtering users who post fake comments on Amazon?
+
+Let’s say that the team needs more data points faster. How would you scale out the effort with minimal manual intervention?
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Clarifying Questions - What do you consider a fake comment? - Do you need to buy the product in order to make a comment? - Do we have access to labeled data?
+
+Assessing Requirements - We need to calculate a probability that a comment is fake, that a user write a review on a product that they have not bought.
+
+Solution - We want to distinguish two types of fake comments: Fake accounts created to add good comments on a product or bad on the competitor’s and real accounts that are writing comments on a product they never bought
+
+We should look at the date of creation of the account, previous orders, previous comments, previous logged in, to distinguish the fake account from the real one.
+We can check also if they bought the product they are commenting on.
+Then by using logistic regression or Random Forrest, we should be able to calculate a probability that each comment is fake
+If the data is not labelled, we can only look if the account has purchased the product before and label the data on further analysis.
+Validation -We can measure the precision(True Positive/Predicted Positive), Recall (True Positive/Positive) and as there is an ambivalance between the false negative and the false positive, we shout incresa the F1 Score (2PrecRecall/(Precision + Recall))
