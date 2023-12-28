@@ -1,0 +1,45 @@
+Let’s say one million Netflix users have not logged in to Netflix in the past 6 months.
+
+How would you determine the cause? And what would you do with these users?
+---------------------------------------------------------------------------------------------------------------------------------------------
+Clarifications
+
+What counts as a user? paying user? trial users? pay and trial users?
+What region? How many users in that region?
+Total number of users? 1 million is a significant number of users for us.
+What relevant events have occurred in the past 6 months that could play a role in lower usage (summer season could cause fewer log ins as people are outdoors. How many users typically do not log in in any given 6 month period?
+Nothing crazy happened.
+Is there crazy spikes of inactivity or is there a smooth linear drop-off of non-login behavior?
+How many in the past 6 months, 3months, 2 months or just since last month?
+Could a user be one profile on a family account?
+Family accounts are one user. There is no family accounts.
+Does user’s not logging actually affect subscriber churn?
+Assessing Requirements
+
+No crazy events
+Linear drop-off in no-logins
+Significant amount of user activity for us
+Consistent across the U.S. and other countries
+Coming up with Solutions
+
+Segmenting all of our users, we’re figuring out exactly where the anomalies are occurring. Let’s say that we analyze the data by looking at how many people didn’t login in the past 1,2,3, or 6 months.
+If 90% of the users that didn’t login the last 6 months occurred in the last month, then I would jump into understanding if there was a certain event that triggered people to not login to the platform.
+Exactly what are the top 3 most important solutions I can dive into to really understand exactly what is going on?
+Funnel Analysis
+
+Define login as -> Sign in and your pick a tv show / movie to watch.
+Not logging in? -> 50,000
+Not picking a tv show? -> 50,000
+Not loading the tv show after picking it? -> 900,000
+TV shows that are not loading for a demographic is the problem
+Segmentation
+
+Not logging in? -> 900K can’t login
+Sign in’s from Apple TV?
+Sign in’s from mobile?
+Sign in’s from web browsers?
+Potential Problems - Lack of new compelling content. Change in program availability. Everyone already watched Squid Game and the hype has died down (i.e. previous performance was an outlier). - Compare end of availability to start of user downtrend (Ex: the Office leaves Netflix) - Stats on the user’s that watched The Office. How many users that watched the Office, have not logged in in the last 6 months? - If 90% of the users that watched the office haven’t logged in int he last 6 months, this shows that giving up a license to a show directly correlated in us having users that churned. - Less new content released - Let’s say we have only 100 hours of new content this year vs 500 hours of new content from last year, this could correlate back to a bunch of users leaving.
+
+We can also look at the type of the account, maybe mostly non family accounts are the one’s not logging in as it is expensive - Difficult UI - Check if the UI has changed significantly in the past 6 months. - Similar downtrend in average user viewers time as well - If there’s a similar trend downwards for other metrics, then it’s a showcase of the site not working well overall, versus just for specific features. - The programs not loading after picking them is preventing users from returning
+
+Changes in recommendation systems - Time spent on home page before selecting a show/movie - If time spent on home page goes up, then the recommendation engine is probably failing. - Let’s look at the users that spent 15 seconds on the home page before selecting, 30 seconds before selecting, 1 minute before selecting, and if the number of users that returned after 30 days for each one of these groups goes steadily down, then we can say with precision that this is causing users to lose trust with Netflix. - Hours spent watching recommended content goes down, then I probably hated my Netflix recommendations
