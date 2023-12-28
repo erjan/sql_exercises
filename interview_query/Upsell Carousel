@@ -1,0 +1,34 @@
+You work as a data scientist for a grocery store chain that has a mobile app. At the end of the checkout process on the app, users are presented with an up-sell carousel, a sliding display of items that users can scroll/swipe to view and add to their cart. Currently, the carousel only presents items from the store’s personal brand.
+
+How would you determine whether the carousel should replace store-brand items with national-brand products of the same type?
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Let’s break down our solution into multiple steps.
+
+1. Define the success metric
+
+Our first step has to be to identify a key performance indicator that measures the impact of the new product substitution. One example would be the Margin per ATC.
+
+Margin per ATC can be calculated by taking (Margin of the carousel slot/Total ATC of the slot) within a specific time frame, where the margin represents the difference between the price and the cost of goods sold. ATC stands for add-to-cart, indicating the number of times customers add an item to their cart within the app.
+
+Here, a higher Margin per ATC would indicate increased profitability, reflecting the success of the product substitution.
+
+2. Determine the demand for product substitution
+
+Our next step is to utilize the available online and offline data to determine the demand for product substitution.
+
+This can include monitoring customer behavior to identify patterns related to the current up-sell carousel– specifically, how many times customers interact with the carousel and then subsequently add a national brand item to their cart.
+
+If a significant portion of customers are switching from the store-brand to national-brand products, it suggests potential demand for substituting national-brand products into the carousel.
+
+3. Perform an A/B test
+
+To evaluate the performance of two different versions of the up-sell carousel, one with store-brand and the other with national-brand items, we can conduct an A/B test. Users would be randomly assigned to two groups, where Group A sees the store-brand products, and Group B sees the national brand. After tracking relevant metrics, including Margin per ATC, over a period of time, we could analyze whether there’s a statistically significant difference in Margin per ATC between the two groups.
+
+Other things to consider include making sure that the test is properly powered to detect meaningful differences and controlling for potential confounding variables.
+
+Suppose the group exposed to the national brand products carousel shows a significantly higher Margin per ATC. This would prove that replacing store-brand items is profitable, and the product substitution should be implemented in the app.
+
+4. Monitor and iterate
+
+After making changes to the carousel, it’s important to continue to monitor performance. Depending on user behavior and feedback, improvements can be made to optimize the product substitution further.
