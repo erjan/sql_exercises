@@ -1,0 +1,31 @@
+Let’s say that you work on the revenue forecasting team at a company like Facebook.
+
+An executive comes to you asking about how much revenue Facebook will make in the coming year.
+
+How would you forecast revenue for the next year?
+----------------------------------------------------------------------------------------------------------------------------------------
+Let’s first state some assumptions and clarifications.
+
+Is this revenue for all of Facebook or just a certain division? Let’s say it’s for all of Facebook.
+
+How much previous data do we have? At this point, we can say almost 20 years.
+
+What is this revenue forecast being used for?
+
+To set up our forecast model, we want to look at historical revenue data for Facebook. We should consider revenue streams from the different services Facebook offers.
+
+For example, if the three primary revenue streams are Newsfeed, Messenger, and Marketplace, we can analyze revenue from the past five years from each product individually instead of in aggregate.
+
+Looking at the revenue data from each product, we want to check for certain attributes. The first is seasonality. It could be the case that the revenue of one product goes through cycles based on fiscal quarter while another goes through cycles based on seasons.
+
+The next attribute we want to check for in our revenue data is trend. The revenue from a given source could be on a general upward or downward trend even with seasonal fluctuations. It could also be the case that revenue seems to change only with seasonality.
+
+After performing this analysis, we need to choose which model we should use for each revenue stream. If all revenue streams show similar behavior over time, we can just make a forecast model for Facebook’s revenue as a whole.
+
+For revenue streams with seasonal fluctuation and a general upward or downward trend, we can use the classical time series forecasting model. We calculate the centered moving average or CMA of each cycle in order to “deseasonalize” and establish a trendline. We then perform simple linear regression to make a trendline extending one year into the future. Next, we find the seasonal factor of each period in the time cycle (e.g. month or fiscal quarter). By applying the seasonal factor to our trendline one year into the future, a forecast for revenue at each period is obtained.
+
+For revenue streams that show seasonality but seem to stay constant on the whole year after year, we can use the classical model from above with a flat trendline. We can also use the ARMA time series forecasting model. Using the ARMA model, we get more sophisticated information on the correlation between past data points and present data points. The ARMA model may be useful for revenue data with finer or more irregular fluctuations. To forecast using the ARMA model, we find the most statistically significant points of past data, to establish a recursive model that extends into the future.
+
+In the case where a certain revenue stream experiences an upward or downward trend along with fluctuation over an irregular or unpredictable time frame, we want to use the ARIMA model. The ARIMA model is similar to ARMA, but accounts for a non-stationary mean similar to the CMA of the classical model. Using ARIMA, we are able to integrate the overall growth or decline trend with past fluctuations.
+
+Finally, once we have decided which model to use for each revenue stream and made our forecast one year into the future, we can simply sum the forecast for each stream in the next year to obtain a forecast for the total revenue of Facebook.
