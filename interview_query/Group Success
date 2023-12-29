@@ -1,0 +1,52 @@
+One thing that helps with product questions is to go back to the raw understanding of what the product feature is for.
+
+How would you measure the success of Facebook Groups?
+--------------------------------------------------------------------------------------------------------------
+
+Facebook groups provide a way for Facebook users to connect with other users through a shared interest or real-life/offline relationship. This space enables these Facebook users to easily socialize in a group-like setting; planning events, discussing topics etc. Facebook also allows groups to be private/closed off or more open and public facing.
+
+The power of Facebook groups is bringing the world closer by uniting individuals from all over the world over shared interests, but even when this happens users may not feel a sense of community.
+
+Let’s think about how we then need to deliver on the user goals:
+
+Welcoming
+Friendly associations
+Supportive and respectful
+Active, alive, and with a heartbeat
+Personable and easy to communicate with others
+In this case, the user’s goal is to experience a sense of community. By doing so, we derive our business goal of increasing user engagement with Facebook Groups. How can we now associate general engagement metrics we can associate with this value?
+
+For example, we need something clearly objective. The most obvious is generally monthly active users and seeing if these values are increasing or decreasing? Also monitoring general engagement metrics such as posting, commenting, and sharing.
+
+What about something that seems more intuitive? In this case, we can think about newsfeed quality and examine if Groups posts clog up the newsfeed or contribute to higher engagement levels. There are also adding more diversity of opinion and exposing users to new “things” (events, people, etc.).
+
+User Flows
+
+Let’s additionally think about how a user interacts with Groups. This way we can go through the flow mentally in our head to understand the interactions that a user has with the actual product. 
+
+User discovers the group from an invite, news feed share, or maybe searching.
+User joins the group and has a new user experience.
+User is a member of the group and can read posts, make a post, discuss with other users, view pictures and videos.
+User can come back to the group page with a notification or a mention by someone in the group
+User invites friends to come to the group
+Cool, now that we have these interactions, we can logically now think of how to establish success metrics associated with each. 
+
+Success Metrics
+
+The goal here is to evaluate and track metrics that relate to our three main areas of focus; activation, engagement, and retention.
+
+Activation is how users discover Facebook Groups. Engagement is tracking the health of user activity on Facebook Groups. Lastly, retention helps us measure the long-term effect that Facebook Groups have on the user to see if the user will come back over time. 
+
+% of users that join a group after viewing the group (public group) [activation]. This indicates how effective a page is at showing value to the user (through a large number of recent posts, or # of new members) would reflect an active community.
+
+% of users that engage (post, comment, react) in the group within one day of joining [engagement].
+
+Average engagement score calculated by some combination of comments + likes per post by a new or returning user in the group [engagement]. Indicates how supportive and welcoming existing group members are to new and old users, but this may depend on the type of content that is posted.
+
+% of users that friend or follow another user of the group within one week of joining [engagement]. This metric demonstrates how close users are with each other, and how friendly they are, but this may come across as weird behavior and not performed by many users.
+
+% of users that are returning members compared to new users [engagement].
+
+% of 30 daily active users [retention]. General retention metrics to see how community brings repeat value to users.
+
+% of users that invite a friend to the group [referral]. Indicates if users will promote a group, but there are other reasons a user may invite friends and this may not be used by a lot of users.
