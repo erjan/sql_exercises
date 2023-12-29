@@ -1,0 +1,37 @@
+Let’s say that we want to improve the “search” feature on the Facebook app.
+
+We want to specifically improve search results for people looking for things to do in San Francisco.
+
+What would you investigate and what metrics would you come up with to understand if the current functionality in the search was performing well?
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+What exactly is search feature and how does it helps our business?
+
+Search feature is a search tab given on top of app/profile where people can go and search any person, group, post etc Doing so if they find relevant results, they interact more with relevant content and go deeper in search depth or if they don’t find relevant content they quit or refine search. IF they find relevant content , they will increase average search depth and hence spend more time on platform.
+
+What part of funnel we want to improve?
+
+Acquisition: No of users using search feature?
+
+Activation: No of users typing a query and entering to view results?
+
+Engagement: No of users interacting with search results?
+
+Conversion: no of users clicking on search results? Search depth?
+
+Suppose we want to target engagement, since looking at data we find most of users do lots of refined searches and quit post performing first search.
+
+Metrics:
+
+users performing searches vs refined searches
+Average search depth Users who quit post first search Click on search results page
+
+I would like to focus on first metrics since it is issue with most users, Looking at data we can say most users don’t find relevant results within one go.
+
+I would segment users by demographics, kind of searches made (posts, videos, groups etc) to see where is main issue.
+
+Like to create a more refined recommendation engine based on previous search patterns, save old searches for quick access.
+
+Metrics to measure success:
+
+Searches vs % refined searches Click rate from Search result page Time spend post first search Average search depth
