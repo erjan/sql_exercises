@@ -1,0 +1,29 @@
+Initially reading this question, we should assume it’s first a debugging question, and then possibly a dive into trade-offs.
+
+WAU (weekly active users) and email open rates are most of the time, directly correlated, especially if emails are used as a call to action to bring users back onto the website. An email opened and then clicked would lead to an active user, but it doesn’t necessarily mean that they have correlations or be the only reason causing changes.
+Let’s say that you’re a data scientist on the engagement team. A product manager comes up to you and says that the weekly active users metric is up 5% but email notification open rates are down 2%.
+
+What would you investigate to diagnose what’s happening?
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Let’s bring in some context first or state assumptions. Specifically, around the two variables at play here.
+
+Weekly active users can be defined as the number of users active at least once in the past 7 days. Active user can be defined as a user opening the app or website while logged in on mobile, web, desktop, etc..
+
+Email open rate is defined as the number of email opens divided by the number of emails sent. We can assume that both the email open rate and WAU are being measured compared to their historical past. Such as if email open rates were always measured within 24 hours of sending the email, then the email open rate is not down now because it’s being measured within 12 hours instead.
+
+One is that we take a closer look at the metric of email open rates. Given it is a fraction, we can understand that a 2% decrease in open rate is much smaller in scale when we imagine it as going from a 30% open rate to a 29.4% open rate. In which case we can then look at segmentations for factors such as bugs or seasonal trends that could be causing the problem:
+
+Bugs in the tracking. One time or progressive. Possibly seasonal.
+Platform: Look into if it was an abnormal event in one of the platforms (mobile, desktop, ios, android)
+Countries or demographics. If certain countries or demographics are using it more from new trends.
+Now after looking at segmentations, let’s try to dive into hypothesis of possible trade-offs.
+
+We also have to remember that WAU is many times directly influenced by the number of new users coming onto a site. For example, if after two weeks, the user retention is only 20% of the original number that is active on Pinterest, and after one month it is 10%, then we might find that at any given time, WAU could be primarily made up of new users that had just joined Pinterest that week.
+
+Given this assumption, we can then say that if there was a huge influx of new users this week, that could be pushing the WAU number up while also pushing the email open rate down as we see more users coming onto the website organically or through ads, without going through the usual email notifications that long-term users would be attributed to.
+
+Another hypothesis could be that the increase in WAUs triggers many user-related email notifications and as a result pushes down the email open rate by increasing the denominator. We can also then verify this hypothesis by breaking down the email open rate by different types of email notifications.
+
+Lastly, we can assume that to generate an increase in WAU, marketing could have sent a very large amount of emails that pushed up the overall WAU number and created email fatigue which in turn lowered the email open rates. To verify this, we could look at different kinds of email metrics such as unsubscribe rate, and see if there are different email open and unsubscribe rates by cohorts of the number of emails received total.
