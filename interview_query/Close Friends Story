@@ -1,0 +1,19 @@
+Suppose you’re working as a data scientist at Facebook.
+
+How would you measure the success of private stories on Instagram, where only certain chosen friends can see the story?
+---------------------------------------------------------------------------------------------------------------------------
+Facebook’s goal: build community and connect people Instagram Close Friend Stories Goal: Foster meaningful social interactions -> Increase engagement on Instagram
+
+Activation: User Flow 1. Login to Instagram 2. Click Add to story (%) 3. Pick/Create content you want to share (%) 3b. Add friends to your Close Friends list 4. Add the close friends filter (%) 5. Share the story (%)
+
+Adding close friends to your list: 1. Click the add to list (%) 2. Select users you want to add to your list (%) 2b. Edit your list (%) 3. Save the list (%)
+
+Engagement: DAUs, MAUs, WAUs, WAU/MAU - stickiness
+
+% of users who have created a Close Friends list over time
+% of stories posted that use the Close Friends list (tradeoff between more exposure vs more meaningful interactions) —- Avg. number of close friend stories responded to (# of responses to a story / # of close friend stories posted) vs. Time spend on Instagram
+% of stories that are close friends (close friends stories / total stories) vs Time spent on Instagram
+response rate on stories (close friends vs regular)
+Open rate on rate on stories (number of stories opened / number of stories seen) [regular vs. close friends]
+Before and after at launch, is the feature increasing the avg. number of story posts?
+Retention: - For close friends feature From the first time a user posts a close friends story, D30, 60, 90 retention
