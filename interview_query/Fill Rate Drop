@@ -1,0 +1,15 @@
+Let’s say you’re working on the ads team at Facebook. Fill rate in ads is defined as the number of overall impressions divided by potential opportunities.
+
+Let’s say you see that the fill rate has dipped by 10%. What would you look into?
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+This could be a couple of different things. Before anything, I’d want to understand how we define an impression. Does merely viewing an add count, or does the user need to interact with the ad to be counted? Given that facebook makes the majority of its revenue from ads, addressing this potential discrepancy is tantamount towards facebooks continued success. From there, we can brainstorm some possibilities.
+
+First I’d ask what this 10% change is relative to (Daily, Weekly, Monthly?). From there we have some better ground to stand on but we should also clarify what else is known. Is this coming from a particular region? Does this hold constant across all devices/platforms (mobile vs. desktop)? Is this decrease true for all advertiser campaigns, or are only a subset of advertisers being affected? Has FB seen an increase in users since our last numbers were crunched (i.e. last week in the that this is a weekly change).
+
+Given these factors, we can better understand this problem by answering those questions. First we should look to answer the macro questions. - Look at fill rate globally. Is a particular region responsible for this change? If so investigate further - Look at net user change. Do we have an influx of new users coming in? If so, that means our denominator has gotten bigger and our numerator might just need some time to balance out - Is the decrease specific to platform? A difference in fill rate based on mobile vs. desktop could imply many things, even bugs in how an ad is being run. - Look at week over week/day over day change (whatever is appropriate given the rate interval). Looking at the data this way gives us some intuition as to what is a normal fluctuation is. This type of calculation should flatten out any activity that is to be expected, and highlight anything that is new or unusual.
+
+These questions will help narrow down our larger questions. Once we have answers to these we can ask things like
+
+In the case of regional differences, were there any particular events or holidays going on there that could have affected overall user activity and thus impressions?
+Is a specific advertiser or set of advertisers causing this decline? Such an effect could imply a number of things, potentially even a bug that these users are experiencing. This situation would encourage a deeper dive into who these advertisers are to address their needs.
+To summarize, answering the reasoning behind this decrease could benefit from understanding where the problem is coming from, what’s going on on facebook, and what normal activity looks like for us.
