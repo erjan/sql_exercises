@@ -1,0 +1,33 @@
+Let’s say you are working at Facebook and are asked to investigate the claim that Facebook is losing young users.
+
+How would you verify this claim?
+What test metrics would you look at?
+---------------------------------------------------------------------------------------------------------------------------------
+This question is a standard product interview question that asks us to investigate the claim that Facebook is losing young users.
+
+Clarifying Questions
+
+Is there a particular reason that somebody is making the claim that we’re losing young users using some metric or is it something that we want to investigate from scratch?
+
+A little bit of background information can go a long way with an interview question like this one. If there has been previous analysis conducted and you have access to that information, it can jumpstart the process of your own investigation into the claim.
+How are we defining a young user?
+
+If you can get a straight answer from the interviewer, here, it will greatly narrow the scope of the question. The more likely scenario is that you’ll be expected to bucket users on your own into distinct age groups based on your own best judgment.
+
+For instance, you might bucket users into teenagers (12-18), young adults (18-30), 30-40, 40+. Since we’re only interested in young users, we don’t really need to worry about granularly bucketing the entire age spectrum. However, having a higher resolution among the younger age groups may help with targeted analysis. The important thing here is to be able to explain your thought process when it comes to bucketing users in order to investigate the claim that Facebook is losing young users.
+
+Our key metric for this question is fairly obvious from the form of the question: churn (or, the opposite of churn: retention). If the claim that Facebook is losing young users is true, then we should expect to see higher than average churn rates (or lower retention) in at least one of our younger age groups.
+
+But on what time scale do we care about churn? We can investigate churned users on a daily, weekly, and monthly basis in order to establish a clearer picture of how users are interacting (or not interacting) with the site. If we find that weekly churn is high, but monthly churn is low among teenagers, we’re really establishing a pattern of engagement with the platform. (A young user posts one week, then churns for a couple of weeks, then posts again.) That’s a different sort of problem than the one we’d have to deal with if we found that daily, weekly, and monthly churn is high among the 12-18 age group. That means that we’re losing young users and warrants more drastic action.
+
+We may also want to look at daily, weekly, and monthly active users bucketed by age group so that we can get a sense of the “state” of Facebook. If we’re observing an above-average weekly churn rate in young users, but the number of weekly churned users is merely 200 compared to 500,000 weekly active users, then, yes, we may technically be losing young users, but not at a rate that we should consider alarming. By comparison, if we find that we’re losing 40,000 young users a month and have only 60,000 weekly active users, we’ve identified a much larger problem.
+
+The important thing here is to identify the trend in each age group and compare these trends with one another. If we find that there is an increased churn rate in the 12-18 age range, but also an increased churn rate for every other age group, then we have a much larger problem than simply losing young users. (And one that a solution targeted only to young users is unlikely to solve.)
+
+However, if we do find a significant increase in churn rates among, say, the 12-18 age group, we may then want to increase the granularity of our analysis. Are there particular sub-groups within this age group that are churning at a higher rate or is the decline steady across all groups? We might also try to bucket our users according to geography, to see whether users in a given age group are churning equally across all countries, or whether the decline is specific to a geographic region.
+
+We’ll also want to investigate the nature of the decline. Has it been steady, month over month, or is it a sudden drop in activity? Let’s say that we observe a sudden increase in churn rates among users aged 12-18 in Japan during the month of July. We might initially be alarmed by such a precipitous drop, until we realize that this is final exam season in Japan and students will likely return to the platform after their exams are finished. We can verify that an increased churn rate is something that we should be worried about by comparing our data for the year we’re studying with the data in previous years, to determine whether a specific seasonal drop-off in users is ordinary and expected or out of the ordinary and worthy of investigation.
+
+If we observe a steady decline in active users and a steady trend of increased churn rate across the previous months, then we may want to broaden the scope of our analysis. We may want to look at other members of the Facebook suite of products, like Instagram and WhatsApp, to determine whether the trend is similar across all products or specific to Facebook. If we find increased churn rates among Facebook users, but a comparable increase in active users on Instagram, it may simply be the case that users are migrating from one platform to another. We may also want to look externally to determine whether any serious competitors to Facebook have surfaced recently that are managing to attract our young users away from Facebook.
+
+Finally, if we’ve accepted that there is, in fact, an increased churn rate among users of a specific age group, we may want to consider softer metrics of engagement, such as posts per user, comments per user, time spent on Facebook per user, to verify that the increase in churn rate has been accompanied by a decrease in engagement across the platform. This would be a solid support for our claim that Facebook is losing young users, not merely in the literal sense of losing them to another product or competitor, but also losing their engagement in a broader sense.
