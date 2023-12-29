@@ -1,0 +1,35 @@
+The question states the drop is from 3% a month ago to 2.5% today. First thing we have to do is clarify the context around the problem before jumping to conclusions about metrics. Is today a weekday and one month from today a weekend so users are posting less? Is there a special event or seasonality? Is this an ongoing trend downward or a one-time occurrence spike downwards?
+
+The second main part is understanding the metric itself. What exactly drove the decrease: was it the number of users that increased or the number of posts that decreased? Likely the interviewer will ask you to jump into one or both of the metrics to dive into what exactly could have caused the decrease.
+
+Let’s start with focusing on the cause of the number of posts decreasing. How can we split this up into different cohorts of users and segments to understand where there is a drop in posting rate?
+
+Let’s frame the activity of posting holistically. Think about yourself as a Facebook user from a non-biased point of view and how many different segments posting can be divided into.
+
+There are two immediate ways we can segment the act of posting: Type and product location.
+
+1. Different types of posts:
+
+photos
+events
+polls
+statuses
+etc…
+2. Posting areas on Facebook:
+
+group posts
+newsfeed posts
+event posts
+marketplace posts
+etc…
+What is the posting rate in each segment? Can we check each variation to see if there was a drop? If we group by each combination of features, can we pinpoint it down by posting type or posting area to see if there are bugs or external events that led to the decrease in posting rate for each segment? For example, if we see a 2% posting rate in group posts, then we can correctly identify it as the culprit to the overall composer drop.
+
+If we take a step back, the larger segments we can look towards are also more generalized. We have to also remember to look at different segments by more typical use cases of general product features such as device or geography. For example, what is the posting rate of users in the US vs outside of the US? What about android versus iphone versus desktop? Could there have been a bug on an older version of Internet Explorer?
+
+Now looking at users, we know that posts per user could be a proxy for actual posts per active user. If we notice that posts per active user have remained the same, that would signify that since posts per users are down, there is a higher percentage of users that are non-active that would be causing the decrease.
+
+Another way to look at this is by analyzing user behavior of posting. For example, if we notice that active users gradually post twice as much in the second month than the first month, and we see a huge influx of new users in the current month, then our posts per user count will have fallen from the cohorted user behavior.
+
+If posts per active user are also going down at the same rate, we can diagnose a feature on Facebook as potentially causing the drop whether it’s a bug or a new feature. Let’s say that Instagram has just introduced a new photo posting feature, would that have caused more users to move over to Instagram to post photo pictures? Very likely.
+
+How could we prove this? If we look at total photo posts per user on both Facebook and the new Instagram posting feature, this percentage should total to 3% if the new feature is actually taking away from Facebook. If it’s larger than 3%, then we might not be able to attribute the new posting feature from taking away from Facebook’s photo composer.
