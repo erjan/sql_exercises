@@ -1,0 +1,44 @@
+Imagine you are working on the Amazon Prime Music team. Your team has integrated Prime Music with Alexa devices.
+
+How would you determine the overall impact of the integration on Prime Music subscriptions?
+----------------------------------------------------------------------------------------------------------------------
+Clarifying Questions:
+
+How are we defining success in this project? Do we care about
+customer retention (Prime Music usage)
+increasing Prime Music Subscriptions among new users
+New feature adoption among existing customers
+How do our existing customers know about this new integration?
+Are we marketing this new feature integration to potential customers that we have not acquired yet?
+Assumptions: - Assuming that we care most about goal #1 - customer retention - in clarifying questions - Assuming that we have data on 1. Prime Music usage 2. Prime Music usage on Alexa 3. Customers who had the feature promoted in Prime Music apps and website - Assuming that we are able to get blessing of Product or Project Manager to run a controlled experiment
+
+Solution:
+
+We will define a few goal metrics, design a controlled experiment, analyze our experiment data, follow-up and study whether our experiment had a long term impact on retention at a later date.
+
+Goal Metrics:
+monthly active users
+average monthly Prime Music minutes played
+number of users who adopted Prime Music on Alexa (played at least one song using Alexa integration)
+average monthly minutes Prime Music minutes played on Alexa
+Experiment Design: to begin we will need to identify a pool of potential Prime Music users to run the experiment on. We will want users who:
+Own and have set up an Alexa capable device
+Have similar baseline engagement behavior (Prime Music listening habits)
+Have joined Prime Music relatively recently - (to avoid recency bias or novelty bias)
+Next we will determine how many users and how long to run our experiment by running a power analysis. During this step we will determine how long the experiment should run, the desired confidence level (default to 95%), desired power level (default to 80%), and minimum detectable effect level (this is tricky, but best to be conservative) ahead of the experiment
+
+Finally we will randomly select enough users to power our experiment. We will leave these users as a control group.
+
+Experiment Analysis:
+After the time window for the experiment has concluded and we’ve collected data: Given 4 KPIs, and possibly more than one experimental group we will need to apply a correction to alpha (our parameter for determining statistical significance) such as the Bonferroni (Durbin test is also fine to run) correction to determine.
+We will perform multiple two-sample t-tests using the corrected alpha, and determine whether treatment had a statistically significant effect in a given KPI, and the magnitude of that effect (lift in goal metric).
+We will share out the results of the experiment and our conclusions on what impact announcing this feature had on customer retention. Based on the outcome we may need to tweak the feature announcement launch and run further experiments or we may fully launch the feature.
+Follow-up
+After the initial experiment concludes we will want to followup and study in organically occurring user populations whether metrics regarding customer impact remain similar, is there a sustained improvement, a sustained decline, an initial improvement that fades, or any other kind of pattern of note.
+
+This study could occur as soon as 3 months after launch or later.
+
+Validation:
+
+We will first verify before the experiment concludes that no experimental conditions were violated (e.g. control group users receiving treatment)
+That baseline rates of Prime Music engagement were similar among treatment and control groups prior to the experiment, and that there was no unintentional bias introduced to the experiment.
