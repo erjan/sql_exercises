@@ -1,0 +1,15 @@
+Given a list of tuples featuring names and grades on a test, write a function normalize_grades to normalize the values of the grades to a linear scale between 0 and 1.
+-------------------------------------------------------------------------------------------------
+def normalize_grades(grades):
+    g = [g for a,g in grades]
+    low = min(g)
+    high = max(g)
+
+    res = []
+
+    for name, grade in grades:
+        cur = [name, (grade-low)/(high-low) ]
+        res.append(cur)
+    return res
+
+
