@@ -1,0 +1,34 @@
+Write a Python function called max_profit that takes a list of integers, where the i-th integer represents the price of a given stock on day i, and returns the maximum profit you can achieve by buying and selling the stock.
+
+You may complete, at most, two complete buy/sell transactions to maximize profits on a stock.
+-----------------------------------------------------------------------------------------------------------------
+def max_profit(prices):
+    
+
+    buy1 = float('inf')
+    profit1 = 0
+    buy2 = float('inf')
+    profit2 = 0
+
+    for price in prices:
+        buy1 = min(buy1, price)
+        profit1 = max(profit1, price-buy1)
+        buy2 = min(buy2, price- profit1)
+        profit2 = max(profit2, price-buy2)
+    return profit2
+
+---------------------------------------------------------------------------------------------------------
+def max_profit(prices):
+    if len(prices) < 2:
+        return 0
+    
+    buy1, buy2 = float('inf'), float('inf')
+    profit1, profit2 = 0, 0
+    
+    for price in prices:
+        buy1 = min(buy1, price)
+        profit1 = max(profit1, price - buy1)
+        buy2 = min(buy2, price - profit1)
+        profit2 = max(profit2, price - buy2)
+    
+    return profit2
