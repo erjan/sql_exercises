@@ -1,0 +1,18 @@
+You are given a list of integers called numbers. Write a function to return any subset of numbers where the elements sum to zero and that does not contain the number 0.
+
+If there are no combinations of elements that sum to zero, return an empty list.
+-----------------------------------------------------------------------------------------------------------
+
+def zero_sum(numbers):
+
+    res = []
+    numbers = [i for i in numbers if i!=0]    
+
+    for i in range(len(numbers)-1):
+
+        for j in range(i+1, len(numbers)):
+            if sum(numbers[:i+1]) + sum(numbers[j:]) == 0:
+                res = numbers[:i+1] + numbers[j:]
+                return res
+    
+    return res
