@@ -1,0 +1,36 @@
+You are given the root of a binary tree. You need to determine if it is a valid binary search tree (BST).
+
+A valid BST is defined as follows:
+
+The left subtree of a node contains only nodes with values less than or equal to the node’s value.
+The right subtree of a node contains only nodes with values greater than or equal to the node’s value.
+Both the left and right subtrees must also be binary search trees.
+Given the function def is_valid_bst(node: dict) -> bool:, which takes in a dict representing a Node, return True if the binary tree is a valid BST. Otherwise, return False.
+------------------------------------------------------------------------------------------------------------------------
+
+ 
+
+def is_valid_bst(node: dict) -> bool:
+    def helper(node, minvalue = -1e99, maxvalue = 1e99):
+
+
+        if not node:
+            return True
+        
+        if minvalue <= node['value']<=maxvalue:
+            l = helper(node['left'], minvalue = minvalue, maxvalue = node['value'])
+            r = helper(node['right'], minvalue = node['value'], maxvalue = maxvalue)
+            return r and l
+        else:
+            return False
+            
+
+        
+    if not node:
+        return True
+    
+    return helper(node )
+    
+    
+
+        
