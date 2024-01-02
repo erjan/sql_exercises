@@ -1,0 +1,18 @@
+Given a binary array consisting of only 0s and 1s, create a Python function, equal_subarray, that returns the maximum length of a contiguous subarray with an equal number of 0 and 1.
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+def equal_subarray(arr):
+
+    d = dict()
+    d[0] = 0
+    d[1] = 0
+    res = 0
+    for idx, val in enumerate(arr):
+
+        d[val]+=1
+
+        if d[0] == d[1]:
+            res = idx+1
+    return res
+
+    
+    
