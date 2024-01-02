@@ -1,0 +1,43 @@
+In the game 2048, a player needs to slide numbered tiles on a grid to combine them and create a tile with the number 2048. Write a Python function, min_moves_to_n, that calculates the minimum number of moves required to reach a tile with a given value n.
+
+You can make the following assumptions:
+
+The game always starts with two 2 tiles randomly placed in the grid.
+In each turn, a new 2 tile appears on the grid.
+The lowest value for n is 4.
+Every move successfully merges the highest possible tiles.
+This problem deals with an ideal scenario. Don’t worry about the tiles’ positions on the board. Actual gameplay may require more moves.
+
+The function should take an integer n as input and return an integer representing the minimum number of moves required to reach the n tile.
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+def min_moves_to_n(n):
+
+    cts = {k:0 for k in range(2, n+2, 2)}
+    cts[2] = 2
+
+    # Initialize moves
+    moves = 0
+
+    # Continue to add tiles and move until n is reached
+    while cts[n] < 1:
+        # Merge tiles
+        new_tiles = []
+        for k,v in cts.items():
+            if v == 2:
+                new_tiles.append(k*2)
+                cts[k] = 0
+        for t in new_tiles:
+            cts[t] += 1
+
+        # Add new 2 tile
+        cts[2] += 1
+
+        # Increment moves
+        moves += 1
+    
+    return moves
+        
+    
+
+
