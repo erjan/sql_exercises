@@ -1,0 +1,21 @@
+Given an integer list nums with length n and an integer target, find three integers in nums that yield a sum closest to target.
+
+Return the sum of these three integers.
+
+You can assume that each input will have exactly one solution.
+--------------------------------------------------------------------------------------------------------------------------------------------
+from itertools import combinations
+def three_sum_closest(nums, target):
+
+    res = float('inf')
+
+    comb = list(combinations(nums,3))
+    res2 = float('inf')
+    for c in comb:
+        diff = sum(c)- target
+
+        if diff < res and diff >=0:
+            res = diff
+            res2 = sum(c)
+    
+    return res2
