@@ -1,0 +1,31 @@
+Given a list of strings, write a function that returns their longest common prefix. For example, if you were 
+given the strings “flowers”, “flow”, and “flight”, your function should return the string “fl”.
+
+If the list of strings has no common prefix, return an empty string.
+------------------------------------------------------------------------------------------------------------------------------------
+def common_prefix(s):
+  s.sort(key = lambda x: len(x))
+
+  shortest = s[0]
+  rest = s[1:]
+  cur = ''
+  for i in range(len(shortest)):
+    cur += shortest[i]
+    for w in rest:
+      if cur not in w:
+        cur= cur[:-1]
+        return cur
+  
+  if cur == '':
+    return ''
+  return cur
+
+--------------------------------------------------------------------------------------------
+def common_prefix(strings):
+    prefix = ""
+    for char_index in range(len(min(strings, key=len))):
+        if all(string[char_index] == strings[0][char_index] for string in strings):
+            prefix += strings[0][char_index]
+        else:
+            break
+    return prefix
