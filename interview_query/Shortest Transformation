@@ -1,0 +1,34 @@
+You’re given two words, begin_word and end_word which are elements of word_list.
+
+Write a function shortest_transformation to find the length of the shortest transformation sequence from begin_word to end_word through the elements of word_list.
+
+Note: Only one letter can be changed at a time and each transformed word in the list must exist inside of word_list.
+
+Note: In all test cases, a path does exist between begin_word and end_word
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+def shortest_transformation(begin_word, end_word, word_list):
+    res = 0
+
+    shortest_distance = len(word_list)
+
+    def recursive(cur_word, all_taken_words):
+        nonlocal begin_word, end_word, word_list, shortest_distance
+
+        if cur_word == end_word:
+            if len(all_taken_words)< shortest_distance:
+                shortest_distance = len(all_taken_words)
+            return
+        
+        for word in word_list:
+            if word not in all_taken_words:
+                diffc = 0
+                for l1, l2 in zip(word, cur_word):
+                    if l1!= l2:
+                        diffc+=1
+                
+                if diffc == 1:
+                    recursive(word, all_taken_words + [word])
+        
+    recursive(begin_word, [begin_word])
+    return shortest_distance
