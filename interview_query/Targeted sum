@@ -19,3 +19,17 @@ def three_sum_closest(nums, target):
             res2 = sum(c)
     
     return res2
+----------------------------------------------------------------------------------------------------------------
+def three_sum_closest(nums, target):
+    best_sum = nums[0] + nums[1] + nums[2]
+    best_diff = abs(target - best_sum)
+    for i in range(len(nums)):
+        for j in range(i+1,len(nums)):
+            for k in range(j+1,len(nums)):
+                curr_sum = nums[i] + nums[j] + nums[k]
+                curr_diff = abs(target - curr_sum)
+                if curr_diff < best_diff:
+                   best_diff = curr_diff
+                   best_sum = curr_sum
+    
+    return best_sum
