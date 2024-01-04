@@ -1,0 +1,55 @@
+You are given two lists of strings list1 and list2, which are sorted alphabetically in ascending order.
+
+Implement a function that merges these two lists into one sorted list marking all items from list1 and list2 with 
+characters "1" and "2" respectively at the end of each item and return that list.
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+def mark_lists(list1, list2):
+    res = []
+
+    l1 = 0
+    l2 = 0
+
+    while l1 < len(list1) and l2< len(list2):
+        if list1[l1]< list2[l2]:
+            res.append(list1[l1] + '1')
+            l1+=1
+        else:
+            res.append(list2[l2]+ '2')
+            l2+=1
+    
+    if l1 != len(list1):
+        for i in range(l1, len(list1)):
+            res.append(list1[i]+ '1')
+    
+    if l2 != len(list2):
+        for i in range(l2, len(list2)):
+            res.append(list2[i]+ '2')
+    
+    print(res)
+    return res
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+def mark_lists(list1, list2):
+    first_index = 0
+    second_index = 0
+
+    result = []
+
+    while first_index < len(list1) and second_index < len(list2):
+        if list1[first_index] <= list2[second_index]:
+            result.append(list1[first_index]+'1')
+            first_index += 1
+        else:
+            result.append(list2[second_index]+'2')
+            second_index += 1
+
+    while first_index < len(list1):
+        result.append(list1[first_index]+'1')
+        first_index += 1
+
+    while second_index < len(list2):
+        result.append(list2[second_index]+'2')
+        second_index += 1
+
+    return result
+
