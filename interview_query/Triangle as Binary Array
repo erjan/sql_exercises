@@ -1,0 +1,18 @@
+Given an (integer) height h and base b, write a function draw_isosceles_triangle that returns the shape of the isosceles triangle using (a 2D list) of 0s and 1s, where 0 and 1 represent the space outside and inside of the triangle, respectively.
+
+If the given height h and base b cannot make a triangle, return None.
+
+Note: Valid arguments for b should be even
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+def draw_isosceles_triangle(h, b):
+    if h == 1 or b == 1 or (b-1)//(h-1) == 1:
+        return
+    
+    res = []
+
+    for i in range(0, b, (b-1)//(h-1)):
+        row = [0]*(i//2) + [1]*(b-i) + [0]*(i//2)
+        res.append(row)
+
+    return res
+    pass
