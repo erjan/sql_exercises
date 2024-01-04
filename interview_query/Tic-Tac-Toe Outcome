@@ -1,0 +1,50 @@
+Write a Python function, check_tictactoe, that takes a 2D list representing a tic-tac-toe game board. This board will 
+consist of 'X', 'O', and '-' (for an empty space). Your function should evaluate the state of the board and return one of four possible outcomes: 'X' if player X wins, 'O' if player O wins, 'Draw' if the game is a draw, or 'Not Finished' if the game is still ongoing.
+
+The winning condition for the tic-tac-toe game is to have three of the same symbol in a row, column, or diagonal.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+def check_tictactoe(board):
+    def check_win(arr):
+        x_ct = sum([1 if x == "X" else 0 for x in arr])
+        o_ct = sum([1 if x == "O" else 0 for x in arr])
+
+        if x_ct == 3:
+            return "X"
+        if o_ct == 3:
+            return "O"
+        return None
+
+    # check for 3-in-row
+    for row in board:
+        winner = check_win(row)
+        if winner:
+            return winner
+    
+    n = len(board)
+    # check for 3-in-col
+    for i in range(n):
+        col = [board[j][i] for j in range(n)]
+        winner = check_win(col)
+        if winner:
+            return winner
+
+    # check diagonals
+    left_diag = [board[i][i] for i in range(n)]
+    winner = check_win(left_diag)
+    if winner:
+        return winner
+
+    right_diag = [board[i][n-i-1] for i in range(n)]
+    winner = check_win(right_diag)
+    if winner:
+        return winner
+
+    # determine if board is empty
+    for row in board:
+        for element in row:
+            if element == "-":
+                return "Not Finished"
+    
+    return "Draw"
