@@ -1,0 +1,30 @@
+Given a list of tuples, each containing two integers representing the arrival and departure time of busses, write a function minimum_parking_spots that computes the minimum number of parking spots needed to accommodate all the busses.
+
+The arrival and departure times are given in hours, ranging from 0 (12:00 AM) to 24 (11:59 PM). Each tuple follows the format (arrival_time, departure_time).
+
+You may assume that:
+
+The arrival and departure times are integers.
+A bus only leaves on the next hour after its arrival.
+Note: A bus can only use a parking spot strictly after it is emptied. This means that a bus leaving at 4 and a bus arriving at 4 require at least two parking spaces.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+def minimum_parking_spots(busses):
+    res = 0
+
+
+    b = sorted(busses,key = lambda x: x[0])
+
+    for i in range(len(b)-1):
+
+        spot_req = 1
+
+        for j in range(i+1, len(b)):
+
+            if b[j][0]>=b[i][0] and b[j][0]<=b[i][1]:
+                spot_req+=1
+        
+        if spot_req>res:
+            res = spot_req
+    
+    return res
