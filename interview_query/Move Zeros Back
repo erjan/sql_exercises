@@ -1,0 +1,13 @@
+Given an array of integers, write a function move_zeros_back that moves all zeros in the array to the end of the array. If there are no zeros, return the input array.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+def move_zeros_back(array):
+    non_zeros = 0
+    for i in range(len(array)):
+        if array[i] == 0:
+            while array[non_zeros] == 0:
+                non_zeros += 1
+                if non_zeros >= len(array):
+                    return array
+            array[non_zeros], array[i] = array[i], array[non_zeros]
+    return array
