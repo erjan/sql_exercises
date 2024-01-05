@@ -1,0 +1,15 @@
+Given two strings, write a function max_common_substring that finds the longest common substring between the input strings.
+
+A substring is a contiguous sequence of characters within a string. If there is no common substring, your function should return an empty string.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+def max_common_substring(str1, str2):
+    res = ''
+    start = 0
+    for i in range(len(str1)+1):
+        cur = str1[start:i]
+        if cur in str2:
+            if len(cur) > len(res):
+                res = cur
+        else:
+            start+=1
+    return res
