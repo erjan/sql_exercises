@@ -1,0 +1,20 @@
+We have two concentric circles a and b, each of them having a radius r_a, r_b where r_b > r_a.
+
+The third circle c has a different radius calculation, with radius r_c and center point center_c.
+
+Write a function is_contained(r_a,r_b, r_c, center_c) which returns True if the circle c occupies the space between circle a and b. Otherwise, return False.
+
+Note: the center point of a and b is (0,0)
+
+As an example, only c_2 meets the requirement in this image as it lies between a and b.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+def is_contained(true_r_a, true_r_b, true_r_c, true_center_c):
+    
+
+    dist_c = (true_center_c[0]**2 +true_center_c[1]**2)**0.5
+
+    if ((true_r_a+true_r_c) <= dist_c) and (true_r_b >= dist_c+true_r_c):
+        return True
+    else:
+        return False
