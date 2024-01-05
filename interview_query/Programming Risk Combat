@@ -1,0 +1,20 @@
+In a simplified version of the board game Risk, combat follows the following rules:
+
+Two players, an attacker and a defender have a squad of units. Each unit in a squad rolls a 6-sided die to determine their damage value.
+The rolls of the units are ranked in order and rolls of the same rank on each side are compared against each other. So the largest roll on the defender’s side to compared against the largest roll on the attacker’s side, the second-largest roll on the defender’s is compared against the second-largest roll on the attack’s side, etc. In each match-up, the side with the higher roll gains a point.
+If there is a tie in a match-up, the defender gains a point.
+If the attacker and defender have a different number of units, only match-ups between ranks less than or equal to the number of units in the squad with a lower number of units are considered.
+For example, if there are 2 units vs 3 units, only the first and second highest rolls of each squad are used for comparison.
+The side with the higher number of points wins the battle (the defender wins if there is a tie in the number of points).
+Write a function to simulate a battle in Risk given the attacker_squad_size and defender_squad_size of the two players. Return a Boolean stating if the attacker won.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+import random
+def attacker_wins(defender_squad_size,attacker_squard_size):
+    
+    
+    n = min(defender_squad_size, attacker_squard_size)
+    d = sorted(random.choices(range(1, 7), k=defender_squad_size))[::-1][:n]
+    a = sorted(random.choices(range(1, 7), k=attacker_squard_size))[::-1][:n]
+    c = list(zip(a,d))
+    aw = [1 if a>b else 0 for a, b in c ]
+    return sum(aw)/len(aw) >.5
