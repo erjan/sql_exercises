@@ -1,0 +1,25 @@
+Write a Python function called group_anagrams that takes a list of strings as input and returns a list of lists, where each inner list contains a group of anagrams that were present in the input list.
+
+An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, using all the original letters exactly once.
+
+Note: Each of the inner lists should be ordered alphabetically and contain no duplicate values
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+def group_anagrams(words):
+    res = []
+
+    for w in words:
+        temp = set()
+        cur = ''.join(sorted(w))
+        temp.add(w)
+        for w2 in words:
+            cur2 = ''.join(sorted(w2))
+            if cur == cur2:
+                temp.add(w2)
+        res.append(list(temp))
+    
+    res = list(map(tuple, res))
+    res = list(dict.fromkeys(res))
+    res = [sorted(list(k)) for k in res]
+   
+    return res
