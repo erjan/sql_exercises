@@ -1,0 +1,13 @@
+Given a list of integers, write a function gcd to find the greatest common denominator between them.
+----------------------------------------------------------------------------------------------------------------------------
+import math
+def gcd(numbers):
+
+    g = numbers[0]
+
+    for n in numbers[1:]:
+
+        g = math.gcd(n, g)
+    return g
+
+  
