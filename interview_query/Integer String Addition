@@ -1,0 +1,16 @@
+Write a Python function that adds together all combinations of adjacent integers of a given string of integers named int_str.
+--------------------------------------------------------------------------------------------------------------------------------------
+def int_str_addition(int_str):
+    total = 0
+
+    n = len(int_str)
+
+    for i in range(n):
+
+        j = i+1
+        while j <=n:
+            substr = int_str[i:j]
+            j+=1
+            total += int(substr)
+    return total
+
