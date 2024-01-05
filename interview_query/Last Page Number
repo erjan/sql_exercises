@@ -1,0 +1,22 @@
+We’re given an ascending string of integers that represents page numbers.
+
+Write a function get_last_page to return the last page number in the string. If the string of integers is not in the correct page order, return the last number in order.
+------------------------------------------------------------------------------------------
+
+def get_last_page(int_string):
+    # set counter
+    i = 0
+
+    # while there is still a string
+    while len(int_string) > 0:
+        i += 1
+        # compare our index to the page number 
+        # we have to do an operation where we cut the value by the length of the digit
+        # for example '11', we have to cut off two digits
+        if i == int(int_string[:len(str(i))]):
+            # recreate the integer string
+            int_string = int_string[len(str(i)):]
+        else:
+            # if it's not equivalent, return the last index number
+            return i - 1
+    return i
