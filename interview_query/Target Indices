@@ -1,0 +1,28 @@
+Given an array and a target integer, write a function sum_pair_indices that returns the indices of two integers in the array that add up to the target integer. If not found, just return an empty list.
+
+Note: Can you do it on 
+�
+(
+�
+)
+O(n) time?
+
+Note: Even though there could be many solutions, only one needs to be returned.
+----------------------------------------------------------------------------------------------------------------------------
+def sum_pair_indices(array, target):
+
+
+    x = dict()
+
+    for ind,val in enumerate(array):
+
+        complement = target - val
+
+        if complement in x:
+            return [ x[complement], ind ]
+        else:
+            x[val] = ind
+    return []
+
+
+        
