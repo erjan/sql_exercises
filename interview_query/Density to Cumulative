@@ -1,0 +1,12 @@
+Given a list pdf write a function to_cdf(pdf) to caluculate the cdf.
+
+
+----------------------------------------------------------------------------------------------------------------------
+def to_cdf(pdf):
+    cdf = [pdf[0]]
+
+
+    for i in range(1, len(pdf)):
+
+        cdf.append( round( cdf[i-1] + pdf[i],1 ))
+    return cdf
