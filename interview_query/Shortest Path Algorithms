@@ -1,0 +1,39 @@
+You are given a graph, which is implemented as a 2D array. Each cell in the array represents a node and the value in the cell represents the cost to traverse to that node. You are also given a start node and an end node. Your task is to implement a function that finds the shortest path from the start node to the end node using any shortest path algorithm.
+-------------------------------------------------------------------------------
+import heapq
+
+def shortest_path(graph, start, end):
+    n = len(graph)
+    visited = [False] * n
+    distances = [float('inf')] * n
+    paths = [-1] * n
+
+    distances[start] = 0
+    queue = [(0, start)]
+
+    while queue:
+        current_distance, current_node = heapq.heappop(queue)
+
+        if visited[current_node]:
+            continue
+
+        visited[current_node] = True
+
+        for neighbour, distance in enumerate(graph[current_node]):
+            if distance > 0 and not visited[neighbour]:
+                old_distance = distances[neighbour]
+                new_distance = current_distance + distance
+
+                if new_distance < old_distance:
+                    distances[neighbour] = new_distance
+                    paths[neighbour] = current_node
+                    heapq.heappush(queue, (new_distance, neighbour))
+
+    path = []
+    current = end
+
+    while current != -1:
+        path.append(current)
+        current = paths[current]
+
+    return path[::-1]
