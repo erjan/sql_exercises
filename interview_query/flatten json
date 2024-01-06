@@ -1,0 +1,24 @@
+Given a JSON string with nested objects, write a function flatten_json that flattens all the objects to a single key-value dictionary. Do not use the library that actually performs this function.
+
+------------------------------------------------------
+import json
+
+def flatten_json(input_json):
+    
+    x = json.loads(input_json)
+    output = {}
+    def helper(key_list, sub):
+        if type(sub) == dict:
+
+            for k,v in sub.items():
+                helper(key_list + [k], v)
+        else:
+            output['_'.join(key_list)] = sub
+    
+    helper([], x)
+    output = json.dumps(output)
+    return output
+
+    
+
+      
