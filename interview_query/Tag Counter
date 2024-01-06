@@ -1,0 +1,18 @@
+You are asked to develop a simple tag counter that will look for the occurrence of certain words or phrases in a piece of text.
+
+You are given a paragraph as a string and a list of tag groups as a list of lists of strings. Write a tag_counter function that returns a list of integers with the number of times each tag in the tag group was used in the text.
+
+Note: Your function should be case-insensitive with regards to the tag groups.
+-----------------------------------------------------------------------------------------------------------------------------------
+def tag_counter(tag_groups, s):    
+    s = s.lower()
+    res = []
+    for t in tag_groups:
+      mytotal = 0
+      for x in t:
+
+        cur = s.count(x)
+        mytotal+= cur
+
+      res.append(mytotal)
+    return res 
