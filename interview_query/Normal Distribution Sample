@@ -1,0 +1,10 @@
+Write a function to get a sample from a standard normal distribution.
+------------------------------------------------------------------------------------
+import numpy as np
+
+def normal_distribution_sample():
+
+    return np.random.normal(0,1)
+
+    
+    
