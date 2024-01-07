@@ -1,0 +1,16 @@
+Given two strings, string1 and string2, write a function is_subsequence to find out if string1 is a subsequence of string2.
+
+Bonus: A subsequence is a sequence that can be derived from another sequence by deleting some elements without changing the order of the remaining elements.
+-----------------------------------------------------------------------------------------------------------------------------------
+def is_subsequence(string1,string2):
+  
+
+  l1 = 0
+  l2 = 0
+  while l1 < len(string1) and l2 < len(string2):
+
+    if string1[l1] in string2:
+      l1+=1
+    l2+=1
+  
+  return l1 == len(string1)
