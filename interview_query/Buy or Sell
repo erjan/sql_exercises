@@ -1,0 +1,22 @@
+Given a list of stock_prices in ascending order by datetime, and their respective dates in list dts, write a function max_profit that outputs the max profit by buying and selling at a specific interval and start and end dates to buy and sell for max profit.
+-----------------------------------------------------------------------------------------------------------------
+def max_profit(stock_prices,dts):
+    
+    res = float('-inf')
+
+    b = None
+    s = None
+
+    for i in range(len(stock_prices)-1):
+        for j in range(i+1, len(stock_prices)):
+
+            if stock_prices[j] - stock_prices[i] > res:
+
+                res = stock_prices[j]-stock_prices[i]
+                b = i
+                s = j
+
+    
+    return [res, dts[b],dts[s]]
+
+     
