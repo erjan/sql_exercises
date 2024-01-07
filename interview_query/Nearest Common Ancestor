@@ -1,0 +1,35 @@
+You are given a binary tree of unique positive numbers. Each node in the tree is implemented as a dictionary with the keys left and right, indicating the node’s left and right neighbors, respectively, and data that holds an integer value.
+
+Given two nodes as input (value1 and value2), write a function to return the value of the nearest node that is a parent to both nodes.
+
+Note: If one of the nodes doesn’t exist in the tree, return -1.
+--------------------------------------------------------------------------------------------------
+def common_ancestor(root, value1, value2):
+    
+    s1 = None
+    s2 = None
+
+    def search_node(search_root,path, value):
+        if search_root is None:
+            return []
+        
+        if search_root['data']  == value:
+            return path + [search_root['data']]
+        
+        path = path + [search_root['data']]
+        return (search_node(search_root['left'],  path,value) +
+               search_node(search_root['right'],  path,value) )
+
+    node = root
+    l1 = search_node(node,[], value1)
+    l2 = search_node(node,[], value2)
+
+
+    parent = -1
+
+    for l1, l2 in zip(l1,l2):
+        if l1!=l2:
+            return parent
+        parent = l1
+    return parent
+
