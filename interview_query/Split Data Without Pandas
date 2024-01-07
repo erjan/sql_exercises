@@ -1,0 +1,15 @@
+You are given a string that resembles the declaration of a list of dictionaries.
+
+Without using the pandas package, write a function read_split_from_str to split the data into two lists, one for training and one for testing, with a 70:30 split between the training set and the testing set.
+
+Note: Use numpy for random number generation if you need to.
+----------------------------------------------------------------------------------------------------------------------
+
+def read_split_from_str(list_of_dict_str):
+    
+
+    s = eval(list_of_dict_str)
+
+    split_point = len(s)*7//10
+
+    return [s[split_point:], s[:split_point]]
