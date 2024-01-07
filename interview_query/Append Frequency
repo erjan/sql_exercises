@@ -1,0 +1,24 @@
+Given a string sentence, return the same string with an addendum after each character of the number of occurrences a character appeared in the sentence.
+
+Note: don’t treat the spaces " " as characters. Also; do not return the addendum for those characters that also appear in the discard_list.
+----------------------------------------------------------------------------------------------------------------
+from collections import Counter
+def inject_frequency(sentence, discard_list):
+    
+
+    res = ''
+    d = dict(Counter(sentence))
+    discard_list.append(' ')
+    for s in sentence:
+
+     
+        if s not in discard_list:
+
+            res += s + str(d[s])
+
+        elif s in discard_list:
+            res += s
+
+    
+
+    return res
