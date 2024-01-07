@@ -1,0 +1,19 @@
+Write a function compute_deviation that takes in a list of dictionaries with a key and list of integers and returns a dictionary with the standard deviation of each list.
+
+Note: This should be done without using the NumPy built-in functions.
+---------------------------------------------------------------------------------------------------------------------------
+import numpy as np
+def compute_deviation(list_numbers):
+
+    res = dict()
+    for l in list_numbers:
+
+        cur_dict = l
+        key = cur_dict['key']
+        val = cur_dict['values']
+        std = np.std(val)
+
+        res[key] = std
+    return res
+    
+
