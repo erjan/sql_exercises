@@ -1,0 +1,49 @@
+You are given two sentences as strings. Create a function that returns a list of all words that are not in both sentences.
+
+You can assume that the sentences have no punctuation marks, extra tabs, or spaces.
+
+Note: The strings "Game" and "game" should be considered the same word. Because of this, make sure all the strings in the list you output are in lowercase.
+--------------------------------------------------------------------------------------------------------
+def mismatched_words(s1,s2):
+
+   s1 = s1.lower()
+   s2 = s2.lower()
+
+   s1 = s1.split()
+   s2 = s2.split()
+
+   res = []
+   if len(s1)> len(s2):
+      s1,s2 = s2,s1
+
+   for w1 in s2:
+      if w1 not in s1:
+         res.append(w1)
+   
+   return res
+----------------------------------------------------
+def mismatched_words(string1, string2):
+    result = []
+    words1 = set([word.lower()
+                 for word in string1.split(' ') if word not in [" ", ""]])
+    words2 = set([word.lower()
+                 for word in string2.split(' ') if word not in [" ", ""]])
+
+    return list(words1.symmetric_difference(words2))
+----------------------------------------------------
+def mismatched_words(string1, string2):
+    result = []
+    words1 = set([word.lower()
+                 for word in string1.split(' ') if word not in [" ", ""]])
+    words2 = set([word.lower()
+                 for word in string2.split(' ') if word not in [" ", ""]])
+
+    for word in words1:
+        if word not in words2:
+            result.append(word)
+
+    for word in words2:
+        if word not in words1:
+            result.append(word)
+
+    return result
