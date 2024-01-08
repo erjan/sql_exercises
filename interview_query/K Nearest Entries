@@ -1,0 +1,24 @@
+Given a sorted list of integers ints with no duplicates, write an efficient function nearest_entries that takes in integers N and k and does the following:
+
+Finds the element of the list that is closest to N and returns that element along with the k-next and k-previous elements of the list.
+
+Notes:
+1. If k is large enough to go out of the bounds of ints, return all entries up to that bound but do not throw an error. 2. If N is not an entry in ints and there are two values equally close to N, use the lower value as your starting point.
+------------------------------------------------------------------------------------------
+def nearest_entries(ints, N, k):
+    diffs = [abs(i-N) for i in ints]
+    idx = diffs.index(min(diffs))
+
+    # find floor
+    if idx - k < 0:
+        floor = 0
+    else:
+        floor = idx - k
+    
+
+    # find ceiling
+    if idx + k >= len(ints):
+        return ints[floor:]
+    else:
+        ceiling = idx + k + 1
+        return ints[floor:ceiling]
