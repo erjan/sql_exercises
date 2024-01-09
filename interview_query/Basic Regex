@@ -1,0 +1,32 @@
+You are asked to implement a simple regex parser which supports two operations: '.' and '*'. The '.' operation matches any single character, while the '*' operation matches zero or more of the preceding element. The matching should cover the entire input string (not partial).
+
+Write a function isMatch(s,p) which takes in two parameters, the string and the regex pattern. It should return a Boolean output indicating a ‘match success’ or a ‘match failure’.
+------------------------------------------------------------------------------------------------------------------------
+
+def isMatch(s:str, p:str):
+    # Iterate through each pattern in p
+    idx = 0
+    prev_char = ""
+    for p_idx, ip in enumerate(p):
+        # Return False if no more characters in s and pattern not done
+        if idx > len(s) - 1:
+            return False
+        
+        if ip == ".":
+            prev_char = ip
+            idx += 1
+        elif ip == "*":
+            next_ip = ""
+            if p_idx < len(p) - 1:
+                next_ip = p[p_idx+1]
+
+            while idx < len(s) and (s[idx] != next_ip) and \
+                (s[idx] == prev_char or (prev_char == ".")):
+                idx += 1
+        else:
+            if s[idx] != ip:
+                return False
+            prev_char = ip
+            idx += 1
+
+    return idx == len(s)
