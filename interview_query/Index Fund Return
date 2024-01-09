@@ -1,0 +1,45 @@
+You’re given two lists:
+
+A dictionary of deposits and withdrawals into an index fund with timestamps.
+A daily price of the index fund by date.
+Write a function fund_return to calculate the total profit gained from investing in the index from the start to end date. You may only purchase and sell discrete shares of the index fund. For example, if you have 
+$
+23
+$23 and the price of the index is 
+$
+5
+$5, you may only purchase four shares.
+
+For the purposes of this question, assume that the revenue (or loss) from the index fund is applied to the deposited funds at the beginning of every day based on the percentage increase in the price of the index and that the purchases (or withdrawals) are made before the end of each day.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+def fund_return(purchases, prices):
+
+
+  purchase_dates = purchases['date']
+  purchase_request = purchases['purchase']
+
+
+  price_dates = prices['date']
+  price_shares = prices['price']
+
+  total_shares = 0
+  total_spent = 0
+  last_day_index = -1
+
+  for i in range(len(purchase_dates)):
+    day = purchase_dates[i]
+    purchase = purchase_request[i]
+
+    day_idx = price_dates.index(day)
+    last_day_index = day_idx
+
+    share_price = price_shares[day_idx]
+    day_shares = round(purchase/share_price)
+    total_spent += (day_shares*share_price)
+    total_shares += day_shares
+  
+  total_earned = (total_shares*price_shares[last_day_index+1])
+
+  return total_earned - total_spent
+
+  
