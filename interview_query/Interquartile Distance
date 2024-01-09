@@ -1,0 +1,32 @@
+Given an array of unsorted random numbers denoted nums write a function find_iqr to find the interquartile distance.
+
+The interquartile distance is defined by subtracting the first quartile
+from the third quartile.
+-----------------------------------------------------------------------------------------------------------------------------
+
+def median(a):
+
+    a.sort()
+    k = len(a)
+
+    if  k%2 == 0:
+        return ((a[k//2] + a[k//2-1])/2)
+    
+    else:
+        return a[k//2]
+   
+
+def find_iqr(a):
+
+    a.sort()
+    k = len(a)
+
+    if k%2 == 0:
+        uhalf = a[k//2:k]
+        lhalf = a[0:k//2]
+    if k%2 == 1:
+        uhalf = a[k//2+1:k]
+        lhalf = a[0:k//2]
+    q1 = median(lhalf)
+    q3 = median(uhalf)
+    return q3-q1
