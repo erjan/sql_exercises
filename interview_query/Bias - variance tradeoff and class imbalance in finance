@@ -39,3 +39,33 @@ bias variance tradeoff: precision matters more.
 validation:
 build confusion matrix to see how well the model predicts TP,TF, FP etc.
 the goal should be to increase precision - tp+tn/total
+-----------------------------------------------------------------------------------------------------------------
+Model type
+
+This is a binary classification task, to predict whether a new credit card transaction is Fraud or Not Fraud. You could use any suitable classification model, such as logistic regression or SVM (support vector machines). Bias/variance and class imbalance will apply to any classification model type.
+
+Logistic regression would be one of the best models to use in this case because it works well with categorical inputs (in this context, things like merchant category). Logistic regression also works very well in binary (two-class) cases such as fraud / not fraud.
+
+Bias/variance tradeoff
+
+Then, define the bias/variance tradeoff. While a model with low bias and low variance is ideal, it’s impossible to improve one without sacrificing a part of the other, hence the term “tradeoff.” Increasing or decreasing the complexity of the model will shift the balance between these two considerations.
+
+Model Variance: the difference between predictions of different models (we want low variance).
+
+Model Bias: the difference between the model predictions and the true answer (we want low bias)
+
+A model with high variance and low bias will tend to fit well to the training data, but will not do as well on data points it hasn’t seen before. This leads to over-fitting on training data. A model with high bias and low variance will tend to under-fit, as it will not only fail to predict the training data but will perform similarly poorly on out-of-sample (test) data. High-bias models will often be simpler, though this leads to missing systemic patterns in the data. Simpler models will have fewer inputs/features. In this case, a model with high variance that over-fits may not pick up on actual fraud, leading to financial losses for the bank. A high-bias model will similarly lead to too much financial losses for the firm. In this case, we’ll want a balanced model. The below graphic shows a schematic definition of high/low bias and variance.
+
+image
+
+Image source: Wikipedia https://en.wikipedia.org/wiki/Bias%E2%80%93variance_tradeoff
+
+Class imbalance and model metrics
+
+The usual metric for classification models is accuracy. Accuracy reports the percentage of all observations that were predicted correctly by the model. In this case, with extreme class imbalance, accuracy would not be a good metric to use. Imagine if you built a model that always predicted “not fraud.” In that case, accuracy would still be 99%! That appears to be good performance, but of course, every case of fraud would be missed and the bank would lose a lot of money.
+
+A better metric for this model, given the class imbalance, would be the F1 score. The F1 score is an average of precision and recall.
+
+Precision is the percentage of all transactions our model predicted as fraud that were truly fraud (real fraud / all fraud predictions). Recall is how many of all fraud transactions our model is able to capture as fraud (true fraud predictions / all fraud transactions). Below is a schematic that can help you see precision vs recall.
+
+The F1 score is a good compromise between precision and recall: we want to capture as many fraudulent transactions as possible, but, if we have too many false positives (legitimate transactions that we flag as fraud), we may annoy our customers and lose business.
