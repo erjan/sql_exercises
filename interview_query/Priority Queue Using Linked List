@@ -1,0 +1,48 @@
+Priority queues are an abstract data structure responsible for allowing enqueuing items with an attached priority. While typically implemented with a heap, implement a priority queue using a linked list.
+
+The Priority Queue implementation should support the following operations:
+
+insert(element, priority): This operation should be able to insert an element into the Priority Queue, along with its corresponding priority.
+delete(): This operation should remove and return the element with the highest priority. If multiple elements share the same highest priority, the element first enqueued should be returned. In the case that the queue is empty, return None.
+peek(): This operation should return the element with the highest priority without removing it from the Priority Queue. Again, in the case of equal highest priorities, the element first enqueued should be returned. In the case that the queue is empty, return None.
+Note: Smaller priority values imply that they have higher priority.
+--------------------------------------------------------------------------------------------------------------
+In Python, implementing a Priority Queue using a Linked List is an effective approach. Each node represents an element in the Priority Queue with a specific priority. We can create a Node class for each element in the Priority Queue. Every Node object possesses a value and a priority. The Priority Queue is organized as a singly linked list, ensuring that each node is correctly positioned based on its priority.
+
+class Node:
+    def __init__(self, value, priority):
+        self.value = value
+        self.priority = priority
+        self.next = None
+
+class PriorityQueue:
+    def __init__(self):
+        self.head = None
+
+    def insert(self, value, priority):
+        new_node = Node(value, priority)
+
+        if not self.head or priority < self.head.priority:
+            new_node.next = self.head
+            self.head = new_node
+        else:
+            current = self.head
+            while current.next and priority > current.next.priority:
+                current = current.next
+            new_node.next = current.next
+            current.next = new_node
+
+    def delete(self):
+        if not self.head:
+            return None
+
+        deleted_node = self.head
+        self.head = self.head.next
+        return deleted_node.value
+
+    def peek(self):
+        if not self.head:
+            return None
+
+        return self.head.value
+Note: In this Priority Queue, a smaller priority number indicates a higher priority. Therefore, an element with a priority of 1 has a higher priority than an element with a priority of 2.
