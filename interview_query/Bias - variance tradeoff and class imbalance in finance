@@ -1,0 +1,41 @@
+You’ve been tasked with building a classification machine-learning model to predict whether a transaction is either fraud or not fraud for a credit card company. You have ten years of historical data on transactions, including a flag for whether a transaction was manually identified as fraud.
+
+Describe how you might go about building a fraud detection model for credit card transactions. Be sure to mention the possible model types, discuss the bias-variance tradeoff in model development, and address any complexities that arise from the class imbalance.
+
+Input features in the data include:
+
+Transaction amount
+Merchant category for the transaction
+Zip code for the merchant
+Zip code for the billing address
+Average transaction amount for the account over the past six months
+Output feature:
+
+0/1 flag for fraud (0 = not fraud, 1 = fraud)
+Note: Fraudulent transactions are (thankfully) a very small percentage of all historical transactions. Assume fraudulent transactions are 0.01% of historical data.While building the model to perform the classification, you need to consider the bias/variance tradeoff, and take into account the fact that there is a class imbalance (very few of the observations are “fraud”).
+--------------------------------------------------------------------------------------------------------
+clarifying questions:
+
+what is the goal of this model: to decrease num of frauds or to cancel right away?
+
+to predict in real time a fraud transaction or post factum , 5 min after the purchase and cancel it?
+
+
+assessing reqs:
+
+assume the goal is to predict in real time and flag it for review.
+
+solution:
+
+use decision tree based model - boosting algo and bagging (rf algorithm) and compare them.
+the reason a tree-based algo fits is because its a mix of categorical numerical features.
+
+the tree will catch inconsistencies like zip code mismatch, buy amount >3x higher than avg buy amount
+
+class imbalance: the tree should focus on classifying the True positive, since false positive are rare.
+
+bias variance tradeoff: precision matters more.
+
+validation:
+build confusion matrix to see how well the model predicts TP,TF, FP etc.
+the goal should be to increase precision - tp+tn/total
