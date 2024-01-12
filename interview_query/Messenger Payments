@@ -1,0 +1,32 @@
+Facebook is considering implementing a payment feature to Facebook Messenger. The feature would allow friends to pay one another in a similar way to Venmo by sending a payment message.
+
+How would you determine whether or not this is a good business decision?
+-------------------------------------------------------------------------------------------------------------
+
+**clarifying questions:**
+what is the end goal? turn fb platform into some super app, encompassing other aspects of life?
+increase user engagement?
+one need to clearly define the business goal.
+
+**assesing requirements:**
+
+alright, the end goal is to drive user engagement and teach people to use fb 
+for micro payments 10$-100$, lending borrowing money sort of platform. similar to wechat in china.
+
+
+**solution:**
+
+to properly assess the business impact, one needs to cluster users into active users, users who are ready to send money thru fb.
+assess the opportunity size, the majority of fb users only login to check msgs, check other profiles, updates. not actively engaged.
+
+use metric like cost/benefit, adoption rate.
+build small mvp, apply ab testing and offer the feature to active users in US.
+see the adoption rate for the feature.
+
+after assessing the initial impact, calculate whether its profitable or not to introduce and make it GA(generally available)
+
+
+**validation:**
+
+metrics to measure success: num of money transfers,  dau,wau, mau active senders or receivers.
+
