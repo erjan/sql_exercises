@@ -1,0 +1,29 @@
+Determine whether adding a feature identical to Instagram Stories to Facebook is a good idea.
+-----------------------------------------------------------------------------------------------------
+To understand if we should add Stories to Facebook, we want to consider the current nature of interaction between different kinds of Facebook users and the Facebook platform itself.
+
+Over the course of its lifespan, Facebook has morphed from a write-heavy service to a read-heavy service. The majority of Facebook users use the platform primarily for browsing the newsfeed and cataloging life updates from old friends.
+
+However, there still exists a sizable minority of high-engagement users who post frequently and whose posts garner large amounts of attention and interaction (comments and likes). So when designing a method to test the new ‘Stories’ feature, we want to consider its impact on different types of users.
+
+We can split the users into three groups based on current levels of engagement.
+
+We say the bottom 25% are ‘low end’ users
+Middle 50% ‘medium’ users
+Top 25% are ‘influencer-like’ or ‘high end’ users.
+Next, we need to think about what success would look like for these different user groups. This will help us define our metrics and how they are weighted.
+
+Low-end users: We want to use stories to increase time per session spent on Facebook. The benefit of the new feature for this group is to provide more content to engage with in addition to their newsfeed and close friends.
+
+Medium-level users: (Who post regularly but not frequently) We want to provide another outlet for sharing and creating content. Currently, making a Facebook post for these users may only coincide with a weekly life event or an important thought each day that the user wants to share. Stories provide a way for medium-level users to engage with their friends without the commitment of writing an entire Facebook post, thereby increasing overall engagement. A story from the past cannot be viewed by scrolling down the timeline like a post can. So we expect these users to have a less inhibition about posting stories than writing regular posts.
+
+High-level users Use cases are primarily centered around network effect. We want to increase the engagement with high-end users from the two lower tiers. The new less-committal stories feature provides another channel with which high-end users can engage with their followers. Stories allow for more immediate and less formal broadcasting of a user’s life and thoughts for the lower-end users to watch. Followers of high-end users can watch and forward stories to increase the network effect of the influencer.
+
+So we can design a/b tests for the three user levels each with primary and secondary metrics. For low-end users, the primary metric should be time spent per session. An increase in this means that Stories were effective in providing more content for low-end users to read every time they log in to Facebook.
+
+For medium-level users, we want to measure the adoption of stories as a primary metric. An increase in this would mean we succeeded in our goal in providing users who already post on a regular basis with a new and less formal content sharing method. We could formulate this with a metric such as:
+
+Percentage of users that watched at least 1 story / total users
+For high-end users, our primary metric should be engagement with stories. We assume these users will adopt the new feature and want to measure its success with increasing network effect and influence. We could measure engagement with stories retention.
+
+So we can set up a/b tests for the different user groups and assign a 75% weight to the primary metric and 25% to the secondary metric. For our secondary metrics, we can use time spent per session for medium and high-end users and engagement (comments, likes, and shares) for low-end users.
