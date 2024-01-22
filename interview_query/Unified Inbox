@@ -1,0 +1,34 @@
+Instagram wants to change the messaging system on its platform to interact with other platforms and third-party businesses.
+
+For instance, Instagram wants to be able to partner with a business like GrubHub to allow the company to send automated messages to Instagram users who also use GrubHub.
+
+How would you determine whether this change is a good idea?
+---------------------------------------------------------------------------------------------------------------------------------------
+
+
+**clarifying questions:**
+what is the end goal?
+
+to increase eat orders for grubhub ordered from instagram?
+to be able to order food, basic items and turn instagram into online shop with 1click order?
+
+
+
+**assesing requirements:**
+assuming there is biz goal to increase interaction and drive sales to other enterprises via instagram 
+the metrics to use are 'num orders via instagram', avg sales over period of day,week,month - daily completed orders(DCO) same for week,month - WCO,MCO.
+dco,wco,mco. similar metrics could be about the automated messages  the success order rate within 5min of showing app - num of messages viewed daily/weekly/monthly divided by num food ordered - as a general metric
+
+biz-2-user engagement metrics could be another metric to use.
+these are the metrics to focus on!
+
+**solution:**
+
+check if we can track how many foods were ordered thru app before introducing automated msgs.
+do a/b testing on feature and see the user engagement, success rate metric thru the metrics above.
+
+check if target metrics go up.
+
+**validation:**
+
+use data to convince or not the mangmt if introducing it will make sense for the business
