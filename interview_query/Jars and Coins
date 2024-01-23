@@ -1,0 +1,298 @@
+A jar holds 1000 coins. Out of all of the coins, 999 are fair and one is double-sided with two heads. Picking a coin at random, you toss the coin ten times.
+
+Given that you see 10 heads, what is the probability that the coin is double headed and the probability that the next toss of the coin is also a head?
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+Let’s give some names to help our notation. Let 
+�
+H be the number of heads that show up in 10 flips of the coin and let 
+�
+F be the event that the coin is fair.
+
+When given the prompt it’s important to think about this problem in two steps. The setting consists of 999 fair coins and one biased coin. The question itself is asking about an event probability of whether a toss will be heads. This question should scream Bayes theorem.
+
+Let’s calculate the answer by first splitting up the prior probability from the event probability.
+
+Prior
+�
+(
+�
+)
+=
+0.999
+P(F)=0.999
+
+�
+(
+�
+�
+)
+=
+0.001
+P(F 
+c
+ )=0.001
+
+Event Probability
+�
+(
+�
+=
+10
+∣
+�
+)
+=
+0.
+5
+10
+≈
+0.0009765625
+P(H=10∣F)=0.5 
+10
+ ≈0.0009765625
+
+�
+(
+�
+=
+10
+∣
+�
+�
+)
+1
+P(H=10∣F 
+c
+ )1
+
+Cool, now we have both the event probabilities and the priors. Now let’s define which conditions satisfy Bayes theorem. We want to find the probability of having the double-sided coin given ten heads.
+
+�
+(
+�
+�
+∣
+�
+=
+10
+)
+=
+�
+(
+�
+=
+10
+∣
+�
+�
+)
+�
+(
+�
+�
+)
+�
+(
+�
+=
+10
+)
+P(F 
+c
+ ∣H=10)= 
+P(H=10)
+P(H=10∣F 
+c
+ )P(F 
+c
+ )
+​
+ 
+
+Let’s solve for the numerator. What’s the probability of 10 heads given a double headed coin? 100%. What’s the probability of getting the double headed coin? 1⁄1000. So 
+�
+(
+�
+=
+10
+∣
+�
+�
+)
+⋅
+�
+(
+�
+�
+)
+=
+1
+/
+1000
+P(H=10∣F 
+c
+ )⋅P(F 
+c
+ )=1/1000
+
+Now the denominator. The probability of 10 heads is a combination of the probability of 10 heads given a double-headed coin multiplied by the probability of picking the double-headed coin PLUS the probability of 10 heads given a fair coin mulitiplied by the probability of picking a fair coin.
+
+�
+(
+�
+=
+10
+)
+=
+�
+(
+�
+=
+10
+∣
+�
+�
+)
+⋅
+�
+(
+�
+�
+)
++
+�
+(
+�
+=
+10
+∣
+�
+)
+⋅
+�
+(
+�
+)
+P(H=10)=P(H=10∣F 
+c
+ )⋅P(F 
+c
+ )+P(H=10∣F)⋅P(F)
+
+The first prior probability we already calculated in the numerator which was 1⁄1000. The second we can calculate 
+�
+(
+�
+=
+10
+∣
+�
+)
+=
+0.
+5
+10
+P(H=10∣F)=0.5 
+10
+ . Probability of picking a fair coin is 999⁄1000. So total we have
+
+�
+(
+�
+=
+10
+)
+=
+1
+/
+1000
++
+(
+0.
+5
+10
+∗
+999
+/
+1000
+)
+≈
+0.00197558593
+P(H=10)=1/1000+(0.5 
+10
+ ∗999/1000)≈0.00197558593
+
+Now we can finally calculate the probability of the coin being double-headed as
+
+�
+(
+�
+�
+∣
+�
+=
+10
+)
+=
+0.001
+÷
+0.00197558593
+=
+0.506
+P(F 
+c
+ ∣H=10)=0.001÷0.00197558593=0.506
+
+Given this information, we can calculate the probability of heads on the next flip the same way with bayes:
+
+�
+(
+�
+)
+=
+�
+(
+�
+�
+)
+⋅
+�
+(
+�
+∣
+�
+�
+)
++
+�
+(
+�
+)
+⋅
+�
+(
+�
+∣
+�
+)
+=
+0.506
+⋅
+1
++
+(
+(
+1
+−
+0.506
+)
+⋅
+0.5
+)
+≈
+0.753
+P(H)=P(F 
+c
+ )⋅P(H∣F 
+c
+ )+P(F)⋅P(H∣F)=0.506⋅1+((1−0.506)⋅0.5)≈0.753
