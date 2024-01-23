@@ -1,0 +1,76 @@
+Let’s say that there are six people trying to divide up into two equally separate teams. Because they want to pick random teams, on each round, each person shows their hand in either a face-up or face-down position. If there are three of each position, then they’ll split into teams. 
+
+What’s the expected number of rounds that everyone will have to pick a hand side before they split into teams?
+------------------------------------------------------------------------------------------------------------------------
+Since “they want to pick random teams” and there is no additional information given, we can assume there is a 50⁄50 chance that each person puts a face down or face up. Thus the face of every individual person follows a Bernoulli distribution with probability of success 
+�
+=
+0.5
+p=0.5. We are looking for the total number of face ups to be exactly 3, as that would imply the rest of the group has their faces down. Let 
+�
+F denote the number of faces that are up. 
+�
+F is the sum of Bernoulli random variables and as such follows a binomal distribution, meaning the probability of 
+�
+=
+3
+F=3 is:
+�
+(
+�
+=
+3
+)
+=
+(
+6
+3
+)
+1
+2
+6
+=
+0.3125
+P(F=3)=( 
+3
+6
+​
+ ) 
+2 
+6
+ 
+1
+​
+ =0.3125
+Let 
+�
+R the number of rounds before having 3 faces up. Clearly, 
+�
+R follows a geometric distribution because it denotes the number of trials before one success. For geometric random variable 
+�
+G with success probability 
+�
+p, 
+�
+[
+�
+]
+=
+1
+/
+�
+E[G]=1/p. Thus the expected number of rounds until teams form is:
+�
+[
+�
+]
+=
+1
+0.3125
+=
+3.2
+E[R]= 
+0.3125
+1
+​
+ =3.2
