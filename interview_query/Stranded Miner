@@ -1,0 +1,197 @@
+A miner is stranded and there are two paths he can take.
+
+Path 
+�
+A loops back to itself and takes him 5 days to walk it.
+
+Path 
+�
+B brings him to a junction immediately (0 days). The junction at the end of path 
+�
+B has two paths: Path 
+�
+�
+BA and Path 
+�
+�
+BB.
+
+Path 
+�
+�
+BA brings him back to his original starting point and takes him 2 days to walk. Path 
+�
+�
+BB brings him to safety and takes him 1 day to walk.
+
+Each path has an equal probability of being chosen and once a wrong path is chosen, the miner gets disoriented and cannot remember which path he went through.
+
+What is the expected value of the amount of days he will spend before he exits the mine?
+------------------------------------------------------------------------------------------------------
+First, some terminology. We will call a particular sequence through the mine a circuit and a decision to go down one path a walk. This terminology is borrowed from graph theory.
+
+We will denote the number of days that the miner spends stranded as 
+�
+D. Note that 
+�
+D is path-dependent; the sequence of paths the miner takes matters—for example, the circuit.
+
+�
+→
+�
+→
+�
+→
+�
+�
+A→A→B→AB
+
+takes 11 days to complete, while the circuit
+
+�
+→
+�
+�
+→
+�
+→
+�
+�
+B→BA→B→AB
+
+takes three days to complete, even though the minor got to 
+�
+�
+BB in the same amount of “walks.” Due to this, Calculating 
+�
+[
+�
+]
+E[D] directly would require you to come up with a formula to generate the probability of every possible circuit. Not impossible, but not something you’re going to be able to do on the spot in an interview.
+
+Because of this difficulty, we won’t focus on 
+�
+D. Instead, we will focus on the number of “walks” the miner makes, that is, the number of times they go down a path. We will denote this as 
+�
+W.
+
+Note that since 
+�
+W measures trials until a success, it lends itself a geometric distribution. At the start of any circuit, the probability of ending up at path 
+�
+�
+BB is
+
+�
+(
+�
+�
+)
+=
+�
+(
+�
+�
+∣
+�
+)
+�
+(
+�
+)
+=
+0.25
+P(BB)=P(BB∣B)P(B)=0.25
+
+Thus, 
+�
+[
+�
+]
+=
+0.2
+5
+−
+1
+=
+4
+E[W]=0.25 
+−1
+ =4.
+
+Now, let’s think about the number of days per walk when he’s trapped. Since in the long-run, half, a quarter, and a quarter of all circuits end up in 
+�
+,
+�
+�
+A,BA, and 
+�
+�
+BB respectively, we have
+
+�
+[
+�
+/
+�
+]
+=
+5
+2
++
+2
+4
++
+1
+4
+=
+3.25
+E[D/W]= 
+2
+5
+​
+ + 
+4
+2
+​
+ + 
+4
+1
+​
+ =3.25
+
+Now note that we have 
+�
+=
+�
+(
+�
+/
+�
+)
+D=W(D/W) (since 
+�
+W is never zero). Thus,
+
+�
+[
+�
+]
+=
+�
+[
+�
+]
+�
+[
+�
+/
+�
+]
+=
+4
+⋅
+3.25
+=
+13
+E[D]=E[W]E[D/W]=4⋅3.25=13
