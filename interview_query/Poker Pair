@@ -1,0 +1,262 @@
+Let’s say that you’re drawing 
+�
+N cards (without replacement) from a standard 52 card poker deck. Each card is unique and part of 4 different suits and 13 different ranks.
+
+Compute the probability that you will get a pair (two cards of the same rank) from a hand of 
+�
+N cards.
+-----------------------------------------------------------------------------------------------------------------------------------------
+Let 
+�
+∣
+�
+P∣N be the event that we draw at least one pair from a hand of 
+�
+N cards. Because there are many ways of getting one pair in a hand, we will consider the far easier case of 
+�
+�
+∣
+�
+P 
+c
+ ∣N, the event that we will get no pairs in a hand of 
+�
+N cards. We can then get
+�
+(
+�
+∣
+�
+)
+=
+1
+−
+�
+(
+�
+�
+∣
+�
+)
+P(P∣N)=1−P(P 
+c
+ ∣N)
+
+Let’s build up our answer to 
+�
+(
+�
+�
+∣
+�
+)
+P(P 
+c
+ ∣N) by looking the cases up to 
+�
+=
+3
+N=3
+
+When we draw our first card, we are guaranteed to not get a pair since we only have one card, so 
+�
+(
+�
+∣
+�
+=
+1
+)
+=
+1
+P(P∣N=1)=1
+
+Once we have drawn our first card, there are 3 other cards with the same rank as our first card, we can not draw those cards. We also can’t draw the first card we drew since we are drawing without replacement. Thus out of 51 available cards, we can only draw 48 of them, so 
+�
+(
+�
+�
+∣
+�
+=
+2
+)
+=
+48
+51
+P(P 
+c
+ ∣N=2)= 
+51
+48
+​
+ 
+
+At our third card, if we still don’t have a pair, then the first and second cards have different ranks. We have 8 cards that we can not draw, 6 still in play are the same ranks as one of our cards, and 2 that we have already drawn. We still have 50 cards we can draw, so 
+�
+(
+�
+�
+∣
+�
+=
+3
+)
+=
+44
+50
+P(P 
+c
+ ∣N=3)= 
+50
+44
+​
+ 
+
+Are you seeing a pattern? It seems that when 
+�
+=
+�
+N=i, we can only draw 
+52
+−
+4
+(
+�
+−
+1
+)
+52−4(i−1) cards out of 
+52
+−
+(
+�
+−
+1
+)
+52−(i−1) cards. It may seem like the case where 
+�
+=
+1
+N=1 does not fit this pattern, but it does because
+1
+=
+52
+52
+=
+52
+−
+(
+1
+−
+1
+)
+52
+−
+(
+1
+−
+1
+)
+1= 
+52
+52
+​
+ = 
+52−(1−1)
+52−(1−1)
+​
+ 
+
+Thus we can generalize the formula for the probability as
+�
+(
+�
+�
+∣
+�
+=
+�
+)
+=
+∏
+�
+=
+1
+�
+52
+−
+4
+(
+�
+−
+1
+)
+52
+−
+(
+�
+−
+1
+)
+P(P 
+c
+ ∣N=i)= 
+i=1
+∏
+N
+​
+  
+52−(i−1)
+52−4(i−1)
+​
+ 
+
+Note that when 
+�
+>
+13
+N>13 this means that 
+�
+(
+�
+�
+∣
+�
+)
+=
+0
+P(P 
+c
+ ∣N)=0 since
+52
+−
+4
+(
+14
+−
+1
+)
+52
+−
+(
+14
+−
+1
+)
+=
+52
+−
+52
+39
+=
+0
+52−(14−1)
+52−4(14−1)
+​
+ = 
+39
+52−52
+​
+ =0
+As it should be since any hand with more than 13 cards should have at least 2 cards of the same rank. This observation helps confirm that we have the correct model.
