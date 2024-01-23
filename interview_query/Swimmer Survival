@@ -1,0 +1,123 @@
+Let’s say there is man who is 5.8 feet tall who doesn’t know how to swim. Let’s say he wants to swim in a lake with an average depth of 5.6 feet with a standard deviation of 1 foot.
+
+What’s the probability of his survival assuming that when the the lake depth exceeds his height, he dies?
+---------------------------------------------------------------------------------------------------------------------------------------
+As we are given the mean and standard deviation, we may want to consider modeling the lake depth 
+�
+D as a normally distributed random variable. In general, a normal distribution is the safest distribution to assume for any random variable whose distribution is not explicitly given.
+
+Probabilities for normally distributed random variables are not usually calculated by hand, since the probability density function of the normal distribution is very difficult to work with. Luckily, there is a function 
+Φ
+Φ which can give the cumulative distribution function in a simply way. Namely, if a normally distributed random variable 
+�
+X has mean 
+�
+μ and standard deviation 
+�
+σ:
+
+�
+(
+�
+<
+�
+)
+=
+Φ
+(
+�
+−
+�
+�
+)
+P(X<x)=Φ( 
+σ
+x−μ
+​
+ )
+
+In our case we would want to find the probability that 
+�
+D is less than 
+5.8
+5.8, so:
+
+�
+(
+�
+<
+5.8
+)
+=
+Φ
+(
+5.8
+−
+5.6
+1
+)
+=
+Φ
+(
+0.2
+)
+P(D<5.8)=Φ( 
+1
+5.8−5.6
+​
+ )
+=Φ(0.2)
+
+We can then use a table for 
+Φ
+Φ, like this one, to get the value of 
+Φ
+(
+0.2
+)
+Φ(0.2). Through the second page of the table we get:
+
+Φ
+(
+0.2
+)
+≈
+0.57926
+Φ(0.2)≈0.57926
+
+Although, in a real interview, if you are not given a table, just saying 
+Φ
+(
+0.2
+)
+Φ(0.2) would be an acceptable final answer.
+
+It’s important to note that without being given the mean and standard deviation, or other information about the distribution of the river depth, we couldn’t answer this question. Indeed, that would be like being asked how far a car goes in 2 hours without being given its 
+mph
+mph. The best we could do is still assume 
+�
+D follows a normal distribution with mean 
+�
+μ and standard deviation 
+�
+σ, which we use as placeholders. Then our answer would be:
+
+�
+(
+�
+<
+5.8
+)
+=
+Φ
+(
+5.8
+−
+�
+�
+)
+P(D<5.8)=Φ( 
+σ
+5.8−μ
+​
+ )
