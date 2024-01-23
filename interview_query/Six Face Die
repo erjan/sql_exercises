@@ -1,0 +1,44 @@
+You start with a fair 6-sided die and roll it six times, recording the results of each roll. You then write these numbers on the six faces of another, unlabeled fair die.
+
+For example, if your six rolls were:
+
+3, 5, 3, 6, 1, 2
+
+Then your second die wouldn’t have a 4 on it; instead, it would have two 3s.
+
+Next, you roll this second die six times. You take those six numbers and write them on the faces of yet another fair die, and you continue this process of generating a new die from the previous one.
+Eventually, you’ll have a die with the same number on all six faces.
+
+How would you go about finding the average number of rolls it will take to reach this state?
+---------------------------------------------------------------------------------------------------------------------
+import matplotlib.pyplot as plt
+
+import numpy as np
+
+result = []
+
+for i in range(10000):
+
+counter = 0
+
+die = [1,2,3,4,5,6]
+
+while len(set(die))>1:
+
+    die = np.random.choice(die,6)
+
+    if len(set(die))==1:
+
+        #print(counter)
+
+        result.append(counter+1)
+
+        break;
+
+    else:
+        counter = counter+1
+print(np.mean(result))
+
+plt.hist(result)
+
+plt.show()
