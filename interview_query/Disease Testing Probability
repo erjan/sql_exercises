@@ -1,0 +1,13 @@
+Bob takes a test and tests positive for the disease. Bob was close to six other friends they all take the same test and end up testing negative. 
+
+The test has a 1% false positive rate and a 15% false negative rate. 
+
+What’s the percent chance that Bob was actually negative for the disease?
+--------------------
+
+fp = 0.07
+fn = 0.15* 7tp + fp = 1
+bayesian:
+
+P(act neg| test pos)  = p(act neg| test pos)/ p(act neg| test neg) + p(actually pos| test pos)
+= fp/fp + tp = 0.07/(0.07+0.99) = 6.6%
