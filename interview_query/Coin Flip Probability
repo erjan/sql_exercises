@@ -1,0 +1,140 @@
+Let’s say you are playing a coin flip game. You start with 30 dollars. If you flip heads, you win one dollar, but if you get tails, you lose one dollar. You keep playing until you run out of money (have 0) or until you win 100 dollars. 
+
+What is the probability that you win 100 dollars?
+-----------------------------------------------------------------------------------------------------------------------------------
+This is a variation on an old applied probability problem called The Gambler’s Ruin. We invoke a probabilistic structure called a random walk. The gambler can ‘walk’ from 
+$
+30
+$30to 
+$
+100
+$100 by taking numerous paths. Maybe he first ‘walks’ from 
+$
+30
+$30 to 
+$
+29
+$29, or from 
+$
+30
+$30 to 
+$
+31
+$31.
+
+At each step in the walk, we have two possible states we can move to next. Having 
+�
+k dollars, we can only walk to 
+�
++
+1
+k+1 dollars or 
+�
+−
+1
+k−1 dollars in one step.
+
+Our problem is a special case where moving to either of the possible next two states has equal probability of 0.5. Additionally, for each step the previous outcome has no influence on the next. That is, each flip of the coin is an independent event.
+
+Because of these facts, we expect the gambler to have an equal number of wins and losses, thus remaining at 
+$
+30
+$30 in the long-run. If we name our process 
+�
+X, we then have our expected value 
+�
+[
+�
+]
+=
+30
+E[X]=30. Now, we know our walk has two possible end points and that we have a 100% chance of reaching one or the other. The two end points are 
+$
+100
+$100 and 
+$
+0
+$0. So let's define the variable 
+�
+r as the probability of reaching 
+$
+100
+$100. Then our probability of reaching 
+$
+0
+$0 (i.e. the gambler's ruin) is 
+1
+−
+�
+1−r. Next, we know that expected value of any discrete random variable or process 
+�
+Y is the sum of the products of the values of each event with the probability of their occurrence. That is:
+�
+[
+�
+]
+=
+∑
+�
+∈
+�
+�
+∗
+�
+(
+�
+)
+E[Y]= 
+y∈Y
+∑
+​
+ y∗p(y)
+In our case, we have 
+�
+[
+�
+]
+=
+30
+E[X]=30. Our two possible events are 100 and 0 with probability of occurrence 
+�
+r and 
+1
+−
+�
+1−r respectively. So finally we can set up the following equation and solve for 
+�
+r:
+�
+[
+�
+]
+=
+�
+⋅
+100
++
+(
+�
+−
+1
+)
+⋅
+0
+E[X]=r⋅100+(r−1)⋅0
+30
+=
+�
+⋅
+100
+30=r⋅100
+0.3
+=
+�
+0.3=r
+Since 
+�
+r represented the probability of reaching 
+$
+100
+$100, our probability of winning is 30%.
