@@ -1,0 +1,43 @@
+Let’s say that you’re analyzing political survey data to understand how to help a particular candidate whose campaign team you are on.
+
+One of the questions is asking the survey participant which political candidates they would vote for. The answers are multi-select, which means that the participants can select as many political candidates as they would like.
+
+What kind of insights could you draw from this dataset?
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+**clarifying questions:**
+over what time period is the survey done? what additional data the survey collects?
+where the survey participant is from? what state/region?
+do we collect his prev. political prefernces, his age, gender, income other crucial data?
+
+
+
+**assessing requirements:**
+
+the insights we derive depend on the features we collect in the survey.
+
+
+**solution:**
+
+assuming crucial demographics info is gathered on 
+each candidate i can build a model that 
+predicts (yes/no) or gives score how likely voters
+of specific age,gender, location would vote for a candidate or not.
+
+or i can do EDA analysis and see the ground truth - avg age of voters who have specific preferences - left right etc
+
+
+**validation:**
+
+use std metrics to evaluate the quality of the model
+---------------------------------------------------------------------------------------------------------------------------------
+Look into which political candidate is popular with which segments of participants eg - age, region, sex etc.
+
+Are participants leaning towards political candidates from maybe Party A or Party B etc.
+
+Which are the user segments that would likely vote for my political candidate? Depending on if a particular user segment doesn’t want to vote for my political candidate, try targeting campaigning to get these voters.
+
+What % of users will vote for my political candidate?
+
+Which candidate seems to be winning according to the survey results?
