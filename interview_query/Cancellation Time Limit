@@ -1,0 +1,36 @@
+Lyft is trying to optimize its ride-sharing program. The current ride-sharing app shows the time for a ride to arrive after you make a request.
+
+How would you decide the time threshold where a customer should be able to cancel a ride request without triggering a penalty fee?
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+**clarifying questions:**
+
+what is the end goal? what other data we have on city,driver,customer?
+is there competitor companies using similar mechanism?
+
+**solution:**
+
+penalty fee should be triggered if the driver has already arrived to close and 
+spent his gas and time to get there.
+
+not triggering penalty can be done in 2 ways: time or distance based.
+
+after x min penalty is triggered or after 100m left to the customer penalty is applied.
+
+x min can be avg calculated based on city, season, time of day - all specific to a city.
+distance-based fee can be calculated based on current official price of gas in that day and how much gas that driver spent 
+driving from his original location when he picked up the request and customer location.
+
+another way to calculate time threshold is to factor 
+in avg time it takes to reach customer from driver location; avg time specific to that city, traffic etc.
+
+if the driver already spent 50% of the time after he picked up the request - the penalty fee is applied.
+since he already spent 50% in the way to pick up the customer.
+
+or this time threshold can be a weighted sum of 2 variables - both time and distance, e.g. 
+if he spent 40% of the time and covered 50% of the distance from his original location - the penalty fee is triggered.
+
+actually this can be priced dynamically daily - based on avg time spent 
+waiting/driving by other drivers in that city. for this to work - this data must be collected
