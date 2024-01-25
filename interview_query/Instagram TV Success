@@ -1,0 +1,43 @@
+Let’s say you’re a Product Data Scientist at Instagram. How would you measure the success of the Instagram TV product?
+----------------------------------------------------------------------------------------------------------------------------------
+Let’s utilize a framework for answering questions about figuring out the success of this particular product feature.
+
+1. Clarify: What are the goals of the feature? What are the assumptions that we should make?
+2. Define metrics: What solid metrics can we use to define to measure success of the goals of the feature?
+3. Explore analytics: What secondary metrics can we look at that will directly correlate to how our success metrics are doing?
+
+Now let’s state our goals for each one of the framework items.
+
+1. Clarify: The goal of Instagram TV is to increase user engagement and retention of Instagram users. Instagram TV allows for longer form videos on the Instagram app which enable users to spend more of their time on Instagram versus a competitor such as Youtube or Twitter where there is also long-form video.
+
+The assumptions are that Instagram TV is a button on the top of Instagram where if you click it, videos will start playing from users that you follow. Once a video ends, the next one will begin.
+
+2. Define Metrics: Metrics we can use to define the success of Instagram TV is to look at the long term retention of a user. This means 30-day, 60-day, and 90-day retention as well as an increase in Instagram’s daily, weekly, and monthly active users. Additional engagement metrics include the average length of time spent on Instagram which we can define as time spent per user.
+
+3. Analytics: This is where we have to start quantifying the effect of Instagram TV on Instagram as a whole. In which the first question is: How do we know Instagram TV would be causing an increase in retention metrics versus other features on Instagram?
+
+Retention
+
+Let’s first measure engagement with retention and look at different cohorts of users. One cohort of users could be all users that watched Instagram TV at least once and all users that haven’t watched Instagram TV. We can control for overall time spent on the platform and then calculate retention after one week, one month, and two months.
+
+To then be even more meticulous, does an increase in Instagram TV usage also increase retention? If we bucket users into different percentages of time spent on Instagram TV, we can see if users spending 20% of their time on Instagram TV retains users at a greater rate than users spending 10% of their time on Instagram TV.
+
+Continuing measuring retention, we can cut features within Instagram TV into different segments as well. What is the retention of users that are now active users of Instagram TV? If the users that watch at least five videos in one session get retained at a higher rate than users that watch only one video, then we could measure that effect as success within the active user base of Instagram TV. 
+
+Feature drop-off
+
+Feature drop-off is also an important step in quantifying Instagram TV usage. Out of all active users:
+
+What percentage of them click on the Instagram TV modal?
+
+What percentage then watch at least one video on Instagram TV?
+
+What percentage watch multiple videos in a session?
+
+If we see many people that watch only one video and then drop-off, then we could improve the general recommendations of the next videos on Instagram TV in the feed.
+
+Creators Usage
+
+Notice we’re also diving in mostly on the consumer side. Can we measure how Instagram TV is affecting posting behavior for influencers and general Instagram users?
+
+How many Instagram TV videos are being uploaded per day? Are we increasing the total number of posts/videos being created per day by introducing Instagram TV or are creators actually uploading less content because the videos take longer to produce? Can we compare the number of Instagram TV viewers per video alongside the number of viewers that watch Instagram post videos?
