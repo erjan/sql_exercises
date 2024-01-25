@@ -1,0 +1,34 @@
+Let’s say you work at a streaming service like Netflix.
+
+Netflix ran an in-person focus group on 100 new TV series pilots that could potentially be shown on their streaming service. The focus included 1000 participants who were each shown 10 random TV pilots and asked to rate the quality of the pilots on a 1-10 scale.
+
+How would you analyze the data gathered from the focus group to determine which series should be featured on Netflix?
+----------------------------------------------------------------------------------------------------------------------------------
+
+
+
+**clarifying questions:**
+
+what is the end goal? what data do we have on users? on movies beside movie category?
+
+
+**assessing requirements:**
+
+assuming the goal is to increase user engagement , one needs to focus on user eng metrics.
+
+**solution:**
+
+based on demographics and rating given from users , i would build
+a tree based algorithm that catches relations btw numerical and non-numerical vars.
+
+certain age, location groups might prefer longer/shorter or diff categories of movies.
+do EDA to see if there is correlation btw political views of users and movie types, length.
+or whatever other unusual correlation one may find.
+
+**validation**:
+
+use std treebased metrics to assess the quality , use the fast api or other tool to turn it into production-ready predictor system
+
+**additional concerns**:
+
+make sure proper MLOps is used to evaluate the model in production
