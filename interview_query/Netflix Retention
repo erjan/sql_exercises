@@ -1,0 +1,45 @@
+Let’s say at Netflix we offer a subscription where customers can enroll for a 30-day free trial. After 30 days, customers will be automatically charged based on the package selected.
+
+Let’s say we want to measure the success of acquiring new users through the free trial.
+
+How can we measure acquisition success and what metrics can we use to measure the success of the free trial?
+-------------------------------------------------------------------------------------------------------------------------------------
+First a protip:
+
+Let’s go back to thinking about an idea for a strategy on Product Metrics type questions. One way we can frame the concept specifically to this problem is to think about controllable inputs, external drivers, and then the observable output. It is critical to spend most of the time in the interview creating good/bad benchmarks, having numeric goals, explaining actual performance vs expectation, evaluating inputs, and not be bogged down over other KPIs that we can’t really influence.
+
+With that in mind, let’s start out by stating the main goals of the question. What is Netflix’s business model?
+
+Main Goal:
+
+1. Acquiring new users.
+2. Decreasing churn and increasing retention.
+
+Let’s think about acquisition before we dive into measuring the success of the free trial. Starting out, what questions do we have on acquisition at a larger scale before we jump into the problem?
+
+1. What’s the size of the market?
+
+This would be the top of the funnel in terms of acquisition. Let’s say there are seven billion people on the planet that comprises of two billion households. If we assume a 5% penetration of high-speed broadband internet, the potential market size is 100 million households.
+
+2. Size and quality of the potential leads.
+
+In this case, our leads are the free-trial users. In each segment, we can break down the number and quality of leads by different factors such as geography, demographics, device-type (TV or Mobile), acquisition funnel, etc…
+
+Now, let’s focus on acquisition output metrics. What metrics can we measure that will define success on a top-level viewpoint for acquisition?
+
+Conversion rate percentage: # of trial sign-ups / # of leads in the pool, by sub-segments. This is the number of leads that we convert into free trial signups. Leads are defined by customers that click on ads, sign up their email, or any other top of the funnel activity before the free trial sign-up. 
+Cost per free trial acquisition: This is the cost for signing up each person to a free trial. This can be calculated by the total marketing spend on advertising the free trial divided by the total number of free trial users.
+Daily Conversion Rate: This is the number of daily users who convert and start to pay divided by the number of users who enrolled in the 30-day free trial, thirty days ago. One problem with this metric is it’s hard to get information about users who enrolled for the free trial given the 30-day lag from sign-up to conversion. For example, it would take 30 days to get the conversion data from all the users that signed up for the free trial today.
+Going deeper into the daily conversion rate metric, one way we can get around the 30-day lag is by looking at cohort performance over time. Everyone who joined in the month of January (let’s say between day 1 to day 30) would become cohort-1. Everyone who joined in the month of February would be cohort-2, etc…
+
+Then you see at the end of the trial:
+
+What % of free users paid.
+What % of free users till pay for month two, month three, month four, etc….until you have metrics for month six to one year. Then we can look at a second cohort for February sign-ups. Once you have this, then you compare the 30-day retention for cohort-2 vs cohort-1, then 60-day retention for cohort-2 vs cohort-1, and so on. This tells you if the quality of acquisition is effective enough, and actually encourages long-term engagement.
+Now if we jump into a few engagement metrics:
+
+Percentage of daily users who consume at least an hour of Netflix content.
+We can break this down by the percentage of users who are also consuming content at least 1min, 15mins, 1hour, 3hours, 6+hours in a week.
+Average weekly session duration by user
+We can cut this metric by the behavioral segment of the users. There are different member profiles such as college students, movie fanatics, suburban families, romantic comedy enthusiasts, etc..
+Within each role, there’s the job of providing recommendation to the acquisition team on which parts of the business is having the highest growth. More segmentations then exist past demographics of looking at usage preferences, time of day, content verticals, to determine which combination will increase the output of average weekly session duration.
