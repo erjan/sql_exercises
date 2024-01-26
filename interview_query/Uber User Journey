@@ -1,0 +1,35 @@
+Clarifying questions and assumptions:
+To begin with, we need to ask some clarifying questions to reduce ambiguity in our task.
+
+In our first clarifying question, we should ask our team how “wrong locations” is defined. An incorrect location could have to do with at least two different issues:
+
+Riders select a specific pickup spot. The app then changes the input by mistake but shows the second location correctly on the map.
+The app shows riders a pickup spot on the map and shows drivers a different pickup spot.
+We will choose to interpret the original question as asking about the second issue. The reason for this is that the first interpretation is very concrete, so the report would have mentioned it more specifically. However, with a plausible explanation, we could answer the question by interpreting it the first way.
+
+The second clarifying question we could ask is what reasons there could be for drivers to be arriving at different locations from the pickup spots shown to riders. With this information, we’ll be able to distinguish false positives (i.e. cases in which drivers do arrive at the wrong location, but it’s not because the app showed them the wrong pickup location).
+
+We will evaluate three plausible hypotheses in our answer:
+
+True positives: The app indicates the wrong locations.
+
+GPS location errors mess up pickup spot assignations.
+A software error in the app chooses the wrong pickup spot using the right information. This is plausible because pickup spots need to be in the street, and people may call for Uber rides from inside buildings. There, the app needs to choose which point along the street to send the car. Again, this could generate errors.
+False positives: The app works well, but drivers didn’t go to the spots the app assigned to them.
+
+Drivers could report arriving at the pickup spot at the wrong place even if the app showed the correct spot in the map. For example, they could choose to report arriving at locations at close walking distance from true pickup spots when transit issues would make moving by car much slower.
+Formulating our metric
+After clarifying the problem, we will define a metric to evaluate how frequently riders may report that their drivers got the wrong locations.
+
+This will be the total distance traveled by riders from the drivers’ reported arrival until the riders get to the cars. If this value surpasses a threshold (let’s say, of one block), we’ll interpret this information as drivers arriving at the wrong locations.
+
+We did not choose the euclidean distance from the spot in which drivers arrive and the spot in which riders are waiting because this doesn’t consider cases in which both locations are close but require a long walking distance (for example, navigating around an obstacle or across a pedestrian bridge).
+We did not choose the amount of time the rider takes to get to the car, as this information would be confused with riders taking too long to get to the cars due to other factors, such as taking longer to see the notification.
+We consider it a good proxy metric because, in most cases, riders don’t expect to walk more than a block to their cars.
+After evaluating how frequently our proxy metric tells us the drivers arrived at the wrong locations, we can perform some observations to identify which of them truly have to do with problems in the app and which may be false positives:
+
+If the frequency of rides in which the issue happens is evenly distributed in space, and the distance walked by riders to the cars follows a normal distribution, we can conclude the problem has to do with random GPS location errors.
+
+To understand if this issue has to do with drivers choosing to arrive at different spots than those they were shown on their map, we could search for clusters in which this issue happens. If the phenomenon is more frequent in places or times of day in which transit is worse, we can conclude that much of it has to do with drivers and not with problems in the app. Another way of identifying this phenomenon is to find what percentage of the paths riders walk when taking too long goes against the flow of cars. If this number is higher than what we would expect from random chance, it probably has to do with drivers expecting riders to walk to avoid a long detour.
+
+Finally, if this issue tends to happen more around big buildings, and the paths walked by riders to cars are usually around the same block, it probably has to do with the app choosing the wrong pickup point in the street given the right riders’ location. This may happen when the app chooses the closest point in a street to a rider inside a building, but this point is far away from the building’s exits.
