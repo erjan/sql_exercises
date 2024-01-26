@@ -1,0 +1,53 @@
+You are a data scientist at YouTube focused on creators.
+
+A PM comes to you worried that amateur video creators could do well before but now it seems like only “superstars” do well.
+
+What data points and metrics would you look at to decide if this is true or not?
+--------------------------------------------------------------------------------------------------------------------------------------
+
+The first thing we have to do is prove or disprove the hypothesis. Our hypothesis can be reworded from the question itself to actually:
+
+Given the assumption that superstar channels and amateur channels used to grow at similar rates before are those growth and performance rates now diverging?
+
+Now our job is to either prove or disprove this hypothesis with data and graphs that we can use to back our statement. Metrics that we could use to disprove our hypothesis would be finding similar growth rates now as before. Proving our hypothesis would mean that there is a significant difference in growth rates now compared to before.
+
+To tackle this concern, we will need to first establish a sample set of “amateur” channels and “superstar” channels to conduct analysis on. We can define these channels by finding thresholds where each channel would fit the definition.
+
+For example, if we looked at the total number of subscribers for every channel on YouTube, we could say that the top 5% of channels with the highest number of subscribers would be “superstars” and the bottom 10-20% could be “amateurs”. Note that we’re not using the bottom 10% because they could likely be non-active accounts.
+
+Additionally, we would probably want to add some more criteria to really distinguish what an amateur channel or superstar channel is. We can look at total views, video posting rate, and other metrics to make sure that the “amateur” channels are mostly similar to the “superstar” channels in terms of creator work effort. Our goal is to measure the effect of the YouTube algorithm on similar channels with different audience sizes.
+
+This means we also have to make sure that the creator video quality is generally consistent across the amateurs and superstars. Mainly because we want to compare apples to apples in videos. YouTube beginners would be more likely to lack the expertise of creating quality content.
+
+And so to understand metrics around quality we could make sure to segment and control for:
+
+Thumbnail click-through rates
+YouTube watch time retention
+Ratio of likes, comments, and subscribes on videos, etc…
+Lastly, we should specify a time period in which we want to analyze the before and after between the amateur and superstar channels. This is crucial because we need to understand what the baseline metrics were when amateur creators could “do well” so to speak.
+
+Subscribers to views ratio.
+
+The first easy metric to look at is the subscriber count to average views per video. With these two metrics, we could plot a scatter plot, with total subscribers on the horizontal axis and total views on the vertical axis. Each dot would represent a Youtube creator.
+
+Our assumption is that we should see a linear relationship showing that the number of views increases along with the subscriber count. However, if superstars are performing exponentially better than amateurs, then we would see an exponential increase in views as the superstars gain subscribers.
+
+Channel Growth
+
+What is the average increase in subscriber rate growth between amateurs and superstars between two time periods?
+
+For example, if I was an amateur creator, grew my audience from 100 to 150 subscribers but a superstar grew their audience from 1 million to 2 million in the same time period, then we would understand that superstars were dominating.
+
+Additionally, if we segment by timeframe and pick a time a few years ago where an amateur on average went from 100 to 1000 subscribers while a superstar doubled their subscriber count, then we would assume that the growth rate for amateurs was better back then.
+
+Additionally, our baseline assumptions should be that smaller channels grow faster than bigger channels. Earning 1000 subscribers is much easier than earning 1 million.
+
+YouTube Recommendation
+
+Another interesting analysis could be looking at YouTube suggested videos. What are the percentages of videos from an amateur channel that gets recommended versus the percentage of videos from a superstar?
+
+YouTube’s recommendation algorithm is a significant part of increasing YouTube’s total view count. Looking at the percentage of videos recommended would primarily help us understand if superstars are crowding the recommendation algorithm.
+
+We should obviously see superstars recommended more given their audience size. But can we tell if it’s throttling amateur view counts or not? If we compare before and after the time period, we can measure and compare the percentages.
+
+We can utilize this same metric for YouTube search. What percentage of the users are viewing amateur videos from search versus superstars if we control for all external variables? This would showcase to us how much the algorithm is promoting YouTube videos based on view count versus relevancy.
