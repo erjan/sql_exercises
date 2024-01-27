@@ -1,0 +1,36 @@
+Let’s say you work at a food delivery startup.
+
+The customer success team is asking for a standardized refund policy for the company after historically processing each case differently.
+
+How would you create a policy for refunds with regards to balancing customer sentiment and goodwill versus revenue tradeoffs?
+----------------------------------------
+
+Clarifying Questions: a) How was the refund processed historically? b) Was it based on type of complaints? c) Was 100% refunded
+
+Assessing Requirements: Scenarios when customer can ask for a refund: a) Delivery not fulfilled on time b) Incorrect delivery line item c) Delivery not received
+
+** Assuming historically, the dollar value was returned to the customer.
+
+Solution: We can return $ value only when the order is not received at all. But in all other scenarios, we can send some form of credits that the user can use on the platform.
+
+Validation: The above solution would balance customer sentiments and business revenue inflow. By providing credits, the startup ensured that the customer will come back and reorder on the platform. And there is also a high possibility for the customer to place an order worth higher than the credit amount.
+
+Additional Concerns: We need to check for fraudulent transactions, where the customers abuses the refund policy and asks for refund even they have received the order
+------------------------------------------------------------
+**clarifying questions:**
+
+what is the end goal? to increase customer satisfaction or keep revenue high?
+
+**assessing requirements:**
+
+assume the goal is to find balance/tradeoff btw various actors.
+
+
+**solution:**
+
+classify the cases into categories and find out the reason they were procesed diff-ly.
+
+there will not be too many categories as most situations repeat themselves(it will be glitch related to courier delivering food cold, improper wrong meal delivered or smth else)
+so 1 solution is to make standardized ref policy
+but with some fluctuations not exceeding 10% difference overall.
+
