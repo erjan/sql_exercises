@@ -1,0 +1,29 @@
+Let’s say you have a bag of coins. 
+�
+x of them are fair, 
+�
+y of them have heads on both sides, and 
+�
+z of them have tails on both sides.
+
+If you draw 100 coins at random from the bag (with replacement) and flip each of them, what is the expected number of heads that you will see?
+----------------------------------------------------------------------------------------------
+P(h|x) = 0.5
+
+P(h|y) = 1
+
+P(h|z) = 0
+
+P(x) = x/(x+y+z)
+
+P(y) = y/(x+y+z)
+
+P(z) = z/(x+y+z)
+
+P(h) = P(x)P(h|x) + P(z)P(h|z) + P(y)P(h|y)
+
+P(h) = 0.5x/(x+y+z) + y/(x+y+z)
+
+P(h) = (0.5x + y)/(x + y + z)
+
+Therefore, expected value = 100*P(h) = 100(0.5x+y)/(x+y+z)
