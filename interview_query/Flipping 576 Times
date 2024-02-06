@@ -1,0 +1,85 @@
+You flip a fair coin 576 times. Without using a calculator, calculate the probability of flipping at least 312 heads.
+---------------------------------------------------------------------------------------------------------------------------
+
+This question requires some memorization. At first glance we can infer that it’s a binomial distribution problem given that we have to guess the number of heads out of a number of trials. Therefore similar to a binomial distribution with 
+�
+n trials and probability of success 
+�
+p on each trial.
+
+Looking at the formulas for the binomial distribution: 
+
+The mean is 
+�
+�
+np
+The variance is 
+�
+�
+(
+1
+−
+�
+)
+np(1−p)
+The standard deviation is 
+�
+�
+(
+1
+−
+�
+)
+np(1−p)
+​
+ 
+We know that the expected number of heads is 0.5 * 576 = 288. Then you would have to remember that the standard deviation of the binomial distribution is 
+�
+�
+(
+1
+−
+�
+)
+np(1−p)
+​
+ . 
+
+We know that 
+�
+p is 0.5 for the probability of success of flipping heads. If we calculate the formula out for the standard deviation we get: 
+�
+=
+512
+⋅
+0.5
+⋅
+(
+1
+−
+0.5
+)
+=
+288
+⋅
+0.5
+=
+144
+=
+12
+σ= 
+512⋅0.5⋅(1−0.5)
+​
+ = 
+288⋅0.5
+​
+ = 
+144
+​
+ =12
+
+We now can figure out that 312 is 2 standard deviations above the mean given that 24 + 288 = 312.
+
+So due to the binomial approximation to the normal distribution, we know that at 
+±
+± 2 standard deviations that 5% of the distribution is on the tails, which means 2.5% chance of 312 or more heads.
