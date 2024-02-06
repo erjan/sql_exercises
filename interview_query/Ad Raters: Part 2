@@ -1,0 +1,683 @@
+Let’s say we use people to rate ads.
+
+There are two types of raters. Random and independent from our point of view:
+
+80% of raters are careful and they rate an ad as good (60% chance) or bad (40% chance). 
+20% of raters are lazy and they rate every ad as good (100% chance).
+Suppose a rater rates just three ads, and rates them all as good. What’s probability the rater was lazy?
+2. Suppose a rater sees 
+�
+N ads and rates all of them as good. What happens to the probability the rater was lazy as 
+�
+N tends to infinity?
+
+3. Suppose we want to exclude lazy raters. Can you come up with a rule for classifying raters as careful or lazy?
+
+---------------------------------------------------------------------------------------------------------------------------
+
+Q1.) Let 
+�
+3
+G 
+3
+​
+  be the event that the three ads are rated as good and 
+�
+L be the event that the user is lazy.
+
+Then,
+�
+(
+�
+3
+)
+=
+�
+(
+�
+3
+∩
+�
+)
++
+�
+(
+�
+3
+∩
+�
+�
+)
+=
+�
+(
+�
+)
+�
+(
+�
+3
+∣
+�
+)
++
+�
+(
+�
+�
+)
+�
+(
+�
+3
+∣
+�
+�
+)
+=
+0.2
+⋅
+1
+3
++
+0.8
+⋅
+0.
+6
+3
+=
+0.3728
+P(G 
+3
+​
+ )=P(G 
+3
+​
+ ∩L)+P(G 
+3
+​
+ ∩L 
+c
+ )=P(L)P(G 
+3
+​
+ ∣L)+P(L 
+c
+ )P(G 
+3
+​
+ ∣L 
+c
+ )=
+0.2⋅1 
+3
+ +0.8⋅0.6 
+3
+ =0.3728
+
+And finally, we apply the definition of conditional probability:
+
+�
+(
+�
+∣
+�
+3
+)
+=
+�
+(
+�
+∩
+�
+3
+)
+�
+(
+�
+3
+)
+=
+0.2
+0.3728
+=
+0.5365
+P(L∣G 
+3
+​
+ )= 
+P(G 
+3
+​
+ )
+P(L∩G 
+3
+​
+ )
+​
+ = 
+0.3728
+0.2
+​
+ =0.5365
+
+Q2.) Let 
+�
+�
+G 
+N
+​
+  be event that the 
+�
+N ads are rated as good. By Bayes’ rule:
+�
+(
+�
+∣
+�
+�
+)
+=
+�
+(
+�
+)
+�
+(
+�
+�
+∣
+�
+)
+�
+(
+�
+)
+�
+(
+�
+�
+∣
+�
+)
++
+�
+(
+�
+�
+)
+�
+(
+�
+�
+∣
+�
+�
+)
+=
+0.2
+⋅
+1
+�
+0.2
+⋅
+1
+�
++
+0.8
+⋅
+0.
+6
+�
+=
+0.2
+0.2
++
+0.8
+⋅
+0.
+6
+�
+P(L∣G 
+N
+​
+ )= 
+P(L)P(G 
+N
+​
+ ∣L)+P(L 
+c
+ )P(G 
+N
+​
+ ∣L 
+c
+ )
+P(L)P(G 
+N
+​
+ ∣L)
+​
+ =
+0.2⋅1 
+N
+ +0.8⋅0.6 
+N
+ 
+0.2⋅1 
+N
+ 
+​
+ = 
+0.2+0.8⋅0.6 
+N
+ 
+0.2
+​
+ 
+Note that since 
+0.6
+<
+1
+0.6<1:
+lim
+⁡
+�
+→
+∞
+0.
+6
+�
+=
+0
+N→∞
+lim
+​
+ 0.6 
+N
+ =0
+
+We may now take the limit of 
+�
+(
+�
+∣
+�
+�
+)
+P(L∣G 
+N
+​
+ ) with respect to 
+�
+N using standard limit laws:
+lim
+⁡
+�
+→
+∞
+�
+(
+�
+∣
+�
+�
+)
+=
+lim
+⁡
+�
+→
+∞
+0.2
+0.2
++
+0.8
+⋅
+0.
+6
+�
+=
+lim
+⁡
+�
+→
+∞
+0.2
+lim
+⁡
+�
+→
+∞
+(
+0.2
++
+0.8
+⋅
+0.
+6
+�
+)
+=
+0.2
+0.2
++
+0.8
+lim
+⁡
+�
+→
+∞
+0.
+6
+�
+=
+0.2
+0.2
+=
+1
+N→∞
+lim
+​
+ P(L∣G 
+N
+​
+ )= 
+N→∞
+lim
+​
+  
+0.2+0.8⋅0.6 
+N
+ 
+0.2
+​
+ =
+lim 
+N→∞
+​
+ (0.2+0.8⋅0.6 
+N
+ )
+lim 
+N→∞
+​
+ 0.2
+​
+ = 
+0.2+0.8lim 
+N→∞
+​
+ 0.6 
+N
+ 
+0.2
+​
+ = 
+0.2
+0.2
+​
+ =1
+This should be intuitive, the more times we observe a rater rating every ad they see as good, we expect that it’s more likely that the rater is lazy.
+
+Q3.) From the last question, we know that 
+�
+(
+�
+∣
+�
+�
+)
+P(L∣G 
+N
+​
+ ) as a function 
+�
+(
+�
+)
+P(N). It can be show that 
+�
+P is always increasing since its derivative is always positive:
+
+�
+�
+�
+�
+=
+0.2
+�
+�
+�
+1
+0.2
++
+0.8
+⋅
+0.
+6
+�
+=
+−
+0.2
+⋅
+0.8
+⋅
+ln
+⁡
+(
+0.6
+)
+⋅
+0.
+6
+�
+(
+0.2
+⋅
+0.8
+⋅
+ln
+⁡
+(
+0.6
+)
+⋅
+0.
+6
+�
+)
+2
+>
+0
+dN
+dP
+​
+ =0.2 
+dN
+d
+​
+  
+0.2+0.8⋅0.6 
+N
+ 
+1
+​
+ =− 
+(0.2⋅0.8⋅ln(0.6)⋅0.6 
+N
+ ) 
+2
+ 
+0.2⋅0.8⋅ln(0.6)⋅0.6 
+N
+ 
+​
+ >0
+
+Since 
+−
+ln
+⁡
+(
+0.6
+)
+>
+0
+−ln(0.6)>0. As a rule, we can flag a user as “lazy” if they have rated all ads as good and the probability 
+�
+(
+�
+∣
+�
+�
+)
+>
+�
+P(L∣G 
+N
+​
+ )>α for some real number 
+0
+<
+�
+<
+1
+0<α<1. For a given 
+�
+α, we can find how many ads must be rated as good for a user to be marked as lazy explicitly:
+�
+(
+�
+)
+<
+�
+⇒
+0.2
+0.2
++
+0.8
+⋅
+0.
+6
+�
+<
+�
+P(N)<α⇒ 
+0.2+0.8⋅0.6 
+N
+ 
+0.2
+​
+ <α
+0.2
+<
+�
+(
+0.2
++
+0.8
+⋅
+0.
+6
+�
+)
+0.2<α(0.2+0.8⋅0.6 
+N
+ )
+0.2
+(
+1
+−
+�
+)
+<
+0.8
+⋅
+0.
+6
+�
+0.2(1−α)<0.8⋅0.6 
+N
+ 
+ln
+⁡
+(
+0.2
+)
++
+ln
+⁡
+(
+1
+−
+�
+)
+<
+ln
+⁡
+(
+0.8
+)
++
+�
+ln
+⁡
+(
+0.6
+)
+ln(0.2)+ln(1−α)<ln(0.8)+Nln(0.6)
+ln
+⁡
+(
+0.2
+)
+−
+ln
+⁡
+(
+0.8
+)
++
+ln
+⁡
+(
+1
+−
+�
+)
+ln
+⁡
+(
+0.6
+)
+<
+�
+ln(0.6)
+ln(0.2)−ln(0.8)+ln(1−α)
+​
+ <N
+�
+=
+⌈
+ln
+⁡
+(
+0.25
+[
+1
+−
+�
+]
+)
+ln
+⁡
+(
+0.6
+)
+⌉
+N=⌈ 
+ln(0.6)
+ln(0.25[1−α])
+​
+ ⌉
