@@ -83,3 +83,13 @@ We now can figure out that 312 is 2 standard deviations above the mean given tha
 So due to the binomial approximation to the normal distribution, we know that at 
 ±
 ± 2 standard deviations that 5% of the distribution is on the tails, which means 2.5% chance of 312 or more heads.
+-------------------------------------------------------------------------------------------------------------------------
+
+shorter explanation
+
+Fair coin, p(H)=0.5 For binomial distribution, mean=np=576*0.5=288, var=np(1-p)=576*0.5*0.5=144, stddev=sqrt(var)=12.
+
+For normal distribution, “68% of the data falls within one standard deviation, 95% percent within two standard deviations, and 99.7% within three standard deviations from the mean.”
+
+312= 288(mean)+2*12(stddev), which means the probability of flipping at least 312 heads or tails is 5%. Since we are only looking at the probability of at least 321 heads, it is the right tail area of the distribution, which 
+is 5%/2= 2.5%. So the probability of flipping at least 312 heads is 2.5%.
