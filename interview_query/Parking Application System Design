@@ -1,0 +1,49 @@
+You’re a data engineer and have been tasked with designing an app that allows users to find parking spots across a city. The app makes available parking spots across the city leased from various other organizations and companies.
+
+You can assume that the list of available spots will be made available to you in a raw format, so you don’t need to worry about who owns which spot, for example.
+
+How would you, as a data engineer, design the system that supports this application? You may make any needed assumptions, but be sure to identify them clearly.
+
+Keep a few things in mind:
+
+The app will have a machine learning component that updates prices in real time in response to demand. You don’t have to design the ML algorithm, but the app will have to use its outputs. Once a user commits to a spot, the per-hour price for that spot does not change.
+The app needs to know the user’s location and should be able to return multiple nearby and available parking spots.
+The app should be able to display to the user how much cost they’ve incurred so far once they’ve parked.
+Be sure to identify the functional and non-functional requirements of the design.
+----------------------------------------------------------------------------------------------------------------
+**Clarifying Questions:**
+
+what is the end goal? make the app profitable?
+make it part of car company ecosystem?
+increase customer satisfaction and integrate it with other local biz?
+
+
+**Assessing Requirements:**
+
+
+assume the goal is to make app similar to uber or even part of uber ecosystem
+the goal is to make it easier and cheap for uber app drivers to find car spot.
+**Solution:**
+
+the app fetches data from all 
+cameras of parking lots. cctv detects available free spots,
+and shows in UI a list or grid of available parking spots along with prices.
+cheaper spots are shown above and estimated price for 1h,4h,6h,24h is automatically displayed.
+
+the app continually updates every 1 min to detect if there are new free spots available.
+
+once parked, it starts calculating and sending 
+notifications every hour; the min parking time billing period is 1h.
+
+the app should satisfy scalability reqs, depending on traffic in city/area
+and avg parking time and how quickly drivers check-in and out.
+the app should be fast,secure, reliable and scalable, user-friendly, available in both ios/android.
+
+**Validation:**
+
+iteratively deploy to target group(s) the app and collect user feedback.
+
+
+**Additional Concerns:**
+
+data privacy law, what data can be accessed about drivers profiles.
