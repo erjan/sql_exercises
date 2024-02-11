@@ -1,0 +1,38 @@
+You are a data architect consulting for a large retail company, which has experienced slowdowns in generating monthly and quarterly inventory analyses.
+
+What might be the reason for the OLAP system’s performance, specifically when handling monthly and quarterly reports?
+What aggregation strategy might you look into in order to mitigate this issue?
+State any assumptions upfront.
+------------------------------------------------------------------------------------------------------------------
+
+
+**Clarifying Questions:**
+
+what is the end goal? 
+how much data is accessed to generate monthly report?
+what is the data size, num rows etc?
+how many data analysts try to access the data to generate reports?
+is data structured, semistructured?
+how many writes goes into the db on a day of generating report?
+is it write intensive?
+do we have access to spark to do real time streaming analytics?
+
+**Assessing Requirements:**
+assuming there is 1 data analyst team, that needs to generate monthly report on tables of size 50 gb.
+and quarterly report on 3 tables with size of 1tb.
+
+**Solution:**
+check the data access patterns, most frequently accessed tables,
+create,use indexes on them.
+
+check if the olap db is suitable at all for the requirements and nature of workload
+
+
+**Validation:**
+
+measure for the time, performance with std db tools before using indexes and after.
+
+
+**Additional Concerns:**
+
+data privacy law, what data can be accessed about drivers profiles.
