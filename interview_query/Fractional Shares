@@ -1,3 +1,111 @@
 Let’s say that you’re a data scientist at Robinhood. 
 
 How do we measure the launch of Robinhood’s fractional shares program?
+-----------------------------------------------------------------------------------
+**Clarifying Questions:**
+
+what is the end goal? 
+to increase shares daily turnover?
+
+**Assessing Requirements:**
+assume the goal is to increase daily new users and retention rate of new users 
+
+**Solution:**
+
+measure metrics like DAU,WAU,Mau; num of new signups since the start of the program.
+retention rate of new users, num of fractional shares bought/sold
+
+**Validation:**
+
+check according to the expectations, reqs if the program is successful, collect anonymous user feedback
+use a/b testing to give some users fractional program access and see how often and how they use it.
+do they buy hold or day trade?
+
+
+**Additional Concerns:**
+
+data privacy law, what data can 
+be accessed about users profiles(maybe for recommendations)
+--------------------------------------------------------------------------------------------------------------
+Let’s start by clarifying the problem some more and making some assumptions. 
+
+Is this a product launch or test launch? 
+What are Robinhood’s goals for the fractional shares program? 
+What are Robinhood’s business goals? 
+We can first theorize how Robinhood makes money:
+
+One is based on trading volume. Robinhood can sell the flow data of trades to other market makers. Many times, this is correlated with how much they make, given it is percentage-wise based on the size of the trading volume. 
+
+Another way is by the size of their customer portfolio. Financial institutions can borrow against their stocks and get charged a fee. Generally, a diverse basket of portfolio users is better. 
+
+Lastly, Robinhood can make money off of the interest that is sitting in their platform and not invested. 
+
+Now that we’ve defined Robinhood’s business model, let’s focus on a couple of hypotheses for why Robinhood would launch fractional shares.
+
+With fractional shares, Robinhood can grow their user base by acquiring users that cannot afford expensive stocks like AMZN. 
+
+Fractional shares also provide more opportunity for existing users to increase their trading volume and re-engage them on the platform
+
+Offering a variety of products motivates users to trade more, which will also increase trading volume. 
+
+Acquiring New Users
+
+We can look at a couple of metrics to see if fractional shares are helping with acquisition. One way is to see the percentage of new users that have started fractional trading. Specifically, the number of new users that only use fractional trading divided by the total number of new users would indicate whether or not fractional shares have converted new users onto the platform. 
+
+Another method would be to look at the new user average trading power and see if it’s smaller than our average users. If that’s the case, then we’re targeting the right kind of users that are attracted to this feature.
+
+Lastly, we can hypothesize whether fractional shares are helping our new users succeed into the platform by becoming daily active or engaged users. We can then look at, among new users, the percentage of users that churn off the platform and see if it has decreased compared to before. 
+
+If the churn on new users that opted into fractional shares is lower, then it would show that fractional shares have contributed to an increase in Robinhood’s acquisition of active users, assuming that we control for prior usage of these new users as well. 
+
+Providing more opportunity for existing users 
+
+At a high level, we can measure a couple of metrics that will tell us generally how the feature launch is doing for our existing users, and see if it helps provide our users with more engagement and opportunity on the Robinhood platform. 
+
+We want to measure if existing users are using the feature and spending more time on the app itself. Therefore we can track:
+
+Average time users have spent on the app and fractional stocks
+Average sessions per day looking at fractional stocks
+The percentage of users that check fractional stocks and then make a trade
+Daily/Weekly/Monthly active users on fractional trades
+Now, what about if we want to measure the more causal effects that stem from launching a new feature? Well, we can look at these metrics before and after, but it won’t help us understand if we can separate causal effects from one another. For example, how do we know if the increase in average time users have spent on the app is based on fractional trading?
+
+There are a couple of strategies. One is that we can look at the historical forecast of our engagement metrics before the feature launch and then compare them against the actual metrics to see if there was a bump compared to our forecast. This metric would not be crazy strong given how variable engagement forecasting is with growth. 
+
+Another way is that we can run a hold out test where a portion of our existing users doesn’t access fractional stocks. We can then compare metrics between two variants:
+
+Variant
+
+Users that have the ability to trade fractional stocks
+Control
+
+Users that cannot trade fractional stocks
+Now, we can monitor different engagement and revenue metrics to determine how the feature is affecting user behavior. 
+
+Additionally, we would have to prioritize which metrics we care about for this test. For example, if we see that users in the variant where they get access to fractional stocks are converting at a higher rate from monthly active users to daily active users, then our DAU/MAU ratio is growing, which means the product itself is stickier and engaging more users. 
+
+But what happens if in this variant, the users are, on average, trading less volume because the fractional stocks are cheaper–what should we do to figure out the optimal solution?
+
+In this scenario, we then have to focus on the long-term retention of our users. If the users are trading on average less volume but will stick around for 6 months instead of one month, then the total trading volume may still be higher in the long term. We can measure this by calculating the retention and projecting it past a week or however long our test is and then multiplying it by the projected trading volume for both. 
+
+Increasing trading volume
+
+Our hypothesis is that both the effects of acquiring new users and increasing user engagement can increase our trading volume. One clear case example is that as a user, they can now buy a fraction of Amazon, whereas before they would never be able to afford one whole Amazon stock. 
+
+How can we prove this is happening?
+
+We can do a couple of segmentations. First, let’s find users that never bought expensive stocks to begin with. After they started trading fractional stocks, did their overall trading volume go up?
+
+We can further explore this idea by creating more discrete segments and defining a categorical feature for the statement of “users that never bought expensive stocks”. For example, we could take the Robinhood balance of all users, and bucket them into distinct groups. 
+
+Users with a balance from:
+
+0-1K
+1K-10K
+10K-100K
+>100K
+Now, we can measure the effects of fractional stocks by different user groups. We can do the same thing with user activity metrics. For example, what about the prior frequency of trading?
+
+Users that never traded before
+Users that traded once a month
+Users that traded daily
