@@ -1,0 +1,49 @@
+A robot has been designed to navigate a two-dimensional 4x4 matrix by only moving forward or turning right when blocked by a wall of the matrix. Its starting position is in the top left corner of the matrix, denoted by (0,0), and the robot’s final destination is the bottom right corner.
+
+Determine the full path of the robot before it hits the final destination or starts repeating the path.
+
+The ‘walls’ of the matrix are either one of the four borders of the map or any block found within.
+
+A ‘Block’ is donated by having 1 in the cell corresponding to it where an empty cell is having ‘0’.
+
+Example 1:
+
+#Input
+robot_map = [
+  [0,0,0,0],[0,0,1,0],[0,1,0,0],[0,0,0,0]]
+
+#Output
+robot_path(robot_map) -> [(0,0),(0,1),(0,2),(0,3),(1,3),(2,3),(3,3)]
+As seen in these diagrams, the robot’s path starts with this sequence of steps:
+
+Goes forward three times and hits the wall. Turns right.
+Goes forward three times (orientation has changed), 3. Reaches the final destination, and stops.
+--------------------------------------------------------------------------------------------------------------------------------
+
+
+def robot_path(robot_map_input):
+    direction = ['right', 'down','left', 'up']
+    dir_i = 0
+    state = (0,0)
+    res=[state]
+    if robot_map_input[0][1]==1 and robot_map_input[1][0] == 1:
+        return res
+    
+    while state!=(3,3):
+        curr_dir = direction[dir_i%4]
+        if curr_dir == 'up':
+            tmp = (state[0]-1,state[1])
+        elif curr_dir == 'right':
+            tmp = (state[0],state[1]+1)
+        elif curr_dir == 'down':
+            tmp = (state[0]+1,state[1])
+        else:
+            tmp = (state[0],state[1]-1)
+        if tmp[0]<0 or tmp[0]>=4 or tmp[1]<0 or tmp[1]>=4 or robot_map_input[tmp[0]][tmp[1]]==1:
+            dir_i+=1
+        else:
+            state = tmp
+            res.append(state)
+            if state == (0,0):
+                break
+    return res
