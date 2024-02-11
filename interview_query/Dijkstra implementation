@@ -1,0 +1,35 @@
+Implement Dijkstra’s shortest path algorithm for a given graph with a known source node.
+
+A graph format is a dictionary of nodes as key and the value is a dictionary of neighbors to that node with the distance between them as follow.
+
+Note: set the previous node of the source node to None.
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+def dikjstra(graph, source_node):
+    #seen = set()
+    unseen = set(graph.keys())
+
+    output = {node: {'ShortestDistance': float('inf'), 'PreviousVertex': None} for node in graph.keys()}
+
+    output[source_node]['ShortestDistance'] = 0
+    current = source_node
+
+    while len(unseen) > 0:
+        for n, d in graph[current].items():
+            distance = output[current]['ShortestDistance'] + d
+            if distance < output[n]['ShortestDistance']:
+                output[n]['ShortestDistance'] = distance
+                output[n]['PreviousVertex'] = current
+
+        #seen.add(current)
+        unseen.remove(current)
+
+        min_d = float('inf')
+        min_node = None
+        for node in unseen:
+            if output[node]['ShortestDistance'] < min_d:
+                min_d = output[node]['ShortestDistance']
+                min_node = node
+
+        current = min_node
+
+    return output
