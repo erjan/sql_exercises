@@ -1,0 +1,34 @@
+Given a sorted list, create a function convert_to_bst that converts the list into a binary tree. convert_to_bst returns a TreeNode holding the root of the binary tree. A TreeNode is defined as the following:
+
+from dataclasses import dataclass
+
+class TreeNode:
+    pass
+
+@dataclass
+class TreeNode:
+    value: int
+    left: TreeNode = None
+    right: TreeNode = None
+The output binary tree should be balanced, meaning the height difference between the left and right subtree of all the nodes should be at most one.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+In answering this question, you have to ensure that the resulting tree will be balanced and valid.
+
+To ensure a tree is balanced, you don’t have to implement your own type of balanced tree. Examples of balanced tree algorithms are AVL or Red-Black. You can create a simple algorithm producing a tree without tree-balancing properties and still end up with a balanced tree. The key is to use the fact that the list is sorted.
+
+Because the list is sorted, you can always optimize the roots of each subtree. Note that the most optimal root is always the value in the middle since, by using the middle value, it is guaranteed that neither side will be more than one node longer than the other.
+
+To do this, find the middle of the list. Then split it into two lists, and recursively do this to the sublists until you end up with one element.
+
+def convert_to_bst(sorted_list):
+	if not sorted_list:
+		return None
+
+	middle_index = len(sorted_list) // 2 
+	root = TreeNode(sorted_list[middle_index])
+	
+	# Let's recursively get the roots of the subtrees
+	root.left = convert_to_bst(sorted_list[:middle_index])
+	root.right = convert_to_bst(sorted_list[middle_index+1:])
+
+	return root
