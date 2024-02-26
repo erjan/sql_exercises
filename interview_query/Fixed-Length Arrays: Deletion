@@ -1,0 +1,120 @@
+Important: You must answer this question before attempting this one. We recommend copying your previous solution and iterating the new solution with the added operations.
+
+Create a more extensive Array class simulating the functionality of fixed-size arrays. The array’s fixed size is 6. In this question, we will be implementing the deletion and search operations.
+
+pop_back() -> element - removes the last element of the array. Returns the removed element. If the array is empty, return None.
+
+pop_front() -> element - removes the first element of the array. Returns the removed element. If the array is empty, return None.
+
+pop(index) -> element - removes the element at the specified index and returns it. When the index is not in range, raise an IndexError.
+
+search(element) -> index - searches for the specified element and returns the index of the first instance if it exists inside the array. Returns -1 if the element does not exist inside the array. Example: Array([1, 2, 3]).search(2) -> 1.
+
+__contains__(element) -> bool - checks if the element exists inside the array. Returns True if it exists and False if it does not.
+
+abolish(element) -> count - removes all instances of an element and returns the count of all removed instances.
+
+__eq__(other) -> bool - checks the equality of the array with another array called other. Raises a TypeError if other is not an instance of this custom Array class.
+
+Note: All the basic addition operations must be implemented first. (Refer to Fixed Length Arrays 1)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+class Array:
+    
+
+    def __init__(self):
+        pass
+
+    """
+    Add all the methods from the question 
+    'Array Operations: Fixed-Length Arrays 1' here.
+    """
+
+    def __len__(self):
+        return self._count
+
+    def __getitem__(self, index):
+        if 0 <= index < self._count:
+            return self._array[index]
+        raise IndexError("Index out of range")
+
+    def emplace_back(self, element):
+        if self._count >= self._MAX_CAPACITY:
+            raise ArrayFull()
+        self._array[self._count] = element
+        self._count += 1
+
+    def emplace_front(self, element):
+        if self._count >= self._MAX_CAPACITY:
+            raise ArrayFull()
+
+        # Shift elements to the right
+        for i in range(self._count, 0, -1):
+            self._array[i] = self._array[i - 1]
+        
+        # Place the new element at the front
+        self._array[0] = element
+        self._count += 1
+
+    def emplace(self, element, index):
+        if self._count >= self._MAX_CAPACITY:
+            raise ArrayFull()
+        if index > self._count:
+            raise IndexError("Index out of range")
+
+        # Shift elements to the right
+        for i in range(self._count, index, -1):
+            self._array[i] = self._array[i - 1]
+
+        # Place the new element at the specified index
+        self._array[index] = element
+        self._count += 1
+
+    def pop_back(self):
+        if self._count == 0:
+            return None
+        back = self._array[self._count - 1]
+        self._array[self._count - 1] = None
+        self._count -= 1
+        return back
+
+    def pop_front(self):
+        return self.pop(0)
+
+    def pop(self, index):
+        # No need to do bounds checking, the 
+        # line below will raise IndexError for us.
+        element = self._array[index]
+        for i in range(index, self._count - 1):
+            self._array[i] = self._array[i+1]
+        self._array[self._count-1] = None
+        self._count -= 1
+        return element
+
+    def search(self, element):
+        for i in range(self._count):
+            if element == self[i]:
+                return i
+        return -1 
+
+    def __contains__(self, element):
+        if self.search(element) == -1:
+            return False
+        return True
+
+    def abolish(self, element):
+        count = 0
+        for i in range(self._count-1, -1, -1):
+            if self[i] == element:
+                self.pop(i)
+                count += 1
+        return count
+
+    def __eq__(self, other):
+        if not isinstance(other, Array):
+            return False
+        if len(other) != len(self): # Do length checking first to avoid IndexErrors
+            return False
+        for i in range(self._count):
+            if self[i] != other[i]:
+                return False
+        return True
