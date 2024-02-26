@@ -1,0 +1,9 @@
+Why is it standard practice to explicitly put foreign key constraints on related tables instead 
+of creating a normal BIGINT field? When considering foreign key constraints, when should you consider a cascade delete or a set null?
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+At a physical level, there is absolutely no difference between explicitly marked foreign key fields and implicit ones. However, there is an important distinction when it comes to the limitations your relational database management system can enforce towards a particular field.
+
+By specifying that a specific field is a foreign key, we can reinforce certain properties that can make it easier to maintain data integrity as well as reinforce relationships between relations. For example, constraints can make it hard to prevent accidental deletions, which might cause dangling relationships. Moreover, these constraints also ensure that a foreign key in the referencing relation is valid and exists within the referred relation.
+
+One of the ways these are enforced is through the CASCADE_DELETE and SET_NULL. Typically, we cascade delete when the child record makes no sense without the parent record (example: order items inside a cart). However, we use set null when the value still exists even if the parent record does not exist (for example: Inside the shipping table, location_id is set to NULL whenever a location is deleted).
