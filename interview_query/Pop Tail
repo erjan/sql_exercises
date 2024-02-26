@@ -1,0 +1,19 @@
+You are given two ListNodes of a doubly linked list. Write a function pop_tail which removes the tail of the linked list in 
+�
+(
+1
+)
+O(1) time. Return the head and tail of the linked list as a list. If the linked list is empty after removal, return None.
+--------------------------------------------------------------------------------------------------------------------------------------------
+class ListNode:
+  "Declaration only. No need to implement."
+  pass
+
+
+def pop_tail(head: ListNode, tail:ListNode) -> [ListNode, ListNode]:
+    if head is tail:
+      return None
+    
+    node_before_tail = tail.prev
+    node_before_tail.next = None
+    return [head, node_before_tail]
