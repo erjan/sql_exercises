@@ -1,0 +1,88 @@
+Singly-linked lists are a type of linked list where nodes have only one pointer: A pointer to the next element. Create a class SinglyLinkedList along with its methods:
+
+add_head(element) - adds an element to the head of the list. This becomes the new head of the linked list.
+add_tail(element) - adds an element to the tail of the list. This becomes the new tail of the linked list.
+remove_head() -> element - removes the head and returns the value of the removed element.
+remove_tail() -> element - removes the tail and returns the value of the removed element.
+__contains__(item) -> bool - checks if the item is inside the list. Returns True if it is inside the list and returns False if not. This method is implemented to allow the use of Python’s in operator.
+__getitem__(index) - returns the element at the specified index. Raises an IndexError if the index is out of bounds. This method is implemented to allow the use of Python’s [] operator.
+__len__() - returns the length of the SinglyLinkedList.
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+class Node:
+
+    def __init__(self, element, next):
+        self.element = element
+        self.next = next
+
+
+class SinglyLinkedList:
+    def __init__(self):
+        self.head = None
+        self.length = 0
+
+    def add_head(self, element):
+        """Adds an element to the head of the list."""
+        self.head = Node(element, self.head)
+        self.length += 1
+
+    def add_tail(self, element):
+        """Adds an element to the tail of the list."""
+        new_node = Node(element, None)
+        if not self.head:
+            self.head = new_node
+            return
+        current = self.head
+        while current.next:
+            current = current.next
+        current.next = new_node
+        self.length += 1
+
+    def remove_head(self):
+        """Removes the head and returns the value of the removed element."""
+        if not self.head:
+            return None
+        removed_element = self.head.element
+        self.head = self.head.next
+        self.length -= 1
+        return removed_element
+
+    def remove_tail(self):
+        """Removes the tail and returns the value of the removed element."""
+        if not self.head:
+            return None
+        self.length -= 1
+        if not self.head.next:
+            removed_element = self.head.element
+            self.head = None
+            return removed_element
+        current = self.head
+        while current.next.next:
+            current = current.next
+        removed_element = current.next.element
+        current.next = None
+        return removed_element
+
+    def __contains__(self, item):
+        """Checks if the item is inside the list."""
+        current = self.head
+        while current:
+            if current.element == item:
+                return True
+            current = current.next
+        return False
+
+    def __getitem__(self, index):
+        """Returns the element at the specified index."""
+        current = self.head
+        for _ in range(index):
+            if not current:
+                raise IndexError("Index out of bounds")
+            current = current.next
+        if current is None:
+            raise IndexError("Index out of bounds")
+        return current.element
+
+    def __len__(self):
+        return self.length
+
+    
