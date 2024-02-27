@@ -1,0 +1,32 @@
+Tower of Hanoi is a fun puzzle game that consists of a set of 3 pegs (A, B, C) and n number of disks. You are required to move all disks from the source peg A to destination peg C, under the following conditions:
+
+You can only move one disk for each action.
+You can only move the disk onto the top of another peg; you cannot place it off to the side or under existing disks.
+You cannot place a larger disk onto a smaller disk.
+Initially, all disks are on the source A peg and sorted by decreasing width from bottom to the top (widest on the bottom, smallest on the top).
+
+You must develop an algorithm to move all disks from A to the destination peg C with the optimal solution. Also, return every step made from the starting state to the final state.
+-----------------------------------
+def tower_of_hanoi(n):
+    steps = []
+    result = {'A': [i for i in range(1, n + 1)],
+              'B': [], 'C': []}
+    def record_step(source, destination):
+        """
+        Move an item from source to destination.
+        """
+        item = result[source].pop(0)
+        result[destination] = [item] + result[destination]
+        steps.append({"A": result['A'].copy(),
+                     "B": result['B'].copy(), "C": result['C'].copy()})
+    def move(n, source, auxiliary, destination):
+        if n == 1:
+            record_step(source, destination)
+        else:
+            move(n - 1, source, destination, auxiliary)
+            record_step(source, destination)
+            move(n - 1, auxiliary, source, destination)
+    steps.append({"A": result['A'].copy(),
+                  "B": result['B'].copy(), "C": result['C'].copy()})
+    move(n, 'A', 'B', 'C')
+    return steps
