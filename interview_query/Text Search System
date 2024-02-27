@@ -1,0 +1,47 @@
+Suppose that you’re building a tool for in-house analytics at LinkedIn. Design a pipeline that ingests images and PDFs of resumes and transforms them into queryable text data.
+
+Your data pipeline will have the following outflows:
+
+A data mart that allows machine learning models to tap into the text data for natural language processing.
+A data product that analysts in your company use to track keywords.
+A search API that allows recruiters to scout candidates using certain keywords.
+You may assume the following:
+
+The image-to-text models are adequately accurate and are ready for use.
+Data does not have to be real-time but has to minimize turnaround.
+Another team is working with the privacy and security filters. You do not need to consider this in your design.
+State other assumptions you might have upfront.
+-----------------------------------------------------------------------------------------------------------------------------
+**Clarifying Questions:**
+
+
+what is the end goal of building such tool?
+drive analytics insights into what resumes candidates send?
+increase understanding of what images, type of CVs we get?
+
+**Assessing Requirements:**
+assuming the pipeline has the following requirements:
+max 1000 images/24h for scalability
+cloud-based
+highly available
+
+**Solution:**
+
+cv image recognizer I2T(image-2-text) -> cleaning, stop words removal, spellchecker->
+vectorizer->elastic search
+
+separate microservice can be implemented that works for each of the outflows(data products):
+
+datamart with ML models need to have its own microservice
+scout using keywords 
+keyword tracker product
+
+
+
+**Validation:**
+
+start the system and test with various data teams
+
+**Additional Concerns:**
+
+GDPR legislation and access to documents coming from certain regions - US, europe.
