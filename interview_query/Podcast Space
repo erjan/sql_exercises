@@ -1,0 +1,24 @@
+A media company makes its money from monthly subscription fees. The company is considering entering the podcast space.
+
+How would you measure the impact on customer lifetime value of such a move?
+-----------------------------------------------------------------------------------------------------------------------------------
+
+**Clarifying Questions:**
+
+what is the end goal? drive customer engagement? increase revenue?
+what media content the company produces? 
+
+**Assessing Requirements:**
+
+assume the goal is to drive customer engagement, bring new customers
+the profit is based on num of views *num of ads during the podcast.
+**Solution:**
+
+customer survey can be sent to estimate whether podcast is a good idea
+compare the cur lifetime value with soft launch of the podcast and track metrics like
+user engagement; retention rate.
+
+**Validation:**
+
+if avg customer lifetime value goes higher - we know its a good move to start podcasting
+
