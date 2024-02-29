@@ -1,0 +1,37 @@
+Let’s say you work for Lyft.
+
+Lyft is testing out three variants of cancellation fees: $1, $3, and $5. How would you decide which cancellation fee to go with?
+---------------------------------------
+Let’s start with the simpler side of the question. We’re being asked how we would choose between a $1, $3 and $5 cancellation fee.
+
+We can start by asking a few clarifying questions. We might ask:
+
+What is the goal of adding a cancellation fee?
+
+More than we want to increase our revenue by adding another potential price to the product, our long-term (more lucrative) goal is probably to decrease the number of cancellations.
+Given that ridesharing is a two-sided marketplace split between drivers and riders, what percentage of the cancellation fee goes to the driver of the canceled ride?
+
+We want to know this because it will affect how our drivers will react to each cancellation fee. If they’re receiving only a minimal cut of the cancellation fee, they may turn to competitors.
+Next, we can declare some basic assumptions about how our cancellation fees are going to impact both drivers and riders. In general, drivers will prefer a high cancellation fee. The reason for this is two-fold:
+
+If they get a cut of the cancellation fee, that’s more money in their pockets.
+
+A higher cancellation fee makes it more likely that a rider won’t cancel, which means more money for the driver.
+
+On the rider side of things, we simply need to recognize that a higher cancellation fee may result in fewer future booked rides (especially in situations where cancellation is a possibility) or a switch to a competitor, but a low cancellation fee may not actually deter riders from canceling.
+
+Now we can define our high-level goals when it comes to implementing our new cancellation fee:
+
+To maximize revenue
+
+To retain drivers and riders
+
+To minimize the number of canceled rides
+
+As we choose from among our options, we’ll want to be clear about how we’re balancing and prioritizing these goals. Ideally, we want a cancellation fee that is high enough that it drives more people to complete their transactions (i.e. not cancel rides), but not so high that our occasional (or frequent) cancelers decide to take their business elsewhere.
+
+But how do we go about setting up our test? If two people at the bar are using Lyft to get home and cancel their rides at the same time (because the party never ends) and one gets a 1 dollar cancellation fee but the other gets a 5 dollar cancellation fee, the person who gets the higher cancellation fee is likely to get upset. This means we can’t simply A/B test with different cancellation fees as our variants. So what can we do instead?
+
+One option is to test our different cancellation fees in different, but similar, cities. This is called island testing. Specifically, our cities should be similar in population size (how many people there are), relative affluence (how much money they have to spend), and cancellation rate. Once we’ve selected our three cities, we can run a three-month trial to gather data on revenue, driver and rider churn, and cancellation rates.
+
+Once we have our data from the tests in our three different (but similar) cities, we can compare our metrics (revenue, driver and rider churn, and cancellation rate) across our three different cities to find which of our three options gave us the optimal outcome. At this point in our analysis, we want to make sure that we’re accounting for confounding variables as much as possible. If there are, for instance, festivals in one city and not the other two that would increase the total number of rides ordered (and, potentially, canceled), we’d want to know this so that we could take those distorting factors into account when doing our analysis. While no test is perfect, being as aware as possible of confounding factors will minimize the chance that we’re making our decisions based on bad data (something we should always try to avoid).
