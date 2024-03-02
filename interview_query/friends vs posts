@@ -1,0 +1,30 @@
+**Clarifying Questions:**
+
+what is the end goal? 
+increase user engagement or make people add more friends - aka use the feature more often?
+
+users with more friends tend to make fewer posts in what country? age group?
+**Assessing Requirements:**
+assume the goal is to increase user satisfaction  in us market
+
+**Solution:**
+
+
+users with more friends tend to make fewer posts - in what country? age group?
+drive down and see more details about that specific group, see the underlying trend to find
+the root cause.
+
+do EDA to get down and summarize exactly where how and when they make posts, how many posts they made before the feature was introduced
+
+use a/b testing and see the root cause of such behavior.
+
+
+track the change thru metrics 
+
+**Validation:**
+
+
+**Additional Concerns:**
+
+data privacy law, what data can 
+be accessed about customers profiles
