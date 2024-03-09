@@ -1,0 +1,39 @@
+Twitter is rolling out more push notifications to users because they think users are missing out on good content. Let’s say they want 
+to release a new notification system in an A/B test.
+
+Let’s say that after we release more notifications, we’re seeing the total number of unsubscribes increase.
+
+What are ways in which we can understand how the new increased push notifications system affect engagement?
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+**Clarifying Questions:**
+
+what is the "good content"?
+good content based on what metric or metrics?
+
+**Assessing requirements:**
+
+assume it is for US market
+
+main assumption is that people receive notifications based on wrong recommendations?
+
+**Solution:**
+
+track metrics like num of daily push notificasions per user\unsubscribe rate or some similar custom metric
+
+monitor, track rec sys used to push notifications?
+------------------------------------------------------------------------------------------------------------------------------
+I think we need to step back and ask even more important question: is the increased push notification system actually affecting engagement, rather than ask how it’s doing it. The assumption that the two are correlated is something I want to first assess.
+
+So the null hypo would be: no relationships between two variables
+
+alternative hypo: there is a relationship between two variables.
+
+One way to measure a possible relationship is to conduct a Pearson’s correlation test. If there is a strong positive relationship, it means that more notification = more unsubscribes.
+
+But the test alone wouldn’t be sufficient if there are external confounding variables that are secretly affecting the cause and effect of our visible, measured variables. These factors might be a new look of the platform, external domestic political situations that Twitter also is faced with that might cause users to not be notified at all, etc. To adjust for these, one can try observing behaviors of users from different geo-markets and see if the pattern disappears, suggesting a potential Simpson’s paradox.
+
+But let’s say there actually is a correlation and we don’t care about confounding variables. One way to then approach this issue is to look perform segmentation analysis see if there is a segment that is driving the unsubscribes. The segment can be done geo-based, as mentioned above, or by new vs. existing users, or by platforms (iOS, android, etc.).
+
+A better way to measure the relationship, given that it exists, is to approach the A/B test from either a bandit or a factorial design method, rather than a simple A/B test, to then gauge how num of unsubscribes change by different num of notifications. This would then show what the optimal number of notifications would be, but the testing design would require more users per variant.
