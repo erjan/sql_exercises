@@ -1,0 +1,30 @@
+How would you determine if the price of a Netflix subscription is truly the deciding factor for a consumer?
+-----------------------------------------------------------------------------------------------------------------------------------
+
+**Clarifying Questions:**
+
+what is the end goal of this research? 
+to increase revenue? or drive customer satisfaction? increase retention rate?
+
+**Assessing requirements:**
+assume we wanna know the decisive factor for us market
+
+**Solution:**
+
+attack the question from different angles - do customer survey and just ask customers, potential customers
+diff groups of customers what they think when they buy netflix subscription.
+
+organize a/b testing - find the groups of people, segment by age, interests etc
+
+groups should have same qualities and be offered diff prices ranges and check retention
+
+
+track the change thru metrics used in a/b testing
+
+**Validation:**
+
+
+**Additional Concerns:**
+
+data privacy law, what data can 
+be accessed about customers profiles
