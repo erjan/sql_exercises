@@ -48,4 +48,11 @@ sum(upvotes) as total_upvote_per_day
 sum(view_count) as total_view_per_day 
 from post_analytics
 
+--------------------------------------------------------------------------------------------------------------------------------------------------
+Health (daily statistics can be aggregated to weekly/monthly trends)
+
+Volume of posts / Traffic on site: daily_active_users, daily_post_count, daily_view_count
+Engagement: daily_comment_rate = comment_count/view_count, daily_answer_rate = answer_count / view_count
+Quality of post: daily_average_post_length, daily_post_with_upvote_rate: out of all posts, how many users consider useful
+
 group by timedate(created_at)
