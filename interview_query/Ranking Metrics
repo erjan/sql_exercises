@@ -1,0 +1,23 @@
+Let’s say you work as a data scientist on the engagement team.
+
+How would you measure the success of Linkedin’s newsfeed ranking algorithm?
+
+Let’s say some of the success metrics that you are tracking for the newsfeed algorithm are going up while others are going down. How would you approach this?
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**Clarifying Questions:**
+
+what is the end goal of this research? 
+to increase revenue? or drive customer satisfaction? increase retention rate?
+
+**Assessing requirements:**
+assume we wanna measure success for US market, us customers behavior.
+
+**Solution:**
+
+make sure the metrics are not inverse of each other and are not related , i.e. dont affect each other.
+the success of newsfeed ranking can be measured thru engagement - whether customer leaves a like, scrolls thru the newsfeed every day.
+what he does first after logging in. whether dau, wau goes up or down.
+
+
+do a/b testing and see if engagement dau/wau/mau is up/down for groups that do use newsfeed and dont
