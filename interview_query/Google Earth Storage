@@ -1,0 +1,40 @@
+Estimate the cost of storing Google Earth photos each year
+
+----------------------------------------------------------------------------------------------
+
+The first step in this question is to understand what exactly are Google Earth photos so we can measure the storage capacity. Specifically, in the Google Earth product, there are satellite photos and street view photos as well as pictures that users can upload of the surrounding area.
+
+Let’s say that we have to measure specifically the satellite photos. Given these assumptions, we can create a formula for estimation of the cost by factoring in:
+
+square miles of earth’s crust
+number of photos per square mile
+size of photo
+cost of the photo
+The second thing that we have to clarify is if we have to store the photos over a specific period of time. Given that the earth is an ever changing landscape, we have to understand at what frequency Google will take pictures.
+
+Let’s assume that we take a photo of the earth once a year for this problem since 2008 when Google Earth came out.
+
+Let’s make more assumptions. We can assume that:
+
+Judging by the pixelation in a satellite photo, that one pixel in a photo will show a person as a little more a dot. A person’s width is essentially half a meter. A 1600 meters is about equivalent to a mile. This means for one photo of size 1000 x 1000 pixels, one photo will cover: squareroot (.5 * 1⁄1600 * 1000) = 0.5 square miles.
+
+What is the cost of storing one photo that is 1000 x 1000 pixels? Let’s assume 5 mb for a regular photo off of a nice camera.
+
+Now, how many square miles are there on earth? The U.S. is 3.8 million square miles. This means that to cover the U.S. you would have to take 7.6 million pictures. We can extrapolate the size of the entire earth by assuming that it takes 5 hours to fly from NYC to SF and 12 hours to fly from San Francisco to Beijing. This makes 17 hours if you fly relatively along the equatorial line to get to around the direct opposite side of the world.
+
+Assume then 34 hours to cross the entire world. This means about 3.8 * 34⁄5 = 28 million square miles for the length of the U.S. Multiply this number by the number of U.S. sizes that could comprise from the south pole to the north pole. This would be around 6, U.S. sizes from the bottom of Arizona to Wyoming to get an estimated total land mass of ~170 million.
+
+Lastly, we have to compute the cost of storage. Apple cloud allows for 50gb of storage space for about 99 cents a month. The actual costs are probably much less for internal storage. Let’s say 1/10th of the cost to manage internally.
+
+This can be extrapolated for 50gb/(1⁄10 dollars = 4gb per year per dollar.
+
+Therefore our final equation would be:
+- (170 million square miles / .5 square miles per photo) = 370 million photos
+- (40gb per year per dollar / 5mb per photo) = 8000 photos per dollar per year
+- 370 million photos / 8000 photos per dollar per year = ~$45,0000/year
+
+Other considerations:
+
+This is not accounting for the price of Google’s internal cost of compressing the photo down even more.
+
+We might want to store every picture taken from all time and assume the number of pictures varies by location given that in some areas of the earth such as landmarks, cities, and national parks it will be more important to photograph rather than something like Antarctica or the ocean.
