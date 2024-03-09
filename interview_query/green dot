@@ -1,0 +1,31 @@
+Let’s say we’re working on a new feature for LinkedIn chat. We want to implement a green dot to 
+show an “active user” but given engineering constraints, we can’t AB test it before release.
+
+How would you analyze the effectiveness of this new feature?
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+I would structure my answer as follows: 1) Ask some clarifying questions 2) Metrics and validation methodology 3) Possible outcomes and action recommendations
+
+CLARIFY
+
+When is the green dot visible? During chat or even outside of a chat? Assume it is visible in the inbox. In other words, only for people that the user has already had a chat history.
+
+Why do we want to build this green dot? What value does it bring to LinkedIN? I assume this is to encourage users to start and continue conversations. The more active users are in conversations, the more overall engagement on LinkedIN and the more potential for revenue.
+
+Who is this feature built for?
+
+Can users opt-out?
+
+METRICS
+
+Conversation metrics: # of messages sent, # of message senders
+Sister team metrics:
+# of connection requests sent, AVG num of connections per user (more messaging, more potential connections)
+Increased private messaging might cannibalise other forms of interaction, such as timeline/feed activities (which are public).These can be tracked by: # of comments made, # of posts made, # of likes or shares
+LinkedIN overall:
+Num of active users
+Num of paying members
+Average revenue per user
+Validation Method w/o AB testing
+
+Observational studies (such as PSM). Build a test and a control group who have similar likelihood of engaging in messaging (“convert”) and are otherwise balanced on all covariates.
