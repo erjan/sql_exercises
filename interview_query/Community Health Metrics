@@ -1,0 +1,51 @@
+You work at Stack Overflow on the community team that monitors the health of the platform.
+
+Community members can create a post to ask a question, and other users can reply with answers or comments to that question. The community can express their support for the post by upvoting or downvoting.
+
+Example:
+
+Input:
+
+post_analytics table
+
+Column	Type	Description
+id	INTEGER	Primary key of posts table
+user_id	INTEGER	ID of the user who created the post
+created_at	DATETIME	Timestamp of the post
+title	VARCHAR	Title of the post
+body	VARCHAR	Text content of the post
+comment_count	INTEGER	Total number of the comments on a post
+view_count	INTEGER	Total number of the views on a post
+answer_count	INTEGER	Total number of answers on a post
+upvotes	INTEGER	Total number of upvotes on the post
+Given a table of Stack Overflow posts data, suggest three metrics to monitor the health of the community.
+
+Write the queries for these metrics in SQL.
+----------------------------------------------------------------------------------------------------------------------------------
+3 most basic metrics to assess the health of platform:
+
+1) num of daily posts created
+
+
+select timedate(created_at), count(id) from post_analytics
+
+group by timedate(created_at)
+
+
+
+2) weighted avg engagement score per post
+
+
+select id, 0.3*(answer_count) + 0.3*upvotes + 0.4*view_count as general_engagement_per_post from post_analytics
+
+group by id
+
+3) daily dynamics total answer, view, upvote count
+
+select timedate(created_at) as day, sum(answer_count)  as total_answer_count_per_day,
+
+sum(upvotes) as total_upvote_per_day
+sum(view_count) as total_view_per_day 
+from post_analytics
+
+group by timedate(created_at)
