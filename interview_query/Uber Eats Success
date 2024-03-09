@@ -1,0 +1,83 @@
+We want to determine if Uber Eats has a net positive value for the company Uber.
+
+How would you measure the success of Uber Eats?
+----------------------------------------------------------
+**Clarifying Questions:**
+
+what is the end goal? to drive down cost or increase revenue?
+we calculate only in cities or regions? over what period - quarter,yearly,monthly?
+
+**Assessing requirements:**
+assume it is for US market.
+
+**Solution:**
+even in US market, the net positive value can be tricky to calculate. since the market
+is gigantic and factors can fluctuate, like seasonality, bit city vs small city.
+
+to find the estimate the task has to be broken down to regions, every region has to 
+calculate on its own, then the numbers can be summed back to get the final number and conclusion!
+
+
+find the stats like number of daily fulfilled orders, num of daily cancelled orders
+
+avg cost of delivery 1 order per city/region
+
+net_positive_value = avg_cost_of_delivery*num_daily_fulfilled_order - avg_cost_of_delivery*num_daily_cancelled_order
+
+sum it up by region, city then get the final number
+---------------------------------------------------------------------------------------------------------------------------
+First off, it depends upon the definition of “success” in this case in terms of the business goal.
+
+For example iss the goal:
+
+A) To bring new folks on to Uber’s platform who weren’t users originally, but now join cause they like Uber Eats?
+
+B) To convert current users who have been doing ride-share or using other products, and now we want to get them to engage with Uber Eats as well?
+
+Furthermore, when we talk about “net positive” my guess here is that because driver supply is somewhat limited, we want to be sure that drivers that do rideshare are not stopping rideshare just to join and do Uber Eats instead, so we don’t want to see a drop in overall ridership or driver supply in the Uber core business.
+
+What is the product/feature?
+
+Uber Eats is a way to get food delivered to your residence or elsewhere from participating restaurants/grocery stores nearby.
+
+What is the company’s mission and how does the product relate to that?
+
+Uber’s mission statement is “Transportation as reliable as running water, everywhere for everyone.” So in this case, Uber Eats is about transportation of food to anyone and everywhere which is great!
+
+How does the product/feature work?
+
+Go to Uber Eats app or Uber app, click food, select delivery, select the food you want delivered from participating restaurants, get the food delivered.
+
+Why does this product/feature exist?
+
+Uber Eats exists (I am assuming) because it’s an easy convenient way to deliver food to folks who already use Uber for other things.
+
+What type of business is it? (Marketplace, B2B)
+
+Uber rideshare is a 2-sided market place (drivers, riders), but Uber Eats is 3-sided market place (drivers, consumers, restaurants/food places).
+
+How does the product/feature help the business? Does it increase users, retain users for longer, increase usage of the product, or directly make the user more money?
+
+Uber Eats should both increase usage of the Uber app, as well as retain users for longer on the Uber app.
+
+Alright so let’s talk about metrics to measure success of Uber Eats. They are essentially focused on seeing increase in customer/driver usage of the app, retention of customers/drivers using Uber Eats, and growth in usage.
+
+0) Percent of users on Uber that click “food” section relative to folks that open the app [conversion rate]
+
+1) (Number of users who order food who have used rideshare)/(number of users of rideshare). This metric will help us understand if rideshare Uber users are being converted to Uber Eats customers.[conversion rate]
+
+2) Number of orders per user [engagement]
+
+3) Number of unique Uber Eats users per week [growth]
+
+4A) (Number of users making a second Eats order)/(Users making first order) -> basically a retention curve over time. We want to have this retention curve not drop to zero, and retain some long term users.
+
+4B) Same retention curve (drivers making second delivery)/(drivers making a first delivery) -> retention curve over time but for drivers. We want drivers to have a good experience using Uber Eats.
+
+5) LTV of customers is going up relative to ride-share only customers (LTV rideshare + eats)/(LTV ride-share only) > 1.0
+
+LTV = (average order/ride sizes per user) * (number of orders per user) * (average retention period)
+
+6) LTV of drivers is going up relative to ride-share only, presumably cause now drivers have options to pick up/deliver food AND they can provide rides -> More options for $$ for them -> more LTV for Uber.
+
+(LTV rideshare + Eats driver)/(LTV rideshare only driver) > 1
