@@ -1,0 +1,25 @@
+Let’s say you are given a maze of cells denoted by (x, y), where ‘x’ and ‘y’ represent the distances from the topmost starting cell st = (x0, y0). Walls within the maze are denoted by 1, while free cells are represented by 0.
+
+Return a boolean stating if there is a path from the starting cell st to the target cell tg, which is marked by 2 in the maze.
+
+Hint: You don’t have to find the shortest path through it’s advised to think about it.
+
+Example 1:
+
+There is a possible path from start st point to target tg as
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+def search_maze(st,maze_input):
+    rows, cols = len(maze_input), len(maze_input[0])
+    # bfs search
+    frontier, visited = [st], []
+    while frontier:
+        node, frontier = frontier[0], frontier[1:]
+        x, y = node[0], node[1]
+        for nx, ny in [(x+1,y), (x,y+1), (x-1,y), (x,y-1)]:  # nx, ny is coordinate of neighbours
+            if (0<=nx<=cols-1) and (0<=ny<=rows-1) and ((nx,ny) not in visited) and (maze_input[nx][ny]!=1):
+                if maze_input[nx][ny]==2:
+                    return True
+                visited.append((nx,ny))
+                frontier.append((nx,ny))
+    return False
