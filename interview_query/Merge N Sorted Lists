@@ -1,0 +1,21 @@
+Given a list of sorted integer lists, write a function sort_lists to create a combined list while maintaining sorted order without importing any libraries or using the 'sort' or 'sorted' functions in Python.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+import heapq
+def sort_lists(lists):
+    
+    res = []
+
+    for l in lists:
+        res.extend(l)
+    
+    heapq.heapify(res)
+    r = []
+    while res:
+
+        t =heapq.heappop(res)
+        r.append(t)
+    return r
+------------------------------------------------------------------------------------------------------------------------
+
+
