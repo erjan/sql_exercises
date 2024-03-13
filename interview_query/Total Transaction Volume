@@ -1,0 +1,19 @@
+Given the e-commerce database schema below, write a SQL query to fetch the total transaction value in dollars (USD) for the product line "Telephones" and return it as total_amount_in_dollars.
+
+You will need to use the exchange_rate table
+
+Keep in mind that the amount field represents hundredths of the base currency.
+
+Round up the result to two decimal points.
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+select round(sum(amount_usd),2) as total_amount_in_dollars  from (
+select 
+
+
+t.product_id, 
+case when t.currency_code = 'USD' then t.amount/100.0 else t.amount /100.0*e.rate end as amount_usd
+from transactions t left join exchange_rate e on t.currency_code = e.source_currency_code
+and e.target_currency_code = 'USD'
+inner join products p on t.product_id = p.id inner join product_lines pl
+on pl.id = p.product_line_id and pl.name = 'Telephones')k
