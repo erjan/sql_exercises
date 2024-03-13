@@ -1,0 +1,26 @@
+Walmart is one of the world's largest retail chains with a variety of products ranging from electronics to groceries. Shoppers come to Walmart to buy their desired items, and the company tracks its sales meticulously to understand market trends and customer preferences.
+Write a SQL query that returns a table listing all products, and marks those products that haven't been sold yet.
+
+The output should contain the following columns: product_id, product_name, sale_status in which sale_status can either be “Sold” or “Not Sold”.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+select 
+
+p.product_id,p.product_name,
+case when s.product_id is null then 'Not Sold' else 'Sold' end as sale_status
+
+from products p left join sales s on p.product_id = s.product_id
+group by p.product_id,p.product_name, s.product_id
