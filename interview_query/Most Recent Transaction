@@ -1,0 +1,12 @@
+Given an e-commerce database with the schema shown below, write a query to fetch the product name and stock of the most recently purchased product
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+with last_transaction as(
+select * from transactions order by date desc limit 1)
+
+select 
+p.id, p.name, p.stock 
+from last_transaction lt inner join products p 
+on p.id = lt.product_id
+
+
