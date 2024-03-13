@@ -1,0 +1,27 @@
+You’re in charge of forecasting revenue for a certain target over the next quarter for a certain company.
+
+Given three parameters of:
+
+N days (N)
+Total Revenue Target (XYZ)
+Day 1 Revenue (day_one_rev)
+How would you build a function to return a list of daily forecasted revenue starting from Day 1 to the end of the quarter (Day N)?
+
+Note: The company’s product is expected to have continual linear growth from Day 1 to Day N, starting from their CURRENT average daily revenue number.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+def continuous_forecast(N, XYZ, day_one_rev):
+    
+    a = day_one_rev
+    an = XYZ
+    
+    d = (an - a) / (N - 1)
+    
+    n = 1
+    res = []
+    while n <= N:
+        res.append(round(a + d*(n-1), 1))
+        n += 1
+    
+    return res
