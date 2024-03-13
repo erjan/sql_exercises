@@ -1,0 +1,23 @@
+Duolingo is a platform that allows users to learn various languages through bite-sized lessons. Learners can complete multiple lessons in a day and track their progress in their desired language.
+
+You're given three tables: user, lesson, and lessons_completed:
+Write a SQL query that returns a table with the top 3 learners with the highest total lessons completed 
+from 24 Sep 2023 to 30 Sep 2023 for each language. Your output should contain: username, language, total_lessons, rank.
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+select username, language, total_lessons, rank from (
+
+select 
+language,username,
+count(lc.lesson_id) as total_lessons,
+dense_rank()over(partition by language order by count(lc.lesson_id) desc) as rank
+
+from user u inner join lessons_completed lc 
+on u.user_id = lc.user_id inner join lesson l on l.lesson_id = lc.lesson_id
+
+ where completed_date between '2023-09-24' and '2023-09-30'
+
+ group by language, username)k where rank<=3
+
+ order by language,rank,username
