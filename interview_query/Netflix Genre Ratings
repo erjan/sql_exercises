@@ -1,0 +1,30 @@
+Netflix is a popular streaming platform that offers a wide variety of movies spanning multiple genres. Users can rate movies they've watched, providing 
+valuable feedback on the content. With the diverse selection, understanding the average rating for each genre can help in content recommendation and analysis.
+
+Write a SQL query that returns a table listing each movie, its average rating and
+the average rating of its genre. The table should have columns for the movie title title, the average movie rating avg_rating, and the average genre rating genre_rating. Order the result by the movie title. Round ratings to 1 decimal place
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+with movie_rating as(
+select
+
+m.title, round(avg(rating),1) as avg_rating
+
+from movie m inner join rating r on r.movie_id = m.movie_id
+
+ group by m.title),
+
+ genre_rating as(
+select
+
+m.genre, round(avg(rating),1) as genre_rating
+
+from movie m inner join rating r on r.movie_id = m.movie_id
+
+ group by m.genre)
+
+
+ select ma.title, ma.avg_rating, ga.genre_rating
+
+ from movie m join movie_rating ma on m.title = ma.title
+ join genre_rating ga on ga.genre = m.genre
+ order by ma.title
