@@ -1,0 +1,53 @@
+You have been hired by company XYZ as a Data Analyst. The management has provided you with the employee data and salary information listed below. You have been asked to draw a few key conclusions from the data.
+
+A new employee named Paul Desmond whose emp_id is 2 has joined the organization as a senior software engineer. The management wants to look at his reporting hierarchy up to level 3 and the salary difference between him and the reporting manager at that level. Print the full names of all reporting managers, as well as the salary differences as mentioned below. The salary amount shown in the table tbl EmployeeSalary is in the country's local currency. To keep things simple, all salaries should be converted to US dollars before calculating and presenting the results.
+
+Note: To convert Irish currency to dollars, multiply the salary by 1.09 whereas for Indian currency, multiply by 0.012.
+--------------------------------------------------------------------------------------------------------------------------------------------------
+-- CTE to populate the data
+with EMP_CTE AS 
+(
+	SELECT EMP.Emp_Id,
+		   First_Name + ' ' + Middle_Name + ' ' + Last_name AS FullName,
+		   Manager_ID,
+		   1 AS [Level],
+		   CASE 
+				WHEN EMP.Country = 'INDIA' THEN ES.Salary * 0.012 
+				WHEN EMP.Country = 'IRELAND' THEN ES.Salary * 1.09
+				ELSE ES.Salary
+		   END AS Salary
+	FROM tbl_Employee EMP
+	INNER JOIN tbl_EmployeeSalary ES
+		ON EMP.Emp_ID = ES.Emp_ID
+	WHERE EMP.Emp_ID = 2
+	UNION ALL
+	SELECT EMP.Emp_Id,
+		   EMP.First_Name || ' ' || EMP.Middle_Name || ' ' || EMP.Last_name AS FullName,
+		   EMP.Manager_ID,
+		   [Level] + 1,
+		   CASE 
+				WHEN EMP.Country = 'INDIA' THEN ES.Salary * 0.012 
+				WHEN EMP.Country = 'IRELAND' THEN ES.Salary * 1.09
+				ELSE ES.Salary
+		   END AS Salary
+	FROM tbl_Employee EMP   
+	INNER JOIN EMP_CTE CT
+		ON EMP.Emp_ID = CT.Manager_ID
+	INNER JOIN tbl_EmployeeSalary ES
+		ON EMP.Emp_ID = ES.Emp_ID
+),
+
+-- CTE for salary converted to USD
+SALARY_CTE as (
+    SELECT salary * 1.09 as BaseSalary
+    FROM tbl_EmployeeSalary
+    WHERE Emp_ID = 2
+)
+
+-- Create the required select statement
+SELECT FullName As [Reporting Manager Name],
+	   [Level] - 1 AS [Level],
+	   round([Salary] - BaseSalary) AS [Salary Difference]
+FROM EMP_CTE CT, SALARY_CTE
+WHERE CT.Emp_Id <> 2
+AND CT.[Level] - 1  < 4
