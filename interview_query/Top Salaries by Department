@@ -1,0 +1,23 @@
+
+Given the database with the schema shown below, write a SQL query to fetch the top earning employee by department, ordered by department name.
+
+
+
+
+
+with helper as(
+select 
+d.name as department_name,
+e.id as employee_id, 
+first_name, last_name, e.salary,
+rank()over(partition by d.id order by salary desc) as rnk
+from departments d inner join employees e on 
+
+e.department_id = d.id)
+
+
+select department_name, employee_id,
+first_name, last_name, salary from helper where rnk=1
+
+order by department_name
+
