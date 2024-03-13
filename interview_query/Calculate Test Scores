@@ -1,0 +1,26 @@
+An organization has conducted SQL tests for all its backend developers. A developer could attempt a test multiple times. The organization wants to calculate the overall scores of the candidate for the SQL tests.
+
+Write a query to print the employee_id, employee_name, and the total_score obtained by the developers. A developer's total_score is the sum of their maximum scores for all tests. If the developer has attempted a single test multiple times, consider the maximum score of all the attempts for that test. In case more than one developer has obtained a similar 
+total_score, sort the results by ascending order of employee_id. The schema of the tables is described below.
+------------------------------------------------------------------------------------------------------------------
+
+
+with h as(
+
+select 
+
+t.id as testid, e.id as employee_id, e.name as employee_name, max(score) as maxscore
+
+from test_results tr left join tests t on tr.test_id = t.id
+inner join employees e on e.id = tr.employee_id
+
+group by t.id, e.id)
+
+
+select 
+
+employee_id, employee_name, sum(maxscore) as total_score
+ from h
+
+ group by  employee_id
+ order by total_score desc , employee_id
