@@ -1,0 +1,12 @@
+Given the database with the schema shown below, write a query to fetch each project's ID, title, budget, total number of employees assigned to the project, and the sum of their salaries.
+Your query should output a result in the following format, ordered by highest to lowest total salary.
+--------------------------------------------------------------------------------------------------------------------------------
+select 
+
+p.id, title, budget, count(e.id) as num_employees,
+sum(salary) as total_salaries
+ from employees e inner join employees_projects ep  on 
+
+e.id = ep.employee_id inner join projects p on p.id = ep.project_id
+
+group by p.id, p.title, p.budget
