@@ -1,0 +1,23 @@
+Blizzard Entertainment is a renowned gaming company known for its epic games like World of Warcraft, StarCraft, and Overwatch. Players from around the world compete in these games and achieve various rankings based on their performance.
+
+You are given a table named players:
+
+player_id	player_name	score
+integer	string	integer
+To encourage players to increase time spent in-game, Blizzard want to identify and reward users that just missed the leaderboards e.g. Top 3, Top 10. Write a SQL query that returns the names, scores and ranking of the 4th, 6th, and 11th ranked players in terms of score.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+with h as(
+select 
+player_id, player_name, score,
+rank()over(order by score desc) as rnk
+
+from players
+order by rnk )
+
+select 
+
+player_name, score, rnk as ranking 
+from h 
+where rnk in(4,6,11)
