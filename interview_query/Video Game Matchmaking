@@ -1,0 +1,18 @@
+Electronic Arts makes popular online games that feature multiplayer “matchmaking”. For a special event, EA wants every player to play against every other player exactly once. Additionally, every player has a "level" that indicates their skill and experience in the game.
+
+You're given a table players with the following columns:
+
+player_name (string) – This column contains the username of the player.
+level (integer) – This represents the skill level of the player, with higher numbers indicating greater skill.
+Write a SQL query that generates all possible match-ups between the players in the players table and also calculates the disparity in level between the two players in each matchup. To keep the games evenly matched, we’d like to prevent matches where the players are more than 5 levels apart. Return the list of matches in ascending order of level_disparity.
+
+Your output should contain the following columns: player1, player2 (both populated with player names), level_disparity
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+select 
+
+p1.player_name as player1,p2.player_name as player2,
+abs(p1.level - p2.level) as level_disparity
+from players p1 join players p2 on p1.player_name < p2.player_name
+where level_disparity<=5
+order by level_disparity 
