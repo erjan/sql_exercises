@@ -1,0 +1,18 @@
+Disney+ is a streaming platform with multiple shows and millions of subscribers. The company wishes to identify their star customers, people who are using the platform more and more over time.
+
+
+Write an SQL query to identify the viewers who have received a month-over-month increase in watch time of at least 3 months. In other words, you're looking for viewers who have consistently increased their watch time for a minimum of 3 consecutive months.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+with helper as(
+
+select 
+viewer_id, year,month,
+watch_hours, 
+lag(watch_hours, 1)over(partition by viewer_id order by year,month  ) as prev_month_hours,
+lag(watch_hours, 2)over(partition by viewer_id order by year,month  ) as third_month_hours
+from watch_time)
+
+
+select distinct viewer_id from helper
+
+ where watch_hours > prev_month_hours and prev_month_hours > third_month_hours
