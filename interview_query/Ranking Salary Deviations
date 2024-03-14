@@ -1,0 +1,23 @@
+Workday, a workforce management platform, wants to measure employee compensation intricacies. Every employee is anchored within a department, and the company want to identify those who exhibit the most significant deviations from the departmental norm.
+Craft a SQL query that orchestrates the ranking of employees based on their divergence from the department's average salary. You should provide the employee's name, their department, individual salary, the department's average salary, and an assigned rank. This ranking corresponds to the magnitude of difference between the employee's salary and the department's average (rank 1 = most noteworthy deviation).
+
+If two employees from the same department have salaries that deviate to the same extent, let them share the same rank.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+with h as(
+
+select 
+
+employee_name, department_id, salary,
+avg(salary)over(partition by department_id) as avg_salary,
+abs(salary-avg(salary)over(partition by department_id)) as diff
+
+from employees)
+
+
+select
+employee_name, department_id, salary, avg_salary, 
+dense_rank()over(partition by department_id order by diff desc) as deviation_rank
+
+from h 
