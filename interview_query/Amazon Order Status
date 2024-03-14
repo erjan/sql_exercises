@@ -1,0 +1,27 @@
+'''
+Amazon is a global e-commerce company that allows vendors to sell their products online to customers. Customers can order products and track their orders' status, such as 'Pending', 'Shipped', 'Delivered', etc.
+
+You're given a table, orders, with the following columns:
+
+order_id (integer): a unique identifier for each order
+order_date (date): the date the order status was updated
+status (string): the status of the order, e.g., 'Pending', 'Shipped', 'Delivered', etc.
+Write a SQL query that returns a table with the order_id, status, start_date, and end_date for each status period of a particular order. If a status is the first for that order, then the end_date should be NULL."
+'''
+
+with h as(
+
+
+select 
+order_id, order_date, status, 
+
+lead(order_date,1)over(partition by order_id order by order_date ) as next_date,
+lag(status, 1)over(partition by order_id order by order_date ) as prev_status
+
+from orders)
+
+select 
+order_id, status, order_date as start_date, next_date as end_date
+ from h
+ where status!=prev_status or prev_status is null
+
