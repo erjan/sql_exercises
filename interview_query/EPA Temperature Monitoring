@@ -1,0 +1,26 @@
+The Environmental Protection Agency (EPA) monitors the daily temperatures of different cities to study climate change and its impact. The agency believes that extreme fluctuations in temperature, such as a sudden rise after a day of fall, can have adverse environmental effects.
+
+You are given a table city_temperatures, with the following columns:
+
+date (date): The date of the recorded temperature.
+temperature (float): The temperature recorded on that date.
+Write an SQL query to identify days when the temperature rose at least 5 degrees after falling at least 3 degrees. Return the date and the temperature of those days.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- Write your query here
+
+
+
+with h as(
+select 
+date,
+temperature ,
+lag(temperature,1)over(order by date) as prev_temperature,
+lag(temperature,2)over(order by date) as prev_prev_temperature
+
+ from city_temperatures)
+
+select 
+
+date, temperature
+
+from h where (prev_prev_temperature - prev_temperature>=3.0) and (temperature - prev_temperature>5.0)
