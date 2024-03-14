@@ -1,0 +1,19 @@
+Workday provides human capital management solutions that allow businesses to manage their employees, their roles, and the reporting structures. When Workday consultants start with a new client, one of the first things they’ll do is identify the client’s organizational structure. Each department in a company might have a manager, and under each manager, there are employees reporting directly to them.
+
+You're given a table, employees, with the following columns:
+
+emp_id (integer): Unique identifier for each employee.
+emp_name (string): Name of the employee.
+manager_id (integer): Employee ID of the manager to whom this employee reports (can be NULL for top-level managers).
+Write a SQL query that returns the Employee Id and Name of the managers who have a minimum of 2 employees directly reporting to them. Sort the results by the number of direct reports in descending order.
+
+Your output should have the following columns: manager_employee_id, manager_name, number_of_direct_reports
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+select 
+e.manager_id as manager_employee_id,
+m.emp_name as manager_name,
+count(e.emp_id) as number_of_direct_reports
+from employees e  join employees m on e.manager_id = m.emp_id
+group by e.manager_id, m.emp_name
+having count(e.emp_id)>=2
+order by number_of_direct_reports desc
