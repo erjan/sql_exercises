@@ -1,0 +1,19 @@
+WhatsApp is a popular messaging platform that allows users to send and receive text messages, voice notes, and multimedia messages in real-time. Users can engage in one-on-one chats or group chats, and every message sent has a unique identifier.
+
+You're given a table, messenger_sends, with the following columns:
+
+date: the date the message was sent.
+ts: the timestamp of when the message was sent.
+sender_id: the unique identifier for the sender of the message.
+receiver_id: the unique identifier for the receiver of the message.
+message_id: a unique identifier for each message.
+Given that a conversation thread between two users A and B remains the same whether A messages B or B messages A, write a SQL query to determine how many unique conversation (unique_conversations) threads are present in the messenger_sends table.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+SELECT COUNT(DISTINCT least_value || '_' || greatest_value) AS unique_conversations
+FROM (
+    SELECT 
+        CASE WHEN sender_id < receiver_id THEN sender_id ELSE receiver_id END AS least_value,
+        CASE WHEN sender_id > receiver_id THEN sender_id ELSE receiver_id END AS greatest_value
+    FROM messenger_sends
+) AS subquery;
