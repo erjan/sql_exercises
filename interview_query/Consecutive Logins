@@ -1,0 +1,25 @@
+You want to understand how often users log in to your company’s website. You're given a table named user_activity_log with the following columns:
+
+user_id (INT) - Unique identifier for each user.
+timestamp (DATETIME) - The exact time the user performed an activity.
+activity_type (VARCHAR) - The type of activity the user has performed. The only two types of activities are LOGIN and LOGOUT.
+Write a SQL query that determines the time elapsed (in minutes) between consecutive logins for each user. The result should show each user and the gap between their logins. Your output should contain the following columns: user_id, current_login, previous_login, minutes_elapsed. Round to the nearest minute
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+with h as(
+select 
+
+user_id, timestamp as current_login,
+lag(timestamp,1)over(partition by user_id order by timestamp ) as previous_login
+
+from user_activity_log
+
+where activity_type = 'LOGIN')
+
+select 
+
+user_id, current_login, previous_login, 
+
+abs(round((julianday(previous_login)-julianday(current_login))*24*60)) as minutes_elapsed
+ from h
+ where previous_login is not null
