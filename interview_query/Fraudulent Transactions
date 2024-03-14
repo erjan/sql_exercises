@@ -1,0 +1,28 @@
+Visa's Anti-Money Laundering (AML) department is responsible for identifying potentially suspicious financial transactions to ensure compliance with global financial regulations. A key part of their investigation process involves tracking receipts of large transactions. These receipts typically have an associated receipt number.
+The AML team has identified a list of potentially suspicious receipt numbers based on certain patterns. The patterns they're concerned about are '999', '1234', and 'XYZ'. Customers are flagged as potential money launderers if they have 2 or more such receipts matching these patterns.
+
+Write an SQL query that returns a table with all suspicious receipt numbers made by potential money launderers. Ensure you display the customer's first name, last name, the associated suspicious receipt number and the number of offences the customer has committed.
+
+Your output should contain the following columns: first_name, last_name, receipt_number, no_of_offences.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+with helper as(
+select 
+
+c.customer_id,receipt_number,
+count(*)over(partition by c.customer_id ) as no_of_offences
+
+from customers c 
+
+inner join transactions t on c.customer_id = t.customer_id
+
+where receipt_number like '%XYZ%' or receipt_number like '%999%' or 
+receipt_number like '%1234%')
+
+
+
+select c.first_name, c.last_name,
+h.receipt_number,h.no_of_offences
+from helper h inner join customers c on c.customer_id = h.customer_id
+
+where no_of_offences>=2
