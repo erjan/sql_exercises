@@ -1,0 +1,45 @@
+Blockchains like Bitcoin use the UTXO (Unspent Transaction Outputs) model to track ownership of coins. In this model, each transaction consumes UTXOs as inputs and creates new UTXOs as outputs. However, there can be invalid transactions where:
+
+The sender does not own the UTXO they're trying to spend.
+The same UTXO has already been used as input in another transaction.
+You're given the following tables:
+
+transactions table:
+transaction_id (unique identifier for each transaction)
+sender (address of the person initiating the transaction)
+timestamp (time when the transaction was created)
+transaction_inputs table:
+input_id (unique identifier for each input within a transaction)
+transaction_id (foreign key referencing transactions)
+utxo_id (foreign key indicating which UTXO is being consumed by this input)
+utxo table:
+utxo_id (unique identifier for the UTXO)
+address (owner of the UTXO)
+amount (amount of cryptocurrency represented by the UTXO)
+Given these tables, write a SQL query to identify transactions that are potentially invalid based on the above conditions. Your output should have the following column: InvalidTransactionId.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- Using Common Table Expressions (CTEs) for clarity
+
+WITH InvalidSenders AS (
+    SELECT t.transaction_id
+    FROM transactions t
+    JOIN transaction_inputs ti ON t.transaction_id = ti.transaction_id
+    JOIN utxo u ON ti.utxo_id = u.utxo_id
+    WHERE t.sender <> u.address
+),
+
+DoubleSpends AS (
+    SELECT ti.transaction_id, ti.utxo_id, ROW_NUMBER() OVER(PARTITION BY ti.utxo_id ORDER BY t.timestamp) AS rn
+    FROM transaction_inputs ti
+    JOIN transactions t ON t.transaction_id = ti.transaction_id
+)
+
+SELECT transaction_id AS InvalidTransactionId
+FROM InvalidSenders
+
+UNION
+
+-- Filter out only those that are not the first transaction based on timestamp
+SELECT transaction_id AS InvalidTransactionId
+FROM DoubleSpends
+WHERE rn > 1;
