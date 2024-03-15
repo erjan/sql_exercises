@@ -1,0 +1,41 @@
+Let's say we have a long list of unsorted numbers (potentially millions), and we want to find the M largest numbers contained in it. Implement a function find_largest(input, m) that will find and return the largest m values given an input array or file.
+
+If the input array is empty, return None (Python) or null.
+
+
+-----------------------------------------------------------------------------------------------------------------------------------
+import heapq
+def find_largest(input, m):
+    # your code goes here
+
+    s = input
+    if len(s) == 0:
+        return None
+    s = [-n for n in s]
+    heapq.heapify(s)
+    res = []
+    for i in range(m):
+        res.append(-heapq.heappop(s))
+    res.sort()
+    return res
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+import heapq
+def find_largest(input, m):
+    # your code goes here
+
+    s = input
+    if len(s) == 0:
+        return None
+    
+    max_nums = [float('-inf')]
+
+    for i in input:
+        if int(i) > max_nums[0]:
+            if len(max_nums) >= m:
+                heappop(max_nums)
+            heappush(max_nums, int(i))
+
+    return max_nums
+
+    
