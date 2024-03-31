@@ -1,0 +1,40 @@
+Suppose that you work for a small social network startup. Due to the rapid increase in users and a demand for better analytics tools along with an increase in complaints due to data inconsistency, your company has decided to move from a document database into a relational database.
+
+Currently, the application supports the following features:
+
+User Authentication
+Friends (i.e., connections in-between users)
+Interactions (example: likes)
+Currently, in the document store, data is stored in a non-normalized manner. For example in the User entity:
+
+{ 'userID':1,
+	'firstName': 'John',
+	'lastName': 'Doe',
+	'friendsID': [2, 3, 4, 5],
+	'postsID': [4, 12, 9, 10],
+	'interaction': [{'type': 'like', 'id': 44}]
+}
+How would you approach this project?
+----------------------------------------------------------------------------------------------------------------------------------------------------
+**clarifying questions:**
+
+what is the end goal? get high quality data for analytics teams? 
+
+**solution:**
+
+for analysis it might be better to keep the data tables in denormalized form for faster execution of queries
+
+or bring to 3nf form - to avoid data inconsistency as  its is 1 of the problems.
+
+since the migration is to relational db, we need to normalize it and to avoid data inconsistency - create 3 tables:
+
+users: first name, last name, posts_id, friends_id
+friends: user_id, friend_id
+
+posts: post_id, interaction type
+
+depending on the size of tables and requirements for query speed - there is trade off btw keeping data in denormalized or normalize it
+**validation:**
+
+**additional concerns:**
+data privacy laws and compliance regulations
