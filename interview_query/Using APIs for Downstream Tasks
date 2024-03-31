@@ -1,0 +1,35 @@
+Suppose that you are a machine learning engineer for a large bank, working with the modeling team that creates input data for downstream models. Downstream models can include regulatory models for risk, internal models for credit decisions, internal risk models, marketing models, audits, and any other application where ML can be used.
+
+You have access to the following APIs:
+
+Reddit API for all posts and comments for finance and news-related subreddits
+Bloomberg API for daily stock prices, including opening and closing prices
+How would you go about designing an ML system that extracts data from those APIs, transforms the data, and stores it in a format that downstream modeling teams can use?
+---------------------------------------------------------------------------------------------------------------------------------------
+**clarifying questions:**
+
+what is the end goal of models? what is the end user - customer or internal worker?
+data analysts?
+what is their skill level? do we need gui? or api is enough for other data systems teams?
+is real time streaming analysis needed?
+
+**solution:**
+
+since there is access to reddit comments via api - the right thing to do is to implement some sentiment analysis
+
+assume it classifies the comment and the overall reaction under every finance post with 3 outcomes - positive, negative, neutral.
+implement decision tree based sentiment analysis model, score - f1 and roc auc to test sensitivity and recall.
+
+
+next is to do prediction system based on 
+previous daily OHLC, combine it with sentiment analysis to 
+get proper picture of what the market and people expect.
+
+use random forest as it combines numerical and categorical features.
+
+**validation:**
+
+test with downstream modeling teams, collect feedback.
+
+**additional concerns:**
+data privacy laws and compliance regulations
