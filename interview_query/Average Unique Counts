@@ -1,0 +1,16 @@
+You have been provided with two tables: user_orders and ordered_items. A user can have multiple orders, and within each order, there may be multiple items with either the same or different categories. Find a user that has the highest average number of unique item categories per order.
+
+Note: You may assume that there is only one user with the highest average number of unique item categories per order.
+----------------------------------------------------------------------------------------------------------------------------------------
+select t.user_name, t.avg_unique_item_categories_per_order from
+(
+select s.user_id, s.user_name, 
+avg(unique_category) avg_unique_item_categories_per_order from 
+(
+select uo.user_id, uo.user_name, uo.order_id, 
+count(distinct oi.item_category) unique_category
+from user_orders uo inner join ordered_items oi 
+on uo.order_id = oi.order_id 
+group by uo.user_id, uo.user_name, uo.order_id
+) s group by s.user_id, s.user_name
+) t order by avg_unique_item_categories_per_order desc limit 1
