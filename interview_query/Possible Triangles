@@ -22,3 +22,19 @@ def possible_triangles(sides):
             res+=1
     
     return res
+
+------------------------------------------------------
+from itertools import combinations
+
+def possible_triangles(sides):
+    triangles = combinations(sides,3)
+    def legal_triangle(triangle):
+        a, b, c = triangle[0], triangle[1], triangle[2]
+        checks = [c < a+b,b < a+c, a < b+c] # triangle inequality
+        return all(checks)
+     # get sublist
+    count = 0
+    for triangle in triangles:
+        if legal_triangle(triangle):
+            count += 1
+    return count
