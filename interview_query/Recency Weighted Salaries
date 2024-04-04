@@ -1,0 +1,81 @@
+Write the function to compute the average data scientist salary given a mapped linear recency weighting on the data. In this case the input previous_salaries is a list of the salaries of the last n years and the list is ordered chronologically, with the most recent year coming last.
+
+Round the result to two-digit numbers.
+
+Example:
+
+#input
+previous_salaries = [64000,66000,75000,88000,90000]
+#output
+recency_weighted_salaries(previous_salaries) -> 81533.33
+Explanation: We have the 5 salaries from the 5 years. We should give weight 1 to the first-year salary, 2 to the second one and so on till we reach the end and give weight 5 to the most recent year salary at the end.
+
+�
+�
+�
+�
+�
+�
+=
+64000
+∗
+1
++
+66000
+∗
+2
++
+75000
+∗
+3
++
+88000
+∗
+4
++
+90000
+∗
+5
+1
++
+2
++
+3
++
+4
++
+5
+=
+81533.33
+result= 
+1+2+3+4+5
+64000∗1+66000∗2+75000∗3+88000∗4+90000∗5
+​
+ =81533.33
+-------------------------------------------------------------------------------------------------------
+def recency_weighted_salaries(previous_salaries):
+    
+    
+    res = 0
+    x = 0
+    for i in range(len(previous_salaries)):
+        cur = i+1
+        cur_salary = previous_salaries[i]
+        res = res + cur*cur_salary
+        x = x+cur
+    
+    res = res/x
+    return round(res,2)
+    
+
+----------------------------------------------------------------
+def recency_weighted_salaries(previous_salaries):
+  total_weight = 0
+  total_count = 0
+  n = len(previous_salaries)
+
+  for i in range(n):
+    total_weight += (previous_salaries[i] * (i+1))
+    total_count += (i+1)  
+
+  return round(total_weight/total_count,2)
