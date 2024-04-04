@@ -1,0 +1,39 @@
+Meta aims to integrate its live streaming services across Instagram, Facebook, Facebook Gaming, and WhatsApp. The goal is to enable simultaneous video viewing across these platforms, while also offering a cohesive experience for live comments.
+
+This unified commenting system requires the capability for comments to be persistent (i.e., they can be reviewed later for analytics) and support interactive features such as reactions (likes, hearts, cares, etc.) from users across all platforms. Additionally, it’s crucial that the reaction counts are updated and displayed in real-time to all viewers.
+
+How would you approach designing a system capable of processing and displaying real-time data across multiple platforms?
+-----------------------------------------------------------------------------------------------------------------------------------
+
+**clarifying questions:**
+
+what is the end goal? to increase customer retention, sales? create 1 gaming hub for all 
+fb, instagram , whatsapp users?
+
+
+**solution:**
+
+assume the goal is to increase sales, retention, key metrics - avg user time spent on platform,
+avg money spent per user.
+
+and location - US market as biggest most profitable.
+
+
+since it mentions realtime analytics - kafka or similar streaming platform must be used.
+
+since all these platforms have millions of users - petabytes fast olap data analytics storage should be used.
+
+i go for a combination of: 
+apache kafka - for streaming
+apache spark/flink - for realtime analytics
+apache pinot - aggregate queries over petabytes of data
+apache superset - for visualizing 
+
+all these could be managed services in cloud.
+
+single sign-on should be enabled too - for viewers to avoid signing up and creating accounts again.
+
+**validation:**
+
+use key metrics i mentioned above - avg time spent watching, avg cash spent per user
+avg num likes, comments per user.
