@@ -1,0 +1,20 @@
+You are tasked with building the TikTok ForYou page recommendation engine, which displays the next recommended video to users.
+
+Assume that you’re using a collaborative filtering recommendation engine, what features including engineered features, might you include in the model?
+
+How would you test and validate the model?
+---------------------------------------------------------------------------------------------------
+
+clarifying questions:
+
+what is the end goal? increase avg retention, time spent of a user?
+
+solution:
+
+time spent , visited user pages, subscribed after watching, num times video watched, liked and bookmarked videos, only liked video; also find the tags or categories associated with videos the user liked,bookmarked.
+
+these features will let better find appropriate or similar videos.
+
+validation: use cosine similarity as metric to recommend videos additional concerns:
+
+data privacy laws and compliance regulations
