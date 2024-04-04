@@ -1,0 +1,37 @@
+You are a data scientist at Smart Sales Incorporated, a company specializing in point-of-sale (POS) systems. Currently, the company sells its POS systems at a one-time price of $5000 per unit, with an expected profit margin of $2500 per unit (50%).
+
+Corporate is contemplating transitioning to a subscription-based model. Under this proposed system, customers would pay an initial one-time fee of $300 for the first month, followed by a monthly subscription fee of $100. If customers renew their subscription, the one-time fee is waived, and the monthly subscription rate remains at $100.
+
+For the purpose of this analysis, we’ll focus solely on the financial aspects and exclude servicing costs, which are billed separately from the subscription fees. Additionally, assume that the lifespan of a POS system is approximately six years.
+
+Questions:
+
+Given the company’s two-year contract duration, what retention rate does Smart Sales Incorporated need to achieve in order to break even with its traditional one-time sale model?
+In the event that the company fails to break even within the initial two-year contract period, what retention rate is required to break even in the subsequent four years? What about in the next six years?
+Assume that the cost for subscription and one-time sales are equivalent.
+------------------------------------------------------------------------------------------------------
+actual profit of 1 unit:
+5000$ but 50% prof margin 2500. so my profit from 1 system is 2500$.
+
+2y contract duration:
+2years = 24mo
+
+1mo*(300) + 23mo*100 = 300 + 1100 = 1400 for 2y
+
+R_subscription = R_traditional = 2500
+
+(300+100*23*x)n = 2500*n; x - retention rate
+x = 2200/2300 = 0.95% or 95%
+
+2. in case it fails in 2y, i calculate for 4y:
+
+(300 + 100*47*x)*n = 2500*n
+4700*x = 2200
+x = 2200/4700 = 0.46%
+
+for 6y:
+(300 + 100*71*x)*n = 2500*n
+7100*x = 2200
+x = 2200/7100 = 0.31%
+
+
