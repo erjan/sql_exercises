@@ -1,0 +1,27 @@
+Build a random forest model from scratch with the following conditions:
+
+The model takes as input a dataframe data and an array new_point with length equal to the number of fields in the data
+All values of both data and new_point are 0 or 1, i.e., all fields are dummy variables and there are only two classes
+Rather than randomly deciding what subspace of the data each tree in the forest will use like usual, make your forest out of decision trees that go through every permutation of the value columns of the data frame and split the data according to the value seen in new_point for that column
+Return the majority vote on the class of new_point
+You may use pandas and NumPy but NOT scikit-learn
+Bonus: The permutations in the itertools package can help you easily get all of any iterable object.
+-------------------------------------------------------------------------------------------------------------------------
+import numpy as np
+import pandas as pd
+from itertools import permutations
+
+def random_forest(new_point, data):
+    features = data.drop('Target', axis = 1).columns
+    all_permutations = permutations(features)
+
+    votes = []
+
+    for permutation in all_permutations:
+        X = data
+        for col,i in zip(features, new_point):
+            X = X[X[col] == i].drop(col,axis=1)
+        vote = X.mode().values[0]
+        if not pd.isna(vote):
+            votes.append(vote)
+    return int(pd.DataFrame(votes).mode().values[0])
