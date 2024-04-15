@@ -71,3 +71,20 @@ def rearranging_digits(n):
 
         have_digits.append(remaining_digits[0])
         del remaining_digits[0]
+
+------------------------------------------------------------------------------------------------------------
+
+from itertools import permutations
+
+def rearranging_digits(n):
+    res = []
+
+    perms = list(permutations(n))
+    for i in perms:
+        num_perm = int(''.join(i))
+        if num_perm > int(n):
+            res.append(num_perm)
+            
+    if res:     
+        return str(sorted(res)[0])
+    return None
