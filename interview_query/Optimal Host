@@ -1,0 +1,115 @@
+Let’s say we have a group of 
+�
+N friends represented by a list of dictionaries where each value is a friend name and their location on a three dimensional scale of (
+�
+,
+�
+,
+�
+x,y,z). The friends want to host a party but want the friend with the optimal location (least distance to travel as a group) to host it.
+
+Write a function pick_host to return the friend that should host the party.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+import sys
+def pick_host(friends):
+    
+    locations = [friend['location'] for friend in friends]
+
+    miniloc = m(locations)
+    for f in friends:
+        if f['location'] == miniloc:
+            return f['name']
+
+def helper(chosen, others):
+
+    res = sys.maxsize
+    x,y,z = chosen
+    for other in others:
+        a,b,c = other
+        temp = ( (x-a)**2 + (y-b)**2 + (z-c)**2) **0.5
+        res = min(res, temp)
+    return res
+
+
+def m(loc):
+    mini = sys.maxsize
+    miniloc = 0
+    for l in loc:
+
+        chosen = l
+        temp = []
+        for other in loc:
+            if other != chosen:
+                temp.append(other)
+
+        res2 = helper(chosen, other)
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Initially, the first case is pretty simple. We can brute force the question by looping through each friend and calculating the sum of the distances of all the other friends and then comparing which one is the lowest total distance.
+
+import math
+
+def pick_host(friends):
+    assert len(friends)>0
+    best_host = None
+    best_cost = 1e100
+    
+    for potential_host in friends:
+        l = potential_host['location']
+        
+        cost = sum(math.sqrt((l[0] - person['location'][0])**2 + 
+        (l[1] - person['location'][1])**2 + 
+        (l[2] - person['location'][2])**2) for person in friends)
+             if cost < best_cost:
+            best_cost = cost
+            best_host = potential_host['name']
+    
+    return best_host
+This however incurs a cost of 
+�
+(
+�
+2
+)
+O(N 
+2
+ ), which is not exactly what we want. How can we improve this algorithm?
+
+If we look at each friend, ideally the best location for everyone is the centroid of all the points in 3-D space. This centroid is the unique point such that the sum of the distances to all friends is minimized.
+
+We can calculate the ordered triple of the centroid by finding the mean of all the friends’ 
+�
+x values, 
+�
+y values, and 
+�
+z values. To do so, we sum the locations for each friend and divide by 
+�
+N.
+
+Finally, we can loop through each friend and calculate the distance from the center, therefore reducing our runtime to 
+�
+(
+�
+)
+O(N). We choose the friend with the least distance to center.
+
+import numpy as np
+def pick_host(friends):
+    center = sum(np.array(person['location']) for person in friends) * 1/len(friends)
+    best_dist = 1e100
+    best_host = None
+    for p in friends:
+      dist_to_center = sum((p['location'][i] - center[i]) ** 2  for i in range(3) )
+      if dist_to_center < best_dist:
+        best_dist = dist_to_center
+        best_host = p['name']
+    return best_host
+
+        if res2 < mini:
+            res2 = mini
+            miniloc = l
+    
+    return miniloc
