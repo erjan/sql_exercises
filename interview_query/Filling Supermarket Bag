@@ -25,3 +25,24 @@ def max_profit(items,bag_capacity):
             else:
                 continue
     return res
+----------------------------------------------------------------------------------------------------------
+def max_profit(items, bag_capacity):
+
+    items_count = len(items["values"])
+    values = items["values"]
+    capacities = items["capacities"]
+    sub_profits_saves = [([0]*(bag_capacity + 1))
+                         for _ in range(items_count+1)]
+
+    # Build table sub_profits_saves[][] in bottom up manner
+    for i in range(items_count + 1):
+        for w in range(bag_capacity + 1):
+            if i == 0 or w == 0:
+                sub_profits_saves[i][w] = 0
+            elif capacities[i-1] <= w:
+                sub_profits_saves[i][w] = max(values[i-1] + sub_profits_saves[i-1]
+                                              [w-capacities[i-1]],  sub_profits_saves[i-1][w])
+            else:
+                sub_profits_saves[i][w] = sub_profits_saves[i-1][w]
+
+    return sub_profits_saves[items_count][bag_capacity]
