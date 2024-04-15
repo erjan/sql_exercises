@@ -1,0 +1,27 @@
+Let’s say you’re in a supermarket.
+
+You’ve found out that there is a huge discount on some items you want; unfortunately, you only have one bag with a certain bag_capacity. Each of the items has its own value and capacity, stored in lists called values and capacities contained in a dictionary called items.
+
+Write a function to pick the items that maximize the total value without exceeding the bag’s capacity and return the total value.
+
+Note: You can’t take more than one copy of each item home. Also, you do not need to fill the entire bag to capacity.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+def max_profit(items,bag_capacity):
+    values = items['values']
+    capacities = items['capacities']
+    cur_value = 0
+    res = 0
+    cur_capacity = 0
+    for ind, value in enumerate(capacities):
+        if value < bag_capacity:
+            cur_capacity = value
+            cur_value+= values[ind]
+        else:
+            continue
+        for j in range(ind + 1, len(capacities)):
+            if cur_capacity + capacities[j] <= bag_capacity:
+                res = max(res, cur_value + values[j])
+            else:
+                continue
+    return res
