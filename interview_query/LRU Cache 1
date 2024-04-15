@@ -1,0 +1,32 @@
+Create a class named LRUCache that implements the behavior expected of a Least Recently Used (LRU) Cache.
+
+The LRUCache class implements the following methods:
+
+__init__(self, capacity) - initializes the object and takes in a capacity parameter specifying the maximum capacity of the cache.
+get_if_exists(self, key) -> Any|None - gets a value based on a key. If the key exists, returns the associated value. If the key has expired or did not exist in the first place, returns None.
+put(self, key, value) - places a value inside the cache. In the case wherein the cache is full, invalidates the least recently used element. When two keys collide, the older value should be invalidated in place of the new one.
+---------------------------------------------------------------------------------------------------------------------
+
+from typing import Any
+import collections
+class LRUCache:
+
+    def __init__(self, capacity):
+        self.capacity = capacity
+        self.d = collections.OrderedDict()
+
+
+    def get_if_exists(self, key) -> Any | None:
+        if key not in self.d:
+            return None
+        self.d.move_to_end(key)
+        return self.d[key]
+
+    def put(self, key, value):
+        if key in self.d:
+            self.d.move_to_end(key)
+        
+        self.d[key]= value
+        if len(self.d) > self.capacity:
+            self.d.popitem(False)
+
