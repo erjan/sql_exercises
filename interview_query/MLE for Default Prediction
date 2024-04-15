@@ -1,0 +1,383 @@
+Assume you’re a data scientist for a bank and you’re tasked with building a model to estimate the probability of default on new loans. This parameter we’ll call p. You have historical data of loans with each loan’s outcome coded as 0 for “no default” and 1 for “default”.
+
+Assume that, for the last ten loans, the data is the following: [0, 1, 0, 0, 1, 0, 0, 1, 0, 0].
+
+Be sure to state any assumptions you’re making, such as assumptions about the distribution the observations are sampled from.
+
+Estimate the following using the historical data given above:
+
+The log-likelihood function for the parameter p
+The MLE for the parameter p
+--------------------------------------------------------------------------------------
+To estimate the log-likelihood function and the maximum likelihood estimate (MLE) for the parameter 
+�
+p based on the historical data provided, we'll make the following assumptions:
+
+Independence of observations: We assume that each loan's outcome (default or no default) is independent of the others. This means that the probability of default for each loan is not influenced by the outcomes of other loans.
+
+Sampling from a Bernoulli distribution: We assume that the outcomes of the loans follow a Bernoulli distribution, where each loan can either default (coded as 1) with probability 
+�
+p or not default (coded as 0) with probability 
+1
+−
+�
+1−p.
+
+With these assumptions, we can proceed to estimate the log-likelihood function and the MLE for 
+�
+p.
+
+Log-likelihood function:
+The log-likelihood function for a sample of 
+�
+n independent and identically distributed (i.i.d.) observations from a Bernoulli distribution with parameter 
+�
+p is given by:
+�
+(
+�
+)
+=
+∑
+�
+=
+1
+�
+(
+�
+�
+log
+⁡
+(
+�
+)
++
+(
+1
+−
+�
+�
+)
+log
+⁡
+(
+1
+−
+�
+)
+)
+L(p)=∑ 
+i=1
+n
+​
+ (y 
+i
+​
+ log(p)+(1−y 
+i
+​
+ )log(1−p))
+where 
+�
+�
+y 
+i
+​
+  is the outcome of the 
+�
+i-th observation (0 for no default, 1 for default).
+
+For the given data, the log-likelihood function becomes:
+�
+(
+�
+)
+=
+(
+0
+⋅
+log
+⁡
+(
+�
+)
++
+(
+1
+−
+0
+)
+⋅
+log
+⁡
+(
+1
+−
+�
+)
+)
++
+(
+1
+⋅
+log
+⁡
+(
+�
+)
++
+(
+1
+−
+1
+)
+⋅
+log
+⁡
+(
+1
+−
+�
+)
+)
++
+⋯
++
+(
+0
+⋅
+log
+⁡
+(
+�
+)
++
+(
+1
+−
+0
+)
+⋅
+log
+⁡
+(
+1
+−
+�
+)
+)
+L(p)=(0⋅log(p)+(1−0)⋅log(1−p))+(1⋅log(p)+(1−1)⋅log(1−p))+⋯+(0⋅log(p)+(1−0)⋅log(1−p))
+=
+log
+⁡
+(
+1
+−
+�
+)
++
+log
+⁡
+(
+�
+)
++
+⋯
++
+log
+⁡
+(
+1
+−
+�
+)
+=log(1−p)+log(p)+⋯+log(1−p)
+=
+3
+log
+⁡
+(
+1
+−
+�
+)
++
+2
+log
+⁡
+(
+�
+)
+=3log(1−p)+2log(p)
+
+MLE for parameter 
+�
+p:
+To find the maximum likelihood estimate (MLE) for 
+�
+p, we differentiate the log-likelihood function 
+�
+(
+�
+)
+L(p) with respect to 
+�
+p, set the derivative equal to zero, and solve for 
+�
+p.
+
+�
+�
+�
+�
+=
+�
+�
+�
+(
+3
+log
+⁡
+(
+1
+−
+�
+)
++
+2
+log
+⁡
+(
+�
+)
+)
+dp
+dL
+​
+ = 
+dp
+d
+​
+ (3log(1−p)+2log(p))
+=
+3
+1
+−
+�
+⋅
+(
+−
+1
+)
++
+2
+�
+= 
+1−p
+3
+​
+ ⋅(−1)+ 
+p
+2
+​
+ 
+=
+−
+3
+1
+−
+�
++
+2
+�
+=− 
+1−p
+3
+​
+ + 
+p
+2
+​
+ 
+
+Setting the derivative equal to zero:
+−
+3
+1
+−
+�
++
+2
+�
+=
+0
+− 
+1−p
+3
+​
+ + 
+p
+2
+​
+ =0
+
+Solving for 
+�
+p:
+3
+1
+−
+�
+=
+2
+�
+1−p
+3
+​
+ = 
+p
+2
+​
+ 
+3
+�
+=
+2
+(
+1
+−
+�
+)
+3p=2(1−p)
+3
+�
+=
+2
+−
+2
+�
+3p=2−2p
+5
+�
+=
+2
+5p=2
+�
+=
+2
+5
+=
+0.4
+p= 
+5
+2
+​
+ =0.4
+
+Therefore, the MLE for the parameter 
+�
+p based on the given historical data is 
+�
+=
+0.4
+p=0.4.
