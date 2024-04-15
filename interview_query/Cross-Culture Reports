@@ -1,0 +1,47 @@
+PayPal has partnered with a local survey platform to conduct market research for their Southern African division. Due to stringent policies within the region, all survey data is to be stored within the platform’s data centers, each contained within each country’s borders.
+
+While most of the survey data is pre-quantified, a decent chunk is pure text data, along with different languages in the region. To centralize the analytics, a translation module has been utilized to ensure that analysts can derive a cohesive analysis of the region.
+
+As a consulting engineer, you have been tasked to look at the ETL pipeline connecting PayPal’s data marts with the survey platform’s data warehouses. Within this layer also comes another layer of ETL pipelines, connecting transactional data stores with the survey platform’s data warehouse, as well as the pipeline normalizing this data through translation modules.
+
+How would you ensure the data quality across these different ETL platforms?
+-------------------------------------------------------------------------------------------------------------------------------------
+
+assume the region is south africa, black africa
+
+each country demands data to never leave its borders.
+
+
+solution1:
+
+encrypt the data at rest and in transit to leave the borders - but this violates the geo restriction.
+
+if permitted - analyze the data, generate the report and bring back the data to the data centers.
+
+solution2:
+since centralized storage is not allowed, we can't bring all the data to central storage like s3(data must not leave its country borders)
+bring the translation module to where the data stays in each data center.
+
+after translation stage- bring another module that checks data quality, use great expectations or similar standard library/module
+
+implement both modules as layers of aws lambda.
+
+generate the report
+----------------------------------------------------------------------------------------------------------------------------------------
+Based on the brief given, it seems that the survey data contains a lot of texts in different languages coming from the survey platform. The pipelines that we probably need will be as follow:
+
+Transactions from survey platform data warehouse -> Paypal internal data
+Translation module to translate texts into a centralized language, e.g. English
+Final pipeline to prepare data marts for the analysts, e.g. a table with columns of survey region, original_language, actual_language, translated_language, original_response, translated_response
+Data quality checks required:
+
+Completeness of the surveys – whether only contains completed survey responses
+Total counts of survey reponses should be the same across regions & languages
+No duplicates
+Translation module checks whether the language given by the survey platform (assuming they provide what was the original language) is really correct.
+If not given by survey platform, then we would need another language detection module (or maybe it is built into the translation module), which requires checking too.
+Translation quality checks: whether the translation module is working as expected
+Note: checking of language detection & translation modules can be done when using the modules in the code, by returning errors when there are unexpected languages
+Schema standardization & definitions checking
+Setup data governance policies: data ownership, access controls, quality standards.
+
