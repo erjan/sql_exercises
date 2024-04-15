@@ -1,0 +1,28 @@
+Given an integer array arr, write a function decreasing_values to return an array of integers so that the subsequent integers in the array get filtered out if they are less than an integer in a later index of the array.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+def decreasing_values(arr):
+    n = len(arr)
+    #monotonic stack
+    res = []
+    stack = []
+    for i in range(n):
+
+        while stack and stack[-1]<arr[i]:
+            stack.pop()
+        stack.append(arr[i])
+
+    return stack
+
+------------------------------------------------------------------------
+other solution
+
+def decreasing_values(arr):
+    arr = arr[::-1]
+    m = arr[0]
+    result = [m]
+    for x in arr[1:]:
+        if x >= m:
+            result.append(x)
+            m = x
+    return result[::-1]
