@@ -1,0 +1,49 @@
+Write a function to generate M samples from a random normal distribution of size N.
+
+Then return the average difference between the 5th and 6th lowest values.
+
+Note: N should always be greater than 6.
+
+Bonus: How would you verify your function returning the correct results?
+
+Example:
+
+Input:
+
+N = 10
+M = 20
+Output:
+
+random_differences(M, N) -> 0.5
+------------------------------------------------------------------------------------------------------------------------
+def random_differences(M, N):
+    import numpy as np
+    result = [0 for _ in range(M)]
+    
+    for i in range(M):
+        normal_tmp = np.random.normal(0, 1, N).tolist()
+        result[i] = sorted(normal_tmp)[5] - sorted(normal_tmp)[4]
+    
+    return np.mean(result)
+
+
+--------------------------------------------------------------------------
+
+import numpy as np
+
+
+def calculate(N,M):
+    
+    res = [0]*M
+    for i in range(M):
+        temp = np.random.normal(0,1,N).tolist()
+        temp = sorted(temp)
+
+        res[i] = temp[5]-temp[6]
+
+    res = np.mean(res)
+    print(res)
+    return res
+
+
+calculate(10,20)
