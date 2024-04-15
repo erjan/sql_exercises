@@ -1,0 +1,42 @@
+Suppose that you work for McDonald’s. You are to create a dynamic real-time dashboard highlighting the sales of each branch. How would you design the system for this?
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+We can divide the system into three specific sections: the data source, the processing engine responsible for processing the data, and the dashboard.
+
+Requirements
+Before we get started, let’s start by defining the functional and non-functional requirements of the system.
+
+Functional Requirements
+
+Real-time Data Acquisition: The system must fetch sales data in real-time from each branch to ensure up-to-date leaderboard standings.
+Concurrent Data Streams: Support for concurrent data streaming from multiple Point of Sale (POS) systems across all branches.
+Unified Dashboard View: Enable multiple dashboards to display synchronized, real-time data across different locations.
+Non-Functional Requirements
+
+Low Latency: Ensure minimal delay in data transmission from the POS systems to the dashboard to maintain real-time accuracy.
+Scalability: The system should scale to accommodate data from an increasing number of branches without performance degradation.
+Reliability: High availability and fault tolerance to prevent data loss and ensure continuous operation.
+Data Source
+Considering the context, we know that the data will be sourced from the point-of-sale systems McDonald’s branches use to store sales data. There are two approaches we can use in order to extract the data source into our processing engine.
+
+Direct integration with POS systems
+Have a centralized backend handle the processing
+The choice of which approach is appropriate depends on whether or not the POS systems can have modifiable behavior allowing them to directly send their data to the processing engine. If not, then a centralized backend can handle the processing.
+
+For a centralized backend, the POS systems can send their data over, and the backends can send the data over to the processing engine.
+
+Processing Engine
+The processing engine needs to somehow connect with the data source. While we can use an advanced processing engine like Spark, for a simple use case such as this, we can write a simple engine that utilizes an in-memory store to hold state. For every sale update, this engine can retrieve data from the cache store and update the values by adding the new sales figures.
+
+As for updating, the data doesn’t have to be updated for all new sales. We can make it so that the data source sends new data once every few seconds, lowering the load on the Kafka cluster.
+
+To scale the processing engine, we can “shard” the engine such that each engine stores a portion of the sales updates. If we let multiple engines listen to the same update, it is highly possible that a sales update is recorded and updated twice, making the data inaccurate.
+
+Leaderboard Dashboard
+For the leaderboard, we do not have to listen to update the sales figures for every sale update. We can, however, set up a system where we ask for new data once every few seconds. We can use the same Kafka cluster to listen to the new rankings. For every set timeout, for example, two seconds, we can query the Redis cache (in which we store a sorted set) and have our processing engine be a producer, returning the first $N$ stores with the highest sales. The dashboard can then listen to this data and update the values accordingly.
+
+Reliability and Failover
+For this system, we can have two instances of the processing engine, Kafka cluster, and Redis cache. These two instances can be used for high reliability and data consistency through cross-checking. Kafka can also be configured to function as a logging system so that we can walk back on the events in case of a system failure.
+
+Load Balancing
+Because we essentially have two versions of the same processing engine, we can use a load-balancing technique to balance traffic to either one of these servers. This is to ensure that each processing engine will have a balanced load.
