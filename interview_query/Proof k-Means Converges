@@ -1,0 +1,21 @@
+k-Means is a clustering algorithm that clusters a set of points N into k clusters. The k is chosen by the model developer. Once the algorithm finishes running, each observation will be assigned to one cluster.
+
+With any specification of k, the algorithm will eventually converge; that is, no more updates will be possible and each observation will be assigned to a cluster.
+
+Using logic, sketch out a proof that a k-Means clustering algorithm will converge in a finite number of steps. Note that the proof is not necessarily for the most efficient or effective real-world implementation and that there may be better ways to implement the algorithm. For this question, you need only show that the algorithm will converge in a finite number of steps.
+
+State any assumptions required, if any, for the algorithm to converge.
+--------------------------------------------------------------------------------------------------------------------
+
+To start, note that if you have N observations, there are {N k} ways of clustering those observations (N choose k). This is a necessary first step to show that the k-Means algorithm will converge, as the clustering will have to be one of the {N k} possibilities, which is a finite number.
+
+The k-Means algorithm updates each clustering based on a cost function it seeks to minimize. Each update step of the algorithm depends on the prior step: the N observations will not be moved from the current clustering to a new clustering unless the cost function is lower for the new configuration. In the end, the algorithm will stop running when no superior, lower-cost configuration can be found from the current configuration.
+
+Assumption for Finite Convergence
+A k-Means clustering algorithm will converge in a finite number of steps depending on the stopping criterion. Usually, the stopping criterion for k-Means is to stop the algorithm when the cluster assignment for all N observations no longer changes. That is, there is no new cluster assignment that will have a lower cost, or the same cost but with different configurations.
+
+Assume there’s an observation, Nx, that is equally distant from centroids C1 and C2. Since k-Means is an iterative algorithm that seeks to reduce a cost function, it’s theoretically possible it will cycle between two equally “costly” cluster assignments, as long as there is no deterministic tiebreaker: the assignment of observation Nx could theoretically cycle forever between two equally costly configurations.
+
+To break out of this cycle requires that there is a deterministic tiebreaker that will always assign a specific cluster to the observation Nx.
+
+In the real world, with continuous data, the probability that there will be such a need for a tiebreaker is effectively 0.
