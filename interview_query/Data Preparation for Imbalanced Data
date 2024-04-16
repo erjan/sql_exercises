@@ -1,0 +1,30 @@
+How would you handle the data preparation for building a machine learning model using imbalanced data?
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+An imbalanced dataset usually refers to data being used for a classification task where one of the outcome classes has very few observations. The class with few observations is traditionally called the minority class or positive class and is coded as 1 in binary classification. The majority class or negative class is coded as 0 in binary classification.
+
+The techniques used to deal with imbalanced data fall into three general categories:
+
+Before model development (under-sample, over-sample, create synthetic samples)
+During model development (assign class weights during training, ensemble models)
+After model development (choose a different probability threshold, different metrics)
+These three types of interventions can be used in combination. There is no way to know before fitting a model which combination will produce the best performing model.
+
+We’ll now review several techniques that fall in these categories.
+
+Before model development
+You must split your data into a train/test split before doing any of the following! Recall that a train/test split is done to give a more accurate picture of how well your model will perform on new data. If your real-world data is imbalanced, you’ll need to keep your test dataset imbalanced to reflect that. Only rebalance your training set.
+
+Resampling: Resampling includes over-sampling and under-sampling. Over-sampling refers to duplicating the minority samples in your data to get a more balanced dataset. Under-sampling refers to removing samples from the majority class from your training set. Achieving a perfect 50⁄50 split is not necessary, and in fact may not lead to the most optimal model. The exact split will be determined using cross-validation.
+Synthetic over-sampling: Simple over-sampling refers to simply duplicating existing observations in your training set. There are also several approaches for creating new, synthetic data for your minority class. Types of synthetic oversampling include SMOTE (Synthetic Minority Over-sampling Technique) and ADASYN (Adaptive Synthetic Sampling).
+During model development
+Some approaches can be applied to the process of fitting the model. Note that you don’t have to manually code these yourself, they’re often hyperparameters that can be tuned as part of model fitting.
+
+Assigning class weights during model training: You can assign different weights to classes during model training. Most machine learning algorithms allow you to assign different penalties or weights to different classes. This gives more importance to the minority class, adding a higher penalty to the cost function. This will lead the machine learning model to predict more instances of the minority class. Of course, this will lead to some majority class observations being misclassified as minority class, but this is often a cost you’re willing to incur to get better performance on the minority class.
+Ensemble models/methods: You can also use ensemble methods that work better on imbalanced data. For example, XGBoost is a type of boosting ensemble tree model that attempts to correct for misclassification in weaker models and combines them into a stronger model. Random forest is a type of bagging ensemble tree model that also combines weaker models but in a different way.
+Anomaly detection: You can treat the minority class as anomalies and use anomaly detection techniques on the majority class to identify the minority class.
+After model development
+Use different metrics: For imbalanced data, accuracy is not a good metric to use for classification models. Imagine you’re building a fraud detection model and only .1% of all transactions are fraud. A model that always predicts “not fraud” would be 99.9% accurate! Instead, use metrics like precision, recall and F1-score (a combination of precision and recall).
+Change the probability threshold: For some classification models, e.g. logistic regression, the output for a new predicted observation is a probability. The default is to use $.50$ as the threshold. That is, if $p≥.50$, predict that the observation is of the minority class. But this threshold can be changed. If the model is predicting too few of the minority class, the threshold can be reduced to e.g. $p>.30$. The exact threshold can be determined through cross-validation.
+Combining multiple approaches
+There is no way to know beforehand which approach will work best for each dataset. You should try to combine different techniques to get the best-performing model.
