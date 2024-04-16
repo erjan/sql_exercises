@@ -1,0 +1,57 @@
+There are two lists of dictionaries representing friendship beginnings and endings: friends_added and friends_removed. Each dictionary contains the user_ids and created_at time of the friendship beginning /ending.
+
+Write a function friendship_timeline to generate an output that lists the pairs of friends with their corresponding timestamps of the friendship beginning and then the timestamp of the friendship ending.
+
+Note: There can be multiple instances over time when two people became friends and unfriended; only output lists when a corresponding friendship was removed.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+def friendship_timeline(friends_added, friends_removed):
+    friendships = []
+    for removed in friends_removed:
+        for added in friends_added:
+            if sorted(removed['user_ids']) == sorted(added['user_ids']):
+                friends_added.remove(added)
+                friendships.append({
+                    'user_ids': sorted(removed['user_ids']),
+                    'start_date': added['created_at'],
+                    'end_date': removed['created_at']
+                })
+                break
+    return sorted(friendships, key=lambda x: x['user_ids'])
+Explanation:
+
+We are given two dictionaries, friends_added and friends_removed, containing respectively the start and end dates of each pair of user ids’ friendships. The task is to then output a comprehensive list where each element is a dictionary that describes the start and end date of a friendship as well as the corresponding id pair. 
+
+It is important to note that we are only looking for friendships that have an end date. Because of this, every friendship that will be in our final output is already contained within the friends_removed list. So if we start by iterating through the friends_removed dictionary, we will already have the id pair and the end date of each listing in our final output - we just need to find the corresponding start date for each end date.
+
+def friendship_timeline(friends_added, friends_removed):
+    friendships = []
+    for removed in friends_removed:
+        for added in friends_added:
+Here we lay out the initial code where we declare our final output list variable, friendships, and iterate through friends_removed. Remember that for each entry in friends_removed we must find the corresponding start date in friends_added, so we have to iterate through friends_added once for each element in friends_removed as well. 
+
+A quick look at the sample data reveals a problem in that the id pairs are not always sorted in the same direction, for example, [1, 2] and [2, 1] both appear in the data. This will prevent us from matching the start and end dates of friend pairs properly, so we need to at some point “standardize” the id pairs. We can do this by sorting them as we access them to ensure that they are always in one “direction.” 
+
+Now we just need to write the code to find the matching start and end dates. We can do this first by looking for elements in friends_added with the same sorted id pair as our element in friends_removed.
+
+def friendship_timeline(friends_added, friends_removed):
+    friendships = []
+    for removed in friends_removed:
+        for added in friends_added:
+            if sorted(removed['user_ids']) == sorted(added['user_ids']):
+After finding the matching id pairs, we need to make sure that we are selecting pairs with proper start and end dates since friendships can be made and broken more than once. For example, in the data, there is a friendship between users [1, 2] which is created and broken once in January and then once more in February. For each time it is broken, we need to select the correct start date and not the one corresponding to a different end date. 
+
+Fortunately, the friends_added and friends_removed dictionaries are already sorted by date. Because of this, we can be sure that as long as we iterate from the top through both, we will find the correct pairings of dates since each end date can only have one corresponding start date appearing before it in time. Therefore, after we find a matching id pair when iterating from the top, all that remains is to remove the found entry in friends_added to ensure that we don’t match with it again after we add the information to our output list, and break the iteration.
+
+def friendship_timeline(friends_added, friends_removed):
+    friendships = []
+    for removed in friends_removed:
+        for added in friends_added:
+            if sorted(removed['user_ids']) == sorted(added['user_ids']):
+                friends_added.remove(added)
+                friendships.append({
+                    'user_ids': sorted(removed['user_ids']),
+                    'start_date': added['created_at'],
+                    'end_date': removed['created_at']
+                })
+                break
+    return sorted(friendships, key=lambda x: x['user_ids'])
