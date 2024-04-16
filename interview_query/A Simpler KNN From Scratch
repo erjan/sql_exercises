@@ -1,0 +1,20 @@
+Write a function knn which returns the nearest data point from a list of data points to a given query point. Use Euclidean distance as the similarity measure. For the purpose of this task, 
+consider the scenario where 
+
+k=1, meaning you only need to find the single closest data point.
+
+Note: Using external libraries such as numpy and scikit-learn is not allowed.
+---------------------------------------------------------------------------------------------------------------
+
+def knn(data_points, query_point):
+    # Function to calculate Euclidean distance
+    def euclidean_distance(point1, point2):
+        return sum((p1 - p2) ** 2 for p1, p2 in zip(point1, point2)) ** 0.5
+    
+    # Calculate distances from the query point to all other points
+    distances = [(euclidean_distance(query_point, point), point) for point in data_points]
+    
+    # Sort the list of distances in ascending order, and select the first tuple (smallest distance)
+    nearest_point = sorted(distances, key=lambda x: x[0])[0][1]
+    
+    return nearest_point
