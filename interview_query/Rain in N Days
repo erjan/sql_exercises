@@ -1,0 +1,81 @@
+The probability that it will rain tomorrow is dependent on whether or not it is raining today and whether or not it rained yesterday.
+
+If it rained yesterday and today, there is a 20% chance it will rain tomorrow. If it rained one of the days, there is a 60% chance it will rain tomorrow. If it rained neither today nor yesterday, there is a 20% chance it will rain tomorrow.
+
+Given that it is raining today and that it rained yesterday, write a function rain_days to calculate the probability that it will rain on the nth day after today.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Letting “R” denote a rainy day and “T” denote a not rainy day, we first notice there are four states we move between: RR, RT, TR, RR. We assign a number to each state: RR=0, RT=1, TR=2, TT=3. We start the process in state 0 as it rained yesterday and today.
+
+Next we want to set up a transition array where the i,jth entry is the probability of moving from state i to state j in one transition. These values P[i, j] are given in the statement of the problem. Notice the scenario that it rains “one of the days” must be broken up into two states TR and RT. If we are in state TR, and it rains tomorrow, we move to RR. But if we are in state RT and it rains tomorrow, we move to state TR.
+
+P  = np.zeros((4,4))
+P[0,0] = 0.2
+P[0,1] = 0.8
+P[1,2] = 0.6
+P[1,3] = 0.4
+P[2,0] = 0.6
+P[2,1] = 0.4
+P[3,2] = 0.2
+P[3,3] = 0.8
+We start the process in state RR=0 where today is the 2nd R. Thus the nth day from now will be the 2nd day in the pair after n transitions. So we want the probability of moving from RR=0 to RR=0 or TR=2 in n transitions.
+
+To do this, we take the nth power of our transition array P and return the sum of the [0,0]th entry and the [0,2]th. This is the sum of the probability we move from RR=0 to RR=0 with the probability we move from RR=0 to TR=2 after n moves.
+
+Our final python code is:
+
+import numpy as np
+from numpy.linalg import matrix_power
+def rain_days(n):
+    P  = np.zeros((4,4))
+    P[0,0] = 0.2
+    P[0,1] = 0.8
+    P[1,2] = 0.6
+    P[1,3] = 0.4
+    P[2,0] = 0.6
+    P[2,1] = 0.4
+    P[3,2] = 0.2
+    P[3,3] = 0.8
+    P = matrix_power(P,n)
+    m = P[0,0] + P[0,2]
+    return(m)
+In n+1 moves, the nth day from now is the first day in the pair. So to verify our answer, we can find the probability that we move to state 0=RR or 1=RT in n+1 moves. So if we replace
+
+ P = matrix_power(P,n)
+ m = P[0,0] + P[0,2]
+with
+
+    P = matrix_power(P,n+1)
+    m = P[0,0] + P[0,1]
+we return the same probability.
+------------------------------------------------------------------------------------
+def rain_days(n):
+    #transitions
+    pr ={} #p rain
+    pd = {}# p dry
+    pr['rr'] = 0.2
+    pr['rd'] = 0.6    
+    pr['dr'] = 0.6     
+    pr['dd'] = 0.2
+    pd['rr'] = 0.8
+    pd['rd'] = 0.4    
+    pd['dr'] = 0.4    
+    pd['dd'] = 0.8 
+    
+    # compute the tree with all sample space
+    tree = {}
+    tree['rr']=1 #this alreay happened so p=1
+    
+    for ix in range(n):
+        for key in tuple(tree.keys()):
+            tree[key + 'r'] = tree[key] * pr[key[-2:]]
+            tree[key + 'd'] = tree[key] * pd[key[-2:]] 
+    
+    # subset sample space and sum probs that match our     
+    # event (rain on last day
+    p=0
+    for key,val in tree.items():
+        if key.endswith('r') & ((len(key)-2)==n):
+            p += val
+    
+    return p
