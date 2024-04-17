@@ -1,0 +1,76 @@
+You’re a product manager at Meta. In a few weeks, there is an upcoming stakeholder meeting, and they want you to suggest a new feature for Instagram Stories. What would this feature be, and what would be the rationale behind choosing such a feature?
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+A good starting point to analyze how we might be able to improve Instagram stories is to look at what makes it work in the first place, what it offers for the platform, and how we might be able to modulate these offerings.
+
+Instagram Stories are built to increase user engagement, allowing users to share snippets of their day. As such, Instagram Stories, in its current form, is already doing well enough to fit within the company vision.
+
+However, we can somehow define what an “improvement” would look like. This would be an increased:
+
+amount of impressions
+number of posts
+time spent on stories
+total engagement
+We can determine two themes from how we might be able to improve the stories feature. First, we can formulate a functionality to reduce churn from current users. Another approach is to increase usage.
+
+To identify pain points within the current stories feature, we can also either (a) run surveys based on age segments or (b) use existing data.
+
+A key point here is to use age as a way to bucket the data. We can look at our direct competitors, such as TikTok, and notice how they’re more popular with younger audiences.
+
+In the case that we run surveys, we can either run these on the app, or through external sources. A key metric we need to measure is overall satisfaction. This can be used as a lead metric where we can derive insights based on age group.
+
+Assuming that we have run the data and have seen how the younger generation tends to rate Instagram Stories on the lower end of the spectrum, we can then start formulating how we might address the issues regarding the specific age group.
+
+Here’s a list of proposed list of solutions:
+
+Provide another entry point to stories inside the UI. (Introducing New Users)
+Unlike older generations, younger generations tend to appreciate a cleaner, less cluttered UI. We might be able to utilize this to our advantage.
+Auto-Generated Responses (Increase User Engagement)
+We can introduce commonly used phrases as an auto-generated response or at least, have a list of pre-saved responses.
+Allow Easy Story Resharing (Increase Content)
+We can allow users to easily reshare each other’s stories to increase content and upload frequencies, similar to TikTok’s “repost” feature.
+Now given these three, which should we prioritize? Although this might be subjective, it is best to go with option three, due to the following reasons:
+
+We need users to post for there to be content in the first place.
+With more posts, there ought to draw in more interactions from our consumers.
+When users become regular posters, they also engage regularly. For inspiration, and for up-to-dating with trends.
+Notes From Coaching
+
+Feedback/Comments:
+
+How do we know that TikTok is more popular with younger audiences? May be true but a big assumption without actionable evidence. We want to come to a conclusion that we can provide data/evidence for.
+
+If the feature “Allow for Easy Story Resharing” is highly successful, would it be a good thing for Instagram? Assuming the answer is yes, how do we define success?
+
+Is the engagement metric specific to a certain time frame? Daily, weekly, monthly, etc
+
+If users on the site are already doing said action then you can use that action as a proxy for demand of the new feature.
+
+For example, if users are already resharing each other’s stories then a suggestion would be to reduce the friction users face and decrease the steps to complete the action.
+
+Lastly, examining user behavior patterns by age would determine if there exists a gap between older users sharing stories vs younger users sharing stories. This analysis would be faster and less costly than getting the data from surveys but both would suffice.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**Clarifying Questions:**
+
+what is the end goal? increase revenue or engagement? 
+
+
+**assessing requirements:**
+
+assume the goal  for stakeholders is to see an increase in engagement in US market.
+
+**Solution:**
+
+check what other experimental features the competitors have rolled out recently, reason why they do this.
+
+analyse what is behind the feature and see if we can do same.
+
+propose a new set of filters for live streaming based on current trendy movies - e.g. if a new spiderman movie is out - propose automatic "trendy" mask overlayed on user's face
+this might increase feature and let people be trendy, feel relevant in the moment.
+
+**validation:**
+
+use std engagement metrics
