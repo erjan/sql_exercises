@@ -1,0 +1,13 @@
+What are the benefits of dynamic pricing, and how can you estimate supply and demand in this context?
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Measuring supply and demand can be tricky because both are related. Demand often follows high-quality supply and, in turn, supply follows large demand. Dynamic pricing, often referred to as “surge” pricing, is a strategy where businesses set flexible prices for products or services based on current market demands. This approach is common in industries where demand can spike significantly depending on the time of day or seasonality of the industry, such as transportation (like ride-sharing services), hospitality, tourism, entertainment, and retail.
+
+The core principle of dynamic pricing is a company’s ability to capitalize on consumer willingness to pay different amounts at different times. For example, ride-sharing prices may increase during peak traffic hours or in inclement weather, when demand is high and supply is relatively constant.
+
+Ways to estimate supply and demand in the context of dynamic pricing can be as follows:
+
+Demand Forecasting: This involves using statistical and machine learning models to predict customer demand based on historical data. Demand can be influenced by various factors like time of day, day of the week, weather conditions, local events, and broader economic factors. Time series analysis is particularly useful here.
+Supply Monitoring: Understanding the current availability of the product or service is crucial. For instance, in ride-sharing, this could mean tracking the number of drivers available at a given time and place. With fewer drivers, there’s less supply to meet demand, and prices should increase.
+Price Elasticity Modeling: This is about understanding how price changes affect demand. Machine learning models can be used to estimate the elasticity of demand – how sensitive customers are to price changes.
+Using all these techniques together will provide an accurate estimate of supply & demand.
