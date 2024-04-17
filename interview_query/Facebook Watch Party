@@ -1,0 +1,50 @@
+Facebook is considering a new feature called “Watch Party”, where users can watch videos on Facebook together in real time. As a senior project manager, it is your task to determine if Facebook should implement this feature.
+
+Outline some considerations for whether Facebook should release this feature. Be sure to include the performance indicators you would use to test the efficacy should you choose to release the watch party feature.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+To start, survey the competition for similar features. This can give you information on whether other services have found the feature to be a good idea. As it turns out, Netflix, Amazon Prime, and other video streaming platforms are releasing similar features. That other video streaming services are releasing such a feature could indicate they see value in watch parties.
+
+Alignment with mission
+To assess the value of the feature for Facebook specifically, you’ll need to ensure that such a feature is aligned with the company’s mission.
+
+Does a watch party have a strategic fit that allows Meta’s services to work together even better? Meta’s stated mission is to bring people and communities together. A watch party feature, especially one that we can integrate across all of Meta’s services, not just Facebook, would fit with that mission.
+
+Monetization
+Next, we consider how watch parties can be part of a monetization scheme. For example, would this feature help create more sticky users, increase engagements, and overall improve cohesion between Meta’s products?
+
+To answer that question, consider the signals we can explore to determine if the feature would be used, how it would be used, and how demand can be generated for its use. Some data that can be used here includes how often users interact in groups, through things like private messaging, and how often users share videos with other users, suggesting they’re interested in sharing the experience of having watched the video.
+
+We can assess whether there is incentive for hosts to create watch parties, or if watchers find enough interest to engage. We can also consider how to create incentives for users to engage in watch parties, for example by reducing ads.
+
+KPIs for efficacy
+Since Facebook’s mission is to create meaningful connections, we can determine KPIs that will allow us to understand if the watch party feature is meeting those goals. A watch party would in theory allow people to connect more meaningfully by watching content, and sharing reactions and feedback, synchronously.
+
+To understand if the feature is working well, we can look at metrics both for watchers and creators of a watch party. For example, for a creator of a watch party, a key metric could be the number of active users and the length of time each user is engaged. For watchers, we can define their metrics by the number of videos they watch through a watch party and if they engage passively or actively— via likes, comments, and shares made inside the watch party.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**Clarifying Questions:**
+
+what is the end goal? to increase engagement of users?
+to let them celebrate parties online together? what kind of videos should be recommended to watch - family related or videogame streaming?
+
+**Assessing Requirements:**
+
+the market is US only.
+
+
+
+**Solution:**
+
+the metric to use is avg time spent on fb, avg time spent watching, avg num of likes/views, 
+avg length of chat and emojis exchanged during the session
+all of these metrics should be calculated over the weekly/monthly/yearly period.
+
+roll out the feature for test groups, see if they use it and measure the metrics
+
+
+**Validation:**
+
+check if the metric shows strong correlation btw engagement of users after the feature is introduced.
