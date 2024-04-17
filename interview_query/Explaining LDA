@@ -1,0 +1,24 @@
+What is the concept of LDA, or linear discriminant analysis, in machine learning? What are some use cases for using LDA in practice?
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+LDA is a type of dimensionality reduction technique in machine learning.
+
+A dimensionality reduction technique is used to find a linear combination of features that best represents the original features. The linear combination of features is fewer than the original number of features, making the data easier to work with. The outcome of dimensionality reduction is often used as an input to the next step in a data science pipeline.
+
+Other types of dimensionality reduction techniques include Principal Components Analysis (PCA). The biggest difference between PCA and LDA is that LDA uses the class labels for observations in the dataset while PCA does not.
+
+LDA is particularly useful in situations where you have labeled data and want to maximize the separation between classes.
+
+LDA does make some assumptions and is sensitive to outliers. Assumptions include:
+
+Normality: The data is normally distributed (Gaussian).
+Homoscedasticity: Different classes have the same covariance matrix.
+Independence: Observations are independent.
+No multicollinearity: The more correlation there is between features, the less predictive LDA will be.
+Use cases
+Specific use cases for LDA include:
+
+Facial recognition: Photos of faces include lots of pixels. LDA is often used to reduce the number of features before the data is used for prediction.
+Medical diagnosis: In medical imaging, LDA can be applied to identify patterns in data related to different medical conditions.
+Document classification: LDA can be used to classify documents into different categories based on their content.
