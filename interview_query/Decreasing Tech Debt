@@ -1,0 +1,45 @@
+Suppose that you work at a fintech startup. Recently, management has raised the issue
+of the increased amount of developer hours needed to implement relatively simple features, citing tech debt as the primary cause. How would you go around decreasing tech debt and decreasing developer turnaround time?
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+When approaching tech debt, one common oversight is to entirely direct all efforts in reducing the current amount of tech debt a project currently has. Typically, this may be through refactoring, revisiting UML diagrams, and overall diverting more modular approaches. Another effort may be rewriting or creating documentation for code modules.
+
+Nevertheless, the easiest way to deal with tech debt is to not have it in the first place. Preventive methods, such as implementing code standards within the company, as well as enforcing strict documentation requirements is essential.
+
+Of course, knowing that this is a fintech startup, we may need to address the elephant in the room: security.
+
+Code obfuscation is not the proper way to implement secure code. Instead, rely on rewriting the code according to industry standards. Modularization of components can also make it easier to track possible points of failure, decoupling systems together and decreasing the development friction.
+
+Lastly, make sure to track your progress! It’s a key motivating factor in dealing with tech debt, as well as making it easier to see concrete goals.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**Clarifying Questions:**
+
+what is the end goal? to increase developer efficiency or decrease total cost of development?
+
+
+**assessing requirements:**
+
+assume the goal is to increase dev efficiency.
+
+**Solution:**
+
+a metric like avg time to deploy feature can be used, although it may not be accurate to estimate and feature completion estimate can vary greatly depending on developer, but this can be used as guard rail metrics.
+
+assess types of tech debt from all perspectives:
+is it pure refactoring?
+single developer as a bottleneck, who has knowledge of the entire system - i.e. 'bus factor' should be 0
+
+use github copilot or ai assistant to generate code faster.
+
+fintech startup may attract 3rd party financial consultants(hire additional domain knowledge experts, not programmers)
+
+write docs wiki pages, make sure there is no 1 dev who has to carry the burden of the entire system.
+
+
+
+**validation:**
+
+tech debt can be measured in various ways: tech issues backlog, the amount of bugs issues fixed, new bugs arising, system downtime,avg time to implement feature
+bus factor,
+feature time-to-market. use those as guardrails to validate the tech debt is decreasing
