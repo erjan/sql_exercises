@@ -33,3 +33,34 @@ def get_reverse(head):
         cur = nextNode
     
     return prev
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+#my reprocessed solution
+
+def reverse_at_position(head, position):
+    
+    def helper(head):
+        cur = head
+        prev = None        
+
+        while cur:
+
+            temp = cur.next            
+            cur.next = prev
+            prev = cur
+            cur = temp
+        return prev
+    
+    cur = head
+    i = 1
+    while i<position:
+        cur = cur.next
+        i+=1
+    
+    second_head = cur.next
+    cur.next = None
+
+    cur.next = helper(second_head)
+    return head
+    
+
+
