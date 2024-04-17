@@ -1,0 +1,50 @@
+A bank has two levels of customer acquisition strategies for customers opening new credit cards. Customers are classified into two categories: high spenders and regular spenders, based on their spending habits.
+
+High spenders receive a one-time bonus of $800.
+Regular spenders receive a one-time bonus of $100.
+Suppose that the bank makes a return based on a percentage of each customer’s spending. The bank wants to attract as many customers as possible while not losing money on this customer acquisition campaign.
+
+Write a Python function that takes in a list of client spending and a return rate to determine the minimum client spending threshold to award the high spender bonus, while having the return on investment be at least as high as the total bonus spend. Make sure to filter out extreme values in the data and return 0 if the return on investment is never as high as the total bonus spent.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+We value customers with high spending because we get more from commissions or interest. Therefore, it is important for us to attract and retain such customers. However, it is also important to keep in mind that we should receive at least as much as we spent on the bonuses.
+
+When calculating the threshold to give out bonuses, it is necessary to take into account outliers in the data: some customers may spend significantly more or less than the typical customer, but these cases are usually an exception.
+
+To resolve the issue of outliers, they either need to be eliminated or we can use methods that will not suffer from them. For example, one common method to eliminate outliers is detecting if they are more than 2 standard deviations from the mean spending:
+
+import numpy as np
+
+def get_threshold(spends, return_rate):
+    high_spender_bonus = 800  
+    regular_spender_bonus = 100
+		
+		# remove outliers by detecting whether each value is more than 2 standard deviations from the mean
+    mean = np.mean(spends)
+    stdev = np.std(spends)
+    filtered_spends = []
+    for value in spends:
+        z_score = (value - mean) / stdev
+        if abs(z_score) < 2:
+            filtered_spends.append(value)
+            
+    total_roi = (sum(filtered_spends) * return_rate)
+    
+    for threshold in filtered_spends:
+        high_spenders = [spend for spend in spends if spend >= threshold]
+        regular_spenders = [spend for spend in spends if spend < threshold]
+        spend_bonus = (len(high_spenders) * high_spender_bonus + len(regular_spenders) * regular_spender_bonus)
+
+        if total_roi > spend_bonus:
+            return threshold
+    return 0
+Once we have a filtered dataset without the outliers, we can check each spending value to determine if the return on investment is least as great as the spending on the bonuses. If we have iterated through every value without meeting this requirement, the function returns 0 indicating that no spending threshold will break even with the customer acquisition strategy.
+
+Languages
+Python 3.10.4
+
+Template
+def get_threshold(spends, return_rate):
+	high_spender_bonus = 800  
+  regular_spender_bonus = 100
+	pass
