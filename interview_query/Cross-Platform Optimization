@@ -1,0 +1,63 @@
+You have been tasked with optimizing cross-platform user experience. To do this, you will analyze user interaction data on both web and mobile. The goal is to understand user behavior, preferences, and engagement patterns.
+
+The database includes two tables; one for all mobile actions from users and one for all web actions from users.
+
+Consider the following questions:
+
+How many unique users visited pages on mobile only?
+What percentage of web visitors visited pages on web only?
+Write a query that returns the percentage of users who visited only mobile, only web, and both. The percentage of users who are only in the mobile table, only in the web table, and in both tables should sum to 1.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1. Solution
+To count the number of unique users on mobile only, start by taking the count of the distinct user ID’s in the mobile table. This gives a unique count of users.
+
+We need to remove any users who are also in the web table, however, to get the mobile-only users. To remove users who are in both tables, first left join the web table onto the mobile table. The join will add a new column that includes the user ID from the web table. The WHERE class will include only rows where the user ID is NULL from the web table, meaning that the user is not in the web table. This leaves only mobile users.
+
+SELECT COUNT(DISTINCT m.user_id) AS mobile_only_users
+FROM mobile_tbl AS m
+LEFT JOIN web_tbl AS w ON m.user_id = w.user_id
+WHERE w.user_id IS NULL;
+2. Solution
+We’ll start with the denominator, which includes all distinct user IDs from the web table.
+
+Because we want web-only visitors, we’ll use a case statement that assigns 1 only to users who are NOT IN the mobile table. When we COUNT the 1’s, that gives web-only visitors, which is then divided by all web visitors.
+
+SELECT
+  (COUNT(DISTINCT CASE WHEN user_id NOT IN (SELECT user_id FROM mobile_tbl) THEN 1 END) * 100.0 /
+  (SELECT COUNT(DISTINCT user_id) FROM web_tbl)) AS web_only_percentage
+FROM web_tbl;
+3. Solution
+A full outer join of the mobile and web table is required to get the total denominator count of all users.
+
+Similarly to question #2, we’re using a CASE statement to count users who are in only one table. The IS NULL check for user_id is done after the tables are joined, so a NULL value for user_id means that this user was not in that specific table.
+
+For example, if user_id in the column web.user_id is NULL, it means this user was mobile-only and not in the web table. This user is counted as part of m_only.
+
+SELECT 
+	100 * SUM(CASE WHEN mob.user_id IS NULL THEN 1 ELSE 0 END) / COUNT(*) AS w_only, 
+  100 * SUM(CASE WHEN web.user_id IS NULL THEN 1 ELSE 0 END) / COUNT(*) AS m_only, 
+  100 * SUM(CASE WHEN mob.user_id IS NOT NULL AND web.user_id IS NOT NULL THEN 1 ELSE 0 END) / COUNT(*) AS both
+    
+FROM (SELECT DISTINCT user_id FROM web_tbl) AS web
+FULL OUTER JOIN
+(SELECT DISTINCT user_id FROM mobile_tbl) AS mob
+ON mob.user_id = web.user_id;
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1.select count(distinct user_id) as mobile_only_users from mobile_tbl where user_id not in (select distinct user_id from web_tbl)
+
+2.select count(distinct user_id)as web_only_users from web_tbl where user_id not in (select distinct user_id from mobile_tbl)
+
+with mob_only as( select count(distinct user_id) as mobile_only_users from mobile_tbl where user_id not in (select distinct user_id from web_tbl) ),
+web_only as (select count(distinct user_id)as web_only_users from web_tbl where user_id not in (select distinct user_id from mobile_tbl)),
+
+all_users as( (select distinct user_id from web_tbl) m full outer join (select distinct user_id from web_tbl) w on w.user_id = m.user_id )
+
+now just combine it from 1 and 2 and all users table
+
+select ( 100.0*(select count(user_id) from mob_only)/ (select count(user_id) from all_users) as mob_only)
+
+select ( 100.0*(select count(user_id) from web_only)/ (select count(user_id) from all_users) as web_only)
+
+(select count(distinct user_id ) from mobile_tbl m inner join web_tbl w on w.user_id = m.user_id)/(select user_id from all_users)*100.0
