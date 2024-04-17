@@ -1,0 +1,35 @@
+You’re given the head node of a singly linked list and a natural number k. k will always be less than or equal to the length of the list, such that k <= len(SinglyLinkedList). Write a function reverse_at_position(head, position) that reverses the linked list starting from the index k (the index starts at 0) to the end of the list.
+
+A class Node is defined as the following:
+
+class Node:
+    def __init__(self, element, next=None):
+        self.element = element
+        self.next = next
+Note: After the reverse operations, you must update the new head node using the update_head(node) function (especially in the case where n = 1). The tail’s next node will be None.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+def reverse_at_position(head, position):
+    dummy = sentinel = Node(0, head)
+    cur = head
+
+    count = 0
+    while cur and count < position + 1:
+        sentinel = sentinel.next
+        cur = cur.next
+    
+    cur = get_reverse(cur)
+    sentinel.next = cur
+    return dummy.next
+
+def get_reverse(head):
+    cur = head
+    prev = None
+
+    while cur:
+        nextNode = cur.next
+        cur.next = prev
+        prev = cur
+        cur = nextNode
+    
+    return prev
