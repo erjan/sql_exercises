@@ -1,0 +1,66 @@
+Given a ListNode representing the head of a linked list, write a function is_cyclic which returns True if a linked list is cyclic and False if it is not. A linked list is cyclic when there is no tail to the linked list, and the supposed tail is attached to another node inside the list itself, creating a cycle.
+
+A ListNode is defined as:
+
+class ListNode:
+	value: ListNode = None
+  next: ListNode = None
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+The given problem is a classic example of detecting a cycle in a linked list, a common challenge in computer science known for its implications in memory management and data structure integrity. The solution employs a strategy famously known as “Floyd’s Tortoise and Hare” algorithm, which uses two pointers moving at different speeds to explore the list. This method is efficient and elegant, providing a way to detect cycles without additional memory overhead for tracking visited nodes.
+
+Here’s a detailed explanation of how the solution works:
+
+Initialization: Two pointers, slow and fast, are initialized at the head of the list. The slow pointer advances one node at a time, while the fast pointer moves two nodes forward with each step. This difference in speed is crucial for detecting cycles.
+
+Traversal: As both pointers begin traversing the list, there are two possible outcomes:
+
+If the list is acyclic (i.e., there’s an end to the list), the fast pointer will eventually reach a None value, indicating the list’s end. Since the fast pointer moves two steps at a time, it’s also necessary to check if fast.next is None to prevent accessing a None reference in the next iteration.
+If the list is cyclic, the fast pointer will eventually “lap” the slow pointer by entering a cycle and catching up to it from behind. This is because, in each iteration, the fast pointer reduces the gap between itself and the slow pointer by one node. Eventually, they will point to the same node within the cycle, signaling its presence.
+Cycle Detection: The moment slow and fast pointers meet, a cycle is confirmed, and the function returns True. If the fast pointer reaches the end of the list (fast or fast.next is None), it means there’s no cycle, and the function returns False.
+
+Edge Cases: The initial check (if not head or not head.next:) ensures that the list is not empty and has more than one node. An empty list or a single-node list cannot form a cycle, so the function immediately returns False in these cases.
+
+This approach is widely appreciated for its O(n) time complexity—where n is the number of nodes in the list—and O(1) space complexity.
+
+Below is the implementation of the algorithm:
+
+class ListNode:
+    def __init__(self, value=0, next=None):
+        self.value = value
+        self.next = next
+
+def is_cyclic(head: ListNode) -> bool:
+    if not head or not head.next:
+        return False
+    
+    slow = head
+    fast = head
+    
+    while fast and fast.next:
+        slow = slow.next         # Move slow pointer by 1
+        fast = fast.next.next    # Move fast pointer by 2
+        
+        if slow == fast:
+            return True  # Cycle detected
+    
+    return False  # No cycle detected
+This solution elegantly handles the problem, providing a quick and memory-efficient way to detect cycles in linked lists.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+class ListNode:
+    pass # No need to define
+
+
+def is_cyclic(head: ListNode) -> bool:
+    fast,slow = head, head
+
+    while fast and fast.next:
+        
+        fast = fast.next.next
+        slow = slow.next
+        if fast == slow:
+            return True
+    return False
+
