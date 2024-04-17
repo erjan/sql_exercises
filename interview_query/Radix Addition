@@ -1,0 +1,97 @@
+You are given two non-empty linked lists representing two non-negative integers. Each list contains a single number, where each item in the list is one digit. The digits are stored in reverse order.
+
+Task: Add the two numbers and return the sum as a linked list, also with the digits in reverse order. You may assume the two numbers do not contain any leading zeros, except the number 0 itself.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#my solution
+
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+def to_list(node):
+    """Do not modify """
+    """Converts a linked list to a list of integers."""
+    nums = []
+    while node:
+        nums.append(node.val)
+        node = node.next
+    return nums
+def to_linked_list(nums):
+    """Do not modify """
+    """A helper function: Converts a list of integers to a linked list and returns the head of the linked list."""
+    if not nums:
+        return None
+    head = ListNode(nums[0])
+    current = head
+    for num in nums[1:]:
+        current.next = ListNode(num)
+        current = current.next
+    return head
+
+def helper(nums1, nums2):
+    """Do not modify """
+    l1 = to_linked_list(nums1)
+    l2 = to_linked_list(nums2)    
+    result = addTwoNumbers(l1,l2)
+    return to_list(result)
+
+
+def addTwoNumbers(l1,l2):
+    x1 = to_list(l1)
+    x2 = to_list(l2)
+    x1 = x1[::-1]
+    x2 = x2[::-1]
+
+    x1 = list(map(str,x1))
+    x2 = list(map(str,x2))
+    x1 = ''.join(x1)
+    x2 = ''.join(x2)
+    x1 = int(x1)
+    x2 = int(x2)
+    res = x1+x2
+
+    res = list(str(res))
+
+    res = list(map(int, res))
+    res = res[::-1]
+    return to_linked_list(res)
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+We can solve this problem by traversing both lists at the same time, and adding corresponding digits. If the sum is greater than 9, we carry the 1 to the next digit. We continue this process until we have traversed both lists. If one list is longer than the other, we continue the process with the longer list. If there is a carry after the last digit, we add a new node with the carry.
+
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+def to_linked_list(nums):
+    """Help function, do not modify"""
+    """A helper function: Converts a list of integers to a linked list and returns the head of the linked list."""
+    if not nums:
+        return None
+    head = ListNode(nums[0])
+    current = head
+    for num in nums[1:]:
+        current.next = ListNode(num)
+        current = current.next
+    return head
+
+
+def addTwoNumbers(nums1, nums2): 
+    l1 = to_linked_list(nums1)
+    l2 = to_linked_list(nums2)    
+    dummy = cur = ListNode(0)
+    carry = 0
+    while l1 or l2 or carry:
+        if l1:
+            carry += l1.val
+            l1 = l1.next
+        if l2:
+            carry += l2.val
+            l2 = l2.next
+        cur.next = ListNode(carry%10)
+        cur = cur.next
+        carry //= 10
+    return dummy.next
+    
