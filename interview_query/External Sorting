@@ -1,0 +1,18 @@
+How do you sort a 100GB file when you are constrained to only 10GB of RAM?
+-----------------------------------------------------------------------------------------------------------------------------
+
+Sorting a massive file that far exceeds the available memory is a common problem in data processing and analytics. Scenarios involving log analysis, big data processing, and database management will arise often. The challenge here is twofold:
+
+Memory Limitation: The dataset cannot be loaded entirely into memory for sorting due to RAM constraints.
+Efficiency and Scalability: The solution must efficiently process and sort the data without significant performance degradation, ensuring scalability to even larger datasets if necessary.
+An ideal solution would aim to increase efficiency, scalability, and resource utilization. There are many approaches that we can use in order to approach the optimal algorithm for external sorting.
+
+For example, we can employ chunk-based sorting and merging. Put simply, we can divide the entire dataset into manageable chunks of memory, sorting each chunk individually, and using a sorting algorithm like external merge sort.
+
+When merging the chunks, you can use a k-way merge algorithm to merge sorted chunks into a single sorted file. This can be efficiently achieved using a min-heap to keep track of the smallest elements across all chunks.
+
+There are a few parameters that we can tweak, such that we can approach where we might find the best algorithm for sorting for each particular use case. For example, we can set the chunk size. By using smaller chunk sizes, we can speed up the algorithm but utilize more IO resources. On large chunk sizes, we can sequentially store each chunk but can limit the IO operations.
+
+We can also tweak the RAM overhead. We should never utilize all of our memory just for the chunks. We need to maintain considerable overhead in order to store temporary variables and process metadata. While using the most RAM as possible can make our algorithm fast, it may, in some cases, cause our system to crash.
+
+Another parameter we can tweak is the algorithm itself. In this case, quicksort is a viable algorithm for external sorting.
