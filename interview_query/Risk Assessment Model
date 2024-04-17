@@ -1,0 +1,44 @@
+You work as a machine learning engineer for a health insurance company. Design a machine learning model, which given a set of health features, classifies if the individual will undergo major health issues or not.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Defining “Major Health Issues”
+When designing a machine learning model to predict major health issues for a health insurance company, the goal is to accurately classify individuals based on their risk. A significant part of the process involves defining what constitutes a “major health issue.” It’s not just about distinguishing a cold from more severe conditions but understanding the complexities of various health outcomes and their impacts on individuals’ lives. Collaborating with healthcare professionals is crucial to accurately identify which health features are predictive of significant health events, ensuring the model is both effective and grounded in medical reality.
+
+Model Selection
+The choice of the model depends on the data’s complexity. For simpler datasets, logistic regression might suffice. However, for more nuanced data, more sophisticated algorithms like decision trees, random forests, or boosting might be necessary. These models can handle the intricate relationships between different health features and major health outcomes.
+
+Demographics and Ethical Considerations
+An ethical consideration is how to handle demographic data. While demographics can offer insights into health risks, using such information must be approached with caution to avoid biases that could lead to unfair predictions. The model should strive for neutrality and fairness, focusing on health-related features that directly contribute to the risk assessment.
+
+Missing Values
+Data quality, especially in healthcare, often involves dealing with incomplete or missing information. It’s unrealistic to expect complete datasets, and handling missing data becomes a critical step in model preparation. Techniques like imputation or model-based approaches can help estimate missing values without significantly biasing the model.
+
+Cost of Errors
+Given the model’s context, predicting major health issues, it’s vital to prioritize sensitivity to false negatives. Incorrectly predicting that someone will not face major health issues when they will is more costly and risky than false positives. Adjusting the model’s threshold to minimize false negatives is a strategy that can help manage this risk, although it’s essential to balance this with the overall accuracy of the model.
+--------------------------------------------------------------------------------------------------------
+**Clarifying Questions:**
+
+what is the end goal? to identify a person who will have major issues or not?
+what is considered major health issue - cancer, heart attack? is it multi label classification model or just yes/no for any serious health issue?
+
+**Assessing Requirements:**
+
+the market is US only.
+
+
+**Solution:**
+
+since this is classification problem- one must include metrics like precion,recall,sensitivity - confusion matrix.
+a person can be classified as having major health issue when he does not(false positive) and vice versa
+
+check for imbalanced data, decide whether to downsample or impute, simulate additional data
+use decision tree based models - random forest, C5.0, light gbm as decision trees work well with categorical and numerical values
+
+
+
+
+**Validation:**
+
+depending on what is important - to find false negatives, false positives - use metrics like sensitivity, recall etc
+to adjust what the model should be more focused on.
