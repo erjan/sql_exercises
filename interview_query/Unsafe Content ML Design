@@ -1,0 +1,24 @@
+Suppose that you work for a social media platform. Given stringent content compliance rules, how would you design a machine learning system for the detection of unsafe content?
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Typically (and hopefully!) unsafe content will comprise only a small percentage of the total content on your site. Therefore, a model for the detection of unsafe content will likely have to work with highly imbalanced data. Techniques related to working with imbalanced data will be crucial.
+
+In general, you’ll need to follow these steps:
+
+Define the content you want to detect: Before building a model, you’ll need to specify the kind of content you want to identify. For example, are you trying to identify hate speech, violent imagery, or something else?
+Collect the data: To build a model that can predict a specific class of outcome, you’ll need input data from that specific class. Make sure your training data contains observations that fall into all the different categories you want to detect.
+Preprocess the data: Preprocessing will be specific to the kinds of data you’re working with. For example, in text data, you’ll want to standardize the text and remove filler words. For image data, you’ll need to standardize the image sizes, crop the images, and/or convert to grayscale if appropriate.
+Feature extraction: Depending on the kind of data, e.g. text or image, you’ll need to develop features that can be used as inputs to a model.
+For text data, this can include a sentiment score, a tagging system for different parts of speech, and word embeddings.
+
+For image data, this can include color histograms, face detection, and content detection.
+
+This is an iterative process and will have to be revisited throughout the model development process.
+
+Model selection: You’ll need to choose the kind of model(s) you’ll use to fit to your data.
+For text, the most effective options are likely natural language processing (NLP) deep learning models like recurrent neural networks (RNNs) or transformer-based models (e.g., BERT).
+For images, convolutional neural networks (CNNs) are commonly used. This is an iterative process and you should try several different types of models if time and resources allow.
+Model training: Recall that unsafe content is usually a very small percentage of your training data. This means you’ll want to utilize techniques for working with imbalanced data when model training. This can include resampling, changing class weights, and changing the probability threshold for prediction. Use evaluation metrics that make sense for the classification of imbalanced data, such as an F1 score and precision/recall. Avoid using accuracy.
+Be aware of bias in training data: Recall that garbage in means garbage out! Be sure to assess your input data for any biases and ensure that your model does not contribute to harm by perpetuating any unfairness or bias.
+Be aware of legal requirements. Be sure to consider and comply with legal and ethical aspects of content moderation, ensuring compliance with privacy regulations and respecting user rights. Be aware that you may have users from many different countries, with different regulations and laws, beyond the country where your company is based.
+Deployment and monitoring. Be sure to establish a feedback mechanism where users can report false positives or false negatives. Use this feedback to continuously improve the model’s performance, again being aware of the model’s bias.
