@@ -1,0 +1,23 @@
+If you break a stick uniformly at two points, creating three pieces, what’s the probability that a triangle can be formed from the three pieces?
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Recall the triangle inequality, which says that the combined length of any two sides of a triangle has to be less than or equal to the third side. So in our stick case, we’ll be able to form a triangle if none of the three pieces is ≥ 1⁄2 the total length of the stick.
+
+So how to figure out the probability that none of the three pieces is greater than 1⁄2?
+
+The question says that the cuts will be made uniformly, that is, using a uniform distribution.
+
+So if our stick is of length 1, using a uniform distribution means that there is a 1⁄2 probability that both cuts will be made on the same side of the mid-point. This precludes half of the possible cuts from being able to form a triangle. So now P(triangle) is at most 1⁄2. But we’re not done yet!
+
+If the two cuts happen on different sides of the middle point, this still doesn’t guarantee a triangle.
+
+Assume the cuts are labeled a and b, and that a and b are on different sides of the middle point, M. This will happen half of the time.
+
+———-a——-——M———-b——-——
+
+To be able to make a triangle, the distance from a to b can’t be more than half of the stick. This is only possible if a or b is closer to M than the end of the stick. This will happen half the time that the breaks are on either side of M (already only half of the total probability).
+
+So the total P(triangle) is 1⁄4.
+
+In summary: half the time both breaks are on the same side, so no triangle is formed. For the other half of the time, when the breaks are on either side of the middle, half the time the middle stick is larger than half the total, so no triangle is formed.
