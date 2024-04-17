@@ -1,0 +1,45 @@
+Given a monetary amount in dollars and a list of coin denominations, write a function coin_exchange(amount: float, denominations: List[float]) -> List[Tuple[float, int]] that returns a list of tuples representing the optimal change amount. The denominations available for change can vary and are provided as input in the denominations list. A change is considered optimal when it returns the least possible count of denominations.
+
+Note: The returned list of denominations should be in descending order, and in the case where there is no viable solution, return None.
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  While it may not look like it, this question is actually an NP-Hard problem. What this means is that currently, there is no proof that an algorithm exists for this question in polynomial time. Trying to optimize your algorithm beyond this is impossible. For example, trying an iterative, greedy approach will only result in “false-failures” wherein an optimal solution exists, but is not found because of the greedy nature of the algorithm.
+
+Inherently, the algorithm for this problem is basically an “explore all possibilities” algorithm, where we explore all possible permutations, starting from what we think is the most optimal until we get a valid solution. By doing this, the algorithm ensures the solution is indeed optimal because it has considered all other potential, yet non-viable, more optimal solutions.
+
+Our full solution is the following:
+
+def coin_exchange(amount: float, denominations: List[float], index: int = 0) -> List[Tuple[float, int]]:
+    if amount == 0 or index >= len(denominations):
+        return [] if amount == 0 else None
+
+    coin = denominations[index]
+    max_count = int(amount // coin)
+
+    for count in range(max_count, -1, -1):
+        remaining = round(amount - (coin * count), 2)
+
+        result = coin_exchange(remaining, denominations, index + 1)
+        if result is not None:
+            if count > 0:
+                result.append((coin, count))
+            result.sort(key=lambda x: x[0], reverse=True)
+            return result
+
+    return None
+Note that we added another keyword parameter index in order to facilitate the backtracking.
+
+If a coin combination doesn’t work, the function reduces the count of the current coin (at index) and tries again.
+The index parameter ensures that the function progresses through the coin denominations in an orderly fashion.
+The algorithm below considers two base cases:
+
+Zero Amount: If the amount is zero, we’ve successfully found a way to make change, so we return an empty list.
+Exhausted Denominations: If index exceeds the number of denominations, it means we’ve tried all options without success, so we return None.
+Here’s how we find the optimal count:
+
+We iterate over the number of times we can use the current coin (denomination at index), starting from the maximum count down to zero. We start at the max count of the current coin as this is the most optimal (albeit not guaranteed to be valid) solution.
+For each count, we compute the remaining amount after using that number of the current coin.
+The function calls itself for the next denomination, increasing the index by 1. This shift to the next coin is controlled by the index parameter.
+If this recursive call finds a valid combination (returns a list instead of None), we know we’re on the right track.
+If a certain count of the current coin is used in the solution, it’s added to the result list.
+Results are sorted by coin denomination for clarity.
