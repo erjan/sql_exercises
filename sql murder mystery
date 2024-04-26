@@ -1,0 +1,152 @@
+https://mystery.knightlab.com/
+  
+
+
+Security footage shows that there were 2 witnesses. The first witness 
+lives at the last 
+house on "Northwestern Dr". The second witness, named Annabel, lives 
+somewhere on "Franklin Ave".
+
+at northwestern - 14887	Morty Schapiro	118009	4919	Northwestern Dr	111564949
+
+annabel = 16371	Annabel Miller	490173	103	Franklin Ave	318771143
+
+id	name	            license_id      address_number	address_street_name	ssn
+14887	Morty Schapiro	118009 4919    Northwestern Dr	                    111564949
+16371	Annabel Miller	490173 103     Franklin Ave	                        318771143
+
+
+select  * from person where id in (16371, 14887)
+
+
+license_id 
+118009
+490173
+
+select  * from drivers_license where id in  (118009, 490173)
+
+
+id	age	height	eye_color	hair_color	gender	plate_number	car_make	car_model
+118009	64	84	blue	white	male	00NU00	Mercedes-Benz	E-Class
+490173	35	65	green	brown	female	23AM98	Toyota	Yaris
+
+
+select  * from interview i inner join person p on i.person_id = p.id where id in (16371, 14887) 
+
+
+person_id	transcript	id	name	license_id	address_number	address_street_name	ssn
+14887	I heard a gunshot and then saw a man run out. He had a "Get Fit Now Gym" bag. The membership 
+number on the bag started with "48Z". Only gold members have those bags. The man got into a car with a plate that
+ included "H42W".	14887	Morty Schapiro	118009	4919	Northwestern Dr	111564949
+ 
+16371	I saw the murder happen, and I recognized the killer from my gym 
+when I was working out last week 
+on January the 9th.	16371	Annabel Miller	490173	103	Franklin Ave	318771143
+
+
+
+select * from get_fit_now_member where id like "48Z%" and membership_status = 'gold'
+
+id	person_id	name	membership_start_date	membership_status
+48Z7A	28819	Joe Germuska	20160305	gold
+48Z55	67318	Jeremy Bowers	20160101	gold
+
+-------------------------------------------------------------------------
+id	person_id	name	membership_start_date	membership_status
+90081	16371	Annabel Miller	20160208	gold
+
+annabel worked out at:
+
+ select * from get_fit_now_check_in where membership_id =90081
+ 
+ which is 
+ 
+ membership_id	check_in_date	check_in_time	check_out_time
+90081	20180109	1600	1700
+
+
+select * from get_fit_now_check_in where membership_id in ('48Z7A', '48Z55'):
+membership_id	check_in_date	check_in_time	check_out_time
+48Z7A	20180109	1600	1730
+48Z55	20180109	1530	1700
+
+
+id	person_id	name	membership_start_date	membership_status
+48Z55	67318	Jeremy Bowers	20160101	gold
+
+
+select * from person where name = 'Jeremy Bowers'
+
+id	name	license_id	address_number	address_street_name	ssn
+67318	Jeremy Bowers	423327	530	Washington Pl, Apt 3A	871539279
+
+
+select * from person where id =67318
+
+
+value
+Congrats, you found the murderer! But wait, there's more... If you think 
+you're up for a challenge, try querying the interview transcript of the murderer to 
+find the real villain behind this crime. If you feel especially confident in your SQL 
+skills, try to complete this final step with no more than 2 queries. 
+Use this same INSERT statement with your new suspect to check your answer.
+
+
+select * from interview i inner join person p where p.name = 'Jeremy Bowers'
+and length(transcript) !=1
+
+
+
+I was hired by a woman with a lot of money. I don't know her name 
+but I know she's around 5'5" (65") or 5'7" (67"). She has 
+red hair and she drives a Tesla Model S. I know that she 
+attended the SQL Symphony Concert 3 times in December 2017.
+
+
+select * from  drivers_license 
+where hair_color = 'red' and car_make = 'Tesla' and 
+(height = 65 or height = 67)
+
+id	age	height	eye_color	hair_color	gender	plate_number	car_make	car_model
+
+
+918773	48	65	black	red	female	917UU3	Tesla	Model S
+
+
+select p.* from person p inner join drivers_license d on d.id = p.license_id where p.license_id = 918773
+
+
+id	name	license_id	address_number	address_street_name	ssn	id	age	height	eye_color	hair_color	gender	plate_number	car_make	car_model
+78881	Red Korb	918773	107	Camerata Dr	961388910	918773	48	65	black	red	female	917UU3	Tesla	Model S
+
+
+she attended 3 times:
+
+
+   select event_id,person_id,
+	count(person_id) as numPersons
+   
+   from facebook_event_checkin where date  like '201712%'
+   and event_name = 'SQL Symphony Concert'
+   
+   group by event_id,person_id
+   having count(person_id) = 3
+   
+output:
+event_id	person_id	numPersons
+1143	24556	3
+1143	99716	3
+
+
+   select *
+   
+   from person where id in(24556,99716)
+   
+
+
+id	name	license_id	address_number	address_street_name	ssn
+24556	Bryan Pardo	101191	703	Machine Ln	816663882
+99716	Miranda Priestly	202298	1883	Golden Ave	987756388
+
+
+Miranda Priestly
